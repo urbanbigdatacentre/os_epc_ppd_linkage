@@ -8,7 +8,7 @@
 # Bin.Chi@glasgow.ac.uk
 # Date: 1/4/2022
 
-#################### Section 1: Load package ##################
+#################### Section 1: load package ##################
 library("qdap")
 library(data.table)
 library("RPostgreSQL")
@@ -18,16 +18,11 @@ library(tidyverse)
 library(stringr)
 library(DBI)
 library("qdap")
-library(data.table)
 
-library("sqldf")
-library("dplyr")
-library(tidyverse)
-library(stringr)
-library(stringr)
+
 
 drv=dbDriver("PostgreSQL")
-db <- "osubdc"
+db <- "os_ubdc"
 host_db <- "localhost"
 db_port <- "5432"
 db_user <- "postgres"
@@ -35,7 +30,7 @@ db_user <- "postgres"
 db_password <- "654321"
 con <- dbConnect(RPostgres::Postgres(), dbname = db, host=host_db, port=db_port, user=db_user, password=db_password)
 
-#############  Section 2: Read in OS AddressBase Plus  #############  
+#############  Section 2: read in OS AddressBase Plus  #############  
 
 #Update your OS Addressbase Plus file path in below code
 osadd<-fread("D:/OS_Data/e90_ab_plus_csv_gb/AB_Plus_Data.csv", encoding = 'UTF-8')
