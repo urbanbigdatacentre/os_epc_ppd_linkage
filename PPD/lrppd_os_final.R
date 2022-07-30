@@ -25,7 +25,7 @@ db <- "os_ubdc"
 host_db <- "localhost"
 db_port <- "5432"
 db_user <- "postgres"
-#Update your password for the PostGIS database(osubdc)
+#update your password for the PostGIS database(osubdc)
 db_password <- "654321"
 con <- dbConnect(RPostgres::Postgres(), dbname = db, host=host_db, port=db_port, user=db_user, password=db_password)
 
@@ -42,7 +42,6 @@ setDT(tran)
 #create the postset field based on postcode field 
 tran[nchar(postcode)>=6,postset :=substring(postcode,0,nchar(postcode)-2)]
 #remove the whitespace from start and end of postset field in Land Registry PPD 
-
 tran$postset  <- str_trim(tran$postset)
 
 ######### part 2:OS AddressBase data pre-processing #########
