@@ -31,7 +31,7 @@ db <- "os_ubdc"
 host_db <- "localhost"
 db_port <- "5432"
 db_user <- "postgres"
-#Update your password for the PostGIS database
+#update your password for the PostGIS database
 db_password <- "654321"
 con <- dbConnect(RPostgres::Postgres(), dbname = db, host=host_db, port=db_port, user=db_user, password=db_password)
 dbWriteTable(con, "epcdata",value =epcdata, append = TRUE, row.names = FALSE)
