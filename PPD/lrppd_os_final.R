@@ -8,7 +8,6 @@
 # Bin.Chi@glasgow.ac.uk
 # Date: 1/4/2022
 
-
 #################### Section 1: Load package ##################
 library("qdap")
 library(data.table)
@@ -126,16 +125,6 @@ doubleresult <-  function(x){
   
   return(need1)
 }
-
-
-
-# needlist1<-c("transactionid","uprn","postcode.x","postcodelocator","postset.x", "postset.y","propertytype","paon","saon","street","locality.x","addressf","saostartnumber","saostartsuffix","saoendnumber","saoendsuffix","saotext","paostartnumber","paostartsuffix","paoendnumber","paoendsuffix","paotext","streetdescription","buildingname","buildingnumber","subbuildingname","bb","ss","pp")
-# needlist11<-c("transactionid","uprn","postcode.x","postcodelocator","postset.x", "postset.y","propertytype","paon","saon","street","locality.x","add1ressf","saostartnumber","saostartsuffix","saoendnumber","saoendsuffix","saotext","paostartnumber","paostartsuffix","paoendnumber","paoendsuffix","paotext","streetdescription","buildingname","buildingnumber","subbuildingname","ostopotoid","bb","ss","pp")
-# needlist12<-c("transactionid","uprn","postcode.x","postcodelocator","postset.x", "postset.y","propertytype","paon","saon","street","locality.x","add11ressf","saostartnumber","saostartsuffix","saoendnumber","saoendsuffix","saotext","paostartnumber","paostartsuffix","paoendnumber","paoendsuffix","paotext","streetdescription","buildingname","buildingnumber","subbuildingname","ostopotoid","bb","ss","pp")
-# needlist13<-c("transactionid","uprn","postcode.x","postcodelocator","postset.x", "postset.y","propertytype","paon","saon","street","locality.x","add11ressf","saostartnumber","saostartsuffix","saoendnumber","saoendsuffix","saotext","paostartnumber","paostartsuffix","paoendnumber","paoendsuffix","paotext","streetdescription","buildingname","buildingnumber","subbuildingname","ostopotoid","bb","ss","pp","method")
-# head(add)
-# addlist1<-c("uprn","parentuprn","postcodelocator","class","postcode","buildingname","buildingnumber","subbuildingname","paostartnumber","paostartsuffix","paoendnumber","paoendsuffix","paotext","saostartnumber","saostartsuffix","saoendnumber","saoendsuffix","saotext","streetdescription","locality","dependentlocality","townname","administrativearea","posttown","bb","ss","pp","postset")
-# 
 
 
 ###########################stage 1###########################
@@ -920,10 +909,11 @@ z <- inner_join(tran88,add11,by="addressf")
 #get the one to one linkage result in this method
 finalz <- uniqueresult(z)
 finalz$method<-"method42"
-finalz<-finalz[,..c("transactionid","uprn","method")]
-head(finalz)
-needz <- doubleresult(z)
 
+needlistf<-c("transactionid","uprn","method")
+finalz<-finalz[,..needlistf]
+
+needz <- doubleresult(z)
 ############method 43 PAON is equal to paostartnumber and SAON is equal to flatpao1############
 #extract the transacion records for the following data linkage process in stage 3
 tranpro22 <- tranneed(tran88,needz)
@@ -935,7 +925,7 @@ add11$add11ressf <- paste(add11$postcodelocator,add11$paostartnumber,sep=",")
 add11$add11ressf <- paste(add11$add11ressf,add11$flatp ,sep=",")
 
 zz1<- inner_join(tranpro22,add11,by="add11ressf")
-
+needlist12<-c("transactionid","uprn")
 zz1<-zz1[,..needlist12]
 ff1<-uniqueresult(zz1)
 
@@ -950,7 +940,7 @@ add11$add11ressf <- paste(add11$postcodelocator,add11$pp,sep=",")
 add11$add11ressf <- paste(add11$add11ressf,add11$saotext,sep=",")
 
 zz2<- inner_join(tranpro221,add11,by="add11ressf")
-needlist12<-c("transactionid","uprn")
+
 zz2<-zz2[,..needlist12]
 
 ff2<-uniqueresult(zz2)
@@ -1144,6 +1134,7 @@ add12$add11ressf <-gsub(" ","",add12$add11ressf )
 zz12<- inner_join(tranpro221_1,add12,by="add11ressf")
 rm(tranpro221_1)
 
+zz12<-zz12[,..needlist12]
 ff12<-uniqueresult(zz12)
 
 ff12$method<-"method54"
@@ -1498,6 +1489,9 @@ e<- inner_join(tran66,add66,by="addressf")
 #keep the one to one linkage result
 stage5 <- uniqueresult(e)
 stage5$method<-"method90"
+
+needlistf<-c("transactionid","uprn","method")
+stage5<-stage5[,..needlistf]
 
 neede <- doubleresult(e)
 tranpro22 <- tranneed(tran66,neede)
