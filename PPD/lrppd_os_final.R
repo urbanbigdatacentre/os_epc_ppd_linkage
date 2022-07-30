@@ -8,7 +8,7 @@
 # Bin.Chi@glasgow.ac.uk
 # Date: 1/4/2022
 
-#################### Section 1: Load package ##################
+ #################################### Section 1: Load package#################################### 
 library("qdap")
 library(data.table)
 library("RPostgreSQL")
@@ -18,7 +18,7 @@ library(tidyverse)
 library(stringr)
 library(DBI)
 library("dplyr")
-#############  Section 2: Read in OS AddressBase Plus and Land Registry Price Paid Data(PPD) #############  
+ #################################### Section 2: Read in OS AddressBase Plus and Land Registry Price Paid Data(PPD#################################### 
 #read in Land Registry PPD
 drv=dbDriver("PostgreSQL")
 db <- "os_ubdc"
@@ -32,7 +32,7 @@ con <- dbConnect(RPostgres::Postgres(), dbname = db, host=host_db, port=db_port,
 tran <- dbGetQuery(con,"select * from pricepaid") 
 #read in OS AddressBase Plus
 add <- dbGetQuery(con,"select * from  addressgb") 
-######### Section 3:OS AddressBase data and Land Registry PPD pre-processing #########
+#################################### Section 3: OS AddressBase data and Land Registry PPD pre-processing#################################### 
 
 ######### part 1: Land Registry PPD pre-processing #########
 #remove the whitespace from start and end of postcode field in Land Registry PPD 
@@ -123,7 +123,7 @@ doubleresult <-  function(x){
   return(need1)
 }
 
-######### part 4:data linkage #########
+#################################### section 4:data linkage#################################### 
 ###########################stage 1###########################
 #################PAON is NULL and SAON is not NULL#################
 trannull <- tran[tran$paon=="",]
