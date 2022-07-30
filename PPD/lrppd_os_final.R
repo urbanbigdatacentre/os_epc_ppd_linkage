@@ -1,4 +1,4 @@
-# ------------------------------------------------
+ and # ------------------------------------------------
 # lrppd_os_final.R
 # ------------------------------------------------
 # Code provided as is and can be used or modified freely. 
@@ -32,7 +32,7 @@ con <- dbConnect(RPostgres::Postgres(), dbname = db, host=host_db, port=db_port,
 tran <- dbGetQuery(con,"select * from pricepaid") 
 #read in OS AddressBase Plus
 add <- dbGetQuery(con,"select * from  addressgb") 
-######### OS AddressBase data and Land Registry PPD pre-processing #########
+######### Section 3:OS AddressBase data and Land Registry PPD pre-processing #########
 
 ######### part 1: Land Registry PPD pre-processing #########
 #remove the whitespace from start and end of postcode field in Land Registry PPD 
@@ -123,7 +123,7 @@ doubleresult <-  function(x){
   return(need1)
 }
 
-
+######### part 4:data linkage #########
 ###########################stage 1###########################
 #################PAON is NULL and SAON is not NULL#################
 trannull <- tran[tran$paon=="",]
