@@ -21,7 +21,7 @@ library(DBI)
 library("dplyr")
 #############  Section 2: Read in OS AddressBase Plus and Land Registry Price Paid Data(PPD) #############  
 #read in OS AddressBase Plus
-add<-fread("D:/OS_Data/e90_ab_plus_csv_gb/AB_Plus_Data.csv", encoding = 'UTF-8')
+#add<-fread("D:/OS_Data/e90_ab_plus_csv_gb/AB_Plus_Data.csv", encoding = 'UTF-8')
 #read in Land Registry PPD
 drv=dbDriver("PostgreSQL")
 db <- "os_ubdc"
@@ -33,6 +33,8 @@ db_password <- "654321"
 con <- dbConnect(RPostgres::Postgres(), dbname = db, host=host_db, port=db_port, user=db_user, password=db_password)
 
 tran <- dbGetQuery(con,"select * from pricepaid") 
+#read in OS AddressBase Plus
+add <- dbGetQuery(con,"select * from  addressgb") 
 ######### OS AddressBase data and Land Registry PPD pre-processing #########
 
 ######### part 1: Land Registry PPD pre-processing #########
@@ -48,9 +50,9 @@ tran$postset  <- str_trim(tran$postset)
 
 ######### part 2:OS AddressBase data pre-processing #########
 
-#convert the field name to lowercase and then remove the "_" in the field name in OS AddressBase data 
-setnames(add, tolower(names(add)))
-colnames(add) <- gsub("_", "", colnames(add))
+# #convert the field name to lowercase and then remove the "_" in the field name in OS AddressBase data 
+# setnames(add, tolower(names(add)))
+# colnames(add) <- gsub("_", "", colnames(add))
 
 #format the address fields in OS AddressBase data for data linkage process
 add$paostartnumber<-as.character(add$paostartnumber)
@@ -127,13 +129,13 @@ doubleresult <-  function(x){
 
 
 
-needlist1<-c("transactionid","uprn","postcode.x","postcodelocator","postset.x", "postset.y","propertytype","paon","saon","street","locality.x","addressf","saostartnumber","saostartsuffix","saoendnumber","saoendsuffix","saotext","paostartnumber","paostartsuffix","paoendnumber","paoendsuffix","paotext","streetdescription","buildingname","buildingnumber","subbuildingname","bb","ss","pp")
-needlist11<-c("transactionid","uprn","postcode.x","postcodelocator","postset.x", "postset.y","propertytype","paon","saon","street","locality.x","add1ressf","saostartnumber","saostartsuffix","saoendnumber","saoendsuffix","saotext","paostartnumber","paostartsuffix","paoendnumber","paoendsuffix","paotext","streetdescription","buildingname","buildingnumber","subbuildingname","ostopotoid","bb","ss","pp")
-needlist12<-c("transactionid","uprn","postcode.x","postcodelocator","postset.x", "postset.y","propertytype","paon","saon","street","locality.x","add11ressf","saostartnumber","saostartsuffix","saoendnumber","saoendsuffix","saotext","paostartnumber","paostartsuffix","paoendnumber","paoendsuffix","paotext","streetdescription","buildingname","buildingnumber","subbuildingname","ostopotoid","bb","ss","pp")
-needlist13<-c("transactionid","uprn","postcode.x","postcodelocator","postset.x", "postset.y","propertytype","paon","saon","street","locality.x","add11ressf","saostartnumber","saostartsuffix","saoendnumber","saoendsuffix","saotext","paostartnumber","paostartsuffix","paoendnumber","paoendsuffix","paotext","streetdescription","buildingname","buildingnumber","subbuildingname","ostopotoid","bb","ss","pp","method")
-head(add)
-addlist1<-c("uprn","parentuprn","postcodelocator","class","postcode","buildingname","buildingnumber","subbuildingname","paostartnumber","paostartsuffix","paoendnumber","paoendsuffix","paotext","saostartnumber","saostartsuffix","saoendnumber","saoendsuffix","saotext","streetdescription","locality","dependentlocality","townname","administrativearea","posttown","bb","ss","pp","postset")
-
+# needlist1<-c("transactionid","uprn","postcode.x","postcodelocator","postset.x", "postset.y","propertytype","paon","saon","street","locality.x","addressf","saostartnumber","saostartsuffix","saoendnumber","saoendsuffix","saotext","paostartnumber","paostartsuffix","paoendnumber","paoendsuffix","paotext","streetdescription","buildingname","buildingnumber","subbuildingname","bb","ss","pp")
+# needlist11<-c("transactionid","uprn","postcode.x","postcodelocator","postset.x", "postset.y","propertytype","paon","saon","street","locality.x","add1ressf","saostartnumber","saostartsuffix","saoendnumber","saoendsuffix","saotext","paostartnumber","paostartsuffix","paoendnumber","paoendsuffix","paotext","streetdescription","buildingname","buildingnumber","subbuildingname","ostopotoid","bb","ss","pp")
+# needlist12<-c("transactionid","uprn","postcode.x","postcodelocator","postset.x", "postset.y","propertytype","paon","saon","street","locality.x","add11ressf","saostartnumber","saostartsuffix","saoendnumber","saoendsuffix","saotext","paostartnumber","paostartsuffix","paoendnumber","paoendsuffix","paotext","streetdescription","buildingname","buildingnumber","subbuildingname","ostopotoid","bb","ss","pp")
+# needlist13<-c("transactionid","uprn","postcode.x","postcodelocator","postset.x", "postset.y","propertytype","paon","saon","street","locality.x","add11ressf","saostartnumber","saostartsuffix","saoendnumber","saoendsuffix","saotext","paostartnumber","paostartsuffix","paoendnumber","paoendsuffix","paotext","streetdescription","buildingname","buildingnumber","subbuildingname","ostopotoid","bb","ss","pp","method")
+# head(add)
+# addlist1<-c("uprn","parentuprn","postcodelocator","class","postcode","buildingname","buildingnumber","subbuildingname","paostartnumber","paostartsuffix","paoendnumber","paoendsuffix","paotext","saostartnumber","saostartsuffix","saoendnumber","saoendsuffix","saotext","streetdescription","locality","dependentlocality","townname","administrativearea","posttown","bb","ss","pp","postset")
+# 
 
 
 ###########################stage 1###########################
@@ -264,7 +266,6 @@ null7u<-uniqueresult(null7)
 #combine allone to one linkage data in stage 1
 lu1 = list(null1u,null2u,null3u,null4u,null5u,null6u,null7u)
 stage1<- rbindlist(lu1 )
-dim(stage1)
 
 #save the stage 1 linked result in PostGIS database
 dbWriteTable(con, "stage1",value =stage1, append = TRUE, row.names = FALSE)
@@ -273,7 +274,7 @@ dbWriteTable(con, "stage1",value =stage1, append = TRUE, row.names = FALSE)
 rm(null1u,null2u,null3u,null4u,null5u,null6u,null7u)
 rm(lu1)
 rm(null1,null2,null3,null4,null5,null6,null7)
-
+rm(trannull,addnull)
 ###########################stage 2###########################
 #remove the sucessful linked transaction from Stage 1 in Land Registry PPD data
 tran<-matchleft(tran,stage1)
@@ -305,12 +306,12 @@ setDT(x1)
 x1<-unique(x1)
 rm(taba1,taba2,taba3)
 x<- uniqueresult(x1)
-dim(x)
+
 x<-x[,..needlist1]
 x$method<-"method8"
 #extract the one to many linked result for the following linkage process in Stage 2
 need2 <- doubleresult(x1)
-dim(need2)
+rm(x1)
 #extract the transaction record which show one ot many linkage relationship in the method 8
 tran1 <- tran[tran$transactionid %in% need2$transactionid,]
 #extract the records with SAON does not have NULL vaule
@@ -878,32 +879,29 @@ tran11<- matchleft(tran11,f201)
 #keep the usefully field in OS AddressBase data
 addlist1<-c("uprn","parentuprn","postcodelocator","class","postcode","buildingname","buildingnumber","subbuildingname","paostartnumber","paostartsuffix","paoendnumber","paoendsuffix","paotext","saostartnumber","saostartsuffix","saoendnumber","saoendsuffix","saotext","streetdescription","locality","dependentlocality","townname","administrativearea","posttown","bb","ss","pp","postset")
 add1<-add1[,..addlist1]
-#################sum up the linked result in stage 2##################
+#################sum up the linked data in stage 2##################
 #combine allone to one linkage data in stage 2
 ly = list(f0_1,f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,f13,f14,f15,f16,f17,f18,f19,f20,f21,f22,f23,f24,f25,f26,f27,f28,f29,f30,f200,f201,x)
 stage2<-rbindlist(ly ,use.names=TRUE,fill=T)
 
 #save the stage 1  result in PostGIS database
 dbWriteTable(con, "stage2",value =stage2, append = TRUE, row.names = FALSE)
-dbWriteTable(con, "y",value =y, append = TRUE, row.names = FALSE)
 dbWriteTable(con, "x",value =x, append = TRUE, row.names = FALSE)
 dbWriteTable(con, "stage2_tran11_left",value =tran11, append = TRUE, row.names = FALSE)
 dbWriteTable(con, "stage2_tran12_left",value =tran12, append = TRUE, row.names = FALSE)
 
 #remove the linked results in this stage
 rm(need2)
-rm(need2_test)
-rm(x,y)
+
+rm(x)
 rm(f0_1,f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,f13,f14,f15,f16,f17,f18,f19,f20,f21,f22,f23,f24,f25,f26,f27,f28,f29,f30,f200,f201)
 rm(y1_left,y2_left,y3_left,y4_left,y5_left,y6_left,y7_left,y8_left,y9_left,y10_left,y11_left,y12_left,y13_left,y14_left,y15_left,y16_left,y17_left,y18_left,y19_left,y20_left,y21_left,y22_left,y23_left,y24_left,y25_left,y26_left,y27_left,y28_left,y29_left,y30_left,y200_left,y201_left)
 rm(y01,y1,y2,y3,y4,y5,y6,y7,y8,y9,y10,y11,y12,y13,y14,y15,y16,y17,y18,y19,y20,y21,y22,y23,y24,y25,y26,y27,y28,y29,y30,y200,y201)
 rm(add1)
-rm(x1)
-rm(need2_2,tran11,tran12,tran121)
+rm(tran11,tran12,tran121)
 
 ###########################stage 3###########################
 ############method 42 PAON is equal to paostartnumber############
-
 tran1 <- tran[tran$paon!="",]
 tran88 <- matchleft(tran1,stage2)
 
@@ -1007,7 +1005,7 @@ zz5<-zz5[,..needlist12]
 
 ff5<-uniqueresult(zz5)
 
-ff5$method<-"method54"
+ff5$method<-"method47"
 ############method 48 PAON is equal to pp and SAON2 is equal to saotext############
 tranpro221 <- matchleft(tranpro221,ff5)
 
@@ -1211,28 +1209,21 @@ ff15$method<-"method57"
 
 tranpro221 <- matchleft(tranpro221,ff15)
 ############sum up the linked result in stage stage 3############
-
 ly = list(ff1,ff2,ff3,ff4,ff5,ff6,ff7,ff8,ff9,ff10,ff11,ff12,ff13,ff14,ff15,finalz)
 stage3<- rbindlist(ly ,use.names=TRUE,fill=T)
 
 dbWriteTable(con, "stage3",value =stage3, append = TRUE, row.names = FALSE)
-
 dbWriteTable(con, "finalz",value =finalz, append = TRUE, row.names = FALSE)
-dbWriteTable(con, "ff",value =ff, append = TRUE, row.names = FALSE)
-
 dbWriteTable(con, "tran_stage3_left",value =tranpro221, append = TRUE, row.names = FALSE)
 
-rm(finalz)
-rm(ff1,ff2,ff3,ff4,ff5,ff6,ff7,ff8,ff9,ff10,ff11,ff12,ff13,ff14,ff15)
-rm(ly)
-rm(ff)
+rm(ff1,ff2,ff3,ff4,ff5,ff6,ff7,ff8,ff9,ff10,ff11,ff12,ff13,ff14,ff15,finalz)
 rm(zz1,zz2,zz3,zz4,zz5,zz6,zz7,zz8,zz9,zz10,zz11,zz12,zz13,zz14,zz15)
 rm(add11)
 rm(tranpro22)
 rm(z)
 rm(add12)
 rm(needz)
-rm(zz1_left,zz2_left,zz3_left,zz4_left,zz5_left,zz6_left,zz7_left,zz8_left,zz9_left,zz10_left,zz11_left,zz12_left,zz13_left,zz14_left,zz15_left)
+rm(ly)
 
 ###########################stage 4###########################
 tran77 <- matchleft(tran88,stage3)
@@ -1250,7 +1241,7 @@ finalb$method<-"method58"
 
 needb <- doubleresult(b)
 
-needb1<-needb[needb$saon!="",]
+#needb1<-needb[needb$saon!="",]
 add77$pp<-str_trim(add77$pp)
 ############method 59 PAON is equal to pp and SAON is equal to saotext############
 tranpro22 <- tranneed(tran77,needb)
@@ -1480,22 +1471,22 @@ stage4<- rbindlist(ly ,use.names=TRUE,fill=T)
 #save data in PostGIS database
 dbWriteTable(con, "stage4",value =stage4, append = TRUE, row.names = FALSE)
 dbWriteTable(con, "finalb",value =finalb, append = TRUE, row.names = FALSE)
-
 dbWriteTable(con, "tran_stage4_left",value =tranpro221, append = TRUE, row.names = FALSE)
 
 rm(b)
 rm(finalb)
 rm(fb1,fb2,fb3,fb4,fb5,fb6,fb7,fb8,fb9,fb10,fb11,fb12,fb13)
+rm(bb1,bb2,bb3,bb4,bb5,bb6,bb7,bb8,bb9,bb10,bb11,bb12,bb13)
 rm(ly)
 rm(needb)
 rm(add77,add78)
-rm(tranpro22,tranpro221)
+rm(tranpro22,tranpro221,tranpro22_1,tranpro221_1)
 rm(tran88)
-###########################stage 5 PAON is equal to psao###########################
+###########################stage 5 ###########################
 tran66 <- matchleft(tran77,stage4)
 
 add66 <-add[add$postcodelocator %in% tran66$postcode,]
-
+############method 90 PAON is equal to psao############
 tran66$addressf <-paste(tran66$postcode,tran66$paon,sep=",")
 add66 <- merge(add,link1,by="saotext")
 
@@ -1512,9 +1503,8 @@ neede <- doubleresult(e)
 tranpro22 <- tranneed(tran66,neede)
 
 dbWriteTable(con, "stage5",value =stage5, append = TRUE, row.names = FALSE)
-
 dbWriteTable(con, "tran_stage5_left",value =tranpro22, append = TRUE, row.names = FALSE)
-rm(neede,e,add66)
+rm(neede,e,add66,tranpro22)
 ###########################stage 6###########################
 tran55 <- matchleft(tran66,stage5)
 
@@ -1523,10 +1513,11 @@ add<-add[add$postset %in% tran55$postset,]
 ############method 73 PAON is equal to pp2 ############
 tran55$addressf <-paste(tran55$postcode,tran55$paon,sep=",")
 
-add$pp2 <-paste(add$paotext,add$pp,sep=",")
+add$pp2 <-paste(add$paotext,add$pp,sep=", ")
 add$addressf <- paste(add$postcodelocator,add$pp2,sep=",")
 
 r1<- inner_join(tran55,add,by="addressf")
+
 needlist1<-c("transactionid","uprn")
 r1<-r1[,..needlist1]
 
@@ -1535,13 +1526,14 @@ finalr<-uniqueresult(r1)
 needr <- doubleresult(r1)
 
 finalr$method<-"method73"
+rm(r1)
 ############method 74 PAON is equal to pp2 and SAON is equal to saotext############
 tranr <- tranneed(tran55,needr)
 
 tranr$addressf <-paste(tranr$postcode,tranr$paon,sep=",")
 tranr$addressf <-paste(tranr$addressf,tranr$saon,sep=",")
 tranr_1<-tranr[tranr$saon!="",]
-add$pp2 <-paste(add$paotext,add$pp,sep=",") 
+add$pp2 <-paste(add$paotext,add$pp,sep=", ") 
 
 add$addressf <- paste(add$postcodelocator,add$pp2,sep=",")
 add$addressf <- paste(add$addressf,add$saotext,sep=",")
@@ -1560,7 +1552,7 @@ tranr$addressf <-paste(tranr$postcode,tranr$paon,sep=",")
 tranr$addressf <-paste(tranr$addressf,tranr$saon,sep=",")
 tranr_1<-tranr[tranr$saon!="",]
 
-add$pp2 <-paste(add$paotext,add$pp,sep=",") 
+add$pp2 <-paste(add$paotext,add$pp,sep=", ") 
 add$addressf <- paste(add$postcodelocator,add$pp2,sep=",")
 add$addressf <- paste(add$addressf,add$ss,sep=",")
 
@@ -1577,7 +1569,7 @@ tranr$addressf <-paste(tranr$postcode,tranr$paon,sep=",")
 tranr$addressf <-paste(tranr$addressf,tranr$saon,sep=",")
 tranr_1<-tranr[tranr$saon!="",]
 
-add$pp2 <-paste(add$paotext,add$pp,sep=",") 
+add$pp2 <-paste(add$paotext,add$pp,sep=", ") 
 add$flatss <- paste("FLAT ",add$ss,sep="")
 add$addressf <- paste(add$postcodelocator,add$pp2,sep=",")
 add$addressf <- paste(add$addressf,add$flatss,sep=",")
@@ -1596,7 +1588,7 @@ tranr$addressf <-paste(tranr$postcode,tranr$paon,sep=",")
 tranr$addressf <-paste(tranr$addressf,tranr$fsaon,sep=",")
 tranr_1<-tranr[tranr$saon!="",]
 
-add$pp2 <-paste(add$paotext,add$pp,sep=",") 
+add$pp2 <-paste(add$paotext,add$pp,sep=", ") 
 add$addressf <- paste(add$postcodelocator,add$pp2,sep=",")
 add$addressf <- paste(add$addressf,add$saotext,sep=",")
 
@@ -1613,7 +1605,7 @@ tranr$addressf <-paste(tranr$postcode,tranr$paon,sep=",")
 tranr$addressf <-paste(tranr$addressf,tranr$saon,sep=",")
 tranr_1<-tranr[tranr$saon!="",]
 
-add$pp2 <-paste(add$paotext,add$pp,sep=",") 
+add$pp2 <-paste(add$paotext,add$pp,sep=", ") 
 add$unitss <-paste("UNIT ",add$ss,sep="")
 add$addressf <- paste(add$postcodelocator,add$pp2,sep=",")
 add$addressf <- paste(add$addressf,add$unitss,sep=",")
@@ -1631,7 +1623,7 @@ tranr$addressf <-paste(tranr$postcode,tranr$paon,sep=",")
 tranr$addressf <-paste(tranr$addressf,tranr$saon,sep=",")
 tranr_1<-tranr[tranr$saon!="",]
 
-add$pp2 <-paste(add$paotext,add$pp,sep=",") 
+add$pp2 <-paste(add$paotext,add$pp,sep=", ")  
 add$addressf <- paste(add$postcodelocator,add$pp2,sep=",")
 add$addressf <- paste(add$addressf,add$subbuildingname,sep=",")
 
@@ -1668,10 +1660,10 @@ data4$addressf <-paste(data4$postcode,data4$paon,sep=",")
 data4$addressf <-paste(data4$addressf,data4$saon,sep=",")
 data4<-data4[data4$saon!="",]
 
-add$pp2 <-paste(add$paotext,add$pp,sep=",")
+add$pp2 <-paste(add$paotext,add$pp,sep=", ") 
 add$ss1 <- paste(add$saostartsuffix,add$saostartnumber,sep="")
 
-add$addressf <- paste(add$postcodelocator,add$pp2,sep=" ")
+add$addressf <- paste(add$postcodelocator,add$pp2,sep=",")
 add$addressf <- paste(add$addressf,add$ss1,sep=",")
 
 rr8<- inner_join(data4,add,by="addressf")
@@ -1713,7 +1705,7 @@ tranr_1$saon5<-word(tranr_1$saon,-2,-1)
 tranr_1$addressf <-paste(tranr_1$addressf,tranr_1$saon5,sep=",")
 tranr_1<-tranr_1[tranr_1$saon!="",]
 
-add$pp2 <-paste(add$paotext,add$pp,sep=",") 
+add$pp2 <-paste(add$paotext,add$pp,sep=", ") 
 add$addressf <- paste(add$postcodelocator,add$pp2,sep=",")
 add$addressf <- paste(add$addressf,add$saotext,sep=",")
 
@@ -1729,7 +1721,7 @@ tranr<- matchleft(tranr,fr10)
 tranr$addressf <-paste(tranr$postcode,tranr$paon,sep=",")
 tranr$addressf <-paste(tranr$addressf,tranr$saon,sep=",")
 tranr_1<-tranr[tranr$saon!="",]
-add$pp2 <-paste(add$paotext,add$pp,sep=",") 
+add$pp2 <-paste(add$paotext,add$pp,sep=", ") 
 
 add$addressf <- paste(add$postcodelocator,add$pp2,sep=",")
 add$saotext6<- gsub("FLAT","APARTMENT",add$saotext)
@@ -1750,8 +1742,7 @@ tranr$addressf <-paste(tranr$postcode,tranr$paon,sep=",")
 tranr$addressf <-paste(tranr$addressf,tranr$saon,sep=",")
 tranr_1<-tranr[tranr$saon!="",]
 
-
-add$pp2 <-paste(add$paotext,add$pp,sep=",") 
+add$pp2 <-paste(add$paotext,add$pp,sep=", ") 
 add$addressf <- paste(add$postcodelocator,add$pp2,sep=",")
 add$saotext5<- gsub("FLAT","UNIT",add$saotext)
 add$addressf <- paste(add$addressf,add$saotext5,sep=",")
@@ -1764,14 +1755,11 @@ fr12<-uniqueresult(rr12)
 fr12$method<-"method85"
 
 tranr<- matchleft(tranr,fr12)
-
-rm(needb1)
+add<-add[,..addlist1]
 ############sum up the linked data in stage 6############
-
 ly = list(fr1,fr2,fr3,fr4,fr5,fr6,fr7,fr8,fr9,fr10,fr11,fr12,finalr)
 stage6<- rbindlist(ly ,use.names=TRUE,fill=T)
 
-add<-add[,..addlist1]
 dbWriteTable(con, "stage6",value =stage6, append = TRUE, row.names = FALSE)
 dbWriteTable(con, "finalr",value =finalr, append = TRUE, row.names = FALSE)
 dbWriteTable(con, "tran_stage6_left",value =tranr, append = TRUE, row.names = FALSE)
@@ -1779,19 +1767,13 @@ dbWriteTable(con, "tran_stage6_left",value =tranr, append = TRUE, row.names = FA
 rm(rr1,rr2,rr3,rr4,rr5,rr6,rr7,rr8,rr9,rr10,rr11,rr12)
 rm(fr1,fr2,fr3,fr4,fr5,fr6,fr7,fr8,fr9,fr10,fr11,fr12)
 rm(ly)
-rm(tranr,finalr)
+rm(tranr,tranr_1,finalr)
 rm(needr)
+rm(tran66,tran77)
 ###########################stage 7###########################
-
 tran44 <- matchleft(tran55,stage6)
 
-rm(tran55,tran66,tran77,tran88)
-
 add<-add[add$postset %in% tran44$postset,]
-
-rm(tranpro22,tranpro22_1,tranpro221_1)
-
-
 ############method 86 PAON is equal to paotext or PAON is equal to sp############
 #part 1 linkage: PAON is equal to paotext
 tran44$addressf <-paste(tran44$postcode,tran44$paon,sep=",")
@@ -2080,333 +2062,287 @@ stage7<- rbindlist(ly ,use.names=TRUE,fill=T)
 dbWriteTable(con, "stage7",value =stage7, append = TRUE, row.names = FALSE)
 dbWriteTable(con, "finalm",value =finalm, append = TRUE, row.names = FALSE)
 dbWriteTable(con, "tran_stage7_left",value =tranm, append = TRUE, row.names = FALSE)
-
+rm(mm1,mm2,mm3,mm4,mm5,mm6,mm7,mm8,mm9,mm10,mm11,mm12,mm13,mm14)
 rm(fm1,fm2,fm3,fm4,fm5,fm6,fm7,fm8,fm9,fm10,fm11,fm12,fm13,fm14)
 rm(ly)
 rm(finalm)
-rm(needm)
-rm(m,mm14)
+rm(needm,tranm)
+rm(m)
+rm(tran55)
 #################stage 8 #################
 #remove the linked record from stage 7 in PPD
 tran33 <- matchleft(tran44,stage7)
 
-############method 100############
+############method 101 PAON1 is equal to buildingname or then PAON1 is equal to pp4############
+#part 1: PAON1 is equal to buildingname
 tran33$paon1 <- gsub(" - ","-",tran33$paon )
 tran33$paon1 <- gsub(", "," ",tran33$paon1 )
 
-tran33$addressf <-paste(tran33$postcode,tran33$paon1,sep=", ")
-add$addressf <- paste(add$postcodelocator,add$buildingname,sep=", ")
+tran33$addressf <-paste(tran33$postcode,tran33$paon1,sep=",")
+add$addressf <- paste(add$postcodelocator,add$buildingname,sep=",")
 
 ll1<- inner_join(tran33,add,by="addressf")
 
 ll1<-ll1[,..needlist1]
 
 f1<-uniqueresult(ll1)
-dim(f1)
-#50126
-######PAON1 is equal to pp4
+
+#part 1: PAON1 is equal to pp4
 tran33_1 <- matchleft(tran33,f1)
-dim(tran33_1)
 
 tran33_1$paon1 <- gsub(" - ","-",tran33_1$paon )
 tran33_1$paon1 <- gsub(", "," ",tran33_1$paon1 )
 
-tran33_1$addressf <-paste(tran33_1$postcode,tran33_1$paon1,sep=", ")
+tran33_1$addressf <-paste(tran33_1$postcode,tran33_1$paon1,sep=",")
 
 add$pp4 <-paste(add$paostartnumber,add$paoendnumber,sep="-") 
 
-add$addressf <- paste(add$postcodelocator,add$pp4,sep=", ")
+add$addressf <- paste(add$postcodelocator,add$pp4,sep=",")
 ll2<- inner_join(tran33_1,add,by="addressf")
+
 ll2<-ll2[,..needlist1]
 
 f2<-uniqueresult(ll2)
-head(f2[f2$transactionid %in% f1$transactionid,])
-head(f1[f1$transactionid %in% f2$transactionid,])
-# ff<-rbindlist(list(f1,f2) )
-# ff<-unique(ff)
-# dim(ff)
-# dim(f1)[1]+dim(f2)[1]
-# ff[!(ff$transactionid %in% finalll$transactionid),]
-# rm(ff)
 
+#remove data
 rm(tran33_1)
+#combine the part 1 and part 2 result
 ll<-rbindlist(list(ll1,ll2) )
 ll<-unique(ll)
 
 finalll <- uniqueresult(ll)
-dim(finalll)
+finalll$method<-"method101"
 
-# 27594    30
 needl <- doubleresult(ll)
-dim(needl)
-finalll$method<-"method139"
-tranl<- tranneed(tran33,needl)
-
 
 rm(tran44)
 rm(ll1,ll2)
-############method 140############
+############method 102 PAON1 is equal to buildingname and SAON is equal to subbuildingname############
+tranl<- tranneed(tran33,needl)
+
 tranl$paon1 <- gsub(" - ","-",tranl$paon )
 tranl$paon1 <- gsub(", "," ",tranl$paon1 )
 
-tranl$addressf <-paste(tranl$postcode,tranl$paon1,sep=", ")
-tranl$addressf <-paste(tranl$addressf,tranl$saon,sep=", ")
+tranl$addressf <-paste(tranl$postcode,tranl$paon1,sep=",")
+tranl$addressf <-paste(tranl$addressf,tranl$saon,sep=",")
 tranl_1<-tranl[tranl$saon!="",]
 
-add$addressf <- paste(add$postcodelocator,add$buildingname,sep=", ")
-add$addressf <- paste(add$addressf,add$subbuildingname,sep=", ")
+add$addressf <- paste(add$postcodelocator,add$buildingname,sep=",")
+add$addressf <- paste(add$addressf,add$subbuildingname,sep=",")
 
 l1<- inner_join(tranl_1,add,by="addressf")
 l1<-l1[,..needlist1]
 
 fl1<-uniqueresult(l1)
-dim(fl1)
-fl1$method<-"method140"
 
-############method 141############
+fl1$method<-"method102"
+
+############method 103 PAON1 is equal to buildingname and SAON is equal to saotext############
 tranl <- matchleft(tranl,fl1)
-dim(tranl)
-#35639    19
-tranl$addressf <-paste(tranl$postcode,tranl$paon1,sep=", ")
-tranl$addressf <-paste(tranl$addressf,tranl$saon,sep=", ")
+
+tranl$addressf <-paste(tranl$postcode,tranl$paon1,sep=",")
+tranl$addressf <-paste(tranl$addressf,tranl$saon,sep=",")
 tranl_1<-tranl[tranl$saon!="",]
 
-add$addressf <- paste(add$postcodelocator,add$buildingname,sep=", ")
-add$addressf <- paste(add$addressf,add$saotext,sep=", ")
+add$addressf <- paste(add$postcodelocator,add$buildingname,sep=",")
+add$addressf <- paste(add$addressf,add$saotext,sep=",")
 
 
 l2<- inner_join(tranl_1,add,by="addressf")
 l2<-l2[,..needlist1]
-rm(tranl_1)
+
+
 fl2<-uniqueresult(l2)
-dim(fl2)
 
-fl2$method<-"method141"
-
-
-############method 142############
+fl2$method<-"method103"
+rm(tranl_1)
+############method 104 PAON2 is equal to pp4 and SAON is NULL############
 tranl <- matchleft(tranl,fl2)
-dim(tranl)
-#35205    19
+
 tranl$paon2 <- gsub(" - ","-",tranl$paon )
-tranl$addressf <-paste(tranl$postcode,tranl$paon2,sep=", ")
+tranl$addressf <-paste(tranl$postcode,tranl$paon2,sep=",")
 temp1<- tranl[tranl$saon=="",]
 
 add$pp4 <-paste(add$paostartnumber,add$paoendnumber,sep="-")
-add$addressf <- paste(add$postcodelocator,add$pp4,sep=", ")
+add$addressf <- paste(add$postcodelocator,add$pp4,sep=",")
 
 l3<- inner_join(temp1,add,by="addressf")
 l3<-l3[,..needlist1]
-rm(temp1)
+
 fl3<-uniqueresult(l3)
-dim(fl3)
-fl3$method<-"method142"
 
-############method 143############
+fl3$method<-"method104"
+rm(temp1)
+############method 105 PAON1 is equal to ppp and SAON is equal to ss############
 tranl <- matchleft(tranl,fl3)
-dim(tranl)
-
 
 tranl$paon1 <- gsub(" - ","-",tranl$paon )
 tranl$paon1 <- gsub(", "," ",tranl$paon1 )
-tranl$addressf <-paste(tranl$postcode,tranl$paon1,sep=", ")
-tranl$addressf <-paste(tranl$addressf,tranl$saon,sep=", ")
-
+tranl$addressf <-paste(tranl$postcode,tranl$paon1,sep=",")
+tranl$addressf <-paste(tranl$addressf,tranl$saon,sep=",")
+tranl_1<-tranl[tranl$saon!="",]
 
 add$pp1 <-paste(add$paostartnumber,add$paoendnumber,sep="-") 
 add$ppp <-paste(add$paotext,add$pp1,sep=" ") 
 
-add$addressf <- paste(add$postcodelocator,add$ppp,sep=", ")
-add$addressf <- paste(add$addressf,add$ss,sep=", ")
+add$addressf <- paste(add$postcodelocator,add$ppp,sep=",")
+add$addressf <- paste(add$addressf,add$ss,sep=",")
 
-tranl_1<-tranl[tranl$saon!="",]
 l4<- inner_join(tranl_1,add,by="addressf")
 l4<-l4[,..needlist1]
-rm(tranl_1)
+
 fl4<-uniqueresult(l4)
-dim(fl4)
 
-
-fl4$method<-"method143"
-
-############method 144############
+fl4$method<-"method105"
+rm(tranl_1)
+############method 106 PAON1 is equal to ppp and SAON is equal to flatss############
 tranl <- matchleft(tranl,fl4)
-dim(tranl)
 
 tranl$paon1 <- gsub(" - ","-",tranl$paon )
 tranl$paon1 <- gsub(", "," ",tranl$paon1 )
-tranl$addressf <-paste(tranl$postcode,tranl$paon1,sep=", ")
-tranl$addressf <-paste(tranl$addressf,tranl$saon,sep=", ")
-
+tranl$addressf <-paste(tranl$postcode,tranl$paon1,sep=",")
+tranl$addressf <-paste(tranl$addressf,tranl$saon,sep=",")
+tranl_1<-tranl[tranl$saon!="",]
 
 add$pp1 <-paste(add$paostartnumber,add$paoendnumber,sep="-") 
 add$ppp <-paste(add$paotext,add$pp1,sep=" ") 
 
-add$addressf <- paste(add$postcodelocator,add$ppp,sep=", ")
+add$addressf <- paste(add$postcodelocator,add$ppp,sep=",")
 add$fss <- paste("FLAT ",add$ss,sep="")
-add$addressf <- paste(add$addressf,add$fss,sep=", ")
-
-tranl_1<-tranl[tranl$saon!="",]
+add$addressf <- paste(add$addressf,add$fss,sep=",")
 
 l5<- inner_join(tranl_1,add,by="addressf")
 l5<-l5[,..needlist1]
-rm(tranl_1)
+
 fl5<-uniqueresult(l5)
-dim(fl5)
-fl5$method<-"method144"
 
-
-############method 145############
+fl5$method<-"method106"
+rm(tranl_1)
+############method 107 PAON1 is equal to ppp and SAON is equal to saotext############
 tranl <- matchleft(tranl,fl5)
-dim(tranl)
-#33856    20
-
 
 tranl$paon1 <- gsub(" - ","-",tranl$paon )
 tranl$paon1 <- gsub(", "," ",tranl$paon1 )
-tranl$addressf <-paste(tranl$postcode,tranl$paon1,sep=", ")
-tranl$addressf <-paste(tranl$addressf,tranl$saon,sep=", ")
+tranl$addressf <-paste(tranl$postcode,tranl$paon1,sep=",")
+tranl$addressf <-paste(tranl$addressf,tranl$saon,sep=",")
+tranl_1<-tranl[tranl$saon!="",]
 
 add$pp1 <-paste(add$paostartnumber,add$paoendnumber,sep="-") 
 add$ppp <-paste(add$paotext,add$pp1,sep=" ") 
+add$addressf <- paste(add$postcodelocator,add$ppp,sep=",")
+add$addressf <- paste(add$addressf,add$saotext,sep=",")
 
-add$addressf <- paste(add$postcodelocator,add$ppp,sep=", ")
-add$addressf <- paste(add$addressf,add$saotext,sep=", ")
 
-
-tranl_1<-tranl[tranl$saon!="",]
 l6<- inner_join(tranl_1,add,by="addressf")
 l6<-l6[,..needlist1]
-rm(tranl_1)
+
 fl6<-uniqueresult(l6)
-dim(fl6)
-fl6$method<-"method145"
 
-
-
-
-############method 146############
+fl6$method<-"method107"
+rm(tranl_1)
+############method 108 PAON1 is equal to buildingname and FLATSAON is equal to subbuildingname############
 tranl <- matchleft(tranl,fl6)
-dim(tranl)
-
 
 tranl$fs <- paste("FLAT ",tranl$saon,sep="") 
 
 tranl$paon1 <- gsub(" - ","-",tranl$paon )
 tranl$paon1 <- gsub(", "," ",tranl$paon1 )
-tranl$addressf <-paste(tranl$postcode,tranl$paon1,sep=", ")
-tranl$addressf <-paste(tranl$addressf,tranl$fs ,sep=", ")
-
-add$addressf <- paste(add$postcodelocator,add$buildingname,sep=", ")
-add$addressf <- paste(add$addressf,add$subbuildingname,sep=", ")
+tranl$addressf <-paste(tranl$postcode,tranl$paon1,sep=",")
+tranl$addressf <-paste(tranl$addressf,tranl$fs ,sep=",")
 tranl_1<-tranl[tranl$saon!="",]
+
+add$addressf <- paste(add$postcodelocator,add$buildingname,sep=",")
+add$addressf <- paste(add$addressf,add$subbuildingname,sep=",")
 
 l7<- inner_join(tranl_1,add,by="addressf")
 l7<-l7[,..needlist1]
-rm(tranl_1)
-fl7<-uniqueresult(l7)
-dim(fl7)
-fl7$method<-"method146"
 
-############method 147############
+fl7<-uniqueresult(l7)
+
+fl7$method<-"method108"
+rm(tranl_1)
+############method 109 PAON1 is equal to buildingname and SAON is equal to flatsub############
 tranl <- matchleft(tranl,fl7)
-dim(tranl)
-# 32751 
+
 tranl$paon1 <- gsub(" - ","-",tranl$paon )
 tranl$paon1 <- gsub(", "," ",tranl$paon1 )
-tranl$addressf <-paste(tranl$postcode,tranl$paon1,sep=", ")
-tranl$addressf <-paste(tranl$addressf,tranl$saon ,sep=", ")
-
-
-add$addressf <- paste(add$postcodelocator,add$buildingname,sep=", ")
-add$fsub <- paste("FLAT ",add$subbuildingname,sep="")
-add$addressf <- paste(add$addressf,add$fsub,sep=", ")
+tranl$addressf <-paste(tranl$postcode,tranl$paon1,sep=",")
+tranl$addressf <-paste(tranl$addressf,tranl$saon ,sep=",")
 tranl_1<-tranl[tranl$saon!="",]
+
+add$addressf <- paste(add$postcodelocator,add$buildingname,sep=",")
+add$fsub <- paste("FLAT ",add$subbuildingname,sep="")
+add$addressf <- paste(add$addressf,add$fsub,sep=",")
+
 l8<- inner_join(tranl_1,add,by="addressf")
 l8<-l8[,..needlist1]
-rm(tranl_1)
+
 fl8<-uniqueresult(l8)
-dim(fl8)
-fl8$method<-"method147"
 
-
-############method 148############
+fl8$method<-"method109"
+rm(tranl_1)
+############method 110 PAON1 is equal to buildingname and SAON is equal to ss############
 tranl <- matchleft(tranl,fl8)
-dim(tranl)
 
 tranl$paon1 <- gsub(" - ","-",tranl$paon )
 tranl$paon1 <- gsub(", "," ",tranl$paon1 )
-tranl$addressf <-paste(tranl$postcode,tranl$paon1,sep=", ")
-tranl$addressf <-paste(tranl$addressf,tranl$saon ,sep=", ")
-
-add$addressf <- paste(add$postcodelocator,add$buildingname,sep=", ")
-add$addressf <- paste(add$addressf,add$ss,sep=", ")
-
-
+tranl$addressf <-paste(tranl$postcode,tranl$paon1,sep=",")
+tranl$addressf <-paste(tranl$addressf,tranl$saon ,sep=",")
 tranl_1<-tranl[tranl$saon!="",]
+
+add$addressf <- paste(add$postcodelocator,add$buildingname,sep=",")
+add$addressf <- paste(add$addressf,add$ss,sep=",")
+
+
 l9<- inner_join(tranl_1,add,by="addressf")
 l9<-l9[,..needlist1]
-rm(tranl_1)
+
 fl9<-uniqueresult(l9)
-dim(fl9)
 
-fl9$method<-"method148"
-
-############method 149############
-
+fl9$method<-"method110"
+rm(tranl_1)
+############method 111 For SAON is not null: PAON2 is equal to pp4 and SAON is equal to saotext ############
 tranl <- matchleft(tranl,fl9)
-dim(tranl)
-# 32656    21
 
 tranl$paon2 <- gsub(" - ","-",tranl$paon )
-tranl$addressf <-paste(tranl$postcode,tranl$paon2,sep=", ")
-tranl$addressf <-paste(tranl$addressf,tranl$saon ,sep=", ")
+tranl$addressf <-paste(tranl$postcode,tranl$paon2,sep=",")
+tranl$addressf <-paste(tranl$addressf,tranl$saon ,sep=",")
+tranl_1<-tranl[tranl$saon!="",]
 
-add$pp1 <-paste(add$paostartnumber,add$paoendnumber,sep="-") 
-add$addressf <- paste(add$postcodelocator,add$pp1,sep=", ")
-add$addressf <- paste(add$addressf,add$saotext,sep=", ")
+add$pp4 <-paste(add$paostartnumber,add$paoendnumber,sep="-") 
+add$addressf <- paste(add$postcodelocator,add$pp4,sep=",")
+add$addressf <- paste(add$addressf,add$saotext,sep=",")
 l10<- inner_join(tranl,add,by="addressf")
 
-tranl_1<-tranl[tranl$saon!="",]
 l10<- inner_join(tranl_1,add,by="addressf")
 l10<-l10[,..needlist1]
-rm(tranl_1)
+
 fl10<-uniqueresult(l10)
-dim(fl10)
 
-fl10$method<-"method149"
-
-
-############method 150############
-
+fl10$method<-"method111"
+rm(tranl_1)
+############method 112 PAON2 is equal to pp4 and FLATSAON is equal to saotext############
 tranl <- matchleft(tranl,fl10)
-dim(tranl)
-
 
 tranl$paon2 <- gsub(" - ","-",tranl$paon )
-tranl$addressf <-paste(tranl$postcode,tranl$paon2,sep=", ")
+tranl$addressf <-paste(tranl$postcode,tranl$paon2,sep=",")
 tranl$fs <- paste("FLAT ",tranl$saon,sep="")
-tranl$addressf <-paste(tranl$addressf,tranl$fs ,sep=", ")
-
-add$pp1 <-paste(add$paostartnumber,add$paoendnumber,sep="-") 
-add$addressf <- paste(add$postcodelocator,add$pp1,sep=", ")
-add$addressf <- paste(add$addressf,add$saotext,sep=", ")
-
-
+tranl$addressf <-paste(tranl$addressf,tranl$fs ,sep=",")
 tranl_1<-tranl[tranl$saon!="",]
+
+add$pp4 <-paste(add$paostartnumber,add$paoendnumber,sep="-") 
+add$addressf <- paste(add$postcodelocator,add$pp4,sep=",")
+add$addressf <- paste(add$addressf,add$saotext,sep=",")
 
 l11<- inner_join(tranl_1,add,by="addressf")
 l11<-l11[,..needlist1]
-rm(tranl_1)
+
 fl11<-uniqueresult(l11)
-dim(fl11)
-fl11$method<-"method150"
 
-############method 151############
-
+fl11$method<-"method112"
+rm(tranl_1)
+############method 113 PAON2 is equal to pp4 and SAON is equal to subbuildingname############
 tranl <- matchleft(tranl,fl11)
-dim(tranl)
-
 
 tranl$paon2 <- gsub(" - ","-",tranl$paon )
 tranl$addressf <-paste(tranl$postcode,tranl$paon2,sep=", ")
@@ -2421,452 +2357,276 @@ l12<- inner_join(tranl_1,add,by="addressf")
 l12<-l12[,..needlist1]
 
 fl12<-uniqueresult(l12)
-dim(fl12)
+
+fl12$method<-"method113"
 rm(tranl_1)
-fl12$method<-"method151"
-
-
-############method 152############
-
+############method 114 PAON2 is equal to pp4 and SAON is equal to ssp############
 tranl <- matchleft(tranl,fl12)
-dim(tranl)
-# 24540    21
-
 
 tranl$paon2 <- gsub(" - ","-",tranl$paon )
-tranl$addressf <-paste(tranl$postcode,tranl$paon2,sep=", ")
-tranl$addressf <-paste(tranl$addressf,tranl$saon ,sep=", ")
+tranl$addressf <-paste(tranl$postcode,tranl$paon2,sep=",")
+tranl$addressf <-paste(tranl$addressf,tranl$saon ,sep=",")
+tranl_1<-tranl[tranl$saon!="",]
 
-add$pp1 <-paste(add$paostartnumber,add$paoendnumber,sep="-") 
-add$addressf <- paste(add$postcodelocator,add$pp1,sep=", ")
+add$pp4 <-paste(add$paostartnumber,add$paoendnumber,sep="-") 
+add$addressf <- paste(add$postcodelocator,add$pp4,sep=",")
 add$sp <-  paste(add$saostartnumber,add$paotext,sep=" ")
 add$ssp <- paste(add$saotext,add$sp,sep=", ")
-add$addressf <- paste(add$addressf,add$ssp,sep=", ")
-tranl_1<-tranl[tranl$saon!="",]
+add$addressf <- paste(add$addressf,add$ssp,sep=",")
+
 l13<- inner_join(tranl_1,add,by="addressf")
+
 l13<-l13[,..needlist1]
-rm(tranl_1)
 fl13<-uniqueresult(l13)
-dim(fl13)
 
-fl13$method<-"method152"
-
-############method 153############
-
+fl13$method<-"method114"
+rm(tranl_1)
+############method 115 PAON1 is equal to buildingname and SAON3 is equal to saotext8############
 tranl <- matchleft(tranl,fl13)
-dim(tranl)
-#24533    21
-dim(needl)
-needl<-matchleft(needl,fl1)
-needl<-matchleft(needl,fl2)
-needl<-matchleft(needl,fl3)
-needl<-matchleft(needl,fl4)
-needl<-matchleft(needl,fl5)
-needl<-matchleft(needl,fl6)
-needl<-matchleft(needl,fl7)
-
-needl<-matchleft(needl,fl8)
-needl<-matchleft(needl,fl9)
-needl<-matchleft(needl,fl10)
-needl<-matchleft(needl,fl11)
-needl<-matchleft(needl,fl12)
-needl<-matchleft(needl,fl13)
-dim(needl)
-
 
 tranl$paon1 <- gsub(" - ","-",tranl$paon )
 tranl$paon1 <- gsub(", "," ",tranl$paon1 )
 
-tranl$addressf <-paste(tranl$postcode,tranl$paon1,sep=", ")
+tranl$addressf <-paste(tranl$postcode,tranl$paon1,sep=",")
 
 tranl_1<-tranl[grepl("\\d$",tranl$saon),]
 tranl_1<-tranl_1[str_count(tranl_1$saon,"\\W+")>=2,]
-tranl_1$saonl<-word(tranl_1$saon,-1)
-tranl_1$addressf <-paste(tranl_1$addressf,tranl_1$saonl,sep=", ")
+tranl_1$saon3<-word(tranl_1$saon,-1)
+tranl_1$addressf <-paste(tranl_1$addressf,tranl_1$saon3,sep=",")
 #tranl_1<-tranl[tranl$saon!="",]
 
-add$addressf <- paste(add$postcodelocator,add$buildingname,sep=", ")
-add$saotextc <- word(add$saotext,-1)
-add$addressf <- paste(add$addressf,add$saotextc,sep=", ")
-
-# 
-
-
-#tranl_1<-tranl[tranl$saon!="",]
+add$addressf <- paste(add$postcodelocator,add$buildingname,sep=",")
+add$saotext8 <- word(add$saotext,-1)
+add$addressf <- paste(add$addressf,add$saotext8,sep=",")
 
 l14<- inner_join(tranl_1,add,by="addressf")
 l14<-l14[,..needlist1]
 
 fl14<-uniqueresult(l14)
-dim(fl14)
 
-fl14$method<-"method153"
-
-############method 154############
-
+fl14$method<-"method115"
+############method 116 PAON1 is equal to buildingname and SAON8 is equal to ss############
 tranl <- matchleft(tranl,fl14)
-dim(tranl)
 
 tranl$paon1 <- gsub(" - ","-",tranl$paon )
 tranl$paon1 <- gsub(", "," ",tranl$paon1 )
 
-tranl$addressf <-paste(tranl$postcode,tranl$paon1,sep=", ")
+tranl$addressf <-paste(tranl$postcode,tranl$paon1,sep=",")
 
 tranl_1<-tranl[grepl("^\\d",tranl$saon),]
 tranl_1<-tranl_1[str_count(tranl_1$saon,"\\W+")>=1,]
 tranl_1$saonf<-word(tranl_1$saon,1)
-tranl_1$addressf <-paste(tranl_1$addressf,tranl_1$saonf,sep=", ")
+tranl_1$addressf <-paste(tranl_1$addressf,tranl_1$saonf,sep=",")
 #tranl_1<-tranl[tranl$saon!="",]
 
-add$addressf <- paste(add$postcodelocator,add$buildingname,sep=", ")
-#add$saotextf <- word(add$saotext,1)
-add$addressf <- paste(add$addressf,add$ss,sep=", ")
+add$addressf <- paste(add$postcodelocator,add$buildingname,sep=",")
+add$addressf <- paste(add$addressf,add$ss,sep=",")
 
 
 l15<- inner_join(tranl_1,add,by="addressf")
 l15<-l15[,..needlist1]
 
 fl15<-uniqueresult(l15)
-dim(fl15)
 
-
-fl15$method<-"method154"
-
-
-############method 155############
+fl15$method<-"method116"
+############method 117 PAON is equal to buildingname and SAON3 is equal to saotext8############
 tranl <- matchleft(tranl,fl15)
-dim(tranl)
-#24061    21
 
-
-needl<-matchleft(needl,fl14)
-needl<-matchleft(needl,fl15)
-needl<-needl[needl$saon!="",]
-dim(needl)
-# tranl$paon2 <- gsub(" - ","-",tranl$paon )
-# tranl$addressf <-paste(tranl$postcode,tranl$paon2,sep=", ")
-
-tranl$addressf <-paste(tranl$postcode,tranl$paon,sep=", ")
+tranl$addressf <-paste(tranl$postcode,tranl$paon,sep=",")
 
 tranl_1<-tranl[grepl("\\d$",tranl$saon),]
-#tranl_1<-tranl_1[str_count(tranl_1$saon,"\\W+")>=2,]
-tranl_1$saonl<-word(tranl_1$saon,-1)
-tranl_1$addressf <-paste(tranl_1$addressf,tranl_1$saonl,sep=", ")
+
+tranl_1$saon3<-word(tranl_1$saon,-1)
+tranl_1$addressf <-paste(tranl_1$addressf,tranl_1$saon3,sep=",")
 #tranl_1<-tranl[tranl$saon!="",]
 
-add$addressf <- paste(add$postcodelocator,add$buildingname,sep=", ")
-add$saotextc <- word(add$saotext,-1)
-add$addressf <- paste(add$addressf,add$saotextc,sep=", ")
-
-
+add$addressf <- paste(add$postcodelocator,add$buildingname,sep=",")
+add$saotext8 <- word(add$saotext,-1)
+add$addressf <- paste(add$addressf,add$saotext8,sep=",")
 
 l16<- inner_join(tranl_1,add,by="addressf")
 l16<-l16[,..needlist1]
 
 fl16<-uniqueresult(l16)
-dim(fl16)
 
-
-
-
-fl16$method<-"method155"
-
-
-############method 156############
+fl16$method<-"method117"
+############method 118 PAON is equal to buildingname and SAON2 is equal to saotext3############
 tranl <- matchleft(tranl,fl16)
-dim(tranl)
-needl<-matchleft(needl,fl16)
 
-tranl$addressf <-paste(tranl$postcode,tranl$paon,sep=", ")
-
-#tranl_1<-tranl[grepl("\\d$",tranl$saon),]
+tranl$addressf <-paste(tranl$postcode,tranl$paon,sep=",")
 tranl_1<-tranl[str_count(tranl$saon,"\\W+")>=2,]
 tranl_1$saontwo<-word(tranl_1$saon,1,2)
-tranl_1$addressf <-paste(tranl_1$addressf,tranl_1$saontwo,sep=", ")
-#tranl_1<-tranl[tranl$saon!="",]
+tranl_1$addressf <-paste(tranl_1$addressf,tranl_1$saontwo,sep=",")
 
-
-
-
-add$addressf <- paste(add$postcodelocator,add$buildingname,sep=", ")
-add$saotexttwo <- word(add$saotext,1,2)
-add$addressf <- paste(add$addressf,add$saotexttwo,sep=", ")
-
-
+add$addressf <- paste(add$postcodelocator,add$buildingname,sep=",")
+add$saotext3 <- word(add$saotext,1,2)
+add$addressf <- paste(add$addressf,add$saotext3,sep=",")
 
 l17<- inner_join(tranl_1,add,by="addressf")
 l17<-l17[,..needlist1]
-rm(tranl_1)
+
 fl17<-uniqueresult(l17)
-dim(fl17)
-fl17$method<-"method156"
-head(add)
-class(add)
-dim(add)
-#add[, c("fsub","pp4","ssp","sp","suss","saobuil","unss","flatsao"):=NULL]
-#add[, c("pp1","pp2","flatss","ss1","saotextc","sspao","saotexttwo","ppp"):=NULL]
 
-############method 157############
-
+fl17$method<-"method118"
+rm(tranl_1)
+############method 119 PAON2 is equal to buildingname and SAON3 is equal to saotext8############
 tranl <- matchleft(tranl,fl17)
-dim(tranl)
-#23539    21
-needl<-matchleft(needl,fl17)
 
-# 
 tranl$paon2 <- gsub(" - ","-",tranl$paon )
 tranl$addressf <-paste(tranl$postcode,tranl$paon2,sep=", ")
 
-#tranl$addressf <-paste(tranl$postcode,tranl$paon,sep=", ")
 tranl_1<-tranl[tranl$saon!="",]
 tranl_1<-tranl_1[grepl("\\d$",tranl_1$saon),]
 
 tranl_1$saonl<-word(tranl_1$saon,-1)
 tranl_1$addressf <-paste(tranl_1$addressf,tranl_1$saonl,sep=", ")
-#tranl_1<-tranl[tranl$saon!="",]
+
 
 add$addressf <- paste(add$postcodelocator,add$buildingname,sep=", ")
 add$saotextc <- word(add$saotext,-1)
 add$addressf <- paste(add$addressf,add$saotextc,sep=", ")
 
-
-
-
-
 l18<- inner_join(tranl_1,add,by="addressf")
 l18<-l18[,..needlist1]
 
 fl18<-uniqueresult(l18)
-dim(fl18)
-fl18$method<-"method157"
-dim(add)
-add[, c("addressf","saotextc"):=NULL]
-dim(add)
-############method 158############
+
+fl18$method<-"method119"
+
 tranl <- matchleft(tranl,fl18)
-dim(tranl)
-# 23458    21
-needl<-matchleft(needl,fl18)
-
-
 add<-add[,..addlist1]
-
-############sum up the linked data in stage 8############
-ly = list(fl1,fl2,fl3,fl4,fl5,fl6,fl7,fl8,fl9,fl10,fl11,fl12,fl13,fl14,fl15,fl16,fl17,fl18)
-fl<- rbindlist(ly ,use.names=TRUE,fill=T)
-dim(fl)
-#82654
-dim(fl1)[1]+dim(fl2)[1]+dim(fl3)[1]+dim(fl4)[1]+dim(fl5)[1]+dim(fl6)[1]+dim(fl7)[1]+dim(fl8)[1]+dim(fl9)[1]+
-  dim(fl10)[1]+ dim(fl11)[1]+dim(fl12)[1]+ dim(fl13)[1]+dim(fl14)[1]+dim(fl15)[1]+dim(fl16)[1]+dim(fl17)[1]+dim(fl18)[1]
-#82654
-
-
-length(unique(fl$transactionid))
-length(unique(fl$method))
-#18
-stage8<-rbindlist(list(finalll,fl) ,use.names=TRUE,fill=T)
-dim(stage8)
-#110248
-length(unique(stage8$transactionid))
-#110248
-length(unique(stage8$method))
-#19
-dbWriteTable(con, "stage8",value =stage8, append = TRUE, row.names = FALSE)
-
-dbWriteTable(con, "finalll",value =finalll, append = TRUE, row.names = FALSE)
-dbWriteTable(con, "fl",value =fl, append = TRUE, row.names = FALSE)
-
-dbWriteTable(con, "tran_stage8_left",value =tranl, append = TRUE, row.names = FALSE)
-rm(finalll,fl)
-rm(l1,l2,l3,l4,l5,l6,l7,l8,l9,l10,l11,l12,l13,l14,l15,l16,l17,l18)
-rm(fl1,fl2,fl3,fl4,fl5,fl6,fl7,fl8,fl9,fl10,fl11,fl12,fl13,fl14,fl15,fl16,fl17,fl18)
 rm(tranl_1)
+############sum up the linked data in stage 8############
+ly = list(fl1,fl2,fl3,fl4,fl5,fl6,fl7,fl8,fl9,fl10,fl11,fl12,fl13,fl14,fl15,fl16,fl17,fl18,finalll)
+stage8<- rbindlist(ly ,use.names=TRUE,fill=T)
+
+dbWriteTable(con, "stage8",value =stage8, append = TRUE, row.names = FALSE)
+dbWriteTable(con, "finalll",value =finalll, append = TRUE, row.names = FALSE)
+dbWriteTable(con, "tran_stage8_left",value =tranl, append = TRUE, row.names = FALSE)
+
+rm(finalll,fl)
+rm(l1,l2,l3,l4,l5,l6,l7,l8,l9,l10,l11,l12,l13,l14,l15,l16,l17,l18,ll)
+rm(fl1,fl2,fl3,fl4,fl5,fl6,fl7,fl8,fl9,fl10,fl11,fl12,fl13,fl14,fl15,fl16,fl17,fl18)
+rm(tranl_1,needl)
 ###########################stage 9###########################
 tran22 <- matchleft(tran33,stage8)
-dim(tran22)
-#1095188      19
-dim(tran22)[1]/dim(tran)[1]
 
-dim(add)
-#32702603       32
 add<-add[add$postset %in% tran22$postset,]
-
-dim(add)
-
-
-
-tran22$addressf <-paste(tran22$postcode,tran22$street,sep=", ")
-add$addressf <- paste(add$postcodelocator,add$paotext,sep=", ")
+############method 120 STREET is equal to paotext and PAON is equal to ss############
+#extract the transaciton which can be linked when STREET is equal to paotext in OS AddressBase data within the same postcode
+tran22$addressf <-paste(tran22$postcode,tran22$street,sep=",")
+add$addressf <- paste(add$postcodelocator,add$paotext,sep=",")
 
 w <- inner_join(tran22,add,by="addressf")
 
-w<-w[,..needlist1]
 w <-w[w$street!="",]
-# finalw <- uniqueresult(w)
-# dim(finalw)
-# # 4932   30
-# needw <- doubleresult(w)
-# dim(needw)
-#2476026      30
+w<-w[,..needlist1]
 tranw <-tranneed(tran22,w) 
-dim(tranw)
-# 153431     19
-#rm(w)
-############method 231############
-# tranw$flatpaon <- paste("FLAT ",tranw$paon,sep="") 
-# tranw$unpaon <- paste("UNIT ",tranw$paon,sep="") 
-# tranw$pastr <- paste(tranw$paon,tranw$street,sep=" ")
 
+#conduct the linkage method 120
+tranw$addressf <-paste(tranw$postcode,tranw$paon,sep=",")
+tranw$addressf <-paste(tranw$addressf,tranw$street,sep=",")
 
-tranw$addressf <-paste(tranw$postcode,tranw$paon,sep=", ")
-tranw$addressf <-paste(tranw$addressf,tranw$street ,sep=", ")
-
-add$addressf <- paste(add$postcodelocator,add$ss,sep=", ")
-add$addressf <- paste(add$addressf,add$paotext,sep=", ")
-
+add$addressf <- paste(add$postcodelocator,add$ss,sep=",")
+add$addressf <- paste(add$addressf,add$paotext,sep=",")
 
 w1<- inner_join(tranw,add,by="addressf")
 w1<-w1[,..needlist1]
 
 fw1<-uniqueresult(w1)
-dim(fw1)
-# 127138 
 
-fw1$method<-"method231"
-
-############method 232############
+fw1$method<-"method120"
+############method 121 PAONSTREET is equal to buildingname############
 tranw <-matchleft(tranw,fw1) 
-dim(tranw)
-#42592    22
-
-
 
 tranw$pastr <- paste(tranw$paon,tranw$street,sep=" ")
-tranw$addressf <-paste(tranw$postcode,tranw$pastr,sep=", ")
+tranw$addressf <-paste(tranw$postcode,tranw$pastr,sep=",")
 
-add$addressf <- paste(add$postcodelocator,add$buildingname,sep=", ")
+add$addressf <- paste(add$postcodelocator,add$buildingname,sep=",")
 
 
 w2<- inner_join(tranw,add,by="addressf")
-#w2<- inner_join(tranw_1,add,by="addressf")
+
 w2<-w2[,..needlist1]
-#rm(tranw_1)
+
 fw2<-uniqueresult(w2)
-dim(fw2)
-#2727
-fw2$method<-"method232"
 
-############method 233############
+fw2$method<-"method121"
+############method 122 PAONSTREET is equal to paotext, then keep the linked result which saon is same as ss ############
 tranw <-matchleft(tranw,fw2) 
-dim(tranw)
-# 23566    20
-w <-matchleft(w,fw2) 
-w <-matchleft(w,fw1) 
-
- tranw$pastr <- paste(tranw$paon,tranw$street,sep=" ")
- tranw$addressf <-paste(tranw$postcode,tranw$pastr,sep=", ")
- 
- add$addressf <- paste(add$postcodelocator,add$paotext,sep=", ")
-w3<- inner_join(tranw,add,by="addressf")
-w3<-w3[,..needlist1]
-
-fw3<-uniqueresult(w3)
-dim(fw3)
-#47 30
-fw3<-fw3[fw3$saon==fw3$ss,]
-
-fw3$method<-"method233"
-
-############method 234############
-tranw <-matchleft(tranw,fw3) 
-dim(tranw)
-#23520    20
-
 
 tranw$pastr <- paste(tranw$paon,tranw$street,sep=" ")
-tranw$addressf <-paste(tranw$postcode,tranw$pastr,sep=", ")
-tranw$addressf <-paste(tranw$addressf,tranw$saon,sep=", ")
+tranw$addressf <-paste(tranw$postcode,tranw$pastr,sep=",")
+ 
+add$addressf <- paste(add$postcodelocator,add$paotext,sep=",")
+
+w3<- inner_join(tranw,add,by="addressf")
 
 
-add$addressf <- paste(add$postcodelocator,add$paotext,sep=", ")
-add$addressf <- paste(add$addressf,add$ss,sep=", ")
+fw3<-uniqueresult(w3)
 
+fw3<-fw3[fw3$saon==fw3$ss,]
+fw3<-fw3[,..needlist1]
+fw3$method<-"method122"
+############method 123 PAONSTREET is equal to paotext and SAON is equal to ss############
+tranw <-matchleft(tranw,fw3) 
+
+tranw$pastr <- paste(tranw$paon,tranw$street,sep=" ")
+tranw$addressf <-paste(tranw$postcode,tranw$pastr,sep=",")
+tranw$addressf <-paste(tranw$addressf,tranw$saon,sep=",")
+
+add$addressf <- paste(add$postcodelocator,add$paotext,sep=",")
+add$addressf <- paste(add$addressf,add$ss,sep=",")
 
 w4<- inner_join(tranw,add,by="addressf")
 w4<-w4[,..needlist1]
 
 fw4<-uniqueresult(w4)
-dim(fw4)
 
-fw4$method<-"method234"
+fw4$method<-"method123"
 
-
-############method 235############
+############method 124 PAON is equal to ss and SAON is equal to saotext############
 tranw <-matchleft(tranw,fw4) 
-dim(tranw)
-#39623    22
-w <-matchleft(w,fw3) 
-w <-matchleft(w,fw4) 
 
+tranw$addressf <-paste(tranw$postcode,tranw$paon,sep=",")
+tranw$addressf <-paste(tranw$addressf,tranw$street,sep=",")
+tranw$addressf <-paste(tranw$addressf,tranw$saon,sep=",")
 
- tranw$addressf <-paste(tranw$postcode,tranw$paon,sep=", ")
- tranw$addressf <-paste(tranw$addressf,tranw$street ,sep=", ")
- tranw$addressf <-paste(tranw$addressf,tranw$saon ,sep=", ")
- #tranw_1<-tranw[tranw$saon!="",]
- add$addressf <- paste(add$postcodelocator,add$ss,sep=", ")
- add$addressf <- paste(add$addressf,add$paotext,sep=", ")
- add$addressf <- paste(add$addressf,add$saotext,sep=", ")
-
+add$addressf <- paste(add$postcodelocator,add$ss,sep=",")
+add$addressf <- paste(add$addressf,add$paotext,sep=",")
+add$addressf <- paste(add$addressf,add$saotext,sep=",")
 
 w5<- inner_join(tranw,add,by="addressf")
 w5<-w5[,..needlist1]
 
 fw5<-uniqueresult(w5)
-dim(fw5)
-# 638
-fw5$method<-"method235"
 
-
-############method 236############
+fw5$method<-"method124"
+############method 125 FLATPAON is equal to subbuildingname############
 tranw <-matchleft(tranw,fw5) 
-dim(tranw)
-#22687    20
-#tranw<-tranw[tranw$street!="",]
 
 tranw$flatpaon <- paste("FLAT ",tranw$paon,sep="") 
-tranw$addressf <-paste(tranw$postcode,tranw$flatpaon,sep=", ")
-tranw$addressf <-paste(tranw$addressf,tranw$street ,sep=", ")
+tranw$addressf <-paste(tranw$postcode,tranw$flatpaon,sep=",")
+tranw$addressf <-paste(tranw$addressf,tranw$street,sep=",")
 
-add$addressf <- paste(add$postcodelocator,add$subbuildingname,sep=", ")
-add$addressf <- paste(add$addressf,add$paotext,sep=", ")
-
-
+add$addressf <- paste(add$postcodelocator,add$subbuildingname,sep=",")
+add$addressf <- paste(add$addressf,add$paotext,sep=",")
 
 w6<- inner_join(tranw,add,by="addressf")
 w6<-w6[,..needlist1]
 
 fw6<-uniqueresult(w6)
-dim(fw6)
 
-fw6$method<-"method236"
-
-############method 237############
+fw6$method<-"method125"
+############method 126 UNITPAON is equal to saotext############
 tranw <-matchleft(tranw,fw6) 
-dim(tranw)
-#20751    21
-
-w <-matchleft(w,fw5) 
-w <-matchleft(w,fw6) 
-
-
-
 
 tranw$unpaon <- paste("UNIT ",tranw$paon,sep="") 
-tranw$addressf <-paste(tranw$postcode,tranw$unpaon,sep=", ")
-tranw$addressf <-paste(tranw$addressf,tranw$street ,sep=", ")
+tranw$addressf <-paste(tranw$postcode,tranw$unpaon,sep=",")
+tranw$addressf <-paste(tranw$addressf,tranw$street,sep=",")
 
-add$addressf <- paste(add$postcodelocator,add$saotext,sep=", ")
-add$addressf <- paste(add$addressf,add$paotext,sep=", ")
+add$addressf <- paste(add$postcodelocator,add$saotext,sep=",")
+add$addressf <- paste(add$addressf,add$paotext,sep=",")
 
 
 
@@ -2874,404 +2634,273 @@ w7<- inner_join(tranw,add,by="addressf")
 w7<-w7[,..needlist1]
 
 fw7<-uniqueresult(w7)
-dim(fw7)
 
-fw7$method<-"method237"
-###################here############################
-
-############method 238############
+fw7$method<-"method126"
+############method 127 PAON is equal to saotext############
 tranw <-matchleft(tranw,fw7) 
-dim(tranw)
-#20602    22
-w <-matchleft(w,fw7) 
 
-tranw$addressf <-paste(tranw$postcode,tranw$street,sep=", ")
+tranw$addressf <-paste(tranw$postcode,tranw$street,sep=",")
+tranw$addressf <-paste(tranw$addressf,tranw$paon ,sep=",")
 
-#tranw$paonl <-word(tranw$paon,-1)
-tranw$addressf <-paste(tranw$addressf,tranw$paon ,sep=", ")
-
-add$addressf <- paste(add$postcodelocator,add$paotext,sep=", ")
-add$addressf <- paste(add$addressf,add$saotext,sep=", ")
+add$addressf <- paste(add$postcodelocator,add$paotext,sep=",")
+add$addressf <- paste(add$addressf,add$saotext,sep=",")
 
 
 w8<- inner_join(tranw,add,by="addressf")
 w8<-w8[,..needlist1]
 
 fw8<-uniqueresult(w8)
-dim(fw8)
 
-fw8$method<-"method238"
-
-############method 239############
+fw8$method<-"method127"
+############method 128 PAON3 is equal to ss############
 tranw <-matchleft(tranw,fw8) 
-dim(tranw)
-w <-matchleft(w,fw8)
 
-tranw$addressf <-paste(tranw$postcode,tranw$street,sep=", ")
+tranw$addressf <-paste(tranw$postcode,tranw$street,sep=",")
 
-tranw$paonl <-word(tranw$paon,-1)
-tranw$addressf <-paste(tranw$addressf,tranw$paonl ,sep=", ")
+tranw$paon3 <-word(tranw$paon,-1)
+tranw$addressf <-paste(tranw$addressf,tranw$paon3,sep=",")
 
-add$addressf <- paste(add$postcodelocator,add$paotext,sep=", ")
-add$addressf <- paste(add$addressf,add$ss,sep=", ")
+add$addressf <- paste(add$postcodelocator,add$paotext,sep=",")
+add$addressf <- paste(add$addressf,add$ss,sep=",")
 
 w9<- inner_join(tranw,add,by="addressf")
 w9<-w9[,..needlist1]
 
 fw9<-uniqueresult(w9)
-dim(fw9)
 
-fw9$method<-"method239"
-
-############method 240############
+fw9$method<-"method128"
+############method 129 SAONPOAN is equal to saotext############
 tranw <-matchleft(tranw,fw9) 
-dim(tranw)
-w <-matchleft(w,fw9)
 
-tranw$addressf <-paste(tranw$postcode,tranw$street,sep=", ")
+tranw$addressf <-paste(tranw$postcode,tranw$street,sep=",")
 
 tranw$saonpaon <-paste(tranw$saon,tranw$paon ,sep=" ")
-tranw$addressf <-paste(tranw$addressf,tranw$saonpaon ,sep=", ")
+tranw$addressf <-paste(tranw$addressf,tranw$saonpaon ,sep=",")
 
-add$addressf <- paste(add$postcodelocator,add$paotext,sep=", ")
-#add$saotextl <-word(add$saotext,-1)
-add$addressf <- paste(add$addressf,add$saotext,sep=", ")
+add$addressf <- paste(add$postcodelocator,add$paotext,sep=",")
+add$addressf <- paste(add$addressf,add$saotext,sep=",")
 
 w10<- inner_join(tranw,add,by="addressf")
 w10<-w10[,..needlist1]
 
 fw10<-uniqueresult(w10)
-dim(fw10)
-fw10$method<-"method240"
-head(add)
-class(add)
-dim(add)
-add[, c("saotextl","addressf","fss","add11ressf"):=NULL]
 
-############method 241############
+fw10$method<-"method129"
+add<-add[,..addlist1]
+############method 130 SAONPOAN is equal to buildingname############
 tranw <-matchleft(tranw,fw10) 
-dim(tranw)
-#12268    24
-w <-matchleft(w,fw10)
-tranw$addressf <-paste(tranw$postcode,tranw$street,sep=", ")
+
+tranw$addressf <-paste(tranw$postcode,tranw$street,sep=",")
 
 tranw$saonpaon <-paste(tranw$saon,tranw$paon ,sep=" ")
-tranw$addressf <-paste(tranw$addressf,tranw$saonpaon ,sep=", ")
+tranw$addressf <-paste(tranw$addressf,tranw$saonpaon ,sep=",")
 
-add$addressf <- paste(add$postcodelocator,add$paotext,sep=", ")
-#add$saotextl <-word(add$saotext,-1)
-add$addressf <- paste(add$addressf,add$buildingname,sep=", ")
+add$addressf <- paste(add$postcodelocator,add$paotext,sep=",")
+add$addressf <- paste(add$addressf,add$buildingname,sep=",")
 
 w11<- inner_join(tranw,add,by="addressf")
 w11<-w11[,..needlist1]
 
 fw11<-uniqueresult(w11)
-dim(fw11)
-fw11$method<-"method241"
 
-
-############method 242############
+fw11$method<-"method130"
+############method 131 PAONSTREET is equal to buildingname1############
 tranw <-matchleft(tranw,fw11) 
-dim(tranw)
-# 11520    24
-w <-matchleft(w,fw11)
 
-
-tranw$addressf <-paste(tranw$postcode,tranw$paon,sep=", ")
-
-#tranw$saonpaon <-paste(tranw$saon,tranw$paon ,sep=" ")
+tranw$addressf <-paste(tranw$postcode,tranw$paon,sep=",")
 tranw$addressf <-paste(tranw$addressf,tranw$street ,sep=" ")
 
-#add$addressf <- paste(add$postcodelocator,add$paotext,sep=", ")
-add$buildingnamec <-gsub("[.]","",add$buildingname)
-add$addressf <- paste(add$postcodelocator,add$buildingnamec,sep=", ")
-
+add$buildingname1 <-gsub("[.]","",add$buildingname)
+add$addressf <- paste(add$postcodelocator,add$buildingname1,sep=",")
 
 w12<- inner_join(tranw,add,by="addressf")
 w12<-w12[,..needlist1]
 
 fw12<-uniqueresult(w12)
-dim(fw12)
-fw12$method<-"method242"
-
-############method 243############
-
+fw12$method<-"method131"
+############method 132 POANSAON is equal to saotext############
 tranw <-matchleft(tranw,fw12) 
-dim(tranw)
-#11445    24
-w <-matchleft(w,fw12)
 
-tranw$addressf <-paste(tranw$postcode,tranw$street,sep=", ")
+tranw$addressf <-paste(tranw$postcode,tranw$street,sep=",")
 
 tranw$paonsaon <-paste(tranw$paon,tranw$saon ,sep=" ")
-tranw$addressf <-paste(tranw$addressf,tranw$paonsaon ,sep=", ")
+tranw$addressf <-paste(tranw$addressf,tranw$paonsaon ,sep=",")
 
-add$addressf <- paste(add$postcodelocator,add$paotext,sep=", ")
-#add$saotextl <-word(add$saotext,-1)
-add$addressf <- paste(add$addressf,add$saotext,sep=", ")
+add$addressf <- paste(add$postcodelocator,add$paotext,sep=",")
 
-
+add$addressf <- paste(add$addressf,add$saotext,sep=",")
 
 w13<- inner_join(tranw,add,by="addressf")
 w13<-w13[,..needlist1]
 
 fw13<-uniqueresult(w13)
-dim(fw13)
-fw13$method<-"method243"
-
-############method 244############
-
+fw13$method<-"method132"
+############method 133 PAON4 is equal to saotext############
 tranw <-matchleft(tranw,fw13) 
-dim(tranw)
-#11443    25
-w <-matchleft(w,fw13)
 
-
-tranw$addressf <-paste(tranw$postcode,tranw$street,sep=", ")
-
-#tranw$paonsaon <-paste(tranw$paon,tranw$saon ,sep=" ")
-#tranw$paon1 <- gsub(" - ","-",tranw$paon )
+tranw$addressf <-paste(tranw$postcode,tranw$street,sep=",")
 tranw$paon1 <- gsub(",","",tranw$paon )
-tranw$addressf <-paste(tranw$addressf,tranw$paon1 ,sep=", ")
+tranw$addressf <-paste(tranw$addressf,tranw$paon1 ,sep=",")
 
-add$addressf <- paste(add$postcodelocator,add$paotext,sep=", ")
-#add$ss1 <-paste(add$saostartnumber,add$saoendnumber,sep="-")
-add$addressf <- paste(add$addressf,add$saotext,sep=", ")
-
+add$addressf <- paste(add$postcodelocator,add$paotext,sep=",")
+add$addressf <- paste(add$addressf,add$saotext,sep=",")
 
 w14<- inner_join(tranw,add,by="addressf")
 w14<-w14[,..needlist1]
 
 fw14<-uniqueresult(w14)
-dim(fw14)
-fw14$method<-"method244"
 
-
-############method 245############
+fw14$method<-"method133"
+############method 134 POAN1 is equal to ss2############
 tranw <-matchleft(tranw,fw14) 
-dim(tranw)
-#11409    25
-tranw$addressf <-paste(tranw$postcode,tranw$street,sep=", ")
 
-#tranw$paonsaon <-paste(tranw$paon,tranw$saon ,sep=" ")
+tranw$addressf <-paste(tranw$postcode,tranw$street,sep=",")
 tranw$paon1 <- gsub(" - ","-",tranw$paon )
-#tranw$paon1 <- gsub(",","",tranw$paon )
-tranw$addressf <-paste(tranw$addressf,tranw$paon1 ,sep=", ")
+tranw$addressf <-paste(tranw$addressf,tranw$paon1 ,sep=",")
 
-add$addressf <- paste(add$postcodelocator,add$paotext,sep=", ")
-add$ss1 <-paste(add$saostartnumber,add$saoendnumber,sep="-")
-add$addressf <- paste(add$addressf,add$ss1,sep=", ")
-
-
+add$addressf <- paste(add$postcodelocator,add$paotext,sep=",")
+add$ss2 <-paste(add$saostartnumber,add$saoendnumber,sep="-")
+add$addressf <- paste(add$addressf,add$ss2,sep=",")
 
 w15<- inner_join(tranw,add,by="addressf")
 w15<-w15[,..needlist1]
 
 fw15<-uniqueresult(w15)
-dim(fw15)
-fw15$method<-"method245"
 
-
-############method 246############
+fw15$method<-"method134"
+############method 135 STREET is equal to paotext and POAN is equal to saotext3############
 tranw <-matchleft(tranw,fw15) 
-dim(tranw)
-#11219    25
-w <-matchleft(w,fw14)
-w <-matchleft(w,fw15)
 
+tranw$addressf <-paste(tranw$postcode,tranw$street,sep=",")
+tranw$addressf <-paste(tranw$addressf,tranw$paon,sep=",")
 
-tranw$addressf <-paste(tranw$postcode,tranw$street,sep=", ")
-
-#tranw$paonsaon <-paste(tranw$paon,tranw$saon ,sep=" ")
-#tran33$paon1 <- gsub(" - ","-",tran33$paon )
-tranw$addressf <-paste(tranw$addressf,tranw$paon ,sep=", ")
-
-add$addressf <- paste(add$postcodelocator,add$paotext,sep=", ")
-add$saotext2 <-word(add$saotext,1,2)
-add$addressf <- paste(add$addressf,add$saotext2,sep=", ")
+add$addressf <- paste(add$postcodelocator,add$paotext,sep=",")
+add$saotext3 <-word(add$saotext,1,2)
+add$addressf <- paste(add$addressf,add$saotext3,sep=",")
 
 
 w16<- inner_join(tranw,add,by="addressf")
 w16<-w16[,..needlist1]
 
 fw16<-uniqueresult(w16)
-dim(fw16)
-fw16$method<-"method246"
 
-############method 247############
-
+fw16$method<-"method135"
+############method 136 STREET is equal to paotext and PAON3 is equal to saotext8############
 tranw <-matchleft(tranw,fw16) 
-dim(tranw)
-#11144    25
-w <-matchleft(w,fw16)
-tranw$addressf <-paste(tranw$postcode,tranw$street,sep=", ")
+
+tranw$addressf <-paste(tranw$postcode,tranw$street,sep=",")
 tranw_1<-tranw[grepl("\\d$",tranw$paon),]
 tranw_1<-tranw_1[!grepl("-",tranw_1$paon),]
-tranw_1$paonl <-word(tranw_1$paon,-1)
-tranw_1$addressf <-paste(tranw_1$addressf,tranw_1$paonl ,sep=", ")
+tranw_1$paon3 <-word(tranw_1$paon,-1)
+tranw_1$addressf <-paste(tranw_1$addressf,tranw_1$paon3,sep=",")
 
-add$addressf <- paste(add$postcodelocator,add$paotext,sep=", ")
-add$saotextl <-word(add$saotext,-1)
-add$addressf <- paste(add$addressf,add$saotextl,sep=", ")
-
+add$addressf <- paste(add$postcodelocator,add$paotext,sep=",")
+add$saotext8 <-word(add$saotext,-1)
+add$addressf <- paste(add$addressf,add$saotext8,sep=",")
 
 w17<- inner_join(tranw_1,add,by="addressf")
-w17<-w17[,..needlist1]
+fw17<-w17[!grepl("\\d",w17$saon),]
+
+fw17<-uniqueresult(fw17)
+fw17<-fw17[,..needlist1]
+
+fw17$method<-"method136"
 rm(tranw_1)
-fw17<-uniqueresult(w17)
-dim(fw17)
-
-fw17<-fw17[!grepl("\\d",fw17$saon),]
-fw17$method<-"method247"
-
-
-
 
 tranw <-matchleft(tranw,fw17) 
-dim(tranw)
-w <-matchleft(w,fw17)
-head(add)
-add[, c("buildingnamec","addressf"," ss1","saotext2","saotextl"):=NULL]
-
+add<-add[,..addlist1]
 ############sum up the linked data in stage 9############
 ly = list(fw1,fw2,fw3,fw4,fw5,fw6,fw7,fw8,fw9,fw10,fw11,fw12,fw13,fw14,fw15,fw16,fw17)
-fw<- rbindlist(ly ,use.names=TRUE,fill=T)
-dim(fw)
-# 142916
-dim(fw1)[1]+dim(fw2)[1]+dim(fw3)[1]+dim(fw4)[1]+dim(fw5)[1]+dim(fw6)[1]+dim(fw7)[1]+dim(fw8)[1]+dim(fw9)[1]+
-  dim(fw10)[1]+ dim(fw11)[1]+dim(fw12)[1]+ dim(fw13)[1]+dim(fw14)[1]+dim(fw15)[1]+dim(fw16)[1]+dim(fw17)[1]
-# 142916
-length(unique(fw$transactionid))
-length(unique(fw$method))
-#18
-stage9<-fw 
+stage9<- rbindlist(ly ,use.names=TRUE,fill=T)
+
 dim(stage9)
 #142916     31
 length(unique(stage9$transactionid))
 # 142916     30
 length(unique(stage9$method))
 #17
-sort(unique(stage9$method))
-dbWriteTable(con, "stage9",value =stage9, append = TRUE, row.names = FALSE)
 
+dbWriteTable(con, "stage9",value =stage9, append = TRUE, row.names = FALSE)
+rm()
 rm(fw1,fw2,fw3,fw4,fw5,fw6,fw7,fw8,fw9,fw10,fw11,fw12,fw13,fw14,fw15,fw16,fw17)
 rm(w1,w2,w3,w4,w5,w6,w7,w8,w9,w10,w11,w12,w13,w14,w15,w16,w17)
-###########################stage 10###########################
+
+###########################stage 10 ###########################
 tran11 <- matchleft(tran22,stage9)
-dim(tran11)
-#997349     19
-dim(tran11)[1]/dim(tran)[1]
 
+############method 137 PAON is equal to saopp############
+tran11$addressf <-paste(tran11$postcode,tran11$paon,sep=",")
 
-
-
-tran11$addressf <-paste(tran11$postcode,tran11$paon,sep=", ")
-add$sapa <- paste(add$saotext,add$pp,sep=", ")
-add$addressf <- paste(add$postcodelocator,add$sapa,sep=", ")
+add$saopp <- paste(add$saotext,add$pp,sep=", ")
+add$addressf <- paste(add$postcodelocator,add$saopp,sep=",")
 
 a <- inner_join(tran11,add,by="addressf")
-
-
 a<-a[,..needlist1]
 
 finala <- uniqueresult(a)
-dim(finala)
-#3259   30
+
 needa <- doubleresult(a)
 
+finala$method<-"method137"
+############method 138 PAON is equal to saopp and SAON is equal to flatss############
 trana<-tranneed(tran11,needa)
-finala$method<-"method254"
-############method 255############
 
+trana$addressf <-paste(trana$postcode,trana$paon,sep=",")
+trana$addressf <-paste(trana$addressf,trana$saon,sep=",")
 
-trana$addressf <-paste(trana$postcode,trana$paon,sep=", ")
-trana$addressf <-paste(trana$addressf,trana$saon,sep=", ")
-add$sapa <- paste(add$saotext,add$pp,sep=", ")
-add$fss <- paste("FLAT ",add$ss,sep="")
-add$addressf <- paste(add$postcodelocator,add$sapa,sep=", ")
-add$addressf <- paste(add$addressf,add$fss,sep=", ")
+add$saopp <- paste(add$saotext,add$pp,sep=", ")
+add$flatss <- paste("FLAT ",add$ss,sep="")
+add$addressf <- paste(add$postcodelocator,add$saopp,sep=",")
+add$addressf <- paste(add$addressf,add$flatss,sep=",")
 
 a1 <- inner_join(trana,add,by="addressf")
 a1 <-a1 [,..needlist1]
 
 fa1 <-uniqueresult(a1 )
-dim(fa1)
 
-
-fa1$method<-"method255"
-
-############method 256############
+fa1$method<-"method138"
+############method 139 PAON is equal to saopp and SAON is equal to ss############
 trana <- matchleft(trana,fa1)
-dim(trana)
-# 28 19
-needa <- matchleft(needa,fa1)
-dim(needa)
 
-trana$addressf <-paste(trana$postcode,trana$paon,sep=", ")
-trana$addressf <-paste(trana$addressf,trana$saon,sep=", ")
-add$sapa <- paste(add$saotext,add$pp,sep=", ")
+trana$addressf <-paste(trana$postcode,trana$paon,sep=",")
+trana$addressf <-paste(trana$addressf,trana$saon,sep=",")
+add$saopp <- paste(add$saotext,add$pp,sep=", ")
 
-add$addressf <- paste(add$postcodelocator,add$sapa,sep=", ")
-add$addressf <- paste(add$addressf,add$ss,sep=", ")
+add$addressf <- paste(add$postcodelocator,add$saopp,sep=",")
+add$addressf <- paste(add$addressf,add$ss,sep=",")
 
 a2 <- inner_join(trana,add,by="addressf")
 a2 <-a2 [,..needlist1]
 
-fa2 <-uniqueresult(a2 )
-dim(fa2)
+fa2 <-uniqueresult(a2)
 
-
-fa2$method<-"method256"
-
-############method 257############
-
+fa2$method<-"method139"
 trana <- matchleft(trana,fa2)
-dim(trana)
-# 28 19
-needa <- matchleft(needa,fa2)
-dim(needa)
-
+add<-add[,..addlist1]
 ############sum up the linked data in stage 10############
-
 stage10<-rbindlist(list(fa1,fa2,finala) ,use.names=TRUE,fill=T)
-
-dim(stage10)
-#3498
-length(unique(stage10$transactionid))
-#3498
-length(unique(stage10$method))
-#3
 
 dbWriteTable(con, "stage10",value =stage10, append = TRUE, row.names = FALSE)
 rm(fa1,fa2,finala)
 ###########################stage 11###########################
 tran0 <- matchleft(tran11,stage10)
-dim(tran0)
-#993851     19
 rm(tran22,tran11)
-dim(tran0)[1]/dim(tran)[1]
-#0.03696986
 
-tran0$sapa <- paste(tran0$saon,tran0$paon,sep=" ")
-tran0$addressf <-paste(tran0$postcode,tran0$sapa,sep=", ")
+############method 140 SAONPAON is equal to buildingname############
+tran0$saonpaon <- paste(tran0$saon,tran0$paon,sep=" ")
+tran0$addressf <-paste(tran0$postcode,tran0$saonpaon,sep=",")
 
-add$addressf <- paste(add$postcodelocator,add$buildingname,sep=", ")
+add$addressf <- paste(add$postcodelocator,add$buildingname,sep=",")
 
 g <- inner_join(tran0,add,by="addressf")
-
 
 g<-g[,..needlist1]
 
 stage11 <- uniqueresult(g)
-dim(stage11)
-#51692    30
+stage11$method<-"method140"
+
 needg <- doubleresult(g)
-
 trang<-tranneed(tran0,needg)
-stage11$method<-"method260"
-
-
-#stage11<-finalg
 
 dim(stage11)
 # 51692 
@@ -3279,430 +2908,68 @@ length(unique(stage11$transactionid))
 # 51692 
 length(unique(stage11$method))
 #1
-
+#save the result in PostGIS
 dbWriteTable(con, "stage11",value =stage11, append = TRUE, row.names = FALSE)
+dbWriteTable(con, "stage11_tranleft",value =trang, append = TRUE, row.names = FALSE)
 ###########################stage 12###########################
 tran100 <- matchleft(tran0,stage11)
-dim(tran100)
-# 897082     20
-dim(add)
+
 add<-add[,..addlist1]
-dim(add)
 add<-add[add$postset %in% tran100$postset,]
+############method 141 PAON is equal to ss and SAON is NULL############
+tran100$addressf <-paste(tran100$postcode,tran100$paon,sep=",")
 
-
-tran100$addressf <-paste(tran100$postcode,tran100$paon,sep=", ")
-
-add$addressf <- paste(add$postcodelocator,add$ss,sep=", ")
+add$addressf <- paste(add$postcodelocator,add$ss,sep=",")
 
 k <- inner_join(tran100,add,by="addressf")
+k<- k[k$saon=="",]
 
 k<-k[,..needlist1]
-k<- k[k$saon=="",]
+
 finalk <- uniqueresult(k)
-dim(finalk)
-#12094    30
+
 needk <- doubleresult(k)
 
 trank<-tranneed(tran100,needk)
-dim(trank)
-finalk$method<-"method270"
-############method 271############
+
+finalk$method<-"method141"
+############method 142 PAONSTREET is equal to buildingname############
 trank<-matchleft(trank,finalk) 
-dim(trank)
-#2296   20
+
 trank$pastr <- paste(trank$paon,trank$street,sep=" ")
-trank$addressf <-paste(trank$postcode,trank$pastr,sep=", ")
+trank$addressf <-paste(trank$postcode,trank$pastr,sep=",")
 
-add$addressf <- paste(add$postcodelocator,add$buildingname,sep=", ")
-
+add$addressf <- paste(add$postcodelocator,add$buildingname,sep=",")
 
 k1<- inner_join(trank,add,by="addressf")
+k1<- k1[k1$saon=='',]
 
 k1<-k1[,..needlist1]
-k1<- k1[k1$saon=='',]
+
 finalk1 <- uniqueresult(k1)
-dim(finalk1)
-#12094    30
 
-finalk1$method<-"method271"
+finalk1$method<-"method142"
 
-############method 272############
 trank<-matchleft(trank,finalk1) 
-dim(trank)
-# 1504   21
-needk<-matchleft(needk,finalk1) 
-dim(needk)
-
-
 ############sum up the linked data in stage 12############
-
 stage12<-rbindlist(list(finalk,finalk1) ,use.names=TRUE,fill=T)
 
-dim(stage12)
-#12886
-length(unique(stage12$transactionid))
-#12886
-length(unique(stage12$method))
-#2
-
 dbWriteTable(con, "stage12",value =stage12, append = TRUE, row.names = FALSE)
-rm(finalk,finalk1)
+dbWriteTable(con, "stage12_tranleft",value =trank, append = TRUE, row.names = FALSE)
 
-tranleft<-matchleft(tran100,stage12)
-dim(tranleft)
-#884196     20
-dbWriteTable(con, "tranleft",value =tranleft, append = TRUE, row.names = FALSE)
 ############sum up the linked data in all stages############
-datlist<-list(stage1,stage2,stage3,stage4,stage5,stage6,stage7,stage8,stage9,stage10,stage11,stage12)
-
-
-ppd_link<-rbindlist(datlist ,use.names=TRUE,fill=T)
-
-
+datalist<-list(stage1,stage2,stage3,stage4,stage5,stage6,stage7,stage8,stage9,stage10,stage11,stage12)
+ppd_link<-rbindlist(datalist ,use.names=TRUE,fill=T)
+ 
 needlistf<-c("transactionid","uprn","method")
 ppd_link<-ppd_link[,..needlistf]
-
+dim(ppd_link)
+#25950983        3
 dbWriteTable(con, "ppd_link",value =ppd_link, append = TRUE, row.names = FALSE)
-
-rm(stage1,stage2,stage3,stage4,stage5,stage6,stage7,stage8,stage9,stage10,stage11,stage12)
-#remove all the data excep the overall linked dataset
+tranleft<-matchleft(tran,ppd_link)
+dbWriteTable(con, "tran_left",value =tranleft, append = TRUE, row.names = FALSE)
 rm(list= ls()[! (ls() %in% c('ppd_link'))]) 
 ###########################end of data linkage###########################
-
-tranfail<-tran[tran$transactionid %in% ppd_link,]
-
-tranfail_saon<-tranfail[tranfail$saon=="",]
-
-tranfail$addressf <-paste(tranfail$paon,tranfail$street,sep=",")
-
-add$addressf <- paste(add$paotext,add$streetdescription,sep=",")
-
-o <- inner_join(trana,add,by="addressf")
-o <-o[,..needlist1]
-
-fo1 <-uniqueresult(o )
-dim(fa1)
-
-
-#fa1$method<-"method255"
-
 #################################################################################################
 
-Sys.time()
-#"2022-03-23 10:21:27 GMT"
-library(DBI)
-library(RPostgreSQL)
-#DBI::dbDriver('PostgreSQL')
-require(RPostgreSQL)
-drv=dbDriver("PostgreSQL")
-db <- "postgis23"
-host_db <- "localhost"
-db_port <- "5432"
-db_user <- "postgres"
-db_password <- "232323"
-con <- dbConnect(RPostgres::Postgres(), dbname = db, host=host_db, port=db_port, user=db_user, password=db_password)
 
-
-add <- dbGetQuery(con,"select * from  addressgb") 
-Sys.time()
-#"2022-03-23 10:26:31 GMT"
-head(add)
-str(add)
-#osadd<-add
-######### format the OS addressBase data #########
-
-add$paostartnumber<-as.character(add$paostartnumber)
-add$paoendnumber<-as.character(add$paoendnumber)
-add$saostartnumber<-as.character(add$saostartnumber)
-add$saoendnumber<-as.character(add$saoendnumber)
-
-add$buildingnumber<-as.character(add$buildingnumber)
-
-add[is.na(add$buildingnumber),"buildingnumber"] <- ""
-add[is.na(add$paostartnumber),"paostartnumber"] <- ""
-add[is.na(add$paoendnumber),"paoendnumber"] <- ""
-add[is.na(add$saostartnumber),"saostartnumber"] <- ""
-add[is.na(add$saoendnumber),"saoendnumber"] <- ""
-
-
-add[is.na(add)] <- ""
-
-
-##clean the postcode variable before conduct the linkage
-#epc$postcode  <- str_trim(epc$postcode)
-add$postcodelocator  <- str_trim(add$postcodelocator)
-
-
-#############  Section 2: Read in Land Registry PPD  #############  
-Sys.time()
-
-db <- "postgis23"
-host_db <- "localhost"
-db_port <- "5432"
-db_user <- "postgres"
-db_password <- "232323"
-###creates a connection to the postgres database
-### note that "con" will be used later in each connection to the database
-con <- dbConnect(RPostgres::Postgres(), dbname = db, host=host_db, port=db_port, user=db_user, password=db_password)
-
-##read the land registy data at tran, read the addressbase plus data(addressengland) as add
-#addresseng is the address data clean up the paretnes who has children in postgis
-Sys.time()
-#"2022-01-16 20:20:05 GMT"
-tran <- dbGetQuery(con,"select * from pricepaid") 
-Sys.time()
-
-tranleft<-matchleft(tran,ppd_link)
-dim(tranleft)
-#932186     17
-
-
-
-
-# 882916
-dim(allkeep)[1]/dim(tran)[1]
-dim(tranleft)
-#884196     20
-dim(tran)
-#26883169  
-tranl<-tran[!(tran$transactionid %in% allkeep$transactionid),]
-dim(tranl)
-#884196
-tranlf<-tranl[tranl$transactionid %in% tranleft$transactionid,]
-dim(tranlf)
-
-tranlf1<-tranl[!(tranl$transactionid %in% tranleft$transactionid),]
-dim(tranlf1)
-dim(tranl)
-dim(tranleft)
-dim(tran)[1]-length(unique(tran$transactionid))
-dim(allkeep)[1]-length(unique(allkeep$transactionid))
-dim(tran)[1]-dim(allkeep)[1]
-dim(tran)[1]
-dim(allkeep)[1]
-
-#0.967097
-head(allkeep)
-head(tran)
-rm(list= ls()[! (ls() %in% c('tran','allkeep',"tranleft"))]) 
-head(allkeep)
-
-
-
-nspl<-fread("D:/os/NSPL_NOV_2021_UK.csv")
-head(nspl)
-head(epcdata)
-
-
-head(tran)
-dim(tran)
-# 26833898       18
-nspl<-nspl[,c("pcds","lsoa11","msoa11","laua","ctry","ttwa","imd")]
-
-
-
-tranl<-tran[,c("transactionid","dateoftransfer","postcode","propertytype")]
-
-#unique(nspl$ctry)
-#E92000001 = England;
-# W92000004 = Wales;
-# S92000003 = Scotland;
-# N92000002 = Northern Ireland;
-# L93000001 = Channel Islands;
-# M83000003 = Isle of Man
-
-colnames(nspl)[1]<-"postcode"
-
-epcdata1<-merge(tranl,nspl,by="postcode")
-dim(epcdata)[1]-dim(epcdata1)[1]
-#11769
-
-dim(link_all)
-#21051379       35
-
-epc_2<-epcdata1[epcdata1$transactionid %in% allkeep$transactionid,]
-head(allkeep)
-matcht<-allkeep[, .(count=.N), by=method]
-head(epcdata1)
-head(epc_2)
-setDT(epcdata1)
-setDT(epc_2)
-matchre<-epcdata1[, .(count=.N), by=laua]
-matchl<-epc_2[, .(countl=.N), by=laua]
-
-###create data for mosaic plot and treemaps
-library(ggplot2) 
-library(ggmosaic)
-
-
-mtcars <- mtcars %>% mutate(
-  gear = factor(gear),  # Converts the gear variable to a factor
-  cyl = factor(cyl)  # Converts the cyl variable to a factor
-)
-
-mtcars_tab <- mtcars %>% count(cyl, gear)
-
-
-head(matchl)
-head(matchre)
-match_re1<-merge(matchre,matchl,by="laua")
-match_re1<-match_re1[match_re1$laua!="",]
-head(match_re1)
-match_re1$pro1<-(match_re1$countl/match_re1$count)
-
-fwrite(match_re1,"D:/os/match_reppd.csv")
-fwrite(matcht,"D:/os/matcht.csv")
-summary(match_re1$pro)
-
-ll<-fread("D:/os/ll.csv")
-allkeep1<-merge(allkeep,ll,by="method")
-dim(allkeep1)
-#25950982       31
-dim(allkeep)
-head(allkeep1)
-matcht<-allkeep1[, .(count=.N), by=stage]
-matcht$pro<-matcht$count/dim(tran)[1]
-###################check the ###############################
-tran0<-tran
-tranl<-tran[!(tran$transactionid %in% allkeep$transactionid),]
-dim(tranl)
-#
-tranl1<-tranl[tranl$postset %in% add$postset, ]
-dim(tranl1)
-##match rate for each method#
-head(ppd_link)
-dim(ppd_link)[1]/26883169
-tran <- dbGetQuery(con,"select * from pricepaid") 
-dim(tran)
-#26883169
-class(ppd_link)
-sta_matchrate_ppd<-ppd_link[,.(count=.N),by="method"]
-sta_matchrate_ppd$pro<-sta_matchrate_ppd$count/26883169
-head(sta_matchrate_ppd)
-sta_matchrate_ppd<-sta_matchrate_ppd[order(-pro)]
-sta_matchrate_ppd[, no := .I]
-top20<-sta_matchrate_ppd[no<=20,]
-
-length(unique(ppd_link$method))
-rm(top20)
-#################Check the match rate###########################
-
-###conduct in another workstation
-
-fwrite(top20,"D:/plot/PPDtop20.csv")
-db <- "os"
-host_db <- "localhost"
-db_port <- "5432"
-db_user <- "postgres"
-db_password <- "232323"
-###creates a connection to the postgres database
-### note that "con" will be used later in each connection to the database
-con <- dbConnect(RPostgres::Postgres(), dbname = db, host=host_db, port=db_port, user=db_user, password=db_password)
-dbWriteTable(con, "ppd_link",value =ppd_link, append = TRUE, row.names = FALSE)
-
-#################################
-
-##match rate for each year.
-
-head(ppd_link)
-head(tran)
-p_year1<-tran[ ,c("transactionid","propertytype","dateoftransfer")]
-p_year<-tran[tran$transactionid %in% ppd_link$transactionid ,c("transactionid","propertytype","dateoftransfer")]
-str(p_year)
-p_year1$year<-format(as.Date(p_year1$dateoftransfer, format="%d/%m/%Y"),"%Y")
-
-p_year$year<-format(as.Date(p_year$dateoftransfer, format="%d/%m/%Y"),"%Y")
-p_year$year<-format(as.Date(p_year$dateoftransfer, format="%Y-%m-%d"),"%Y")
-head(p_year)
-sort(unique(p_year$year))
- 
-sta_matchratey_ppd1<-p_year1[,.(counto=.N),by="year"]
-
-sta_matchratey_ppd<-p_year[,.(count=.N),by="year"]
-sta_matchratey_ppd$pro<-sta_matchratey_ppd$count
-
-sta_matchratey_ppd_all<-merge(sta_matchratey_ppd, sta_matchratey_ppd1,by="year")
-sta_matchratey_ppd_all$pro<-sta_matchratey_ppd_all$count/sta_matchratey_ppd_all$counto
-fwrite(sta_matchratey_ppd_all,"D:/plot/sta_matchratey_ppd.csv")
-
-sta_matchratey_ppd1t<-p_year1[,.(counto=.N),by="propertytype"]
-
-sta_matchratey_ppdt<-p_year[,.(count=.N),by="propertytype"]
-sta_matchratey_ppd_allt<-merge(sta_matchratey_ppdt, sta_matchratey_ppd1t,by="propertytype")
-sta_matchratey_ppd_allt$pro<-sta_matchratey_ppd_allt$count/sta_matchratey_ppd_allt$counto
-fwrite(sta_matchratey_ppd_allt,"D:/plot/sta_matchratey_ppdt.csv")
-
-
-dim(tran)
-#26883169       16
-head(tran)
-tran0<-tran[tran$propertytype=="O",]
-tranf<-tran[tran$propertytype=="F",]
-rm(tranf)
-tranf<-tranf[!(tranf$transactionid %in% ppd_link$transactionid),]
-tran0l<-tran0[!(tran0$transactionid %in% ppd_link$transactionid),]
-dim(tran0l)
-#133438     17
-dim(tran0)
-#376891     17
-dim(tran0[grep("GARAGE",tran0$saon)])
-# 3484 
-tran0l<-tran0l[!grep("GARAGE",tran0l$saon),]
-tran0l<-tran0l[!grep("GARAGE",tran0l$paon),]
-dim(tran0l)
-#126458     17
-tran0l<-tran0l[!grep("PARKING SPACE",tran0l$saon),]
-tran0l<-tran0l[!grep("PARKING SPACE",tran0l$paon),]
-dim(tran0l)
-#122977     17
-#
-#BEACH HUT 
-
-
-tran0l<-tran0l[!grep("BEACH HUT",tran0l$saon),]
-tran0l<-tran0l[!grep("BEACH HUT",tran0l$paon),]
-dim(tran0l)
-#122760     17
-
-tran0l<-tran0l[!grep("PARK",tran0l$saon),]
-tran0l<-tran0l[!grep("PARK",tran0l$paon),]
-dim(tran0l)
-#118428     17
-tran0l<-tran0l[!grep("LODGE",tran0l$saon),]
-tran0l<-tran0l[!grep("LODGE",tran0l$paon),]
-dim(tran0l)
-#117395     17
-
-#BARN
-tran0l<-tran0l[!grep("BARN",tran0l$saon),]
-tran0l<-tran0l[!grep("BARN",tran0l$paon),]
-dim(tran0l)
-#116149     17
-
-
-#BARN
-tran0l<-tran0l[!grep("BARN",tran0l$saon),]
-tran0l<-tran0l[!grep("BARN",tran0l$paon),]
-dim(tran0l)
-#117395     17
-
-#######fail part#####
-
-
-tran_un<-tran[!(tran$postcode %in% add$postcodelocator), ]
-dim(tran_un)
-# 87807    16
-dim(tran_un)[1]/dim(tran)[1]
-#0.003266244
-
-dim(ppd_link)[1]/dim(tran)[1]
-#0.9653245
-
-
-###########
-
-dim(tran0l[tran0l$postcode=="",])
-#25845    17
-25845/376891
-#0.0685742
