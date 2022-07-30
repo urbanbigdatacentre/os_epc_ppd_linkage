@@ -8,7 +8,7 @@
 # Bin.Chi@glasgow.ac.uk
 # Date: 1/4/2022
 
-#################### Section 1: load package ##################
+#################################### Section 1: load package#################################### 
 library("qdap")
 library(data.table)
 library("RPostgreSQL")
@@ -17,8 +17,6 @@ library("dplyr")
 library(tidyverse)
 library(stringr)
 library(DBI)
-library("qdap")
-
 
 
 drv=dbDriver("PostgreSQL")
@@ -30,73 +28,23 @@ db_user <- "postgres"
 db_password <- "654321"
 con <- dbConnect(RPostgres::Postgres(), dbname = db, host=host_db, port=db_port, user=db_user, password=db_password)
 
-#############  Section 2: read in OS AddressBase Plus  #############  
-
-#Update your OS Addressbase Plus file path in below code
-osadd<-fread("D:/OS_Data/e90_ab_plus_csv_gb/AB_Plus_Data.csv", encoding = 'UTF-8')
-Sys.time()
-#"2022-02-04 21:35:29 GMT"
-head(osadd)
-Sys.time()
-# "2022-02-04 21:35:29 GMT"
-
-#change the field name to lower case and remove the "_" in the field name
-setnames(osadd, tolower(names(osadd)))
-colnames(osadd) <- gsub("_", "", colnames(osadd))
-
-##save OS Addressbase Plus in the PostGIS database(osubdc)
-db <- "osubdc"
+#################################### Section 2: read in Domesitic EPC and OS AddressBase Plus#################################### 
+#read in EPC from PostGIS os_ubdc database
+db <- "os_ubdc"
 host_db <- "localhost"
 db_port <- "5432"
 db_user <- "postgres"
 #Update your password for the PostGIS database
 db_password <- "654321"
 con <- dbConnect(RPostgres::Postgres(), dbname = db, host=host_db, port=db_port, user=db_user, password=db_password)
-dbWriteTable(con, "osadd",value =osadd, append = TRUE, row.names = FALSE)
-
-#############  Section 3: Read in EPC  #############                                            
-
-setwd("D:/OS_Data/epcdata/v9")
-
-x1 <- list.files(path = ".", pattern = NULL, all.files = FALSE,
-                 full.names = FALSE, recursive = FALSE)
-head(x1)
-folder <- paste("D:/OS_Data/epcdata/v9",x1,"certificates.csv",sep="/")
+add <- dbGetQuery(con,"select * from  addressgb") 
+#read in epc by selecting part of variables
+epc <- dbGetQuery(con,"select lmk_key,address1,address2,address3,address,postcode,building_reference_number,property_type,transaction_type,built_form,inspection_date,lodgement_date,total_floor_area,number_habitable_rooms,current_energy_rating,potential_energy_rating,current_energy_efficiency,potential_energy_efficiency,floor_level,flat_top_storey,flat_storey_count,floor_height,construction_age_band,co2_emissions_current,co2_emiss_curr_per_floor_area,lodgement_datetime from epcdata") 
 
 
-epcdata = data.table::rbindlist(lapply(folder, data.table::fread, showProgress = FALSE))
 
-max(epcdata$LODGEMENT_DATE)
-#"2021-09-30"
-min(epcdata$LODGEMENT_DATE)
-# "2008-10-01"
-
-#Convert field name to lowercase
-setnames(epcdata, tolower(names(epcdata)))
-
-
-library(DBI)
-library(RPostgreSQL)
-#DBI::dbDriver('PostgreSQL')
-require(RPostgreSQL)
-drv=dbDriver("PostgreSQL")
-db <- "osubdc"
-host_db <- "localhost"
-db_port <- "5432"
-db_user <- "postgres"
-#Update your password for the PostGIS database
-db_password <- "654321"
-con <- dbConnect(RPostgres::Postgres(), dbname = db, host=host_db, port=db_port, user=db_user, password=db_password)
-dbWriteTable(con, "epcv9",value =epcdata, append = TRUE, row.names = FALSE)
-
-
-#############  Section 4: Data linkage  #############  
-#Select the fields that will be used in the data linkage process. 
-epc <- epcdata[, .(lmk_key,address1,address2,address3,address,postcode,building_reference_number,property_type,transaction_type,built_form,inspection_date,lodgement_date,total_floor_area,number_habitable_rooms,current_energy_rating,potential_energy_rating,current_energy_efficiency,potential_energy_efficiency,floor_level,flat_top_storey,flat_storey_count,floor_height,construction_age_band,co2_emissions_current,co2_emiss_curr_per_floor_area,lodgement_datetime)]
-
-#Remove the orignal epc data
-rm(epcdata)
-#Capitalise address1, address2, address3 and address four fields into four new fields (add1,add2,add3 and add)
+####################################Section 3: OS AddressBase data and Domestic EPCs pre-processing#################################### 
+#capitalise address1, address2, address3 and address four fields into four new fields (add1,add2,add3 and add)
 epc[,  `:=`(add1 = toupper(address1),
             add2 = toupper(address2),
             add3 = toupper(address3),
@@ -112,7 +60,6 @@ epc$add2 <- str_squish(epc$add2)
 epc$add3 <- str_squish(epc$add3)
 epc$add  <- str_squish(epc$add)
 
-
 epc$add1 <- str_trim(epc$add1)
 epc$add2 <- str_trim(epc$add2)
 epc$add3 <- str_trim(epc$add3)
@@ -121,21 +68,9 @@ epc$add  <- str_trim(epc$add)
 #Remove multiple commas and trailing commasin add field
 epc$add<-gsub("^,*|(?<=,),|,*$", "", epc$add, perl=T)
 
-db <- "osubdc"
-host_db <- "localhost"
-db_port <- "5432"
-db_user <- "postgres"
-#Update your password for the PostGIS database
-db_password <- "654321"
-###creates a connection to the postgres database
-### note that "con" will be used later in each connection to the database
-con <- dbConnect(RPostgres::Postgres(), dbname = db, host=host_db, port=db_port, user=db_user, password=db_password)
-
-add <- dbGetQuery(con,"select * from  addressgb") 
-
 
 ######### format the OS addressBase data #########
-
+#format the address fields in OS AddressBase data for data linkage process
 add$paostartnumber<-as.character(add$paostartnumber)
 add$paoendnumber<-as.character(add$paoendnumber)
 add$saostartnumber<-as.character(add$saostartnumber)
@@ -150,11 +85,12 @@ add[is.na(add$saostartnumber),"saostartnumber"] <- ""
 add[is.na(add$saoendnumber),"saoendnumber"] <- ""
 
 add[is.na(add)] <- ""
-
-##Clean the postcode variable before conduct the linkage
+#clean the postcode variable before conduct the linkage
 epc$postcode  <- str_trim(epc$postcode)
 add$postcodelocator  <- str_trim(add$postcodelocator)
-
+#Covert add and epc to a data table format
+setDT(add)
+setDT(epc)
 #Prepare the field name list for the linkage
 
 needlist1<-c("lmk_key","postcode.y","property_type","uprn","add1","add2","add3","add","postcode.x","postcodelocator","buildingname","buildingnumber","subbuildingname","paostartnumber","paostartsuffix","paoendnumber","paoendsuffix","paotext","saostartnumber","saostartsuffix","saoendnumber","saoendsuffix","saotext","streetdescription","locality","dependentlocality","townname","class","lodgement_date","inspection_date","lodgement_datetime")
@@ -162,50 +98,35 @@ needlist2<-c("method","lmk_key","uprn","property_type","add1","add2","add3","add
 needlist3<-c("lmk_key","postcode.y","property_type","uprn","add1","add2","add3","add","postcode.x","postcodelocator","buildingname","buildingnumber","subbuildingname","paostartnumber","paostartsuffix","paoendnumber","paoendsuffix","paotext","saostartnumber","saostartsuffix","saoendnumber","saoendsuffix","saotext","streetdescription","dependentlocality","locality","townname","class","lodgement_date","inspection_date","lodgement_datetime")
 
 #Create function used in the linkage
-
 matchleft <- function(x,y){
   next0 <- x[!(x$lmk_key %in% y$lmk_key),]
-  return(next0)
   
+  return(next0)
 }
-
 keepneed <- function(x,y){
   next0 <- x[(x$lmk_key %in% y$lmk_key),]
+  
   return(next0)
-  
-}
 
+}
 uniqueresult <- function(x){
-  
   dt <- as.data.table(x)
-  
   esummary<-dt[,.(count=.N),by=lmk_key]
-  
   idd1 <- esummary[esummary$count==1,]
-  
   result1 <- x[x$lmk_key %in% idd1$lmk_key,]
-  
+
   return(result1)
 }
-
 doubleresult <-  function(x){
-  
   dt <- as.data.table(x)
-  
   esummary<-dt[,.(count=.N),by=lmk_key]
-  
   idd2 <- esummary[esummary$count!=1,]
-  
   need1 <- x[x$lmk_key %in% idd2$lmk_key,]
   
   return(need1)
 }
-
-
-#################### method 1 ##################
-#Covert add and epc to a data table format
-setDT(add)
-setDT(epc)
+#################################### section 4:data linkage#################################### 
+####################method 1####################
 #Create the funciton for the matching rule 1
 function1<- function(x,y){
   x<-x[x$saotext=="",]
@@ -232,20 +153,17 @@ function1<- function(x,y){
   return(taba1)
   
 }
-
 link1<-function1(add,epc)
 link1<-link1[,..needlist1]
 #Get the one to one linkage result
 link1u<- uniqueresult(link1)
 #Get the one to many linkage result
 link1d <- doubleresult(link1)
-
 #remove the linked record from the original EPC data
 epc <- matchleft(epc,link1)
-
 #remove the linked result
 rm(link1)
-#################### method 2 ##################
+####################method 2####################
 function2<- function(x,y){
   x<-x[x$saotext=="",]
   x<-x[x$subbuildingname=="",]
@@ -272,7 +190,7 @@ epc <- matchleft(epc,link2)
 
 rm(link2)
 
-#################### method 3 ##################
+####################method 3####################
 function3<- function(x,y){
   x<-x[x$paotext=="",]
   x<-x[x$saostartnumber=="",]
@@ -23178,8 +23096,7 @@ pc<-sta5[8,1]
 pc<-sta5[9,1]
 c1<-epc[postcode==pc,]
 c2<-add[postcodelocator==pc,]
-c1
-view(c2)
+
 # #
 # ####################### end#########################################################
 
@@ -23470,12 +23387,7 @@ sta_matchrate[,id :=substring(methodid,5,nchar(methodid))]
 
 fwrite(sta_matchrate,"D:/epc_os/results/sta_matchrate_original.csv")
 ############################################################################
-
-
-
-
-
-#### summay up the linkage match rate
+# summay up the linkage match rate
 
 head(sta_matchrateu)
 head(sta_matchrated) 
@@ -23503,6 +23415,11 @@ dim(linkd1)
 dim(linku1[linku1$lmk_key  %in% linku$lmk_key,])
 dim(linkd1[linkd1$lmk_key  %in% linkd$lmk_key,])
 rm(linku1,linkd1)
+
+
+
+
+
 ####################################
 (length(unique(linku$lmk_key))+length(unique(linkd$lmk_key)))/21857699
 # 0.9651803                                  
@@ -23566,93 +23483,6 @@ dim(linku1[!(linku1$lmk_key %in% epc_same_re$lmk_key),])
 c1<-epcdata[(epcdata$uprn_source!="" & !(epcdata$lmk_key %in% linku1$lmk_key)) ,]
 dim(c1)
 head(c1)
-
-sta7_dif<-c1[,.(countd=.N),by="uprn_source"]
-sta7_dif
-sta7_dif$pro<-sta7_dif$countd/sum(sta7_dif$countd)
-epc_same_re_1<-epc_same_re[!(epc_same_re$lmk_key %in% epc_same_re_same$lmk_key) & !(epc_same_re$lmk_key %in% epc_same_re_diff$lmk_key),]
-dim(epc_same_re_1)[1]
-#877149
-dim(epc_same_re_1)[1]/dim(epcdata)[1]
-
-epc_same_re_same<-epc_same_re[epc_same_re$uprn.x==epc_same_re$uprn.y,]
-dim(epc_same_re_same)[1]/dim(epc_same_re)[1]
-#
-epc_same_re_diff<-epc_same_re[epc_same_re$uprn.x!=epc_same_re$uprn.y,]
-dim(epc_same_re_diff)[1]/dim(epc_same_re)[1]
-
-
-linku1_df<-linku1[linku1$lmk_key %in% epc_same_re_diff$lmk_key,]
-linku1_df<-linku1_df[,..needlist2]
-write.csv(linku1_df,"D:/BINCHI/epc_read/result_bindifferent.csv",row.names= F)
-
-class(epc_same_re_diff)
-sta5_same<-epc_same_re_same[,.(counts=.N),by="uprn_source"]
-
-sta6_dif<-epc_same_re_diff[,.(countd=.N),by="uprn_source"]
-sta5_same
-sta6_dif
-
-sta5_same$pro<-sta5_same$counts/sum(sta5_same$counts)
-sta6_dif$pro<-sta6_dif$countd/sum(sta6_dif$countd)
-
-s5 <- sta5 %>% 
-  arrange(desc(UPRN_SOURCE)) %>%
-  mutate(prop = pro *100) %>%
-  mutate(ypos = cumsum(prop)- 0.5*prop )
-dev.new()
-
-
-
-
-
-
-ggplot(sta5, aes(x="", y=prop, fill=UPRN_SOURCE)) +
-  geom_bar(stat="identity", width=1, color="white") +
-  coord_polar("y", start=0) +
-  theme_void() + theme(legend.text = element_text(size=15),legend.title = element_text(size=14))+
-  geom_text(aes(y = ypos, label = paste0(round(prop,2), "%")), color = "white", size=5.5,position = position_stack(vjust = 0.9)) +
-  scale_fill_brewer(palette="Set2")+guides(fill = guide_legend(title = "UPRN source"))
-
-ggsave("D:/BINCHI/epc_read/Figure6_epcuprn.tiff",units="in", width=9, height=8, dpi=300, compression = 'lzw')  
-
-###compare by local authority
-head(linku1)
-head(nspl)
-linku_la<-merge(linku1,nspl,by.x="postcode.y",by.y="POSTCODE")
-
-sta8<-linku_la[,.(countbin=.N),by="laua"]
-head(sta8)
-head(sta3)
-summary(sta8_l)
-sta8_l<-merge(sta8,sta3,by="laua" )
-head(sta8_l)
-sta8_l$pro_bin<-sta8_l$countbin/sta8_l$tcount
-write.csv(sta8_l,"D:/BINCHI/epc_read/sta8_l.csv",row.names= F)
-epc[, address1:=NULL]
-head(sta34_out)
-sta34_out$pro_hmclg<-1-sta34_out$pro
-sta348_out<-merge(sta34_out,sta8_l,by="laua")
-head(sta348_out)
-
-head(link_all)
-length(unique(link_all$linkid))
-
-head(epcdata)
-c<-epcdata[epcdata$address1=="FLAT",]
-link_all[grepl("FERN GROVE",link_all$add),]
-c1<-link_all[grepl("HARTINGTON",link_all$add),]
-head(link_all)
-
-ubdc_link<-link_all[,c("lmk_key","uprn","method","linkid","record")]
-dim(link_all)
-length(unique(link_all$lmk_key))
-# 21051379
-##the same uprn
-
-unique(link_all$record)
-
-
 
 
 
