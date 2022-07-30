@@ -45,11 +45,6 @@ tran[nchar(postcode)>=6,postset :=substring(postcode,0,nchar(postcode)-2)]
 tran$postset  <- str_trim(tran$postset)
 
 ######### part 2:OS AddressBase data pre-processing #########
-
-# #convert the field name to lowercase and then remove the "_" in the field name in OS AddressBase data 
-# setnames(add, tolower(names(add)))
-# colnames(add) <- gsub("_", "", colnames(add))
-
 #format the address fields in OS AddressBase data for data linkage process
 add$paostartnumber<-as.character(add$paostartnumber)
 add$paoendnumber<-as.character(add$paoendnumber)
