@@ -19,8 +19,6 @@ library(stringr)
 library(DBI)
 library("dplyr")
 #############  Section 2: Read in OS AddressBase Plus and Land Registry Price Paid Data(PPD) #############  
-#read in OS AddressBase Plus
-#add<-fread("D:/OS_Data/e90_ab_plus_csv_gb/AB_Plus_Data.csv", encoding = 'UTF-8')
 #read in Land Registry PPD
 drv=dbDriver("PostgreSQL")
 db <- "os_ubdc"
