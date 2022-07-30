@@ -1,9 +1,7 @@
 # Linking Domestic Energy Performance Certificates (EPCs) and and Land Registry Price Paid Data (PPD) with UPRN
 
 
-This project is licensed under the terms of the [Creative Commons Attribution-NonCommercial (CC-BY-NC)](https://creativecommons.org/licenses/by-nc/4.0/). 
-
-This project shows the codex for OS short term project. This whole research is **not** allowed to be used  **commercially**. 
+This project shows the codes for OS short term project. This project is licensed under the terms of the [Creative Commons Attribution-NonCommercial (CC-BY-NC)](https://creativecommons.org/licenses/by-nc/4.0/). This whole research is **not** allowed to be used  **commercially**. 
 
 ## 1. Getting Started
 
