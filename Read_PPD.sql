@@ -30,7 +30,6 @@ CREATE TABLE pricepaid
   recordstatus text
 )
 
-#Read in the Land Registry PPD dataset from
-https://www.gov.uk/government/statistical-data-sets/price-paid-data-downloads
-COPY pricepaid FROM 'D:/OS_Data/pp-complete.csv' DELIMITERS ',' CSV QUOTE '"';
+#Read in the Land Registry PPD dataset 
+COPY pricepaid FROM 'D:/OS_Data/PPD/pp-complete.csv' DELIMITERS ',' CSV QUOTE '"';
 
