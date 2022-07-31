@@ -44,14 +44,14 @@ The main data linkage process is conducted in R. Below we sepeate introduce the
 The tagging UPRN work for Domestic EPCs   
 
 ![](pic/f2.png)
-**Figure 2.** A Brief view of the workflow of data linkage between Domestic EPCs and OS AddressBase Plus
+**Figure 2.** A Brief workflow of data linkage between Domestic EPCs and OS AddressBase Plus
 
 ### 2.2 Attaching UPRN in Land Registry PPD
 
 
 
 ![](pic/f4.png)
-**Figure 4.** A Brief view of the workflow of data linkage between Land Registry PPD and OS AddressBase Plus
+**Figure 4.** A Brief workflow of data linkage between Land Registry PPD and OS AddressBase Plus
 
 
 ## 3. Acknowledgements
