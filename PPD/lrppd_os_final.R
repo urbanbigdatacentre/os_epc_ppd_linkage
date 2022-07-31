@@ -1,4 +1,4 @@
- and # ------------------------------------------------
+# ------------------------------------------------
 # lrppd_os_final.R
 # ------------------------------------------------
 # Code provided as is and can be used or modified freely. 
@@ -125,10 +125,11 @@ trannull <- tran[tran$paon=="",]
 trannull<- trannull[trannull$saon !="",]
 #provide OS AddressBase data for this stage 1 linkage
 addnull<-add[add$postset %in% trannull$postset, ]
+#covert both trannull and addnull to data.table
 setDT(trannull)
 setDT(addnull)
 
-############method 1 #SAON is equal to pp ############m
+############method 1 SAON is equal to pp ############m
 #create the full address for address matching      
 trannull$addressf <-paste(trannull$postcode,trannull$saon,sep=",")
 addnull$addressf <- paste(addnull$postcodelocator,addnull$pp,sep=",")
