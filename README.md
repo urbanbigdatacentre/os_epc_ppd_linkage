@@ -45,7 +45,7 @@ The tagging UPRN work for Domestic EPCs
 
 ![](pic/f2.png)
 
-**Figure 2.** A Brief view of the workflow of data linkage between Domestic EPCs and AddressBase Plus
+**Figure 2.** A Brief view of the workflow of data linkage between Domestic EPCs and OS AddressBase Plus
 
 
 ### 2.2 Attaching UPRN in Land Registy PPD
