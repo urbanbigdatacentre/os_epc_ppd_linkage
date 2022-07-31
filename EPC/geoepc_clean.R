@@ -53,22 +53,17 @@ linkd<-linkd2
 linkdcopy<-linkd2
 
 
-########################clean up the linkd#####################################
-###############clean the one to many############
-###############1############
+########################cleaning process for the one to many linkage#####################################
+
+####################clean 1 keep the residential UPRN####################
+#extract the one to many linkage in the matching rule 1
 c2<- linkd[linkd$method=="link1d",]
+#select the residential uprn from the mutiple linked UPRN
 linkd_1<-linkd[linkd$method=="link1d" & substr(linkd$class,1,1)=="R",]
-
-#linkd[linkd$method=="link1d" & linkd$paostartnumber==linkd$buildingnumber ,]
-
-
-
-#147877
+#remove the linkd_1 from linkd
 linkd<-matchleft(linkd,linkd_1)
-length(unique(linkd$lmk_key))
-#116217
 
-###############2############
+####################clean 2 ####################
 length(unique(linkd$method))
 #206
 sort(unique(linkd$method))
@@ -93,7 +88,7 @@ c2<- linkd[linkd$method=="link2d",]
 
 linkd<-matchleft(linkd,c2)
 rm(c2)
-###############3 no one can keep############
+####################clean 3 no one can keep############
 c2<- linkd[linkd$method=="link3d",]
 
 linkd<-matchleft(linkd,c2)
@@ -102,7 +97,7 @@ dim(linkd)
 #475067     34
 
 
-###############4############
+####################clean 4############
 c2<- linkd[linkd$method=="link4d",]
 
 
@@ -139,7 +134,7 @@ dim(linkd)
 linkd4_parent<-rbindlist(list(linkd4_parent1,linkd4_parent2))
 
 rm(linkd4_parent1,linkd4_parent2)
-###############5############
+####################clean 5############
 
 c2<- linkd[linkd$method=="link5d",]
 
@@ -196,7 +191,7 @@ dim(linkd)
 
 linkd5_parent<-rbindlist(list(linkd5_parent1,linkd5_parent2,linkd5_parent3))
 rm(linkd5_parent1,linkd5_parent2,linkd5_parent3)
-###############6############
+####################clean 6############
 
 c2<- linkd[linkd$method=="link6d",]
 
@@ -206,8 +201,7 @@ linkd6_1<-linkd[linkd$method=="link6d" & substr(linkd$class,1,1)=="R" ,]
 linkd6_1<-uniqueresult(linkd6_1)
 
 linkd<-matchleft(linkd,linkd6_1)
-dim(linkd)
-#449003     34
+
 
 c2<- linkd[linkd$method=="link6d",]
 
@@ -215,12 +209,8 @@ c2<- linkd[linkd$method=="link6d",]
 linkd6_parent<-linkd[linkd$method=="link6d" & linkd$saotext!="",]
 
 linkd6_parent1<-keepneed(linkd,linkd6_parent)
-#rm(linkd5_parent)
 
-dim(linkd)
 linkd<-matchleft(linkd,linkd6_parent1)
-dim(linkd)
-#258093     34
 
 
 c2<- linkd[linkd$method=="link6d",]
@@ -230,11 +220,9 @@ linkd6_parent<-linkd[linkd$method=="link6d" & linkd$saostartsuffix!="",]
 
 linkd6_parent2<-keepneed(linkd,linkd6_parent)
 
-dim(linkd)
-#258093     34
+
 linkd<-matchleft(linkd,linkd6_parent2)
-dim(linkd)
-#257548     34
+
 c2<- linkd[linkd$method=="link6d",]
 
 
@@ -242,66 +230,41 @@ linkd6_parent<-linkd[linkd$method=="link6d" & linkd$saostartnumber!="",]
 
 linkd6_parent3<-keepneed(linkd,linkd6_parent)
 
-dim(linkd)
-#258093     34
 linkd<-matchleft(linkd,linkd6_parent3)
-dim(linkd)
-#256719     34
+
 
 c2<- linkd[linkd$method=="link6d",]
-
-
 
 linkd6_parent<-c2[grepl("FLAT",c2$paotext),]
 linkd6_parent4<-keepneed(linkd,linkd6_parent)
 
-
-dim(linkd)
-#256719     34
 linkd<-matchleft(linkd,linkd6_parent4)
-dim(linkd)
-#256533     34
+
 c2<- linkd[linkd$method=="link6d",]
-
-
 
 
 linkd6_parent<-c2[grepl("ROOM",c2$paotext),]
 linkd6_parent5<-keepneed(linkd,linkd6_parent)
 
-
-dim(linkd)
-#256533     34
 linkd<-matchleft(linkd,linkd6_parent5)
-dim(linkd)
-#256497     34
 
 c2<- linkd[linkd$method=="link6d",]
-
-
 
 
 linkd6_parent<-c2[grepl("FLOOR",c2$paotext),]
 linkd6_parent6<-keepneed(linkd,linkd6_parent)
 
-dim(linkd)
-#256497     34
 linkd<-matchleft(linkd,linkd6_parent6)
-dim(linkd)
-#256487     34
 
 c2<- linkd[linkd$method=="link6d",]
 
-
 linkd<-matchleft(linkd,c2)
 rm(c2)
-dim(linkd)
-# 256128     34
 
 linkd6_parent<-rbindlist(list(linkd6_parent1,linkd6_parent2,linkd6_parent3,linkd6_parent4,linkd6_parent5,linkd6_parent6))
 rm(linkd6_parent1,linkd6_parent2,linkd6_parent3,linkd6_parent4,linkd6_parent5,linkd6_parent6)
 
-###############7############
+####################clean 7############
 length(unique(linkd$method))
 #206
 sort(unique(linkd$method))
@@ -342,7 +305,7 @@ dim(linkd)
 # 254565     34
 linkd7_parent<-linkd7_parent1
 rm(linkd7_parent1)
-###############8############
+####################clean 8############
 c2<- linkd[linkd$method=="link8d",]
 
 
@@ -430,7 +393,7 @@ dim(linkd)
 linkd8_parent<-rbindlist(list(linkd8_parent1,linkd8_parent2,linkd8_parent3,linkd8_parent4,linkd8_parent5))
 rm(linkd8_parent1,linkd8_parent2,linkd8_parent3,linkd8_parent4,linkd8_parent5)
 
-###############9############
+####################clean 9############
 
 c2<- linkd[linkd$method=="link9d",]
 
@@ -489,7 +452,7 @@ linkd9_parent<-rbindlist(list(linkd9_parent1,linkd9_parent2,linkd9_parent3))
 rm(linkd9_parent1,linkd9_parent2,linkd9_parent3)
 
 
-###############10############
+####################clean 10############
 c2<- linkd[linkd$method=="link10d",]
 
 linkd10_1<-linkd[linkd$method=="link10d" & substr(linkd$class,1,1)=="R" ,]
@@ -498,7 +461,7 @@ dim(linkd)
 linkd<-matchleft(linkd,linkd10_1)
 dim(linkd)
 #248551     34
-###############11############
+####################clean 11############
 
 c2<- linkd[linkd$method=="link11d",]
 
@@ -574,7 +537,7 @@ rm(linkd11_parent1,linkd11_parent2,linkd11_parent3,linkd11_parent4)
 
 
 
-###############12############
+####################clean 12############
 c2<- linkd[linkd$method=="link12d",]
 
 linkd12_1<-linkd[linkd$method=="link12d" & substr(linkd$class,1,1)=="R" ,]
@@ -632,16 +595,16 @@ dim(linkd)
 linkd12_parent<-rbindlist(list(linkd12_parent1,linkd12_parent2,linkd12_parent3))
 rm(linkd12_parent1,linkd12_parent2,linkd12_parent3)
 
-###############13 no ############
+####################clean 13 no ############
 c2<- linkd[linkd$method=="link13d",]
 
 
 
-###############14 no############
+####################clean 14 no############
 c2<- linkd[linkd$method=="link14d",]
 
 
-###############15############
+####################clean 15############
 c2<- linkd[linkd$method=="link15d",]
 
 
@@ -713,7 +676,7 @@ dim(linkd)
 linkd15_parent<-rbindlist(list(linkd15_parent1,linkd15_parent2,linkd15_parent3,linkd15_parent4))
 rm(linkd15_parent1,linkd15_parent2,linkd15_parent3,linkd15_parent4)
 
-###############16############
+####################clean 16############
 c2<- linkd[linkd$method=="link16d",]
 
 
@@ -725,15 +688,15 @@ dim(linkd)
 
 
 
-###############17############
+####################clean 17############
 c2<- linkd[linkd$method=="link17d",]
 
 
-###############18############
+####################clean 18############
 c2<- linkd[linkd$method=="link18d",]
 
 
-###############19############
+####################clean 19############
 c2<- linkd[linkd$method=="link19d",]
 
 
@@ -811,7 +774,7 @@ linkd19_parent<-rbindlist(list(linkd19_parent1,linkd19_parent2,linkd19_parent3,l
 rm(linkd19_parent1,linkd19_parent2,linkd19_parent3,linkd19_parent4,linkd19_parent5)
 
 
-###############20############
+####################clean 20############
 c2<- linkd[linkd$method=="link20d",]
 
 
@@ -871,32 +834,31 @@ dim(linkd)
 linkd20_parent<-rbindlist(list(linkd20_parent1,linkd20_parent2,linkd20_parent3))
 rm(linkd20_parent1,linkd20_parent2,linkd20_parent3)
 
-###############21############
+####################clean 21############
 c2<- linkd[linkd$method=="link21d",]
 detail_47<-c2
 linkd<-matchleft(linkd,detail_47)
 dim(linkd)
-###############22############
+####################clean 22############
 c2<- linkd[linkd$method=="link22d",]
 
 
 
-###############23############
+####################clean 23############
 
 c2<- linkd[linkd$method=="link23d",]
 
 linkd23_parent<-linkd[linkd$method=="link23d",]
 linkd<-matchleft(linkd,c2)
 rm(c2)
-dim(linkd)
-#224977     34
-###############24############
+
+####################clean 24############
 c2<- linkd[linkd$method=="link24d",]
 
 
 
 
-###############25############
+####################clean 25############
 c2<- linkd[linkd$method=="link25d",]
 
 linkd25_1<-linkd[linkd$method=="link25d" & substr(linkd$class,1,1)=="R" ,]
@@ -904,25 +866,25 @@ linkd25_1<-uniqueresult(linkd25_1)
 dim(linkd)
 linkd<-matchleft(linkd,linkd25_1)
 dim(linkd)
-###############26############
+####################clean 26############
 c2<- linkd[linkd$method=="link26d",]
 
 
 
-###############27############
+####################clean 27############
 c2<- linkd[linkd$method=="link27d",]
 
 
 
-###############28############
+####################clean 28############
 c2<- linkd[linkd$method=="link28d",]
 
 
 
-###############29############
+####################clean 29############
 c2<- linkd[linkd$method=="link29d",]
 
-###############30############
+####################clean 30############
 c2<- linkd[linkd$method=="link30d",]
 
 linkd30_1<-linkd[linkd$method=="link30d" & substr(linkd$class,1,1)=="R" ,]
@@ -981,7 +943,7 @@ dim(linkd)
 linkd30_parent<-rbindlist(list(linkd30_parent1,linkd30_parent2,linkd30_parent3))
 rm(linkd30_parent1,linkd30_parent2,linkd30_parent3)
 
-###############31############
+####################clean 31############
 c2<- linkd[linkd$method=="link31d",]
 
 
@@ -991,7 +953,7 @@ linkd<-matchleft(linkd,c2)
 rm(c2)
 dim(linkd)
 #224233     34
-###############32############
+####################clean 32############
 c2<- linkd[linkd$method=="link32d",]
 
 
@@ -1012,10 +974,10 @@ dim(linkd)
 # 203994     34
 
 
-###############33############
+####################clean 33############
 c2<- linkd[linkd$method=="link33d",]
 
-###############34############
+####################clean 34############
 c2<- linkd[linkd$method=="link34d",]
 
 
@@ -1048,7 +1010,7 @@ linkd<-matchleft(linkd,c2)
 rm(c2)
 dim(linkd)
 # 203912     34
-###############35############
+####################clean 35############
 
 c2<- linkd[linkd$method=="link35d",]
 
@@ -1096,16 +1058,16 @@ rm(linkd35_parent1,linkd35_parent2)
 
 
 
-###############36############
+####################clean 36############
 c2<- linkd[linkd$method=="link36d",]
 
 
 
 
-###############37############
+####################clean 37############
 c2<- linkd[linkd$method=="link37d",]
 
-###############38############
+####################clean 38############
 
 
 c2<- linkd[linkd$method=="link38d",]
@@ -1156,7 +1118,7 @@ dim(linkd)
 linkd38_parent<-rbindlist(list(linkd38_parent1,linkd38_parent2))
 rm(linkd38_parent1,linkd38_parent2)
 
-###############39############
+####################clean 39############
 c2<- linkd[linkd$method=="link39d",]
 
 
@@ -1177,20 +1139,14 @@ linkd39_parent<-linkd39_parent1
 rm(linkd39_parent1)
 
 
-###############40############
+####################clean 40############
 c2<- linkd[linkd$method=="link40d",]
 
 
-
-
-
-
-
-
-###############41############
+####################clean 41############
 c2<- linkd[linkd$method=="link41d",]
 
-###############42############
+####################clean 42############
 c2<- linkd[linkd$method=="link42d",]
 
 
@@ -1238,7 +1194,7 @@ dim(linkd)
 linkd42_parent<-rbindlist(list(linkd42_parent1,linkd42_parent2,linkd42_parent3))
 rm(linkd42_parent1,linkd42_parent2,linkd42_parent3)
 
-###############43############
+####################clean 43############
 c2<- linkd[linkd$method=="link43d",]
 
 
@@ -1246,7 +1202,7 @@ linkd<-matchleft(linkd,c2)
 rm(c2)
 dim(linkd)
 # 202414     34
-###############44############
+####################clean 44############
 
 c2<- linkd[linkd$method=="link44d",]
 
@@ -1296,7 +1252,7 @@ linkd44_parent<-rbindlist(list(linkd44_parent1,linkd44_parent2))
 rm(linkd44_parent1,linkd44_parent2)
 
 
-###############45############
+####################clean 45############
 
 c2<- linkd[linkd$method=="link45d",]
 
@@ -1357,7 +1313,7 @@ dim(linkd)
 #202104     34
 linkd45_parent<-rbindlist(list(linkd45_parent1,linkd45_parent2,linkd45_parent3))
 rm(linkd45_parent1,linkd45_parent2,linkd45_parent3)
-###############46 interesting case############
+####################clean 46 interesting case############
 
 c2<- linkd[linkd$method=="link46d",]
 
@@ -1394,7 +1350,7 @@ linkd46_parent<-linkd46_parent1
 rm(linkd46_parent1)
 
 
-###############47############
+####################clean 47############
 
 c2<- linkd[linkd$method=="link47d",]
 
@@ -1405,63 +1361,54 @@ linkd<-matchleft(linkd,c2)
 rm(c2)
 dim(linkd)
 # 201760     34
-###############48############
+####################clean 48############
 
 c2<- linkd[linkd$method=="link48d",]
-
-###############49############
+####################clean 49############
 
 c2<- linkd[linkd$method=="link49d",]
 
-
-
 linkd<-matchleft(linkd,c2)
 rm(c2)
-dim(linkd)
-#201698     34
 
-###############50############
+
+####################clean 50############
 
 c2<- linkd[linkd$method=="link50d",]
 
 
 
 
-###############51############
+####################clean 51############
 
 c2<- linkd[linkd$method=="link51d",]
 
-###############52############
+####################clean 52############
 c2<- linkd[linkd$method=="link52d",]
 
-###############53############
+####################clean 53############
 c2<- linkd[linkd$method=="link53d",]
 
 linkd53_parent<-c2
 linkd<-matchleft(linkd,c2)
 rm(c2)
-dim(linkd)
-#201696     34
-###############54 unable to match one of the themn############
+####################clean 54 unable to match one of the themn############
 c2<- linkd[linkd$method=="link54d",]
-
 
 linkd<-matchleft(linkd,c2)
 rm(c2)
-dim(linkd)
-#201682     34
-###############55############
+####################clean 55############
 c2<- linkd[linkd$method=="link55d",]
 
 
 
-###############56############
+####################clean 56############
 c2<- linkd[linkd$method=="link56d",]
 
-###############57############
+####################clean 57############
 c2<- linkd[linkd$method=="link57d",]
 
-###############58############
+####################clean 58############
 c2<- linkd[linkd$method=="link58d",]
 
 
@@ -1479,11 +1426,11 @@ linkd58_parent<-c2
 linkd<-matchleft(linkd,c2)
 rm(c2)
 dim(linkd)
-###############59############
+####################clean 59############
 c2<- linkd[linkd$method=="link59d",]
 
 
-###############60############
+####################clean 60############
 c2<- linkd[linkd$method=="link60d",]
 
 
@@ -1506,17 +1453,17 @@ rm(c2)
 dim(linkd)
 linkd60_parent<-linkd60_parent1
 rm(linkd60_parent1)
-###############61############
+####################clean 61############
 c2<- linkd[linkd$method=="link61d",]
 
 
 
 
-###############62############
+####################clean 62############
 c2<- linkd[linkd$method=="link62d",]
 
 
-###############63############
+####################clean 63############
 c2<- linkd[linkd$method=="link63d",]
 
 linkd63_parent<-c2
@@ -1524,10 +1471,10 @@ linkd<-matchleft(linkd,c2)
 rm(c2)
 dim(linkd)
 
-###############64############
+####################clean 64############
 c2<- linkd[linkd$method=="link64d",]
 
-###############65############
+####################clean 65############
 c2<- linkd[linkd$method=="link65d",]
 
 
@@ -1547,14 +1494,14 @@ dim(linkd)
 #201649     34
 linkd65_parent<-linkd65_parent1
 rm(linkd65_parent1)
-###############66############
+####################clean 66############
 c2<- linkd[linkd$method=="link66d",]
 
 linkd66_parent<-c2
 linkd<-matchleft(linkd,c2)
 rm(c2)
 dim(linkd)
-###############67############
+####################clean 67############
 c2<- linkd[linkd$method=="link67d",]
 
 
@@ -1580,10 +1527,10 @@ rm(linkd67_parent1)
 
 
 
-###############68############
+####################clean 68############
 c2<- linkd[linkd$method=="link68d",]
 
-###############69############
+####################clean 69############
 c2<- linkd[linkd$method=="link69d",]
 
 
@@ -1623,19 +1570,19 @@ linkd69_parent<-rbindlist(list(linkd69_parent1,linkd69_parent2))
 rm(linkd69_parent1,linkd69_parent2)
 
 
-###############70############
+####################clean 70############
 c2<- linkd[linkd$method=="link70d",]
 
-###############71############
+####################clean 71############
 c2<- linkd[linkd$method=="link71d",]
 
-###############72############
+####################clean 72############
 c2<- linkd[linkd$method=="link72d",]
 
 linkd<-matchleft(linkd,c2)
 rm(c2)
 dim(linkd)
-###############73############
+####################clean 73############
 c2<- linkd[linkd$method=="link73d",]
 
 
@@ -1652,7 +1599,7 @@ linkd73_parent<-c2
 linkd<-matchleft(linkd,c2)
 rm(c2)
 dim(linkd)
-###############74############
+####################clean 74############
 c2<- linkd[linkd$method=="link74d",]
 
 
@@ -1702,10 +1649,7 @@ dim(linkd)
 linkd74_parent<-rbindlist(list(linkd74_parent1,linkd74_parent2))
 rm(linkd74_parent1,linkd74_parent2)
 
-
-
-
-###############75############
+####################clean 75############
 c2<- linkd[linkd$method=="link75d",]
 
 
@@ -1769,7 +1713,7 @@ rm(linkd75_parent1,linkd75_parent2,linkd75_parent3)
 
 
 
-###############76############
+####################clean 76############
 c2<- linkd[linkd$method=="link76d",]
 
 
@@ -1807,7 +1751,7 @@ linkd76_parent<-rbindlist(list(linkd76_parent1,linkd76_parent2))
 rm(linkd76_parent1,linkd76_parent2)
 
 
-###############77############
+####################clean 77############
 c2<- linkd[linkd$method=="link77d",]
 
 
@@ -1815,7 +1759,7 @@ c2<- linkd[linkd$method=="link77d",]
 
 
 
-###############78############
+####################clean 78############
 c2<- linkd[linkd$method=="link78d",]
 
 
@@ -1880,7 +1824,7 @@ linkd78_parent<-rbindlist(list(linkd78_parent1,linkd78_parent2,linkd78_parent3))
 rm(linkd78_parent1,linkd78_parent2,linkd78_parent3)
 
 
-###############79############
+####################clean 79############
 c2<- linkd[linkd$method=="link79d",]
 
 linkd79_1<-linkd[linkd$method=="link79d" & substr(linkd$class,1,1)=="R" ,]
@@ -2051,10 +1995,10 @@ dim(linkd)
 linkd79_parent<-rbindlist(list(linkd79_parent1,linkd79_parent2,linkd79_parent3,linkd79_parent4,linkd79_parent5,linkd79_parent6,linkd79_parent7,linkd79_parent8,linkd79_parent9,linkd79_parent10,linkd79_parent11))
 rm(linkd79_parent1,linkd79_parent2,linkd79_parent3,linkd79_parent4,linkd79_parent5,linkd79_parent6,linkd79_parent7,linkd79_parent8,linkd79_parent9,linkd79_parent10,linkd79_parent11)
 
-###############80############
+####################clean 80############
 c2<- linkd[linkd$method=="link80d",]
 
-###############81############
+####################clean 81############
 c2<- linkd[linkd$method=="link81d",]
 
 
@@ -2091,7 +2035,7 @@ c2<- linkd[linkd$method=="link81d",]
 linkd81_parent<-rbindlist(list(linkd81_parent1,linkd81_parent2))
 rm(linkd81_parent1,linkd81_parent2)
 
-###############82############
+####################clean 82############
 c2<- linkd[linkd$method=="link82d",]
 
 
@@ -2183,14 +2127,14 @@ rm(linkd82_parent1,linkd82_parent2,linkd82_parent3,linkd82_parent4,linkd82_paren
 
 
 
-###############83############
+####################clean 83############
 c2<- linkd[linkd$method=="link83d",]
 
 linkd<-matchleft(linkd,c2)
 rm(c2)
 dim(linkd)
 #192471     34
-###############84############
+####################clean 84############
 c2<- linkd[linkd$method=="link84d",]
 
 linkd84_parent<-c2
@@ -2199,7 +2143,7 @@ rm(c2)
 dim(linkd)
 #192461     34
 
-###############85############
+####################clean 85############
 c2<- linkd[linkd$method=="link85d",]
 
 
@@ -2207,10 +2151,10 @@ linkd<-matchleft(linkd,c2)
 rm(c2)
 dim(linkd)
 #192453     34
-###############86############
+####################clean 86############
 c2<- linkd[linkd$method=="link86d",]
 
-###############87############
+####################clean 87############
 c2<- linkd[linkd$method=="link87d",]
 
 
@@ -2270,35 +2214,35 @@ dim(linkd)
 linkd87_parent<-rbindlist(list(linkd87_parent1,linkd87_parent2,linkd87_parent3))
 rm(linkd87_parent1,linkd87_parent2,linkd87_parent3)
 
-###############88############
+####################clean 88############
 c2<- linkd[linkd$method=="link88d",]
 
-###############89############
+####################clean 89############
 c2<- linkd[linkd$method=="link89d",]
 
 
-###############90############
+####################clean 90############
 c2<- linkd[linkd$method=="link90d",]
 
 linkd<-matchleft(linkd,c2)
 rm(c2)
 dim(linkd)
-###############91############
+####################clean 91############
 c2<- linkd[linkd$method=="link91d",]
 
-###############92############
+####################clean 92############
 c2<- linkd[linkd$method=="link92d",]
 
-###############93############
+####################clean 93############
 c2<- linkd[linkd$method=="link93d",]
 
-###############94############
+####################clean 94############
 c2<- linkd[linkd$method=="link94d",]
 
-###############95############
+####################clean 95############
 c2<- linkd[linkd$method=="link95d",]
 
-###############96############
+####################clean 96############
 c2<- linkd[linkd$method=="link96d",]
 
 
@@ -2314,7 +2258,7 @@ c2<- linkd[linkd$method=="link96d",]
 linkd<-matchleft(linkd,c2)
 rm(c2)
 dim(linkd)
-###############97############
+####################clean 97############
 c2<- linkd[linkd$method=="link97d",]
 
 linkd97_1<-linkd[linkd$method=="link97d" & substr(linkd$class,1,1)=="R" ,]
@@ -2329,7 +2273,7 @@ c2<- linkd[linkd$method=="link97d",]
 linkd<-matchleft(linkd,c2)
 rm(c2)
 dim(linkd)
-###############98############
+####################clean 98############
 c2<- linkd[linkd$method=="link98d",]
 
 
@@ -2338,13 +2282,13 @@ linkd98_parent<-c2
 linkd<-matchleft(linkd,c2)
 rm(c2)
 dim(linkd)
-###############99############
+####################clean 99############
 c2<- linkd[linkd$method=="link99d",]
 
-###############100############
+####################clean 100############
 c2<- linkd[linkd$method=="link100d",]
 
-###############101############
+####################clean 101############
 c2<- linkd[linkd$method=="link101d",]
 
 
@@ -2356,10 +2300,10 @@ dim(linkd)
 #190474     34
 
 
-###############102############
+####################clean 102############
 c2<- linkd[linkd$method=="link102d",]
 
-###############103############
+####################clean 103############
 c2<- linkd[linkd$method=="link103d",]
 
 
@@ -2371,7 +2315,7 @@ dim(linkd)
 
 
 
-###############104############
+####################clean 104############
 c2<- linkd[linkd$method=="link104d",]
 
 
@@ -2437,13 +2381,13 @@ linkd104_parent<-rbindlist(list(linkd104_parent1,linkd104_parent2,linkd104_paren
 rm(linkd104_parent1,linkd104_parent2,linkd104_parent3)
 
 
-###############105############
+####################clean 105############
 c2<- linkd[linkd$method=="link105d",]
 
-###############106############
+####################clean 106############
 c2<- linkd[linkd$method=="link106d",]
 
-###############107############
+####################clean 107############
 c2<- linkd[linkd$method=="link107d",]
 
 
@@ -2460,15 +2404,8 @@ c2<- linkd[linkd$method=="link107d",]
 
 linkd<-matchleft(linkd,c2)
 rm(c2)
-dim(linkd)
 
-
-
-
-
-
-
-###############108############
+####################clean 108############
 c2<- linkd[linkd$method=="link108d",]
 
 
@@ -2498,7 +2435,7 @@ linkd108_parent<-linkd108_parent1
 rm(linkd108_parent1)
 
 
-###############109############
+####################clean 109############
 c2<- linkd[linkd$method=="link109d",]
 
 
@@ -2516,18 +2453,15 @@ linkd<-matchleft(linkd,c2)
 rm(c2)
 dim(linkd)
 #189930     34
-###############110############
+####################clean 110############
 c2<- linkd[linkd$method=="link110d",]
 
 
-###############111############
+####################clean 111############
 c2<- linkd[linkd$method=="link111d",]
 
-###############112############
+####################clean 112############
 c2<- linkd[linkd$method=="link112d",]
-
-
-
 
 
 linkd112_parent<-c2[grepl("\\d",c2$saotext),]
@@ -2578,7 +2512,7 @@ linkd112_parent<-rbindlist(list(linkd112_parent1,linkd112_parent2,linkd112_paren
 rm(linkd112_parent1,linkd112_parent2,linkd112_parent3)
 
 
-###############113############
+####################clean 113############
 c2<- linkd[linkd$method=="link113d",]
 
 
@@ -2644,10 +2578,10 @@ dim(linkd)
 linkd113_parent<-rbindlist(list(linkd113_parent1,linkd113_parent2,linkd113_parent3))
 rm(linkd113_parent1,linkd113_parent2,linkd113_parent3)
 
-###############114############
+####################clean 114############
 c2<- linkd[linkd$method=="link114d",]
 
-###############115############
+####################clean 115############
 c2<- linkd[linkd$method=="link115d",]
 
 
@@ -2724,7 +2658,7 @@ linkd115_parent<-rbindlist(list(linkd115_parent1,linkd115_parent2,linkd115_paren
 rm(linkd115_parent1,linkd115_parent2,linkd115_parent3,linkd115_parent4)
 
 
-###############116############
+####################clean 116############
 c2<- linkd[linkd$method=="link116d",]
 
 
@@ -2736,13 +2670,13 @@ dim(linkd)
 
 
 
-###############117############
+####################clean 117############
 c2<- linkd[linkd$method=="link117d",]
 
-###############118############
+####################clean 118############
 c2<- linkd[linkd$method=="link118d",]
 
-###############119############
+####################clean 119############
 c2<- linkd[linkd$method=="link119d",]
 
 
@@ -2754,14 +2688,14 @@ dim(linkd)
 
 
 
-###############120############
+####################clean 120############
 c2<- linkd[linkd$method=="link120d",]
 
 
-###############121############
+####################clean 121############
 c2<- linkd[linkd$method=="link121d",]
 
-###############122############
+####################clean 122############
 c2<- linkd[linkd$method=="link122d",]
 
 
@@ -2775,7 +2709,7 @@ dim(linkd)
 
 
 
-###############123############
+####################clean 123############
 c2<- linkd[linkd$method=="link123d",]
 
 
@@ -2800,7 +2734,7 @@ linkd<-matchleft(linkd,c2)
 rm(c2)
 dim(linkd)
 # 186710     34
-###############124############
+####################clean 124############
 c2<- linkd[linkd$method=="link124d",]
 
 
@@ -2867,7 +2801,7 @@ rm(linkd124_parent1,linkd124_parent2,linkd124_parent3)
 
 
 
-###############125############
+####################clean 125############
 c2<- linkd[linkd$method=="link125d",]
 
 
@@ -2900,59 +2834,59 @@ linkd125_parent<-linkd125_parent1
 rm(linkd125_parent1)
 
 
-###############126############
+####################clean 126############
 c2<- linkd[linkd$method=="link126d",]
 
 
 
 
-###############127############
+####################clean 127############
 c2<- linkd[linkd$method=="link127d",]
 
 
 
 
-###############128############
+####################clean 128############
 c2<- linkd[linkd$method=="link128d",]
 
 
 
-###############129############
+####################clean 129############
 c2<- linkd[linkd$method=="link129d",]
 
 
-###############130############
+####################clean 130############
 c2<- linkd[linkd$method=="link130d",]
 
 
-###############131############
+####################clean 131############
 c2<- linkd[linkd$method=="link131d",]
 
-###############132############
+####################clean 132############
 c2<- linkd[linkd$method=="link132d",]
 
-###############133############
+####################clean 133############
 c2<- linkd[linkd$method=="link133d",]
 
-###############134############
+####################clean 134############
 c2<- linkd[linkd$method=="link134d",]
 
-###############135############
+####################clean 135############
 c2<- linkd[linkd$method=="link135d",]
 
-###############136############
+####################clean 136############
 c2<- linkd[linkd$method=="link136d",]
 
-###############137############
+####################clean 137############
 c2<- linkd[linkd$method=="link137d",]
 
-###############138############
+####################clean 138############
 c2<- linkd[linkd$method=="link138d",]
 
-###############139############
+####################clean 139############
 c2<- linkd[linkd$method=="link139d",]
 
-###############140############
+####################clean 140############
 c2<- linkd[linkd$method=="link140d",]
 
 
@@ -2960,10 +2894,10 @@ linkd<-matchleft(linkd,c2)
 rm(c2)
 dim(linkd)
 # 184861     34
-###############141############
+####################clean 141############
 c2<- linkd[linkd$method=="link141d",]
 
-###############142############
+####################clean 142############
 c2<- linkd[linkd$method=="link142d",]
 
 
@@ -2995,18 +2929,9 @@ dim(linkd)
 linkd142_parent<-linkd142_parent1
 rm(linkd142_parent1)
 
-###############143############
+####################clean 143############
 c2<- linkd[linkd$method=="link143d",]
 
-
-
-
-##clean the linakge based on add2
-#add1=buildingname
-
-#then get them
-
-##add2 contain numeber, the last word in add2 = last word in subbuildingname
 
 
 linkd143<-linkd[linkd$method=="link143d",] 
@@ -3168,7 +3093,7 @@ dim(linkd)
 #c2<- linkd[linkd$method=="link143d",]
 linkd143_parent<-rbindlist(list(linkd143_parent1,linkd143_parent2,linkd143_parent3))
 rm(linkd143_parent1,linkd143_parent2,linkd143_parent3)
-###############144############
+####################clean 144############
 c2<- linkd[linkd$method=="link144d",]
 
 linkd144_1<-c2[word(c2$add1, -1)==word(c2$subbuildingname, -1),]
@@ -3203,7 +3128,7 @@ linkd144_parent<-linkd144_parent1
 rm(linkd144_parent1)
 
 
-###############145############
+####################clean 145############
 c2<- linkd[linkd$method=="link145d",]
 
 
@@ -3275,12 +3200,7 @@ dim(linkd)
 linkd145_parent<-rbindlist(list(linkd145_parent1,linkd145_parent2,linkd145_parent3,linkd145_parent4))
 rm(linkd145_parent1,linkd145_parent2,linkd145_parent3,linkd145_parent4)
 
-
-
-
-
-
-###############146############
+####################clean 146############
 c2<- linkd[linkd$method=="link146d",]
 
 
@@ -3384,7 +3304,7 @@ dim(linkd)
 linkd146_parent<-rbindlist(list(linkd146_parent1,linkd146_parent2,linkd146_parent3,linkd146_parent4,linkd146_parent5,linkd146_parent6))
 rm(linkd146_parent1,linkd146_parent2,linkd146_parent3,linkd146_parent4,linkd146_parent5,linkd146_parent6)
 
-###############147############
+####################clean 147############
 c2<- linkd[linkd$method=="link147d",]
 
 
@@ -3396,36 +3316,27 @@ linkd147_1<-linkd147[word(linkd147$add2, 1)==linkd147$paostartnumber,]
 linkd147_1<-uniqueresult(linkd147_1)
 dim(linkd)
 linkd<-matchleft(linkd,linkd147_1)
-dim(linkd)
-#158805     34
-
 
 c2<- linkd[linkd$method=="link147d",]
 
 
 linkd<-matchleft(linkd,c2)
-dim(linkd)
-# 158785     34
 
-
-
-###############148############
+####################clean 148############
 c2<- linkd[linkd$method=="link148d",]
 
 detail_1<-c2
 
 linkd<-matchleft(linkd,c2)
-dim(linkd)
-#158724     34
 
-###############149############
+####################clean 149############
 c2<- linkd[linkd$method=="link149d",]
 
-###############150############
+####################clean 150############
 c2<- linkd[linkd$method=="link150d",]
 
 
-###############151############
+####################clean 151 ############
 c2<- linkd[linkd$method=="link151d",]
 
 
@@ -3447,11 +3358,11 @@ c2<- linkd[linkd$method=="link151d",]
 detail_2<-c2
 
 linkd<-matchleft(linkd,c2)
-dim(linkd)
-###############152############
+
+####################clean 152############
 c2<- linkd[linkd$method=="link152d",]
 
-###############153############
+####################clean 153############
 c2<- linkd[linkd$method=="link153d",]
 
 # match based on add2
@@ -3486,30 +3397,6 @@ housename_diff1<-linkd153
 linkd<-matchleft(linkd,housename_diff1)
 dim(linkd)
 
-
-
-###############154############
-c2<- linkd[linkd$method=="link154d",]
-
-###############155############
-c2<- linkd[linkd$method=="link155d",]
-
-###############156############
-c2<- linkd[linkd$method=="link156d",]
-
-###############157############
-c2<- linkd[linkd$method=="link157d",]
-
-###############158############
-c2<- linkd[linkd$method=="link158d",]
-
-###############159############
-c2<- linkd[linkd$method=="link159d",]
-
-###############160############
-c2<- linkd[linkd$method=="link160d",]
-
-
 ###############161############
 c2<- linkd[linkd$method=="link161d",]
 
@@ -3531,7 +3418,7 @@ linkd<-matchleft(linkd,detail_3)
 dim(linkd)
 
 rm(c2)
-###############162############
+####################clean 162############
 c2<- linkd[linkd$method=="link162d",]
 
 
@@ -3541,19 +3428,8 @@ linkd<-matchleft(linkd,detail_4)
 dim(linkd)
 
 
-###############163############
-c2<- linkd[linkd$method=="link163d",]
 
-###############164############
-c2<- linkd[linkd$method=="link164d",]
-
-###############165############
-c2<- linkd[linkd$method=="link165d",]
-
-###############166############
-c2<- linkd[linkd$method=="link166d",]
-
-###############167############
+####################clean 167############
 c2<- linkd[linkd$method=="link167d",]
 
 
@@ -3563,7 +3439,7 @@ linkd<-matchleft(linkd,fail_4)
 dim(linkd)
 
 
-###############168############
+####################clean 168############
 sort(unique(linkd$method))
 c2<- linkd[linkd$method=="link168d",]
 
@@ -3573,7 +3449,7 @@ detail_5<-c2
 linkd<-matchleft(linkd,detail_5)
 dim(linkd)
 
-###############169############
+####################clean 169############
 length(unique(linkd$method))
 #120
 
@@ -3757,11 +3633,11 @@ linkd169_parent<-rbindlist(list(linkd169_parent1,linkd169_parent2,linkd169_paren
 rm(linkd169_parent1,linkd169_parent2,linkd169_parent3,linkd169_parent4,linkd169_parent5,linkd169_parent6)
 
 
-###############170############
+####################clean 170############
 c2<- linkd[linkd$method=="link170d",]
 
 
-###############171############
+####################clean 171############
 c2<- linkd[linkd$method=="link171d",]
 
 
@@ -3780,13 +3656,7 @@ dim(linkd)
 
 
 
-
-
-
-###############172############
-c2<- linkd[linkd$method=="link172d",]
-
-###############173############
+####################clean 173############
 c2<- linkd[linkd$method=="link173d",]
 
 
@@ -3873,7 +3743,7 @@ linkd173_parent<-rbindlist(list(linkd173_parent1,linkd173_parent2))
 rm(linkd173_parent1,linkd173_parent2)
 
 
-###############174############
+####################clean 174############
 c2<- linkd[linkd$method=="link174d",]
 
 
@@ -3882,7 +3752,7 @@ rm(c2)
 dim(linkd)
 
 
-###############175############
+####################clean 175############
 c2<- linkd[linkd$method=="link175d",]
 
 
@@ -3893,8 +3763,7 @@ linkd<-matchleft(linkd,linkd175_1)
 dim(linkd)
 
 
-
-###############176############
+####################clean 176############
 length(unique(linkd$method))
 c2<- linkd[linkd$method=="link176d",]
 
@@ -3944,16 +3813,16 @@ dim(linkd)
 linkd176_parent<-rbindlist(list(linkd176_parent1,linkd176_parent2,linkd176_parent3))
 rm(linkd176_parent1,linkd176_parent2,linkd176_parent3)
 
-###############177############
+####################clean 177############
 c2<- linkd[linkd$method=="link177d",]
 
-###############178############
+####################clean 178############
 c2<- linkd[linkd$method=="link178d",]
 
-###############179############
+####################clean 179############
 c2<- linkd[linkd$method=="link179d",]
 
-###############180############
+####################clean 180############
 c2<- linkd[linkd$method=="link180d",]
 
 
@@ -3987,53 +3856,9 @@ fail_5<-c2
 linkd<-matchleft(linkd,fail_5)
 dim(linkd)
 
-###############181############
-c2<- linkd[linkd$method=="link181d",]
-
-###############182############
-c2<- linkd[linkd$method=="link182d",]
-
-###############183############
-c2<- linkd[linkd$method=="link183d",]
-
-###############184############
-c2<- linkd[linkd$method=="link184d",]
-
-###############185############
-c2<- linkd[linkd$method=="link185d",]
-
-###############186############
-c2<- linkd[linkd$method=="link186d",]
-
-###############187############
-c2<- linkd[linkd$method=="link187d",]
-
-###############188############
-c2<- linkd[linkd$method=="link188d",]
-
-###############189############
-c2<- linkd[linkd$method=="link189d",]
-
-###############190############
-c2<- linkd[linkd$method=="link190d",]
 
 
-###############191############
-c2<- linkd[linkd$method=="link191d",]
-
-###############192############
-c2<- linkd[linkd$method=="link192d",]
-
-###############193############
-c2<- linkd[linkd$method=="link193d",]
-
-###############194############
-c2<- linkd[linkd$method=="link194d",]
-
-###############195############
-c2<- linkd[linkd$method=="link195d",]
-
-###############196############
+####################clean 196############
 c2<- linkd[linkd$method=="link196d",]
 
 
@@ -4072,7 +3897,7 @@ linkd<-matchleft(linkd,c2)
 rm(c2)
 dim(linkd)
 
-###############197############
+####################clean 197############
 c2<- linkd[linkd$method=="link197d",]
 
 
@@ -4095,7 +3920,7 @@ linkd<-matchleft(linkd,c2)
 rm(c2)
 dim(linkd)
 
-###############198############
+####################clean 198############
 c2<- linkd[linkd$method=="link198d",]
 
 
@@ -4104,7 +3929,7 @@ linkd198_parent<-c2
 linkd<-matchleft(linkd,c2)
 rm(c2)
 dim(linkd)
-###############199############
+####################clean 199############
 c2<- linkd[linkd$method=="link199d",]
 
 
@@ -4114,35 +3939,21 @@ linkd<-matchleft(linkd,c2)
 rm(c2)
 dim(linkd)
 
-###############200############
-c2<- linkd[linkd$method=="link200d",]
 
-###############201############
-c2<- linkd[linkd$method=="link201d",]
-
-
-###############202############
+####################clean 202############
 c2<- linkd[linkd$method=="link202d",]
 
-
-
 linkd202<-linkd[linkd$method=="link202d",] 
-#linkd202$add2<-gsub(",","",linkd202$add2)
-
 
 linkd202[postcode.y=="CV13 0NP",add2:=gsub("GODSON HILL FARM", "GODSONS HILL FARM",add2)]
 
 linkd202_1<-linkd202[linkd202$add2==linkd202$buildingname,]
 
-
 linkd202_1<-uniqueresult(linkd202_1)
-dim(linkd)
-linkd<-matchleft(linkd,linkd202_1)
-dim(linkd)
 
+linkd<-matchleft(linkd,linkd202_1)
 
 c2<- linkd[linkd$method=="link202d",]
-
 
 
 linkd202<-linkd[linkd$method=="link202d",] 
@@ -4161,7 +3972,7 @@ c2<- linkd[linkd$method=="link202d",]
 linkd<-matchleft(linkd,c2)
 dim(linkd)
 # 82420    34
-###############203############
+####################clean 203############
 c2<- linkd[linkd$method=="link203d",]
 
 
@@ -4182,32 +3993,15 @@ fail_6<-c2
 linkd<-matchleft(linkd,c2)
 dim(linkd)
 rm(c2)
-###############204############
-c2<- linkd[linkd$method=="link204d",]
 
-###############205############
+####################clean 205############
 c2<- linkd[linkd$method=="link205d",]
 
 detail_46<-c2
 linkd<-matchleft(linkd,detail_46)
 dim(linkd)
-###############206############
-c2<- linkd[linkd$method=="link206d",]
 
-###############207############
-c2<- linkd[linkd$method=="link207d",]
-###############208############
-c2<- linkd[linkd$method=="link208d",]
-
-###############209############
-c2<- linkd[linkd$method=="link209d",]
-
-
-###############210############
-c2<- linkd[linkd$method=="link210d",]
-
-
-###############211############
+####################clean 211############
 length(unique(linkd$method))
 c2<- linkd[linkd$method=="link211d",]
 
@@ -4217,14 +4011,7 @@ linkd<-matchleft(linkd,c2)
 dim(linkd)
 rm(c2)
 
-
-###############212############
-c2<- linkd[linkd$method=="link212d",]
-
-###############213############
-c2<- linkd[linkd$method=="link213d",]
-
-###############214############
+####################clean 214############
 c2<- linkd[linkd$method=="link214d",]
 
 
@@ -4248,14 +4035,7 @@ dim(linkd)
 rm(c2)
 
 
-
-###############215############
-c2<- linkd[linkd$method=="link215d",]
-
-###############216############
-c2<- linkd[linkd$method=="link216d",]
-
-###############217############
+####################clean 217############
 c2<- linkd[linkd$method=="link217d",]
 
 linkd217_1<-linkd[linkd$method=="link217d" & substr(linkd$class,1,1)=="R" ,]
@@ -4273,7 +4053,7 @@ linkd217_parent<-c2
 linkd<-matchleft(linkd,c2)
 rm(c2)
 dim(linkd)
-###############218############
+####################clean 218############
 c2<- linkd[linkd$method=="link218d",]
 
 
@@ -4283,29 +4063,15 @@ linkd217_parent<-c2
 linkd<-matchleft(linkd,c2)
 rm(c2)
 dim(linkd)
-###############219############
-c2<- linkd[linkd$method=="link219d",]
 
-###############220############
-c2<- linkd[linkd$method=="link220d",]
-
-###############221############
-c2<- linkd[linkd$method=="link221d",]
-
-###############222############
-c2<- linkd[linkd$method=="link222d",]
-
-###############223############
-c2<- linkd[linkd$method=="link223d",]
-
-###############224############
+####################clean 224############
 c2<- linkd[linkd$method=="link224d",]
 
 linkd224_parent<-c2
 linkd<-matchleft(linkd,c2)
 rm(c2)
 dim(linkd)
-###############225############
+####################clean 225############
 c2<- linkd[linkd$method=="link225d",]
 
 
@@ -4315,7 +4081,7 @@ rm(c2)
 dim(linkd)
 
 
-###############226############
+####################clean 226############
 c2<- linkd[linkd$method=="link226d",]
 
 
@@ -4325,7 +4091,7 @@ rm(c2)
 dim(linkd)
 
 
-###############227############
+####################clean 227############
 c2<- linkd[linkd$method=="link227d",]
 
 
@@ -4335,27 +4101,7 @@ rm(c2)
 dim(linkd)
 
 
-###############228############
-c2<- linkd[linkd$method=="link228d",]
-
-###############229############
-c2<- linkd[linkd$method=="link229d",]
-
-
-###############230############
-c2<- linkd[linkd$method=="link230d",]
-
-
-###############231############
-c2<- linkd[linkd$method=="link231d",]
-
-###############232############
-c2<- linkd[linkd$method=="link232d",]
-
-###############233############
-c2<- linkd[linkd$method=="link233d",]
-
-###############234############
+####################clean 234############
 c2<- linkd[linkd$method=="link234d",]
 
 
@@ -4373,10 +4119,7 @@ linkd<-matchleft(linkd,c2)
 rm(c2)
 dim(linkd)
 
-###############235############
-c2<- linkd[linkd$method=="link235d",]
-
-###############236############
+####################clean 236############
 length(unique(linkd$method))
 c2<- linkd[linkd$method=="link236d",]
 
@@ -4411,7 +4154,7 @@ dim(linkd)
 linkd236_parent<-linkd236_parent1
 rm(linkd236_parent1)
 
-###############237############
+####################clean 237############
 c2<- linkd[linkd$method=="link237d",]
 
 
@@ -4431,10 +4174,8 @@ rm(c2)
 dim(linkd)
 
 
-###############238############
-c2<- linkd[linkd$method=="link238d",]
 
-###############239############
+####################clean 239############
 c2<- linkd[linkd$method=="link239d",]
 
 linkd239_1<-linkd[linkd$method=="link239d" & substr(linkd$class,1,1)=="R" ,]
@@ -4468,24 +4209,8 @@ linkd<-matchleft(linkd,c2)
 rm(c2)
 dim(linkd)
 
-###############241############
-c2<- linkd[linkd$method=="link241d",]
 
-
-
-###############242############
-c2<- linkd[linkd$method=="link242d",]
-
-###############243############
-c2<- linkd[linkd$method=="link243d",]
-
-###############244############
-c2<- linkd[linkd$method=="link244d",]
-
-###############245############
-c2<- linkd[linkd$method=="link245d",]
-
-###############246############################
+####################clean 246############################
 length(unique(linkd$method))
 #94
 c2<- linkd[linkd$method=="link246d",]
@@ -4540,42 +4265,21 @@ detail_15<-c2
 linkd<-matchleft(linkd,c2)
 rm(c2)
 dim(linkd)
-###############247############
+####################clean 247############
 c2<- linkd[linkd$method=="link247d",]
 
 fail_7<-c2
 linkd<-matchleft(linkd,c2)
 rm(c2)
-dim(linkd)
 
-###############248############
-c2<- linkd[linkd$method=="link248d",]
-
-###############249############
+####################clean 249############
 c2<- linkd[linkd$method=="link249d",]
-
-
 
 linkd249_parent<-c2
 linkd<-matchleft(linkd,c2)
 rm(c2)
-dim(linkd)
 
-
-
-###############250############
-c2<- linkd[linkd$method=="link250d",]
-
-
-###############251############check again
-c2<- linkd[linkd$method=="link251d",]
-
-
-
-###############252############
-c2<- linkd[linkd$method=="link252d",]
-
-###############253############
+####################clean 253############
 length(unique(linkd$method))
 c2<- linkd[linkd$method=="link253d",]
 
@@ -4650,7 +4354,7 @@ noadd2_1<-c2
 linkd<-matchleft(linkd,noadd2_1)
 dim(linkd)
 
-###############254############
+####################clean 254############
 c2<- linkd[linkd$method=="link254d",]
 
 c2<-c2[grepl("\\d",c2$add2),]
@@ -4715,7 +4419,7 @@ linkd<-matchleft(linkd,linkd254_parent)
 dim(linkd)
 
 
-###############255############
+####################clean 255############
 length(unique(linkd$method))
 c2<- linkd[linkd$method=="link255d",]
 
@@ -4752,22 +4456,14 @@ c2<- linkd[linkd$method=="link255d",]
 linkd255_parent<-c2
 linkd<-matchleft(linkd,c2)
 dim(linkd)
-###############256############
+####################clean 256############
 c2<- linkd[linkd$method=="link256d",]
 
 linkd256_parent<-c2
 linkd<-matchleft(linkd,c2)
 dim(linkd)
-###############257############
-c2<- linkd[linkd$method=="link257d",]
 
-###############258############
-c2<- linkd[linkd$method=="link258d",]
-
-###############259############
-c2<- linkd[linkd$method=="link259d",]
-
-###############260############
+####################clean 260############
 c2<- linkd[linkd$method=="link260d",]
 
 
@@ -4775,16 +4471,8 @@ c2<- linkd[linkd$method=="link260d",]
 detail_16<-c2
 linkd<-matchleft(linkd,c2)
 dim(linkd)
-###############261############
-c2<- linkd[linkd$method=="link261d",]
 
-###############262############
-c2<- linkd[linkd$method=="link262d",]
-
-###############263############
-c2<- linkd[linkd$method=="link263d",]
-
-###############264############
+####################clean 264############
 c2<- linkd[linkd$method=="link264d",]
 
 
@@ -4793,30 +4481,13 @@ linkd<-matchleft(linkd,c2)
 dim(linkd)
 
 
-###############265############
+####################clean 265############
 c2<- linkd[linkd$method=="link265d",]
 
 
 detail_17<-c2
 linkd<-matchleft(linkd,c2)
 dim(linkd)
-
-
-
-###############266############
-c2<- linkd[linkd$method=="link266d",]
-
-###############267############
-c2<- linkd[linkd$method=="link267d",]
-
-###############268############
-c2<- linkd[linkd$method=="link268d",]
-
-###############269############
-c2<- linkd[linkd$method=="link269d",]
-
-###############270############
-c2<- linkd[linkd$method=="link270d",]
 
 
 ###############271############
@@ -4881,7 +4552,7 @@ detail_19<-linkd271
 linkd<-matchleft(linkd,detail_19)
 dim(linkd)
 
-###############272############
+####################clean 272############
 c2<- linkd[linkd$method=="link272d",]
 
 
@@ -4904,21 +4575,14 @@ dim(linkd)
 
 
 
-###############273############
+####################clean 273############
 c2<- linkd[linkd$method=="link273d",]
-
-
 
 noadd2_3<-c2
 
 linkd<-matchleft(linkd,c2)
-dim(linkd)
 
-
-
-
-
-###############274############
+####################clean 274############
 c2<- linkd[linkd$method=="link274d",]
 
 
@@ -4929,26 +4593,8 @@ noadd2_4<-c2
 
 linkd<-matchleft(linkd,noadd2_4)
 dim(linkd)
-###############275############
-c2<- linkd[linkd$method=="link275d",]
 
-###############276############
-c2<- linkd[linkd$method=="link276d",]
-
-###############277############
-c2<- linkd[linkd$method=="link277d",]
-
-###############278############
-c2<- linkd[linkd$method=="link278d",]
-
-###############279############
-c2<- linkd[linkd$method=="link279d",]
-
-###############280############
-c2<- linkd[linkd$method=="link280d",]
-
-
-###############281############
+####################clean 281############
 c2<- linkd[linkd$method=="link281d",]
 
 
@@ -5359,16 +5005,7 @@ linkd<-matchleft(linkd,noadd2_7)
 dim(linkd)
 
 
-
-
-
-###############282############
-c2<- linkd[linkd$method=="link282d",]
-
-###############283############
-c2<- linkd[linkd$method=="link283d",]
-
-###############284############
+####################clean 284############
 c2<- linkd[linkd$method=="link284d",]
 
 
@@ -5378,24 +5015,16 @@ linkd284_parent<-c2
 linkd<-matchleft(linkd,linkd284_parent)
 dim(linkd)
 
-
-###############285############
-c2<- linkd[linkd$method=="link285d",]
-
-###############286############
+####################clean 286############
 c2<- linkd[linkd$method=="link286d",]
 
 detail_21<-c2
 linkd<-matchleft(linkd,c2)
 dim(linkd)
 
-###############287############
-c2<- linkd[linkd$method=="link287d",]
-
-
 #####check the one to one part############################
 length(unique(linkd$method))
-###############288############
+####################clean 288############
 c2<- linkd[linkd$method=="link288d",]
 
 
@@ -5628,14 +5257,14 @@ noadd2_8<-c2
 linkd<-matchleft(linkd,noadd2_8)
 dim(linkd)
 
-###############290############
+####################clean 290############
 c2<- linkd[linkd$method=="link290d",]
 
 
 linkd290_parent<-c2
 linkd<-matchleft(linkd,linkd290_parent)
 dim(linkd)
-###############291############
+####################clean 291############
 
 
 linkd291<-linkd[linkd$method=="link291d",] 
@@ -5835,7 +5464,7 @@ dim(linkd)
 
 
 
-###############293############
+####################clean 293############
 c2<- linkd[linkd$method=="link293d",]
 
 
@@ -5909,7 +5538,7 @@ fail_12<-linkd293
 
 linkd<-matchleft(linkd,fail_12)
 dim(linkd)
-###############294############
+####################clean 294############
 
 
 linkd294_1<-linkd[linkd$method=="link294d" & substr(linkd$class,1,1)=="R" ,]
@@ -5969,7 +5598,7 @@ fail_13<-c2
 
 linkd<-matchleft(linkd,fail_13)
 dim(linkd)
-###############295############
+####################clean 295############
 
 
 linkd295<-linkd[linkd$method=="link295d",] 
@@ -5979,10 +5608,6 @@ linkd295 <- linkd295[grepl("\\d$",linkd295$add1),]
 fail_14<-linkd295
 
 linkd<-matchleft(linkd,fail_14)
-dim(linkd)
-
-
-
 
 
 linkd295_1<-linkd[linkd$method=="link295d" & substr(linkd$class,1,1)=="R" ,]
@@ -6009,7 +5634,7 @@ detail_22<-c2
 
 linkd<-matchleft(linkd,detail_22)
 dim(linkd)
-###############296############
+####################clean 296############
 c2<- linkd[linkd$method=="link296d",]
 
 
@@ -6024,15 +5649,7 @@ c2<- linkd[linkd$method=="link296d",]
 detail_23<-c2
 
 linkd<-matchleft(linkd,detail_23)
-dim(linkd)
-
-
-
-
-
-
-
-###############297############
+####################clean 297############
 c2<- linkd[linkd$method=="link297d",]
 
 
@@ -6048,11 +5665,6 @@ c2<- linkd[linkd$method=="link297d",]
 detail_24<-c2
   
 linkd<-matchleft(linkd,detail_24)
-dim(linkd)
-
-  
-###############298############
-c2<- linkd[linkd$method=="link298d",]
 
 ###############299############
 c2<- linkd[linkd$method=="link299d",]
@@ -6060,10 +5672,6 @@ c2<- linkd[linkd$method=="link299d",]
 
 detail_25<-c2
 linkd<-matchleft(linkd,detail_25)
-dim(linkd)
-
-###############300############
-c2<- linkd[linkd$method=="link300d",]
 
 ###############301############
 c2<- linkd[linkd$method=="link301d",]
@@ -6076,22 +5684,10 @@ linkd<-matchleft(linkd,linkd301_1)
 dim(linkd)
 
 
-# 
-# linkd301_2<-linkd[linkd$method=="link301d" & linkd$add2==linkd$paotext ,]
-# linkd301_2<-uniqueresult(linkd301_2)
-
-# linkd<-matchleft(linkd,linkd301_1)
-# dim(linkd)
-
-
 c2<- linkd[linkd$method=="link301d",]
 detail_26<-c2
 
 linkd<-matchleft(linkd,detail_26)
-dim(linkd)
-
-###############302############
-c2<- linkd[linkd$method=="link302d",]
 
 ###############303############
 c2<- linkd[linkd$method=="link303d",]
@@ -6121,54 +5717,16 @@ c2<- linkd[linkd$method=="link305d",]
 linkd305_parent<-c2
 
 linkd<-matchleft(linkd,c2)
-dim(linkd)
-###############306############
-c2<- linkd[linkd$method=="link306d",]
 
-###############307############
-c2<- linkd[linkd$method=="link307d",]
-
-###############308############
-c2<- linkd[linkd$method=="link308d",]
-
-###############309############
-c2<- linkd[linkd$method=="link309d",]
-
-
-###############310############
-c2<- linkd[linkd$method=="link310d",]
-
-
-###############311############
-c2<- linkd[linkd$method=="link311d",]
-
-###############312############
-c2<- linkd[linkd$method=="link312d",]
-
-###############313############
-c2<- linkd[linkd$method=="link313d",]
 
 ###############314############
 c2<- linkd[linkd$method=="link314d",]
 
-
-
 linkd314_parent<-c2
 linkd<-matchleft(linkd,linkd314_parent)
-dim(linkd)
-
-###############315############
-c2<- linkd[linkd$method=="link315d",]
-
-###############316############
-c2<- linkd[linkd$method=="link316d",]
-
-###############317############
-c2<- linkd[linkd$method=="link317d",]
 
 ###############318############
 c2<- linkd[linkd$method=="link318d",]
-
 
 
 linkd318_parent<-c2
@@ -6177,8 +5735,6 @@ dim(linkd)
 
 
 ###############319############
-
-
 
 linkd319<-linkd[linkd$method=="link319d",] 
 
@@ -6212,12 +5768,6 @@ linkd319_2<-uniqueresult(linkd319_2)
 
 dim(linkd)
 linkd<-matchleft(linkd,linkd319_2)
-dim(linkd)
-# 20900    34
-
-###############320############
-c2<- linkd[linkd$method=="link320d",]
-
 
 ###############321############
 
@@ -6258,18 +5808,10 @@ noadd2_10<-linkd321
 linkd<-matchleft(linkd,noadd2_10)
 dim(linkd)
 
-
-
 c2<- linkd[linkd$method=="link321d",]
 
 
-
-
 linkd<-matchleft(linkd,c2)
-dim(linkd)
-
-
-
 
 ###############322############
 c2<- linkd[linkd$method=="link322d",]
@@ -6293,10 +5835,8 @@ linkd324_1<-linkd[linkd$method=="link324d" & substr(linkd$class,1,1)=="R" ,]
 linkd324_1<-uniqueresult(linkd324_1)
 
 linkd<-matchleft(linkd,linkd324_1)
-dim(linkd)
-#16963    34
-c2<- linkd[linkd$method=="link324d",]
 
+c2<- linkd[linkd$method=="link324d",]
 
 linkd324_parent<-c2
 
@@ -6327,22 +5867,16 @@ linkd327_parent<-c2
 
 linkd<-matchleft(linkd,linkd327_parent)
 dim(linkd)
-###############328############
-c2<- linkd[linkd$method=="link328d",]
 
 ###############329############
 c2<- linkd[linkd$method=="link329d",]
 linkd329_parent<-c2
 
 linkd<-matchleft(linkd,linkd329_parent)
-dim(linkd)
-
-
 
 ###############330############
 c2<- linkd[linkd$method=="link330d",]
 linkd330_parent<-c2
-
 
 linkd<-matchleft(linkd,linkd330_parent)
 dim(linkd)
@@ -6351,16 +5885,9 @@ dim(linkd)
 ###############331############
 c2<- linkd[linkd$method=="link331d",]
 
-
-
 linkd331_parent<-c2
 
 linkd<-matchleft(linkd,c2)
-dim(linkd)
-
-
-###############332############
-c2<- linkd[linkd$method=="link332d",]
 
 ###############333############
 c2<- linkd[linkd$method=="link333d",]
@@ -6375,84 +5902,38 @@ c2<- linkd[linkd$method=="link334d",]
 
 linkd334_parent<-c2
 linkd<-matchleft(linkd,c2)
-dim(linkd)
-
-
-###############335############
-c2<- linkd[linkd$method=="link335d",]
 
 ###############336############
 c2<- linkd[linkd$method=="link336d",]
 
-
-
-
 linkd336_parent<-c2
 linkd<-matchleft(linkd,c2)
-dim(linkd)
-
-
-
-###############337############
-c2<- linkd[linkd$method=="link337d",]
 
 ###############338############
 c2<- linkd[linkd$method=="link338d",]
 
 detail_27<-c2
 linkd<-matchleft(linkd,c2)
-dim(linkd)
 
 ###############339############
 c2<- linkd[linkd$method=="link339d",]
 
-
 linkd339_parent<-c2
 linkd<-matchleft(linkd,c2)
 dim(linkd)
-###############340############
-c2<- linkd[linkd$method=="link340d",]
-
-
 
 ###############341############
 c2<- linkd[linkd$method=="link341d",]
 
-
 linkd341_parent<-c2
 linkd<-matchleft(linkd,c2)
-dim(linkd)
-###############342############
-c2<- linkd[linkd$method=="link342d",]
-
-
-###############343############
-c2<- linkd[linkd$method=="link343d",]
-
-###############344############
-c2<- linkd[linkd$method=="link344d",]
-
-###############345############
-c2<- linkd[linkd$method=="link345d",]
-
-###############346############
-c2<- linkd[linkd$method=="link346d",]
-
-###############347############
-c2<- linkd[linkd$method=="link347d",]
-
 ###############348############
 c2<- linkd[linkd$method=="link348d",]
-
-
-
 
 linkd348_1<-linkd[linkd$method=="link348d" & substr(linkd$class,1,1)=="R" ,]
 linkd348_1<-uniqueresult(linkd348_1)
 
 linkd<-matchleft(linkd,linkd348_1)
-dim(linkd)
-
 
 ###############349############
 c2<- linkd[linkd$method=="link349d",]
@@ -6469,31 +5950,11 @@ c2<- linkd[linkd$method=="link349d",]
 linkd349_parent<-c2
 
 linkd<-matchleft(linkd,c2)
-dim(linkd)
-
-###############350############
-c2<- linkd[linkd$method=="link350d",]
-
 
 ###############351############
 c2<- linkd[linkd$method=="link351d",]
 linkd349_parent<-c2
 linkd<-matchleft(linkd,c2)
-dim(linkd)
-###############352############
-c2<- linkd[linkd$method=="link352d",]
-
-###############353############
-c2<- linkd[linkd$method=="link353d",]
-
-###############354############
-c2<- linkd[linkd$method=="link354d",]
-
-###############355############
-c2<- linkd[linkd$method=="link355d",]
-
-
-
 
 ###############356############
 c2<- linkd[linkd$method=="link356d",]
@@ -6501,10 +5962,6 @@ linkd356_parent<-c2
 linkd<-matchleft(linkd,c2)
 dim(linkd)
 ###############357############
-
-
-
-
 
 linkd357<-linkd[linkd$method=="link357d",] 
 linkd357$add2<-gsub(",","",linkd357$add2)
@@ -6521,24 +5978,11 @@ noadd2_12<-c2
 linkd<-matchleft(linkd,c2)
 dim(linkd)
 
-###############358############
-c2<- linkd[linkd$method=="link358d",]
-
-###############359############
-c2<- linkd[linkd$method=="link359d",]
-
 ###############360############
 c2<- linkd[linkd$method=="link360d",]
 
 fail_16<-c2
 linkd<-matchleft(linkd,c2)
-dim(linkd)
-
-###############361############
-c2<- linkd[linkd$method=="link361d",]
-
-###############362############
-c2<- linkd[linkd$method=="link362d",]
 
 ###############363############
 c2<- linkd[linkd$method=="link363d",]
@@ -6548,22 +5992,9 @@ c2<- linkd[linkd$method=="link363d",]
 detail_28<-c2
 linkd<-matchleft(linkd,c2)
 dim(linkd)
-###############364############
-c2<- linkd[linkd$method=="link364d",]
 
-###############365############
-c2<- linkd[linkd$method=="link365d",]
-
-###############366############
-c2<- linkd[linkd$method=="link366d",]
 
 ###############367############
-
-
-length(unique(linkd$method))
-#39
-
-
 
 linkd367<-linkd[linkd$method=="link367d",] 
 linkd367$add2<-gsub(",","",linkd367$add2)
@@ -6582,7 +6013,7 @@ fail_17<-c2
 linkd<-matchleft(linkd,c2)
 dim(linkd)
 
-###############368############
+####################clean 368############
 c2<- linkd[linkd$method=="link368d",]
 
 
@@ -6590,38 +6021,22 @@ detail_29<-c2
 
 linkd<-matchleft(linkd,c2)
 dim(linkd)
-###############369############
+####################clean 369############
 c2<- linkd[linkd$method=="link369d",]
 
 
 detail_30<-c2
 
 linkd<-matchleft(linkd,c2)
-dim(linkd)
 
-###############370############
-c2<- linkd[linkd$method=="link370d",]
-
-
-###############371############
-c2<- linkd[linkd$method=="link371d",]
-
-###############372############
-c2<- linkd[linkd$method=="link372d",]
-
-###############373############
-c2<- linkd[linkd$method=="link373d",]
-
-###############374############
+####################clean 374############
 c2<- linkd[linkd$method=="link374d",]
 
 linkd374_parent<-c2
 linkd<-matchleft(linkd,c2)
 dim(linkd)
-###############375############
-c2<- linkd[linkd$method=="link375d",]
 
-###############376############
+####################clean 376############
 c2<- linkd[linkd$method=="link376d",]
 
 
@@ -6629,28 +6044,13 @@ detail_31<-c2
 linkd<-matchleft(linkd,c2)
 dim(linkd)
 
-###############377############
+####################clean 377############
 c2<- linkd[linkd$method=="link377d",]
-
 
 detail_32<-c2
 linkd<-matchleft(linkd,c2)
-dim(linkd)
-
-###############378############
-c2<- linkd[linkd$method=="link378d",]
-
-###############379############
-c2<- linkd[linkd$method=="link379d",]
-
-###############380############
-c2<- linkd[linkd$method=="link380d",]
-
-
 ###############381############
 c2<- linkd[linkd$method=="link381d",]
-
-
 
 linkd381_parent<-c2
 linkd<-matchleft(linkd,c2)
@@ -6661,27 +6061,9 @@ c2<- linkd[linkd$method=="link382d",]
 
 detail_33<-c2
 linkd<-matchleft(linkd,c2)
-dim(linkd)
-
-###############383############
-c2<- linkd[linkd$method=="link383d",]
-
-###############384############
-c2<- linkd[linkd$method=="link384d",]
-
-###############385############
-c2<- linkd[linkd$method=="link385d",]
-
-###############386############
-c2<- linkd[linkd$method=="link386d",]
-
-###############387############
-c2<- linkd[linkd$method=="link387d",]
 
 ###############388############
 c2<- linkd[linkd$method=="link388d",]
-
-
 
 detail_34<-c2
 linkd<-matchleft(linkd,c2)
@@ -6735,25 +6117,6 @@ linkd391_1<-linkd391[linkd391$add2==word(linkd391$buildingname,1,2),]
 linkd391_1<-uniqueresult(linkd391_1)
 dim(linkd)
 linkd<-matchleft(linkd,linkd391_1)
-dim(linkd)
-#11058    34
-###############392############
-c2<- linkd[linkd$method=="link392d",]
-
-###############393############
-c2<- linkd[linkd$method=="link393d",]
-
-###############394############
-c2<- linkd[linkd$method=="link394d",]
-
-###############395############
-c2<- linkd[linkd$method=="link395d",]
-
-###############396############
-c2<- linkd[linkd$method=="link396d",]
-
-###############397############
-c2<- linkd[linkd$method=="link397d",]
 
 ###############398############
 c2<- linkd[linkd$method=="link398d",]
@@ -6768,18 +6131,6 @@ fail_18<-c2
 
 linkd<-matchleft(linkd,fail_18)
 dim(linkd)
-###############400############
-c2<- linkd[linkd$method=="link400d",]
-
-###############401############
-c2<- linkd[linkd$method=="link401d",]
-
-
-###############402############
-c2<- linkd[linkd$method=="link402d",]
-
-###############403############
-c2<- linkd[linkd$method=="link403d",]
 
 ###############404############
 length(unique(linkd$method))
@@ -6797,9 +6148,6 @@ c2<- linkd[linkd$method=="link404d",]
 detail_36<-c2
 
 linkd<-matchleft(linkd,detail_36)
-dim(linkd)
-###############405############
-c2<- linkd[linkd$method=="link405d",]
 
 ###############406############
 c2<- linkd[linkd$method=="link406d",]
@@ -6808,24 +6156,7 @@ c2<- linkd[linkd$method=="link406d",]
 detail_37<-c2
 
 linkd<-matchleft(linkd,detail_37)
-dim(linkd)
 
-###############407############
-c2<- linkd[linkd$method=="link407d",]
-
-###############408############
-c2<- linkd[linkd$method=="link408d",]
-
-###############409############
-c2<- linkd[linkd$method=="link409d",]
-
-
-###############410############
-c2<- linkd[linkd$method=="link410d",]
-
-
-###############411############
-c2<- linkd[linkd$method=="link411d",]
 
 ###############412############
 c2<- linkd[linkd$method=="link412d",]
@@ -6842,11 +6173,6 @@ c2<- linkd[linkd$method=="link413d",]
 detail_39<-c2
 
 linkd<-matchleft(linkd,detail_39)
-dim(linkd)
-
-
-###############414############
-c2<- linkd[linkd$method=="link414d",]
 
 ###############415############
 c2<- linkd[linkd$method=="link415d",]
@@ -6861,11 +6187,6 @@ c2<- linkd[linkd$method=="link416d",]
 detail_41<-c2
 
 linkd<-matchleft(linkd,detail_41)
-dim(linkd)
-
-
-###############417############
-c2<- linkd[linkd$method=="link417d",]
 
 ###############418############
 c2<- linkd[linkd$method=="link418d",]
@@ -6978,14 +6299,6 @@ dim(linkd)
 
 linkd425_parent<-linkd425_parent1
 rm(linkd425_parent1)
-###############426############
-c2<- linkd[linkd$method=="link426d",]
-
-
-
-
-###############427############
-c2<- linkd[linkd$method=="link427d",]
 
 ###############428############
 c2<- linkd[linkd$method=="link428d",]
@@ -6994,14 +6307,6 @@ linkd428_parent<-c2
 
 
 linkd<-matchleft(linkd,linkd428_parent)
-dim(linkd)
-
-###############429############
-c2<- linkd[linkd$method=="link429d",]
-
-
-###############430############
-c2<- linkd[linkd$method=="link430d",]
 
 ###############431############
 
@@ -7038,20 +6343,7 @@ c2<- linkd[linkd$method=="link431d",]
 noadd2_14<-c2
 
 linkd<-matchleft(linkd,noadd2_14)
-dim(linkd)
 
-
-###############432############
-c2<- linkd[linkd$method=="link432d",]
-
-###############433############
-c2<- linkd[linkd$method=="link433d",]
-
-###############434############
-c2<- linkd[linkd$method=="link434d",]
-
-###############435############
-c2<- linkd[linkd$method=="link435d",]
 
 ###############436##################################################################
 length(unique(linkd$method))
@@ -7113,29 +6405,6 @@ c2<- linkd[linkd$method=="link436d",]
 
 noadd2_15<-c2
 linkd<-matchleft(linkd,noadd2_15)
-dim(linkd)
-
-###############437############
-c2<- linkd[linkd$method=="link437d",]
-
-###############438############
-c2<- linkd[linkd$method=="link438d",]
-
-###############439############
-c2<- linkd[linkd$method=="link439d",]
-
-###############440############
-c2<- linkd[linkd$method=="link440d",]
-
-
-###############441############
-c2<- linkd[linkd$method=="link441d",]
-
-###############442############
-c2<- linkd[linkd$method=="link442d",]
-
-###############443############
-c2<- linkd[linkd$method=="link443d",]
 
 ###############444############
 c2<- linkd[linkd$method=="link444d",]
@@ -7225,15 +6494,6 @@ parent_list<-list(linkd104_parent,linkd108_parent,linkd109_parent,linkd11_parent
 linkd_parent<-rbindlist(parent_list, use.names=TRUE, fill=TRUE)
 
 
-
-
-
-
-
-
-
-
-
 rm(linkd104_parent,linkd108_parent,linkd109_parent,linkd11_parent,linkd112_parent,linkd113_parent,linkd115_parent,linkd116_parent,linkd119_parent,linkd12_parent,
    linkd122_parent,linkd123_parent,linkd124_parent,linkd125_parent,linkd142_parent,linkd143_parent,linkd144_parent,linkd145_parent,linkd146_parent,linkd15_parent,
    linkd169_parent,linkd173_parent,linkd176_parent,linkd19_parent,linkd198_parent,linkd199_parent,linkd2_parent,linkd20_parent,linkd217_parent,linkd224_parent,
@@ -7307,13 +6567,7 @@ rm(linkd_1,linkd2_1,linkd4_1,linkd5_1,linkd6_1,linkd7_1,linkd8_1,linkd9_1,
    linkd446_1,linkd34_2,linkd202_2,linkd113_2,clean_list
 )
 
-#linkd_clean_fina<-rbindlist(list(linkd_clean,linkd281_22,linkd34_2,linkd202_2,linkd113_2), use.names=TRUE, fill=TRUE)
 
-#rm(linkd281_22,linkd202_2,linkd34_2,linkd113_2)
-#dim(linkd_clean_fina)
-#linkd_clean_fina<-unique(linkd_clean_fina)
-#dim(linkd_clean_fina)
-#10604    37
 length(unique(linkd_clean$lmk_key))
 # 10612
 
