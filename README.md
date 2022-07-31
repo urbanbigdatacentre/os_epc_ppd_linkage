@@ -89,9 +89,9 @@ link1<-function1(add,epc)
 #keep part of the variables in linked dataset
 needlist1<-c("lmk_key","postcode.y","property_type","uprn","add1","add2","add3","add","postcode.x","postcodelocator","buildingname","buildingnumber","subbuildingname","paostartnumber","paostartsuffix","paoendnumber","paoendsuffix","paotext","saostartnumber","saostartsuffix","saoendnumber","saoendsuffix","saotext","streetdescription","locality","dependentlocality","townname","class","lodgement_date","inspection_date","lodgement_datetime")
 link1<-link1[,..needlist1]
-#Get the one to one linkage result
+#get the one to one linkage result
 link1u<- uniqueresult(link1)
-#Get the one to many linkage result
+#get the one to many linkage result
 link1d <- doubleresult(link1)
 #remove the linked records from the original EPC dataset
 epc <- matchleft(epc,link1)
@@ -126,13 +126,19 @@ rm(link2)
 ```
 Example of two cleaning rules (clean 1 and 2) in the R code:
 
+```
+####################clean 1 keep the residential UPRN####################
+#extract the one to many linkage in the matching rule 1
+c2<- linkd[linkd$method=="link1d",]
+#select the residential uprn from the mutiple linked UPRN
+linkd_1<-linkd[linkd$method=="link1d" & substr(linkd$class,1,1)=="R",]
+#remove the linkd_1 from linkd
+linkd<-matchleft(linkd,linkd_1)
+
 
 ```
 
 
-
-
-```
 ### 2.2 Attaching UPRN in Land Registry PPD
 
 
