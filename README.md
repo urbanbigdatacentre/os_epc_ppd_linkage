@@ -39,12 +39,16 @@ Three datasets are need to read in PostGIS before conduct the data linakge work.
 For OS AddressBase Plus data in the PostGIS database, we further removed the uprn record which is the also a parentuprn in AddressBase dataset.
 
 ## 2. Run Data linkage process
-The main data linkage process is conducted in R.
-### 2.1 Domestic EPCs
+The main data linkage process is conducted in R. Below we sepeate introduce the 
+### 2.1 Attaching UPRN in Domestic EPCs
+The tagging UPRN work for Domestic EPCs   
+
+![](pic/f2.png)
+
+**Figure 2.** A Brief view of the workflow of data linkage between Domestic EPCs and AddressBase Plus
 
 
-
-### 2.1 Land Registy PPD
+### 2.2 Attaching UPRN in Land Registy PPD
 
 
 
