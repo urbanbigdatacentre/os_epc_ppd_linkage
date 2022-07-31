@@ -1,7 +1,7 @@
 # Linking Domestic Energy Performance Certificates (EPCs) and and Land Registry Price Paid Data (PPD) with UPRN
 
 
-This repository contains the code for OS short term project. This project is licensed under the terms of the [Creative Commons Attribution-NonCommercial (CC-BY-NC)](https://creativecommons.org/licenses/by-nc/4.0/). This whole research is **not** allowed to be used  **commercially**. 
+This repository contains the code for OS short term project. This reserach aims to explore how easy it is to attribute UPRNs to address information, looking at two property datasets in England and Wales, one is Domestic EPCs and the other is Land Registry PPD. This project is licensed under the terms of the [Creative Commons Attribution-NonCommercial (CC-BY-NC)](https://creativecommons.org/licenses/by-nc/4.0/). This whole research is **not** allowed to be used  **commercially**. 
 
 
 ## Repository contents
@@ -19,7 +19,7 @@ This repository contains the code for OS short term project. This project is lic
 
 ## 1. Set up
 
-The whole rearach are conducted in R, with data inputs and outputs stored in a PostGIS database. Figure 1 displays the whole workflow.
+The whole rearach are mainly conducted in R, with data inputs and outputs stored in a PostGIS database. Figure 1 displays the whole workflow.
 
 ![](pic/f1.png)
 
