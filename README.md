@@ -47,7 +47,7 @@ The tagging UPRN work for Domestic EPCs contains 446 detailed match rules.336 of
 ![](pic/f2.png)
 **Figure 2.** A Brief workflow of data linkage between Domestic EPCs and OS AddressBase Plus
 
-As shown in Figure 2, part of the linkage method(e.g. method 1) has a customized cleaning method(e.g clean 1). Each linkage method and the cleaning method has comment as "###method *###"  and "###clean *##" in the R code.
+As shown in Figure 2, part of the matching rule(e.g. method 1) has a customized cleaning method(e.g clean 1). Each linkage method and the cleaning method has comment as "####################method *12*####################"  and "####################clean *####################" in the R code.Each matching rule shares the same struture of code, thus we only comment the first linkage method to explain R code.The difference between matching rules is in the **fuction** with in the a given matching rule. 
 
 
 
