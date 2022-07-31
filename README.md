@@ -124,7 +124,7 @@ epc <- matchleft(epc,link2)
 rm(link2)
 
 ```
-Example of two cleaning rules (clean 1 and 2) in the R code:
+Example of one cleaning rules (clean 1) in the R code:
 
 ```
 ####################clean 1 keep the residential UPRN####################
@@ -135,7 +135,7 @@ linkd_1<-linkd[linkd$method=="link1d" & substr(linkd$class,1,1)=="R",]
 #remove the linkd_1 from linkd
 linkd<-matchleft(linkd,linkd_1)
 
-
+####################clean 2 keep the residential uprn and saostartnumber is null####################
 ```
 
 
