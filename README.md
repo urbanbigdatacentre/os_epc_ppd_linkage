@@ -14,7 +14,7 @@ This repository contains the code for OS short term project. This project is lic
 * [Read_EPC.R](Read_EPC.R): R code for fast reading multiple EPC csv files together and then saveing to PostGIS database
 * [Read_OSadd.R](Read_OSadd.R): R code for reading OS AddressBase Plus data and then saveing to PostGIS database
 * [Read_PPD.sql](Read_PPD.sql): SQL code for reading the whole Land Registry PPD in PostGIS database
-* [pic/](pic/): Additional csv files for conducting the address matching work
+* [lookup_1.csv](lookup_1.csv): Additional csv files for conducting the address matching work
 
 
 
