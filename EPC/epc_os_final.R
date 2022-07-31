@@ -41,8 +41,6 @@ add <- dbGetQuery(con,"select * from  addressgb")
 #read in epc by selecting part of variables
 epc <- dbGetQuery(con,"select lmk_key,address1,address2,address3,address,postcode,building_reference_number,property_type,transaction_type,built_form,inspection_date,lodgement_date,total_floor_area,number_habitable_rooms,current_energy_rating,potential_energy_rating,current_energy_efficiency,potential_energy_efficiency,floor_level,flat_top_storey,flat_storey_count,floor_height,construction_age_band,co2_emissions_current,co2_emiss_curr_per_floor_area,lodgement_datetime from epcdata") 
 
-
-
 ####################################Section 3: OS AddressBase data and Domestic EPCs pre-processing#################################### 
 #capitalise address1, address2, address3 and address four fields into four new fields (add1,add2,add3 and add)
 epc[,  `:=`(add1 = toupper(address1),
