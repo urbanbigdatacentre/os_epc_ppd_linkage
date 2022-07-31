@@ -39,9 +39,9 @@ Three datasets are need to read in PostGIS before conduct the data linakge work.
 For OS AddressBase Plus data in the PostGIS database, we further removed the uprn record which is the also a parentuprn in AddressBase dataset.
 
 ## 2. Run Data linkage process
-The main data linkage process is conducted in R. Below we sepeate introduce the 
+The main data linkage process is conducted in R. Below we sepeate introduce the data linkage work.
 ### 2.1 Attaching UPRN in Domestic EPCs
-The tagging UPRN work for Domestic EPCs contains 446 detailed match rules.336 of the 446 match rules are conducted at the postcode level, the remaining 109 match rules are conducted at postcode sector level or even higher. The whole linkage workflow is shown in Figure 2. 
+The tagging UPRN work for Domestic EPCs contains 446 detailed match rules.336 of the 446 match rules are conducted at the postcode level, the remaining 109 match rules are conducted at postcode sector level or even higher. The whole linkage workflow is shown in Figure 2. The code for this linakge process is in [EPC/](EPC/).
 
 
 ![](pic/f2.png)
@@ -138,7 +138,8 @@ linkd<-matchleft(linkd,linkd_1)
 ####################clean 2 keep the residential uprn and saostartnumber is null####################
 ```
 ### 2.2 Attaching UPRN in Land Registry PPD
-The address matching work for Land Registry PPD is easier than Domestic EPCs. It contains 12 linkage stages with 142 match rules.Within each stage, a series of match rules are were conduct in order. For each matching rule, we only keep the one-to-one linkage result in the linked data. Figure 4 display the whole linakge workflow between Land Registry PPD and OS AddressBase Plus.
+The address matching work for Land Registry PPD is easier than Domestic EPCs. It contains 12 linkage stages with 142 match rules.Within each stage, a series of match rules are were conduct in order. For each matching rule, we only keep the one-to-one linkage result in the linked data. Figure 4 display the whole linakge workflow between Land Registry PPD and OS AddressBase Plus.The code for this linakge process is in [PPD/](PPD/)
+
 
 ![](pic/f4.png)
 **Figure 4.** A Brief workflow of data linkage between Land Registry PPD and OS AddressBase Plus
