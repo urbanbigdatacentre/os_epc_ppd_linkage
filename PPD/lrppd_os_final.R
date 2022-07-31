@@ -125,10 +125,10 @@ trannull <- tran[tran$paon=="",]
 trannull<- trannull[trannull$saon !="",]
 #provide OS AddressBase data for this stage 1 linkage
 addnull<-add[add$postset %in% trannull$postset, ]
-
-############method 1 #SAON is equal to pp ############m
 setDT(trannull)
 setDT(addnull)
+
+############method 1 #SAON is equal to pp ############m
 #create the full address for address matching      
 trannull$addressf <-paste(trannull$postcode,trannull$saon,sep=",")
 addnull$addressf <- paste(addnull$postcodelocator,addnull$pp,sep=",")
