@@ -41,10 +41,15 @@ For OS AddressBase Plus data in the PostGIS database, we further removed the upr
 ## 2. Run Data linkage process
 The main data linkage process is conducted in R. Below we sepeate introduce the 
 ### 2.1 Attaching UPRN in Domestic EPCs
-The tagging UPRN work for Domestic EPCs   
+The tagging UPRN work for Domestic EPCs contains 446 detailed match rules.336 of the 446 match rules are conducted at the postcode level, the remaining 109 match rules are conducted at postcode sector level or even higher. The whole linkage workflow is shown in Figure 2. 
+
 
 ![](pic/f2.png)
 **Figure 2.** A Brief workflow of data linkage between Domestic EPCs and OS AddressBase Plus
+
+As shown in Figure 2, part of the linkage method(e.g. method 1) has a customized cleaning method(e.g clean 1). Each linkage method and the cleaning method has comment as "###method *###"  and "###clean *##" in the R code.
+
+
 
 ### 2.2 Attaching UPRN in Land Registry PPD
 
