@@ -49,7 +49,9 @@ The tagging UPRN work for Domestic EPCs contains 446 detailed match rules.336 of
 
 As shown in Figure 2, part of the matching rule(e.g. method 1) has a customized cleaning method(e.g clean 1). Each linkage method and the cleaning method has commented like the below two examples.
 
-Example of two matching rules (method1 and 2) in the R code:
+* *Example of two matching rules (method1 and 2) in the R code:* *
+
+
 ***NOTE:*** Each matching rule in the R code share the same coding structure, thus we only comments the first matching rule. The difference between two matching rule are the function part.
 ```
 ####################method 1 ####################
@@ -122,12 +124,15 @@ epc <- matchleft(epc,link2)
 rm(link2)
 
 ```
+Example of two cleaning rules (clean 1 and 2) in the R code:
 
 
-  and "####################clean *####################" in the R code.
+```
 
 
 
+
+```
 ### 2.2 Attaching UPRN in Land Registry PPD
 
 
