@@ -17,17 +17,16 @@ This repository contains the code for OS short term project. This project is lic
 * [lookup_1.csv](lookup_1.csv): Additional csv files for conducting the address matching work
 
 
-
 ## 1. Set up
 
-The address matching proceess are Domestic EPCs and Land Registry PPD ARE conducted in R, with data inputs and outputs stored in a PostGIS database. Figure 1 displays the whole workflow.
+The whole rearach are conducted in R, with data inputs and outputs stored in a PostGIS database. Figure 1 displays the whole workflow.
 
 ![](pic/f1.png)
 
 **Figure 1.**  The overall workflow of this project
 
 ### 1.1 Create a new spatial database in PostgreSQL
-Create a new PostGIS database and named it as **os_ubdc** (https://postgis.net/workshops/postgis-intro/creating_db.html). Here, the password of postgres is assumed to be **654321**.
+This research created a new PostGIS database and named it as **os_ubdc** (https://postgis.net/workshops/postgis-intro/creating_db.html). Here, the password of postgres is assumed to be **654321**.
 ### 1.2 Set up the working directory for R
 The process for setting the working directory is listed below:
 - Create a directory named "OS_Data" on your D: drive.
@@ -35,12 +34,20 @@ The process for setting the working directory is listed below:
 - Create a sub-directory named "EPC" in "OS_Data" folder. This EPC folder stores whole list of Domestic EPC dataset.
 - Create a sub-directory named "PPD" in "OS_Data" folder. This PPD folder stores Land Registry PPD(pp-complete.csv).
 ### 1.3 Read data in PostGIS database
+Three datasets are need to read in PostGIS before conduct the data linakge work.This is achieve by running [Read_EPC.R](Read_EPC.R),[Read_OSadd.R](Read_OSadd.R) and [Read_PPD.sql](Read_PPD.sql).
 
-There dataset are used in this research,
+For OS AddressBase Plus data in the PostGIS database, we further removed the uprn record which is the also a parentuprn in AddressBase dataset.
 
-
+## 2. Run Data linkage process
+The main data linkage process is conducted in R.
 ### 2.1 Domestic EPCs
 
 
 
 ### 2.1 Land Registy PPD
+
+
+
+
+## 3. Acknowledgements
+This work was funded by OS.
