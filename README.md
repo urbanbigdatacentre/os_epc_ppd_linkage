@@ -52,6 +52,10 @@ The tagging UPRN work for Domestic EPCs
 
 
 
+![](pic/f4.png)
+
+**Figure 4.** A Brief view of the workflow of data linkage between Domestic EPCs and OS AddressBase Plus
+
 
 ## 3. Acknowledgements
 This work was funded by OS.
