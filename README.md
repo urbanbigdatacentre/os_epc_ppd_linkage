@@ -47,7 +47,84 @@ The tagging UPRN work for Domestic EPCs contains 446 detailed match rules.336 of
 ![](pic/f2.png)
 **Figure 2.** A Brief workflow of data linkage between Domestic EPCs and OS AddressBase Plus
 
-As shown in Figure 2, part of the matching rule(e.g. method 1) has a customized cleaning method(e.g clean 1). Each linkage method and the cleaning method has comment as "####################method *12*####################"  and "####################clean *####################" in the R code.Each matching rule shares the same struture of code, thus we only comment the first linkage method to explain R code.The difference between matching rules is in the **fuction** with in the a given matching rule. 
+As shown in Figure 2, part of the matching rule(e.g. method 1) has a customized cleaning method(e.g clean 1). Each linkage method and the cleaning method has commented like the below two examples.
+
+Example of two matching rules (method1 and 2) in the R code:
+***NOTE:*** Each matching rule in the R code share the same coding structure, thus we only comments the first matching rule. The difference between two matching rule are the function part.
+```
+####################method 1 ####################
+#create the funciton for matching rule 1
+function1<- function(x,y){
+  x<-x[x$saotext=="",]
+  x<-x[x$subbuildingname=="",]
+  x<-x[x$paotext=="",]
+  x<-x[x$saostartnumber=="",]
+  x<-x[x$saostartsuffix=="",]
+  x<-x[x$saoendnumber=="",]
+  x<-x[x$saoendsuffix=="",]
+  x<-x[x$paostartsuffix=="",]
+  x<-x[x$paoendnumber=="",]
+  x<-x[x$paoendsuffix=="",]
+  x<-x[x$buildingname=="",]
+  x<-x[x$subbuildingname=="",]
+  #combine buildingnumber and streetdescription with a comma into bnstreet field
+  x$bnstreet <-    paste(x$buildingnumber,x$streetdescription,sep=",")
+  #remove the blank space in bnstreet
+  x$bnstreet <- gsub(" ", "", x$bnstreet)
+  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  
+  #remove the blank space in add
+  y$addressfinal <- trimws(y$add)
+  y$addressfinal <- gsub(" ", "", y$addressfinal)
+  y$addressf <- paste(y$postcode,y$addressfinal,sep=",")
+  taba1 <- inner_join(x,y,by="addressf")
+ 
+  return(taba1)
+}
+#run the matching rule 1 function
+link1<-function1(add,epc)
+
+#keep part of the variables in linked dataset
+needlist1<-c("lmk_key","postcode.y","property_type","uprn","add1","add2","add3","add","postcode.x","postcodelocator","buildingname","buildingnumber","subbuildingname","paostartnumber","paostartsuffix","paoendnumber","paoendsuffix","paotext","saostartnumber","saostartsuffix","saoendnumber","saoendsuffix","saotext","streetdescription","locality","dependentlocality","townname","class","lodgement_date","inspection_date","lodgement_datetime")
+link1<-link1[,..needlist1]
+#Get the one to one linkage result
+link1u<- uniqueresult(link1)
+#Get the one to many linkage result
+link1d <- doubleresult(link1)
+#remove the linked records from the original EPC dataset
+epc <- matchleft(epc,link1)
+#remove the linked result to save memory
+rm(link1)
+####################method 2####################
+function2<- function(x,y){
+  x<-x[x$saotext=="",]
+  x<-x[x$subbuildingname=="",]
+  x$bnstreet <-    paste(x$buildingnumber,x$streetdescription,sep=",")
+  x$bnstreet <- gsub(" ", "", x$bnstreet)
+  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  
+  y$addressfinal <- trimws(y$add)
+  y$addressfinal <- gsub(" ", "", y$addressfinal)
+  y$addressf <- paste(y$postcode,y$addressfinal,sep=",")
+  taba1 <- inner_join(x,y,by="addressf")
+
+  return(taba1)
+}
+
+link2<-function2(add,epc)
+link2<-link2[,..needlist1]
+
+link2u<- uniqueresult(link2)
+link2d <- doubleresult(link2)
+
+epc <- matchleft(epc,link2)
+
+rm(link2)
+
+```
+
+
+  and "####################clean *####################" in the R code.
 
 
 
