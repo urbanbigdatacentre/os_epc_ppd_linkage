@@ -898,8 +898,8 @@ rm(function12,function13,function14,function15,function16,function17,function18,
 
 ####################method 27####################
 function27<- function(x,y){
-  x$bnstreet <-    paste(x$subbuildingname,x$buildingnumber,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=" ")
+  x$bnstreet <- paste(x$subbuildingname,x$buildingnumber,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
@@ -918,9 +918,8 @@ link27d <- doubleresult(link27)
 epc <- matchleft(epc,link27)
 ####################method 28####################
 function28<- function(x,y){
-  
-  x$bnstreet <-    paste(x$saotext,x$buildingnumber,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=" ")
+  x$bnstreet <- paste(x$saotext,x$buildingnumber,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
@@ -928,7 +927,6 @@ function28<- function(x,y){
   
   taba1 <- inner_join(x,y,by="addressf")
   return(taba1)
-  
 }
 link28<-function28(add,epc)
 link28<-link28[,..needlist1]
@@ -939,9 +937,8 @@ link28d <- doubleresult(link28)
 epc <- matchleft(epc,link28)
 ####################method 29####################
 function29<- function(x,y){
-  
-  x$bnstreet <-    paste(x$saotext,x$pp,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=" ")
+  x$bnstreet <- paste(x$saotext,x$pp,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
@@ -959,7 +956,7 @@ link29d <- doubleresult(link29)
 epc <- matchleft(epc,link29)
 ####################method 30####################
 function30<- function(x,y){
-  x$bnstreet <-    x$buildingname
+  x$bnstreet <- x$buildingname
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
@@ -979,7 +976,7 @@ epc <- matchleft(epc,link30)
 function31<- function(x,y){
   x$ss <- trimws(x$ss)
   x$paotext <- trimws(x$paotext)
-  x$bnstreet <-    paste(x$ss,x$paotext,sep=" ")
+  x$bnstreet <- paste(x$ss,x$paotext,sep=" ")
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
@@ -999,7 +996,7 @@ epc <- matchleft(epc,link31)
 ####################method 32####################
 function32<- function(x,y){
   x$pp <- trimws(x$pp)
-  x$bnstreet <-    paste(x$pp,x$streetdescription,sep=" ")
+  x$bnstreet <- paste(x$pp,x$streetdescription,sep=" ")
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
@@ -1017,7 +1014,7 @@ link32d <- doubleresult(link32)
 epc <- matchleft(epc,link32)
 ####################method 33####################
 function33<- function(x,y){
-  x$bnstreet <-    paste(x$subbuildingname,x$buildingnumber,sep=",")
+  x$bnstreet <- paste(x$subbuildingname,x$buildingnumber,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
@@ -1038,7 +1035,7 @@ link33d <- doubleresult(link33)
 epc <- matchleft(epc,link33)
 ####################method 34####################
 function34<- function(x,y){
-  x$bnstreet <-    paste(x$buildingnumber,x$paotext,sep=",")
+  x$bnstreet <- paste(x$buildingnumber,x$paotext,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
@@ -1058,7 +1055,7 @@ link34d <- doubleresult(link34)
 epc<- matchleft(epc,link34)
 ####################method 35####################
 function35<- function(x,y){
-  x$bnstreet <-    paste(x$ss,x$paotext,sep=",")
+  x$bnstreet <- paste(x$ss,x$paotext,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
@@ -1079,7 +1076,7 @@ link35d <- doubleresult(link35)
 epc <- matchleft(epc,link35)
 ####################method 36####################
 function36<- function(x,y){
-  x$bnstreet <-    x$buildingname
+  x$bnstreet <- x$buildingname
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
@@ -1099,7 +1096,7 @@ link36d <- doubleresult(link36)
 epc <- matchleft(epc,link36)
 ####################method 37####################
 function37<- function(x,y){
-  x$bnstreet <-    x$buildingname
+  x$bnstreet <- x$buildingname
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
   y$addressfinal <- gsub("[-]", "", y$addressfinal)
   y$addressfinal <- gsub("[']", "", y$addressfinal)
@@ -1130,7 +1127,7 @@ link37d <- doubleresult(link37)
 epc <- matchleft(epc,link37)
 ####################method 38####################
 function38<- function(x,y){
-  x$bnstreet <-    paste(x$ss,x$paotext,sep=",")
+  x$bnstreet <- paste(x$ss,x$paotext,sep=",")
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
   y$addressfinal <- gsub("[-]", "", y$addressfinal)
   y$addressfinal <- gsub("[']", "", y$addressfinal)
@@ -1161,10 +1158,10 @@ link38d <- doubleresult(link38)
 epc <- matchleft(epc,link38)
 ####################method 39####################
 function39<- function(x,y){
-  x$bnstreet <-    paste(x$saotext,x$paotext,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$paostartnumber,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$paoendnumber,sep="-")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=" ")
+  x$bnstreet <- paste(x$saotext,x$paotext,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$paostartnumber,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$paoendnumber,sep="-")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
@@ -1184,10 +1181,7 @@ link39d <- doubleresult(link39)
 epc <- matchleft(epc,link39)
 ####################method 40####################
 function40<- function(x,y){
-  
-  x$bnstreet <-    paste(x$buildingnumber,x$paotext,sep=",")
-  #y$addressfinal <- gsub("[.]", "", y$addressfinal)
-
+  x$bnstreet <- paste(x$buildingnumber,x$paotext,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
@@ -1199,7 +1193,6 @@ function40<- function(x,y){
   
   taba1 <- inner_join(x,y,by="addressf")
   return(taba1)
-
 }
 link40<-function40(add,epc)
 link40<-link40[,..needlist1]
@@ -1210,7 +1203,7 @@ link40d <- doubleresult(link40)
 epc <- matchleft(epc,link40)
 ####################method 41####################
 function41<- function(x,y){
-  x$bnstreet <-    paste(x$ss,x$paotext,sep=" ")
+  x$bnstreet <- paste(x$ss,x$paotext,sep=" ")
   #x$bnstreet <- gsub(",", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
@@ -1231,8 +1224,7 @@ link41d <- doubleresult(link41)
 epc <- matchleft(epc,link41)
 ####################method 42####################
 function42<- function(x,y){
-  
-  x$bnstreet <-    paste(x$subbuildingname,x$paotext,sep=" ")
+  x$bnstreet <- paste(x$subbuildingname,x$paotext,sep=" ")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
@@ -1254,7 +1246,7 @@ link42d <- doubleresult(link42)
 epc <- matchleft(epc,link42)
 ####################method 43####################
 function43<- function(x,y){
-  x$bnstreet <-    paste(x$saotext,x$paotext,sep=" ")
+  x$bnstreet <- paste(x$saotext,x$paotext,sep=" ")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
@@ -1279,12 +1271,11 @@ function44<- function(x,y){
   x<-x[x$buildingname!="",]
   
   x$bnstreet <- beg2char(x$buildingname, " ")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
-  
   y$addressfinal <- gsub(" ", "", y$addressfinal)
   y$addressf <- paste(y$postcode,y$addressfinal,sep=",")
   
@@ -1301,12 +1292,11 @@ link44d <- doubleresult(link44)
 epc<- matchleft(epc,link44)
 ####################method 45####################
 function45<- function(x,y){
-  x$bnstreet <-    paste(x$pp,x$streetdescription,sep=" ")
+  x$bnstreet <- paste(x$pp,x$streetdescription,sep=" ")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
-  
   y$addressfinal <- gsub(" ", "", y$addressfinal)
   y$addressf <- paste(y$postcode,y$addressfinal,sep=",")
   
@@ -1322,12 +1312,11 @@ link45d <- doubleresult(link45)
 epc <- matchleft(epc,link45)
 ####################method 46####################
 function46<- function(x,y){
-  x$bnstreet <-    paste(x$ss,x$streetdescription,sep=" ")
+  x$bnstreet <- paste(x$ss,x$streetdescription,sep=" ")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
-  
   y$addressfinal <- gsub(" ", "", y$addressfinal)
   y$addressf <- paste(y$postcode,y$addressfinal,sep=",")
   
@@ -1343,14 +1332,11 @@ link46d <- doubleresult(link46)
 epc <- matchleft(epc,link46)
 ####################method 47####################
 function47<- function(x,y){
-  x$bnstreet <-    paste(x$buildingnumber,x$streetdescription,sep=" ")
-  
-  #$bnstreet <- gsub("[']", "", x$bnstreet)
+  x$bnstreet <- paste(x$buildingnumber,x$streetdescription,sep=" ")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
-  
   y$addressfinal <- gsub(" ", "", y$addressfinal)
   y$addressf <- paste(y$postcode,y$addressfinal,sep=",")
   
@@ -1364,11 +1350,11 @@ link47u<- uniqueresult(link47)
 link47d <- doubleresult(link47)
 
 epc <- matchleft(epc,link47)
-#################### method 48 ##################
+####################method 48####################
 function48<- function(x,y){
-  x$bnstreet <-    paste(x$subbuildingname,x$buildingname,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$buildingnumber,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=" ")
+  x$bnstreet <- paste(x$subbuildingname,x$buildingname,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$buildingnumber,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   #$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
@@ -1388,11 +1374,11 @@ link48u<- uniqueresult(link48)
 link48d <- doubleresult(link48)
 
 epc <- matchleft(epc,link48)
-#################### method 49 ##################
+####################method 49####################
 function49<- function(x,y){
-  x$bnstreet <-    paste(x$saotext,x$buildingname,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$buildingnumber,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=" ")
+  x$bnstreet <- paste(x$saotext,x$buildingname,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$buildingnumber,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   #$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
@@ -1408,18 +1394,15 @@ function49<- function(x,y){
 link49<-function49(add,epc)
 link49<-link49[,..needlist1]
 
-
 link49u<- uniqueresult(link49)
 link49d <- doubleresult(link49)
 epc<-matchleft(epc,link49)
 
-#################### method 50 ##################
-
+####################method 50####################
 function50<- function(x,y){
-  
-  x$bnstreet <-    paste(x$subbuildingname,x$buildingname,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$pp,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=" ")
+  x$bnstreet <- paste(x$subbuildingname,x$buildingname,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$pp,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   #$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
@@ -1430,85 +1413,41 @@ function50<- function(x,y){
   
   taba1 <- inner_join(x,y,by="addressf")
   return(taba1)
-  
-  
-  
 }
-
-
 link50<-function50(add,epc)
-
-
 link50<-link50[,..needlist1]
 
-
 link50u<- uniqueresult(link50)
-dim(link50u)
-
-
 link50d <- doubleresult(link50)
-dim(link50d)
-
-dim(epc)
 
 epc <- matchleft(epc,link50)
-dim(epc)
-#3748892      27
-
-
-
-
-#################### method 51 SY16 1Q##################
-
+####################method 51####################
+#this is the linkage only for SY16 1Q
 function51<- function(x,y){
-  
-  
-  x$bnstreet <-    x$buildingnumber
-  #x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=" ")
+  x$bnstreet <- x$buildingnumber
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<- y[grepl("^SY16 1Q",y$postcode),]
   y$addressfinal <- beg2char(y$add, ",")
-  
   y$addressfinal <- gsub(" ", "", y$addressfinal)
   y$addressf <- paste(y$postcode,y$addressfinal,sep=",")
   
   taba1 <- inner_join(x,y,by="addressf")
   return(taba1)
-  
 }
-
-
 link51<-function51(add,epc)
-
-
 link51<-link51[,..needlist1]
 
-
 link51u<- uniqueresult(link51)
-dim(link51u)
-
-
 link51d <- doubleresult(link51)
-dim(link51d)
 
-dim(epc)
-#
 epc <- matchleft(epc,link51)
-dim(epc)
-#3747899      27
-
-
-#################### method 52 ##################
-
-
+####################method 52####################
 function52<- function(x,y){
-  
-  
-  x$bnstreet <-    paste(x$subbuildingname,x$paotext,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$buildingnumber,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=" ")
+  x$bnstreet <- paste(x$subbuildingname,x$paotext,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$buildingnumber,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
@@ -1520,38 +1459,20 @@ function52<- function(x,y){
   
   taba1 <- inner_join(x,y,by="addressf")
   return(taba1)
-  
-  
 }
 
 link52<-function52(add,epc)
-
 link52<-link52[,..needlist1]
 
-
 link52u<- uniqueresult(link52)
-dim(link52u)
-
-
 link52d <- doubleresult(link52)
-dim(link52d)
 
-
-dim(epc)
-#
 epc <- matchleft(epc,link52)
-dim(epc)
-#3746997      27
-
-
-
-#################### method 53 ##################
-
+####################method 53####################
 function53<- function(x,y){
-  
-  x$bnstreet <-    paste(x$saotext,x$paotext,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$buildingnumber,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=" ")
+  x$bnstreet <- paste(x$saotext,x$paotext,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$buildingnumber,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
@@ -1563,38 +1484,20 @@ function53<- function(x,y){
   
   taba1 <- inner_join(x,y,by="addressf")
   return(taba1)
-  
 }
-
-
-
 link53<-function53(add,epc)
-dim(link53)
-# 
+
 link53<-link53[,..needlist1]
 
 link53u<- uniqueresult(link53)
-dim(link53u)
-#
-
 link53d <- doubleresult(link53)
-dim(link53d)
 
-
-dim(epc)
-#
 epc <- matchleft(epc,link53)
-dim(epc)
-#3746829      27
-
-
-#################### method 54  ##################
-
+####################method 54####################
 function54<- function(x,y){
-  
-  x$bnstreet <-    paste(x$saotext,x$paotext,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$pp,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=" ")
+  x$bnstreet <- paste(x$saotext,x$paotext,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$pp,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
@@ -1608,34 +1511,19 @@ function54<- function(x,y){
   
   taba1 <- inner_join(x,y,by="addressf")
   return(taba1)
-  
 }
-
-
 link54<-function54(add,epc)
-
 link54<-link54[,..needlist1]
 
 link54u<- uniqueresult(link54)
-dim(link54u)
-
-
 link54d <- doubleresult(link54)
 
-
-dim(epc)
-# 
 epc<- matchleft(epc,link54)
-dim(epc)
-# 3476377      27
-#################### method 55 ##################
-
-
+####################method 55####################
 function55<- function(x,y){
-  
-  x$bnstreet <-    paste(x$subbuildingname,x$paotext,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$buildingnumber,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=" ")
+  x$bnstreet <- paste(x$subbuildingname,x$paotext,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$buildingnumber,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   #$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
@@ -1650,40 +1538,19 @@ function55<- function(x,y){
   
   taba1 <- inner_join(x,y,by="addressf")
   return(taba1)
-  
 }
-
-
-
 link55<-function55(add,epc)
-
-
 link55<-link55[,..needlist1]
 
-
 link55u<- uniqueresult(link55)
-dim(link55u)
-
-
 link55d <- doubleresult(link55)
-dim(link55d)
 
-
-dim(epc)
-# 
 epc <- matchleft(epc,link55)
-dim(epc)
-#3476256      27
-
-#
-#################### method 56 ##################
-
+####################method 56####################
 function56<- function(x,y){
-  
-  
-  x$bnstreet <-    paste(x$subbuildingname,x$paotext,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$pp,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=" ")
+  x$bnstreet <- paste(x$subbuildingname,x$paotext,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$pp,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   #$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
@@ -1697,38 +1564,19 @@ function56<- function(x,y){
   y$addressf <- paste(y$postcode,y$addressfinal,sep=",")
   
   taba1 <- inner_join(x,y,by="addressf")
+  
   return(taba1)
-  
-  
 }
-
-
 link56<-function56(add,epc)
-dim(link56)
-# 
-
 link56<-link56[,..needlist1]
 
 link56u<- uniqueresult(link56)
-dim(link56u)
-# 
-
 link56d <- doubleresult(link56)
-dim(link56d)
-
 
 epc <- matchleft(epc,link56)
-dim(epc)
-# 3476163      27
-
-#################### method 57 ##################
-
-
-
+####################method 57####################
 function57<- function(x,y){
-  
-  
-  x$bnstreet <-    paste(x$buildingnumber,x$paotext,sep=",")
+  x$bnstreet <- paste(x$buildingnumber,x$paotext,sep=",")
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
@@ -1741,38 +1589,22 @@ function57<- function(x,y){
   y$addressf <- paste(y$postcode,y$addressfinal,sep=",")
   
   taba1 <- inner_join(x,y,by="addressf")
-  return(taba1)
   
+  return(taba1)
 }
 
-
-
 link57<-function57(add,epc)
-dim(link57)
-
-
 link57<-link57[,..needlist1]
 
 link57u<- uniqueresult(link57)
-dim(link57u)
-
-
 link57d <- doubleresult(link57)
-dim(link57d)
-
-
-dim(epc)
-# 
+ 
 epc <- matchleft(epc,link57)
-dim(epc)
-#3475961      27
-#
-#################### method 58 ##################
-
+####################method 58####################
 function58<- function(x,y){
-  x$bnstreet <-    paste(x$saotext,x$pp,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$buildingnumber,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=" ")
+  x$bnstreet <- paste(x$saotext,x$pp,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$buildingnumber,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
@@ -1783,38 +1615,19 @@ function58<- function(x,y){
   y$addressf <- paste(y$postcode,y$addressfinal,sep=",")
   
   taba1 <- inner_join(x,y,by="addressf")
-  return(taba1)
   
+  return(taba1)
 }
-
-
 link58<-function58(add,epc)
-dim(link58)
-
-
 link58<-link58[,..needlist1]
 
-
-
 link58u<- uniqueresult(link58)
-dim(link58u)
-
-
 link58d <- doubleresult(link58)
-dim(link58d)
 
-
-dim(epc)
-# 
 epc <- matchleft(epc,link58)
-dim(epc)
-#3468027      27
-#################### method 59 ##################
+####################method 59####################
 function59<- function(x,y){
-  
-  
-  
-  x$bnstreet <-    paste(x$subbuildingname,x$buildingname,sep=" ")
+  x$bnstreet <- paste(x$subbuildingname,x$buildingname,sep=" ")
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
@@ -1822,39 +1635,17 @@ function59<- function(x,y){
   
   taba1 <- inner_join(x,y,by="addressf")
   return(taba1) 
-  
 }
-
-
-
-#
 link59<-function59(add,epc)
-
 link59<-link59[,..needlist1]
 
-
 link59u<- uniqueresult(link59)
-dim(link59u)
-
-
 link59d <- doubleresult(link59)
-dim(link59d)
 
-dim(epc)
-#2649854      27
 epc <- matchleft(epc,link59)
-dim(epc)
-#2620314      27
-
-#
-
-
-
-#################### method 60 ##################
-
+####################method 60####################
 function60<- function(x,y){
-  
-  x$bnstreet <-    paste(x$paotext,x$buildingname,sep=" ")
+  x$bnstreet <- paste(x$paotext,x$buildingname,sep=" ")
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
@@ -1862,37 +1653,17 @@ function60<- function(x,y){
   
   taba1 <- inner_join(x,y,by="addressf")
   return(taba1) 
-  
 }
 
-
 link60<-function60(add,epc)
-
-
 link60<-link60[,..needlist1]
 
-
 link60u<- uniqueresult(link60)
-dim(link60u)
-
-
 link60d <- doubleresult(link60)
-dim(link60d)
 
-dim(epc)
-#
 epc <- matchleft(epc,link60)
-dim(epc)
-# 3466228      27
-
-
-
-
-#################### method 61 ##################
-
+####################method 61####################
 function61<- function(x,y){
-  
-  
   x$bnstreet <-    paste(x$saotext,x$buildingname,sep=" ")
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
@@ -1901,34 +1672,19 @@ function61<- function(x,y){
   
   taba1 <- inner_join(x,y,by="addressf")
   return(taba1) 
-  
 }
-
-
 link61<-function61(add,epc)
-
-
 link61<-link61[,..needlist1]
 
-
 link61u<- uniqueresult(link61)
-dim(link61u)
-
-
 link61d <- doubleresult(link61)
-dim(link61d)
 
-dim(epc)
-#
 epc <- matchleft(epc,link61)
-dim(epc)
-#3466224      27
-
-#################### method 62 ##################
+####################method 62####################
 function62<- function(x,y){
-  x$bnstreet <-    paste(x$subbuildingname,x$buildingname,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$buildingnumber,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$subbuildingname,x$buildingname,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$buildingnumber,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
@@ -1939,37 +1695,19 @@ function62<- function(x,y){
   taba1 <- inner_join(x,y,by="addressf")
   
   return(taba1)
-  
 }
-
 link62<-function62(add,epc)
-
 link62<-link62[,..needlist1]
 
-
 link62u<- uniqueresult(link62)
-dim(link62u)
-
-
 link62d <- doubleresult(link62)
-dim(link62d)
 
-
-dim(epc)
-#
 epc <- matchleft(epc,link62)
-dim(epc)
-# 3465977      27
-
-
-
-#################### method 63 ##################
-
+####################method 63####################
 function63<- function(x,y){
-  
-  x$bnstreet <-    paste(x$saotext,x$buildingname,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$buildingnumber,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$saotext,x$buildingname,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$buildingnumber,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
@@ -1980,38 +1718,19 @@ function63<- function(x,y){
   taba1 <- inner_join(x,y,by="addressf")
   
   return(taba1)
-  
 }
-
-
-
 link63<-function63(add,epc)
-dim(link63)
-# 
 link63<-link63[,..needlist1]
 
 link63u<- uniqueresult(link63)
-dim(link63u)
-#
-
 link63d <- doubleresult(link63)
-dim(link63d)
 
-
-dim(epc)
-#3109964      27
 epc <- matchleft(epc,link63)
-dim(epc)
-# 3016421      27
-
-
-#################### method 64  ##################
-
+####################method 64####################
 function64<- function(x,y){
-  
-  x$bnstreet <-    paste(x$subbuildingname,x$paotext,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$buildingnumber,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$subbuildingname,x$paotext,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$buildingnumber,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
@@ -2022,38 +1741,19 @@ function64<- function(x,y){
   taba1 <- inner_join(x,y,by="addressf")
   
   return(taba1)
-  
-  
 }
-
-
 link64<-function64(add,epc)
-
-
-
 link64<-link64[,..needlist1]
 
-
 link64u<- uniqueresult(link64)
-dim(link64u)
-
-
 link64d <- doubleresult(link64)
 
-
-dim(epc)
-# 3016421      27
 epc<- matchleft(epc,link64)
-dim(epc)
-# 2764250      27
-#################### method 65 ##################
-
-
+####################method 65####################
 function65<- function(x,y){
-  
-  x$bnstreet <-    paste(x$subbuildingname,x$paotext,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$pp,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$subbuildingname,x$paotext,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$pp,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
@@ -2064,39 +1764,19 @@ function65<- function(x,y){
   taba1 <- inner_join(x,y,by="addressf")
   
   return(taba1) 
-  
 }
-
-
-
 link65<-function65(add,epc)
-
-
 link65<-link65[,..needlist1]
 
-
 link65u<- uniqueresult(link65)
-dim(link65u)
-
-
 link65d <- doubleresult(link65)
-dim(link65d)
 
-
-dim(epc)
-# 
 epc <- matchleft(epc,link65)
-dim(epc)
-# 3465594      27
-
-#
-#################### method 66 ##################
-
+####################method 66####################
 function66<- function(x,y){
-  
-  x$bnstreet <-    paste(x$saotext,x$paotext,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$pp,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$saotext,x$paotext,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$pp,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
@@ -2107,41 +1787,17 @@ function66<- function(x,y){
   taba1 <- inner_join(x,y,by="addressf")
   
   return(taba1) 
-  
 }
-
-
-
-
 link66<-function66(add,epc)
-dim(link66)
-# 
-
 link66<-link66[,..needlist1]
 
-
-
 link66u<- uniqueresult(link66)
-dim(link66u)
-# 
-
 link66d <- doubleresult(link66)
-dim(link66d)
 
-dim(epc)
-# 
 epc <- matchleft(epc,link66)
-dim(epc)
-# 3449262      27
-
-#################### method 67 ##################
-
+####################method 67####################
 function67<- function(x,y){
-  
-  
-  x$bnstreet <-    paste(x$buildingnumber,x$paotext,sep=" ")
-  #x$bnstreet <-    paste(x$bnstreet,x$pp,sep=" ")
-  #x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$buildingnumber,x$paotext,sep=" ")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
@@ -2152,37 +1808,17 @@ function67<- function(x,y){
   taba1 <- inner_join(x,y,by="addressf")
   
   return(taba1)
-  
 }
-
 link67<-function67(add,epc)
-dim(link67)
-
 link67<-link67[,..needlist1]
 
-
-
 link67u<- uniqueresult(link67)
-dim(link67u)
-
-
 link67d <- doubleresult(link67)
-dim(link67d)
 
-
-dim(epc)
-# 
 epc <- matchleft(epc,link67)
-dim(epc)
-#
-#
-#################### method 68 ##################
-
+####################method 68####################
 function68<- function(x,y){
-  
-  x$bnstreet <-    paste(x$buildingname,x$paotext,sep=" ")
-  #x$bnstreet <-    paste(x$bnstreet,x$pp,sep=" ")
-  #x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$buildingname,x$paotext,sep=" ")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
@@ -2194,28 +1830,17 @@ function68<- function(x,y){
   
   return(taba1)
 }
-
-
 link68<-function68(add,epc)
-dim(link68)
 link68<-link68[,..needlist1]
 
 link68u<- uniqueresult(link68)
-dim(link68u)
-
 link68d <- doubleresult(link68)
-dim(link68d)
-
-
-dim(epc)
-# 
+ 
 epc <- matchleft(epc,link68)
-dim(epc)
-#3448887      27
-#################### method 69 ##################
+####################method 69####################
 function69<- function(x,y){
   x<-x[x$subbuildingname=="",]
-  x$bnstreet <-    paste(x$ss,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$ss,x$streetdescription,sep=",")
   
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
@@ -2227,33 +1852,15 @@ function69<- function(x,y){
   taba1 <- inner_join(x,y,by="addressf")
   
   return(taba1)
-  
-  
 }
-
-
 link69<-function69(add,epc)
-
 link69<-link69[,..needlist1]
 
-
 link69u<- uniqueresult(link69)
-dim(link69u)
-
-
 link69d <- doubleresult(link69)
-dim(link69d)
 
-dim(epc)
-#
 epc <- matchleft(epc,link69)
-dim(epc)
-#  3433640      27
-
-######sum up section 3#########
-
-
-
+####################sum up section 3####################
 link27u$method<-"link27u"
 link28u$method<-"link28u"
 link29u$method<-"link29u"
@@ -2268,7 +1875,6 @@ link37u$method<-"link37u"
 link38u$method<-"link38u"
 link39u$method<-"link39u"
 link40u$method<-"link40u"
-
 link41u$method<-"link41u"
 link42u$method<-"link42u"
 link43u$method<-"link43u"
@@ -2278,7 +1884,6 @@ link46u$method<-"link46u"
 link47u$method<-"link47u"
 link48u$method<-"link48u"
 link49u$method<-"link49u"
-
 link50u$method<-"link50u"
 link51u$method<-"link51u"
 link52u$method<-"link52u"
@@ -2299,8 +1904,6 @@ link66u$method<-"link66u"
 link67u$method<-"link67u"
 link68u$method<-"link68u"
 link69u$method<-"link69u"
-
-
 
 link27d$method<-"link27d"
 link28d$method<-"link28d"
@@ -2348,177 +1951,102 @@ link69d$method<-"link69d"
 
 l27_69u = list(link27u,link28u,link29u,link30u,link31u,link32u,link33u,link34u,link35u,link36u,link37u,link38u,link39u,link40u,link41u,link42u,link43u,link44u,link45u,link46u,link47u,link48u,link49u,link50u,link51u,link52u,link53u,link54u,link55u,link56u,link57u,link58u,link59u,link60u,link61u,link62u,link63u,link64u,link65u,link66u,link67u,link68u,link69u)
 link27_69u<- rbindlist(l27_69u, use.names=TRUE, fill=TRUE)
-dim(link27_69u)
-#1007507
-length(unique(link27_69u$lmk_key))
 
-length(unique(link27_69u$method))
-
-dim(link27u)[1]+dim(link28u)[1]+dim(link29u)[1]+dim(link30u)[1]+dim(link31u)[1]+dim(link32u)[1]+dim(link33u)[1]+dim(link34u)[1]+dim(link35u)[1]+dim(link36u)[1]+dim(link37u)[1]+dim(link38u)[1]+dim(link39u)[1]+dim(link40u)[1]+dim(link41u)[1]+dim(link42u)[1]+dim(link43u)[1]+dim(link44u)[1]+dim(link45u)[1]+dim(link46u)[1]+dim(link47u)[1]+dim(link48u)[1]+dim(link49u)[1]+dim(link50u)[1]+dim(link51u)[1]+dim(link52u)[1]+dim(link53u)[1]+dim(link54u)[1]+dim(link55u)[1]+dim(link56u)[1]+dim(link57u)[1]+dim(link58u)[1]+dim(link59u)[1]+dim(link60u)[1]+dim(link61u)[1]+dim(link62u)[1]+dim(link63u)[1]+dim(link64u)[1]+dim(link65u)[1]+dim(link66u)[1]+dim(link67u)[1]+dim(link68u)[1]+dim(link69u)[1]
-#1007507
 l27_69d = list(link27d,link28d,link29d,link30d,link31d,link32d,link33d,link34d,link35d,link36d,link37d,link38d,link39d,link40d,link41d,link42d,link43d,link44d,link45d,link46d,link47d,link48d,link49d,link50d,link51d,link52d,link53d,link54d,link55d,link56d,link57d,link58d,link59d,link60d,link61d,link62d,link63d,link64d,link65d,link66d,link67d,link68d,link69d)
 link27_69d<- rbindlist(l27_69d, use.names=TRUE, fill=TRUE)
-dim(link27_69d)
-#23388 
-dim(link27d)[1]+dim(link28d)[1]+dim(link29d)[1]+dim(link30d)[1]+dim(link31d)[1]+dim(link32d)[1]+dim(link33d)[1]+dim(link34d)[1]+dim(link35d)[1]+dim(link36d)[1]+dim(link37d)[1]+dim(link38d)[1]+dim(link39d)[1]+dim(link40d)[1]+dim(link41d)[1]+dim(link42d)[1]+dim(link43d)[1]+dim(link44d)[1]+dim(link45d)[1]+dim(link46d)[1]+dim(link47d)[1]+dim(link48d)[1]+dim(link49d)[1]+dim(link50d)[1]+dim(link51d)[1]+dim(link52d)[1]+dim(link53d)[1]+dim(link54d)[1]+dim(link55d)[1]+dim(link56d)[1]+dim(link57d)[1]+dim(link58d)[1]+dim(link59d)[1]+dim(link60d)[1]+dim(link61d)[1]+dim(link62d)[1]+dim(link63d)[1]+dim(link64d)[1]+dim(link65d)[1]+dim(link66d)[1]+dim(link67d)[1]+dim(link68d)[1]+dim(link69d)[1]
-#23388
 
 dbWriteTable(con, "link27_69dnew",value =link27_69d, append = TRUE, row.names = FALSE)
 dbWriteTable(con, "link27_69unew",value =link27_69u, append = TRUE, row.names = FALSE)
 
+#delete the data created in the above
 rm(link27,link28,link29,link30,link31,link32,link33,link34,link35,link36,link37,link38,link39,link40,link41,link42,link43,link44,link45,link46,link47,link48,link49,link50,link51,link52,link53,link54,link55,link56,link57,link58,link59,link60,link61,link62,link63,link64,link65,link66,link67,link68,link69)
-
 rm(link27u,link28u,link29u,link30u,link31u,link32u,link33u,link34u,link35u,link36u,link37u,link38u,link39u,link40u,link41u,link42u,link43u,link44u,link45u,link46u,link47u,link48u,link49u,link50u,link51u,link52u,link53u,link54u,link55u,link56u,link57u,link58u,link59u,link60u,link61u,link62u,link63u,link64u,link65u,link66u,link67u,link68u,link69u)
-
 rm(link27d,link28d,link29d,link30d,link31d,link32d,link33d,link34d,link35d,link36d,link37d,link38d,link39d,link40d,link41d,link42d,link43d,link44d,link45d,link46d,link47d,link48d,link49d,link50d,link51d,link52d,link53d,link54d,link55d,link56d,link57d,link58d,link59d,link60d,link61d,link62d,link63d,link64d,link65d,link66d,link67d,link68d,link69d)
-
 rm(l27_69u,l27_69d)
-
 rm(function27,function28,function29,function30,function31,function32,function33,function34,function35,function36,function37,function38,function39,function40,function41,function42,function43,function44,function45,function46,function47,function48,function49,function50,function51,function52,function53,function54,function55,function56,function57,function58,function59,function60,function61,function62,function63,function64,function65,function66,function67,function68,function69)
-Sys.time()
-#################### method 70 ##################
 
+####################method 70####################
 function70<- function(x,y){
-
-  x$bnstreet <-    paste(x$subbuildingname,x$buildingname,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$buildingnumber,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$subbuildingname,x$buildingname,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$buildingnumber,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
-
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
   y$addressfinal <- gsub("[']", "", y$addressfinal)
   y$addressfinal <- gsub(" ", "", y$addressfinal)
   y$addressf <- paste(y$postcode,y$addressfinal,sep=",")
   
   taba1 <- inner_join(x,y,by="addressf")
-  return(taba1)
   
+  return(taba1)
 }
-
-
 link70<-function70(add,epc)
-
-
 link70<-link70[,..needlist1]
 
-
 link70u<- uniqueresult(link70)
-dim(link70u)
-
-
 link70d <- doubleresult(link70)
-dim(link70d)
 
-dim(epc)
-#
 epc <- matchleft(epc,link70)
-dim(epc)
-# 3435246      27
-
-
-
-
-#################### method 71 ##################
-
+####################method 71####################
 function71<- function(x,y){
   # x<-x[x$subbuildingname!="",]
+  x$bnstreet <- paste(x$saotext,x$paotext,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$buildingname ,sep=",")
   
-  x$bnstreet <-    paste(x$saotext,x$paotext,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$buildingname ,sep=",")
-  
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
-  
   y$addressfinal <- y$add
-  
   y$addressfinal <- gsub(" ", "", y$addressfinal)
   y$addressf <- paste(y$postcode,y$addressfinal,sep=",")
   
   taba1 <- inner_join(x,y,by="addressf")
   return(taba1)
-  
-  
 }
-
-
 link71<-function71(add,epc)
-
-
 link71<-link71[,..needlist1]
 
-
 link71u<- uniqueresult(link71)
-dim(link71u)
-
-
 link71d <- doubleresult(link71)
-dim(link71d)
 
-dim(epc)
-#3540864      27
 epc <- matchleft(epc,link71)
-dim(epc)
-#3481491      27
-
-
-#################### method 72 ##################
-
-
+####################method 72####################
 function72<- function(x,y){
   
-  x$bnstreet <-    paste(x$subbuildingname,x$paotext,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$buildingname ,sep=",")
+  x$bnstreet <- paste(x$subbuildingname,x$paotext,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$buildingname ,sep=",")
   #x$bnstreet <-    paste(x$bnstreet,x$paoendnumber,sep="-")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
   
   y$addressfinal <- y$add
-  
   y$addressfinal <- gsub(" ", "", y$addressfinal)
   y$addressf <- paste(y$postcode,y$addressfinal,sep=",")
   
   taba1 <- inner_join(x,y,by="addressf")
   return(taba1)
-  
 }
-
 link72<-function72(add,epc)
-
 link72<-link72[,..needlist1]
 
-
 link72u<- uniqueresult(link72)
-dim(link72u)
-
-
 link72d <- doubleresult(link72)
-dim(link72d)
 
-
-dim(epc)
-#
 epc <- matchleft(epc,link72)
-dim(epc)
-# 3434711      27
-
-
-
-#################### method 73 ##################
-
+####################method 73####################
 function73<- function(x,y){
-  x$bnstreet <-    paste(x$buildingname,x$paotext,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$buildingname,x$paotext,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
@@ -2528,39 +2056,18 @@ function73<- function(x,y){
   
   taba1 <- inner_join(x,y,by="addressf")
   return(taba1)
-  
-  
-  
 }
-
-
-
 link73<-function73(add,epc)
-dim(link73)
-# 
 link73<-link73[,..needlist1]
 
 link73u<- uniqueresult(link73)
-dim(link73u)
-#
-
 link73d <- doubleresult(link73)
-dim(link73d)
 
-
-dim(epc)
-#
 epc <- matchleft(epc,link73)
-dim(epc)
-# 
-
-
-#################### method 74  ##################
-
+####################method 74####################
 function74<- function(x,y){
-  
-  x$bnstreet <-    paste(x$ss,x$paotext,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$ss,x$paotext,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
@@ -2573,37 +2080,21 @@ function74<- function(x,y){
   y$addressf <- paste(y$postcode,y$addressfinal,sep=",")
   
   taba1 <- inner_join(x,y,by="addressf")
-  return(taba1)
   
+  return(taba1)
 }
-
-
 link74<-function74(add,epc)
-dim(link74)
-
-
 link74<-link74[,..needlist1]
 
-
 link74u<- uniqueresult(link74)
-dim(link74u)
-
-
 link74d <- doubleresult(link74)
 
-
-dim(epc)
-#
 epc<- matchleft(epc,link74)
-dim(epc)
-# 3285365      27
-#################### method 75 ##################
-
-
+####################method 75####################
 function75<- function(x,y){
   x<-x[paostartsuffix=="",]
-  x$bnstreet <-    paste(x$buildingnumber,x$streetdescription,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$dependentlocality,sep=",")
+  x$bnstreet <- paste(x$buildingnumber,x$streetdescription,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$dependentlocality,sep=",")
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
@@ -2617,38 +2108,18 @@ function75<- function(x,y){
   
   taba1 <- inner_join(x,y,by="addressf")
   return(taba1)
-  
 }
-
-
-
 link75<-function75(add,epc)
-dim(link75)
-
 link75<-link75[,..needlist1]
 
-
 link75u<- uniqueresult(link75)
-dim(link75u)
-
-
 link75d <- doubleresult(link75)
-dim(link75d)
 
-
-dim(epc)
-# 
 epc <- matchleft(epc,link75)
-dim(epc)
-#2978707      27
-
-#################### method 76 ##################
-
+####################method 76####################
 function76<- function(x,y){
-  
-  
-  x$bnstreet <-    paste(x$buildingnumber,x$paotext,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$buildingnumber,x$paotext,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
@@ -2663,33 +2134,17 @@ function76<- function(x,y){
   taba1 <- inner_join(x,y,by="addressf")
   return(taba1)
 }
-
 link76<-function76(add,epc)
-dim(link76)
-# 
-length(unique(link76$lmk_key))
-
 link76<-link76[,..needlist1]
 
 link76u<- uniqueresult(link76)
-dim(link76u)
-# 
-
 link76d <- doubleresult(link76)
-dim(link76d)
 
-dim(epc)
-# 
 epc <- matchleft(epc,link76)
-dim(epc)
-# 2969576      27
-
-#################### method 77 ##################
-
+####################method 77####################
 function77<- function(x,y){
-  
-  x$bnstreet <-    paste(x$saotext,x$paotext,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$saotext,x$paotext,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
@@ -2703,40 +2158,19 @@ function77<- function(x,y){
   
   taba1 <- inner_join(x,y,by="addressf")
   return(taba1)
-  
-  
 }
-
-
 
 link77<-function77(add,epc)
-dim(link77)
-
-
 link77<-link77[,..needlist1]
 
-
-
 link77u<- uniqueresult(link77)
-dim(link77u)
-
-
 link77d <- doubleresult(link77)
-dim(link77d)
 
-
-dim(epc)
-#
 epc <- matchleft(epc,link77)
-dim(epc)
-#2968444      27
-#
-#################### method 78 ##################
-
+####################method 78####################
 function78<- function(x,y){
-  
-  x$bnstreet <-    paste(x$buildingnumber,x$streetdescription,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$townname,sep=",")
+  x$bnstreet <- paste(x$buildingnumber,x$streetdescription,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$townname,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
@@ -2747,34 +2181,17 @@ function78<- function(x,y){
   taba1 <- inner_join(x,y,by="addressf")
   return(taba1)
 }
-
-
 link78<-function78(add,epc)
-dim(link78)
-
-
 link78<-link78[,..needlist1]
 
-
-
 link78u<- uniqueresult(link78)
-dim(link78u)
-
-
 link78d <- doubleresult(link78)
-dim(link78d)
-
-
-dim(epc)
-# 
+ 
 epc <- matchleft(epc,link78)
-dim(epc)
-#2598852      27
-#################### method 79 ##################
+####################method 79####################
 function79<- function(x,y){
-  
-  x$bnstreet <-    paste(x$pp,x$streetdescription,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$townname,sep=",")
+  x$bnstreet <- paste(x$pp,x$streetdescription,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$townname,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
@@ -2784,40 +2201,19 @@ function79<- function(x,y){
   
   taba1 <- inner_join(x,y,by="addressf")
   return(taba1)
-  
-  
 }
-
-
-
-#
 link79<-function79(add,epc)
-
 link79<-link79[,..needlist1]
 
-
 link79u<- uniqueresult(link79)
-dim(link79u)
-
-
 link79d <- doubleresult(link79)
-dim(link79d)
 
-dim(epc)
-#
 epc <- matchleft(epc,link79)
-dim(epc)
-#2554314      27
-
-
-
-
-#################### method 80 ##################
-
+####################method 80####################
 function80<- function(x,y){
-  x$bnstreet <-    paste(x$saotext,x$pp,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$buildingnumber,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=" ")
+  x$bnstreet <- paste(x$saotext,x$pp,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$buildingnumber,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   #$bnstreet <- gsub("[']", "", x$bnstreet)
@@ -2832,39 +2228,18 @@ function80<- function(x,y){
   
   taba1 <- inner_join(x,y,by="addressf")
   return(taba1)
-  
-  
-  
 }
-
-
 link80<-function80(add,epc)
-
-
 link80<-link80[,..needlist1]
 
-
 link80u<- uniqueresult(link80)
-dim(link80u)
-
-
 link80d <- doubleresult(link80)
-dim(link80d)
 
-dim(epc)
-#
 epc <- matchleft(epc,link80)
-dim(epc)
-#2553897      27
-
-
-
-
-#################### method 81 ##################
-
+####################method 81####################
 function81<- function(x,y){
-  x$bnstreet <-    paste(x$buildingnumber,x$streetdescription,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$dependentlocality,sep=",")
+  x$bnstreet <- paste(x$buildingnumber,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$dependentlocality,sep=",")
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
@@ -2879,36 +2254,17 @@ function81<- function(x,y){
   taba1 <- inner_join(x,y,by="addressf")
   return(taba1)
 }
-
-
 link81<-function81(add,epc)
-
-
 link81<-link81[,..needlist1]
-dim(link81)
 
 link81u<- uniqueresult(link81)
-dim(link81u)
-
-
 link81d <- doubleresult(link81)
-dim(link81d)
 
-dim(epc)
-#
 epc <- matchleft(epc,link81)
-dim(epc)
-#2491768      27
-
-
-#################### method 82 ##################
-
-
+####################method 82####################
 function82<- function(x,y){
-  
-  
-  x$bnstreet <-    paste(x$pp,x$streetdescription,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$dependentlocality,sep=",")
+  x$bnstreet <- paste(x$pp,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$dependentlocality,sep=",")
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
@@ -2922,43 +2278,23 @@ function82<- function(x,y){
   
   taba1 <- inner_join(x,y,by="addressf")
   return(taba1)
-  
-  
-  
-  
 }
-
 link82<-function82(add,epc)
-
 link82<-link82[,..needlist1]
 
-
 link82u<- uniqueresult(link82)
-dim(link82u)
-
-
 link82d <- doubleresult(link82)
-dim(link82d)
-
-
-dim(epc)
 
 epc <- matchleft(epc,link82)
-dim(epc)
-#  2488299      27
-
-
-
-#################### method 83 ##################
+####################method 83####################
 
 function83<- function(x,y){
   x<-x[x$buildingname=="",]
   x<-x[x$buildingnumber=="",]
   x<-x[x$subbuildingname=="",]
   x<-x[x$paostartsuffix=="",]
-  x$bnstreet <-    paste(x$saotext,x$paostartnumber,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
-  
+  x$bnstreet <- paste(x$saotext,x$paostartnumber,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
@@ -2968,42 +2304,22 @@ function83<- function(x,y){
   
   taba1 <- inner_join(x,y,by="addressf")
   return(taba1)
-  
-  
 }
-
-
-
 link83<-function83(add,epc)
-dim(link83)
-# 
 link83<-link83[,..needlist1]
 
 link83u<- uniqueresult(link83)
-dim(link83u)
-#
-
 link83d <- doubleresult(link83)
-dim(link83d)
 
-
-dim(epc)
-#
 epc <- matchleft(epc,link83)
-dim(epc)
-#2488082      27
-
-
-#################### method 84  ##################
-
+####################method 84####################
 function84<- function(x,y){
-  
   x<-x[x$buildingnumber=="",]
   x<-x[x$paostartsuffix=="",]
   x<-x[x$saotext=="",]
   x<-x[x$paoendnumber=="",]
   x<-x[x$saostartsuffix=="",]
-  x$bnstreet <-    paste(x$paostartnumber,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$paostartnumber,x$streetdescription,sep=",")
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
@@ -3017,36 +2333,18 @@ function84<- function(x,y){
   
   taba1 <- inner_join(x,y,by="addressf")
   return(taba1)
-  
 }
-
-
 link84<-function84(add,epc)
-
-
-
 link84<-link84[,..needlist1]
 
-
 link84u<- uniqueresult(link84)
-dim(link84u)
-
-
 link84d <- doubleresult(link84)
 
-
-dim(epc)
-# 2488082      27
 epc<- matchleft(epc,link84)
-dim(epc)
-# 2487824      27
-#################### method 85 ##################
-
-
+####################method 85####################
 function85<- function(x,y){
-  
-  x$bnstreet <-    paste(x$subbuildingname,x$buildingname,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$subbuildingname,x$buildingname,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- paste(x$bnstreet,x$dependentlocality,sep=",")
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
@@ -3062,44 +2360,23 @@ function85<- function(x,y){
   
   taba1 <- inner_join(x,y,by="addressf")
   return(taba1)
-  
 }
-
-
-
 link85<-function85(add,epc)
-
-length(unique(link85$lmk_key))
 link85<-link85[,..needlist1]
 
-
 link85u<- uniqueresult(link85)
-dim(link85u)
-
-
 link85d <- doubleresult(link85)
-dim(link85d)
 
-
-dim(epc)
-# 
 epc <- matchleft(epc,link85)
-dim(epc)
-
-
-#2383438      27
-#################### method 86 ##################
-
+####################method 86####################
 function86<- function(x,y){
-  
-  x$bnstreet <-    paste(x$saotext,x$buildingname,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$saotext,x$buildingname,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- paste(x$bnstreet,x$dependentlocality,sep=",")
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
-  
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[']", "", y$addressfinal)
@@ -3110,45 +2387,23 @@ function86<- function(x,y){
   taba1 <- inner_join(x,y,by="addressf")
   return(taba1)
 }
-
-
-
 
 link86<-function86(add,epc)
-dim(link86)
-# 
-
 link86<-link86[,..needlist1]
 
-
-
 link86u<- uniqueresult(link86)
-dim(link86u)
-# 
-
 link86d <- doubleresult(link86)
-dim(link86d)
 
-dim(epc)
-# 
 epc <- matchleft(epc,link86)
-dim(epc)
-# 2383274      27
-
-#################### method 87 ##################
-
-
-
+####################method 87####################
 function87<- function(x,y){
-  
-  x$bnstreet <-    paste(x$subbuildingname,x$paotext,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$subbuildingname,x$paotext,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- paste(x$bnstreet,x$dependentlocality,sep=",")
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
-  
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[']", "", y$addressfinal)
@@ -3158,35 +2413,15 @@ function87<- function(x,y){
   
   taba1 <- inner_join(x,y,by="addressf")
   return(taba1)
-  
-  
 }
-
-
-
 link87<-function87(add,epc)
-dim(link87)
-
-
 link87<-link87[,..needlist1]
 
-
-
 link87u<- uniqueresult(link87)
-dim(link87u)
-
-
 link87d <- doubleresult(link87)
-dim(link87d)
 
-
-dim(epc)
-#
 epc <- matchleft(epc,link87)
-dim(epc)
-#2372924      27
-#
-#################### method 88 ##################
+####################method 88####################
 
 function88<- function(x,y){
   x$bnstreet <-    paste(x$subbuildingname,x$buildingname,sep=" ")
