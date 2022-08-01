@@ -138,11 +138,11 @@ linkd<-matchleft(linkd,linkd_1)
 ####################clean 2 keep the residential uprn and saostartnumber is null####################
 ```
 ### 2.2 Attaching UPRN in Land Registry PPD
-The address matching work for Land Registry PPD is easier than Domestic EPCs. It contains 12 linkage stages with 142 match rules.Within each stage, a series of match rules are were conduct in order. For each matching rule, we only keep the one-to-one linkage result in the linked data. Figure 4 display the whole linakge workflow between Land Registry PPD and OS AddressBase Plus.The code for this linakge process is in [PPD/](PPD/)
+The address matching work for Land Registry PPD is easier than Domestic EPCs. It contains 12 linkage stages with 142 match rules.Within each stage, a series of match rules are were conduct in order. For each matching rule, we only keep the one-to-one linkage result in the linked data. Figure 3 displays the whole linakge workflow between Land Registry PPD and OS AddressBase Plus.The code for this linakge process is in [PPD/](PPD/)
 
 
 ![](pic/f4.png)
-**Figure 4.** A Brief workflow of data linkage between Land Registry PPD and OS AddressBase Plus
+**Figure 3.** A Brief workflow of data linkage between Land Registry PPD and OS AddressBase Plus
 
 In the R code, each match rule is commanded with the linkage method. An example of the first match rule is shown below: 
 ```
