@@ -17200,17 +17200,11 @@ noadd2_13<-linkd390
 linkd<-matchleft(linkd,linkd390)
 dim(linkd)
 ###############391############
-
 linkd391<-linkd[linkd$method=="link391d",] 
-
 linkd391_1<-linkd391[linkd391$add2==word(linkd391$buildingname,1,2),]
 
-
-
 linkd391_1<-uniqueresult(linkd391_1)
-dim(linkd)
 linkd<-matchleft(linkd,linkd391_1)
-
 ###############398############
 c2<- linkd[linkd$method=="link398d",]
 
