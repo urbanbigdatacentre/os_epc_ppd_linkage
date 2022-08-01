@@ -8831,7 +8831,6 @@ function299<- function(x,y){
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
-  #y$addressfinal <- trimws(y$add1)
   y$addressfinal <- paste(y$add1,y$add3,sep=",")
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
   y$addressfinal <- gsub("[']", "", y$addressfinal)
@@ -13912,10 +13911,3714 @@ rm(function401,function402,function403,function404,function405,function406,funct
 linku2<-rbindlist(list(linku1,link300_359u,link360_400u,link401_446u),use.names=TRUE, fill=TRUE)
 linkd2<-rbindlist(list(linkd1,link300_359d,link360_400d,link401_446d),use.names=TRUE, fill=TRUE)
 #save data in PostGIS
-dbWriteTable(con, "linku",value =linku2, append = TRUE, row.names = FALSE)
-dbWriteTable(con, "linkd",value =linkd2, append = TRUE, row.names = FALSE)
+dbWriteTable(con, "linku2",value =linku2, append = TRUE, row.names = FALSE)
+dbWriteTable(con, "linkd2",value =linkd2, append = TRUE, row.names = FALSE)
 #delete data
 rm(linkd1,link300_359d,link360_400d,link401_446d,linku1,link300_359u,link360_400u,link401_446u)
-
+rm(list= ls()[! (ls() %in% c('linku2','linkd2'))]) 
 
 #############################part 2: linked data cleaning############################# 
+linkd<-linkd2
+
+####################clean 1 keep the residential UPRN####################
+#select the residential uprn from the mutiple linked UPRN
+linkd_1<-linkd[linkd$method=="link1d" & substr(linkd$class,1,1)=="R",]
+#remove the linkd_1 from linkd
+linkd<-matchleft(linkd,linkd_1)
+####################clean 2 keep the residential uprn and saostartnumber is null####################
+linkd2_1<-linkd[linkd$method=="link2d" & linkd$saostartnumber=="" & substr(linkd$class,1,1)=="R" ,]
+
+linkd2_1<-uniqueresult(linkd2_1)
+linkd<-matchleft(linkd,linkd2_1)
+####################clean 4 keep the residential UPRN####################
+linkd4_1<-linkd[linkd$method=="link4d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd4_1<-uniqueresult(linkd4_1)
+linkd<-matchleft(linkd,linkd4_1)
+####################clean 5 keep the residential UPRN####################
+linkd5_1<-linkd[linkd$method=="link5d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd5_1<-uniqueresult(linkd5_1)
+linkd<-matchleft(linkd,linkd5_1)
+####################clean 6 keep the residential UPRN####################
+linkd6_1<-linkd[linkd$method=="link6d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd6_1<-uniqueresult(linkd6_1)
+linkd<-matchleft(linkd,linkd6_1)
+####################clean 7 keep the residential UPRN####################
+linkd7_1<-linkd[linkd$method=="link7d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd7_1<-uniqueresult(linkd7_1)
+linkd<-matchleft(linkd,linkd7_1)
+####################clean 8 keep the residential UPRN####################
+linkd8_1<-linkd[linkd$method=="link8d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd8_1<-uniqueresult(linkd8_1)
+linkd<-matchleft(linkd,linkd8_1)
+####################clean 9 keep the residential UPRN####################
+linkd9_1<-linkd[linkd$method=="link9d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd9_1<-uniqueresult(linkd9_1)
+linkd<-matchleft(linkd,linkd9_1)
+####################clean 10 keep the residential UPRN####################
+linkd10_1<-linkd[linkd$method=="link10d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd10_1<-uniqueresult(linkd10_1)
+linkd<-matchleft(linkd,linkd10_1)
+####################clean 11 keep the residential UPRN####################
+linkd11_1<-linkd[linkd$method=="link11d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd11_1<-uniqueresult(linkd11_1)
+linkd<-matchleft(linkd,linkd11_1)
+####################clean 12 keep the residential UPRN####################
+linkd12_1<-linkd[linkd$method=="link12d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd12_1<-uniqueresult(linkd12_1)
+linkd<-matchleft(linkd,linkd12_1)
+####################clean 15 keep the residential UPRN####################
+linkd15_1<-linkd[linkd$method=="link15d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd15_1<-uniqueresult(linkd15_1)
+linkd<-matchleft(linkd,linkd15_1)
+
+####################clean 20 keep the residential UPRN####################
+linkd20_1<-linkd[linkd$method=="link20d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd20_1<-uniqueresult(linkd20_1)
+linkd<-matchleft(linkd,linkd20_1)
+####################clean 25 keep the residential UPRN####################
+linkd25_1<-linkd[linkd$method=="link25d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd25_1<-uniqueresult(linkd25_1)
+linkd<-matchleft(linkd,linkd25_1)
+####################clean 30 keep the residential UPRN####################
+linkd30_1<-linkd[linkd$method=="link30d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd30_1<-uniqueresult(linkd30_1)
+linkd<-matchleft(linkd,linkd30_1)
+####################clean 32 keep the residential UPRN####################
+linkd32_1<-linkd[linkd$method=="link32d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd32_1<-uniqueresult(linkd32_1)
+linkd<-matchleft(linkd,linkd32_1)
+####################clean 34 keep the residential UPRN####################
+linkd34_1<-linkd[linkd$method=="link34d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd34_1<-uniqueresult(linkd34_1)
+linkd<-matchleft(linkd,linkd34_1)
+####################clean 35 keep the residential UPRN####################
+linkd35_1<-linkd[linkd$method=="link35d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd35_1<-uniqueresult(linkd35_1)
+linkd<-matchleft(linkd,linkd35_1)
+####################clean 38 keep the residential UPRN####################
+linkd38_1<-linkd[linkd$method=="link38d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd38_1<-uniqueresult(linkd38_1)
+linkd<-matchleft(linkd,linkd38_1)
+####################clean 44 keep the residential UPRN####################
+linkd44_1<-linkd[linkd$method=="link44d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd44_1<-uniqueresult(linkd44_1)
+linkd<-matchleft(linkd,linkd44_1)
+####################clean 45 keep the residential UPRN####################
+linkd45_1<-linkd[linkd$method=="link45d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd45_1<-uniqueresult(linkd45_1)
+linkd<-matchleft(linkd,linkd45_1)
+####################clean 46 keep the residential UPRN####################
+linkd46_1<-linkd[linkd$method=="link46d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd46_1<-uniqueresult(linkd46_1)
+linkd<-matchleft(linkd,linkd46_1)
+####################clean 58 buildingnumber does not contain number####################
+linkd58_1<-c2[!grepl("\\d+",c2$buildingnumber),]
+
+linkd58_1<-uniqueresult(linkd58_1)
+linkd<-matchleft(linkd,linkd58_1)
+####################clean 73 keep the residential UPRN####################
+linkd73_1<-linkd[linkd$method=="link73d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd73_1<-uniqueresult(linkd73_1)
+linkd<-matchleft(linkd,linkd73_1)
+####################clean 74 keep the residential UPRN####################
+linkd74_1<-linkd[linkd$method=="link74d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd74_1<-uniqueresult(linkd74_1)
+linkd<-matchleft(linkd,linkd74_1)
+####################clean 75 keep the residential UPRN####################
+linkd75_1<-linkd[linkd$method=="link75d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd75_1<-uniqueresult(linkd75_1)
+linkd<-matchleft(linkd,linkd75_1)
+####################clean 78 keep the residential UPRN####################
+linkd78_1<-linkd[linkd$method=="link78d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd78_1<-uniqueresult(linkd78_1)
+linkd<-matchleft(linkd,linkd78_1)
+####################clean 79 keep the residential UPRN####################
+linkd79_1<-linkd[linkd$method=="link79d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd79_1<-uniqueresult(linkd79_1)
+linkd<-matchleft(linkd,linkd79_1)
+####################clean 82 keep the residential UPRN####################
+linkd82_1<-linkd[linkd$method=="link82d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd82_1<-uniqueresult(linkd82_1)
+linkd<-matchleft(linkd,linkd82_1)
+####################clean 87 keep the residential UPRN####################
+linkd87_1<-linkd[linkd$method=="link87d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd87_1<-uniqueresult(linkd87_1)
+linkd<-matchleft(linkd,linkd87_1)
+####################clean 96 keep the residential UPRN####################
+linkd96_1<-linkd[linkd$method=="link96d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd96_1<-uniqueresult(linkd96_1)
+linkd<-matchleft(linkd,linkd96_1)
+####################clean 97 keep the residential UPRN####################
+linkd97_1<-linkd[linkd$method=="link97d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd97_1<-uniqueresult(linkd97_1)
+linkd<-matchleft(linkd,linkd97_1)
+####################clean 101 keep the residential UPRN####################
+c2<- linkd[linkd$method=="link101d",]
+
+linkd101_1<-c2[c2$buildingnumber==c2$paostartnumber,]
+linkd101_1<-uniqueresult(linkd101_1)
+####################clean 103 keep the residential UPRN####################
+linkd103_1<-linkd[linkd$method=="link103d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd103_1<-uniqueresult(linkd103_1)
+linkd<-matchleft(linkd,linkd103_1)
+####################clean 104 keep the residential UPRN####################
+linkd104_1<-linkd[linkd$method=="link104d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd104_1<-uniqueresult(linkd104_1)
+linkd<-matchleft(linkd,linkd104_1)
+####################clean 107 keep the residential UPRN####################
+linkd107_1<-linkd[linkd$method=="link107d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd107_1<-uniqueresult(linkd107_1)
+linkd<-matchleft(linkd,linkd107_1)
+####################clean 108 keep the residential UPRN####################
+linkd108_1<-linkd[linkd$method=="link108d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd108_1<-uniqueresult(linkd108_1)
+linkd<-matchleft(linkd,linkd108_1)
+####################clean 109 keep the residential UPRN####################
+linkd109_1<-linkd[linkd$method=="link109d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd109_1<-uniqueresult(linkd109_1)
+linkd<-matchleft(linkd,linkd109_1)
+####################clean 113 keep the residential UPRN or buildingnumber is equal to paostartnumber####################
+linkd113_1<-linkd[linkd$method=="link113d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd113_1<-uniqueresult(linkd113_1)
+linkd<-matchleft(linkd,linkd113_1)
+
+c2<- linkd[linkd$method=="link113d",]
+linkd113_2<-c2[c2$buildingnumber==c2$paostartnumber,]
+linkd113_2<-uniqueresult(linkd113_2)
+
+linkd<-matchleft(linkd,linkd113_2)
+####################clean 115 keep the residential UPRN####################
+linkd115_1<-linkd[linkd$method=="link115d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd115_1<-uniqueresult(linkd115_1)
+linkd<-matchleft(linkd,linkd115_1)
+####################clean 123 keep the residential UPRN####################
+linkd123_1<-linkd[linkd$method=="link123d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd123_1<-uniqueresult(linkd123_1)
+linkd<-matchleft(linkd,linkd123_1)
+####################clean 124 keep the residential UPRN####################
+linkd124_1<-linkd[linkd$method=="link124d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd124_1<-uniqueresult(linkd124_1)
+linkd<-matchleft(linkd,linkd124_1)
+####################clean 125 keep the residential UPRN####################
+linkd125_1<-linkd[linkd$method=="link125d" & substr(linkd$class,1,1)=="R" ,]
+
+linkd125_1<-uniqueresult(linkd125_1)
+linkd<-matchleft(linkd,linkd125_1)
+####################clean 142 keep the residential UPRN####################
+linkd142_1<-linkd[linkd$method=="link142d" & substr(linkd$class,1,1)=="R" ,]
+linkd142_1<-uniqueresult(linkd142_1)
+
+linkd<-matchleft(linkd,linkd142_1)
+####################clean 143 the last word in add2 is equal to last word in subbuildingname, or the first word in add2 is equal to first word in builidngnumber, or  the first word in add2 is equal to last word of subbuildingname, or residential UPRN, or frist three word in add2 is equal to combine the subbuilidngname and buildingnumber with a blank space,or add2=saotext_streetdescription############
+linkd143<-linkd[linkd$method=="link143d",] 
+
+linkd143$add2<-gsub(",","",linkd143$add2)
+linkd143_1<-linkd143[word(linkd143$add2, -1)==word(linkd143$subbuildingname, -1),]
+linkd143_1<-uniqueresult(linkd143_1)
+
+linkd<-matchleft(linkd,linkd143_1)
+
+
+c2<- linkd[linkd$method=="link143d",]
+
+linkd143<-linkd[linkd$method=="link143d",] 
+linkd143$add2<-gsub(",","",linkd143$add2)
+linkd143<-linkd143[grepl("^\\d",linkd143$add2),]
+linkd143_2<-linkd143[word(linkd143$add2, 1)==word(linkd143$subbuildingname, 1),]
+
+linkd143_2<-uniqueresult(linkd143_2)
+
+linkd<-matchleft(linkd,linkd143_2)
+
+c2<- linkd[linkd$method=="link143d",]
+
+linkd143<-linkd[linkd$method=="link143d",] 
+linkd143$add2<-gsub(",","",linkd143$add2)
+linkd143<-linkd143[grepl("^\\d",linkd143$add2),]
+linkd143_3<-linkd143[word(linkd143$add2, 1)==word(linkd143$buildingnumber, 1),]
+
+linkd143_3<-uniqueresult(linkd143_3)
+
+linkd<-matchleft(linkd,linkd143_3)
+
+c2<- linkd[linkd$method=="link143d",]
+
+linkd143<-linkd[linkd$method=="link143d",] 
+linkd143$add2<-gsub(",","",linkd143$add2)
+linkd143<-linkd143[grepl("^\\d",linkd143$add2),]
+linkd143_4<-linkd143[word(linkd143$add2, 1)==word(linkd143$subbuildingname, -1),]
+
+linkd143_4<-uniqueresult(linkd143_4)
+linkd<-matchleft(linkd,linkd143_4)
+
+c2<- linkd[linkd$method=="link143d",]
+c2<-c2[!grepl("\\d",c2$add2),]
+
+linkd143_6<-c2[c2$method=="link143d" & substr(c2$class,1,1)=="R" ,]
+linkd143_6<-uniqueresult(linkd143_6)
+
+linkd<-matchleft(linkd,linkd143_6)
+
+c2<- linkd[linkd$method=="link143d",]
+c2<-c2[!grepl("\\d",c2$add2),]
+linkd<-matchleft(linkd,c2)
+
+
+c2<- linkd[linkd$method=="link143d",]
+c2<-c2[grepl("^\\d",c2$add2),]
+
+
+linkd143_parent<-c2[grepl("FLAT",c2$subbuildingname),]
+
+linkd143_parent3<-keepneed(linkd,linkd143_parent)
+rm(linkd143_parent)
+
+dim(linkd)
+linkd<-matchleft(linkd,linkd143_parent3)
+dim(linkd)
+
+
+c2<- linkd[linkd$method=="link143d",]
+c2<-c2[grepl("^\\d",c2$add2),]
+
+
+fail_1<-c2
+linkd<-matchleft(linkd,fail_1)
+dim(linkd)
+
+late_1<-linkd[linkd$method=="link143d" & postcode.y=="M1 5AA",]
+linkd<-matchleft(linkd,late_1)
+dim(linkd)
+
+c2<- linkd[linkd$method=="link143d",]
+c2<-c2[grepl("\\d",c2$add2),]
+
+
+c2$add2<-gsub(",","",c2$add2)
+linkd143_7<-c2[word(c2$add2,1,3)==paste(c2$subbuildingname,c2$buildingnumber,sep=" "),]
+
+
+linkd143_7<-uniqueresult(linkd143_7)
+dim(linkd)
+linkd<-matchleft(linkd,linkd143_7)
+dim(linkd)
+#164877     34
+c2<- linkd[linkd$method=="link143d",]
+#c2<-c2[grepl("^\\d",c2$add2),]
+c2<-c2[grepl("\\d",c2$add2),]
+
+c2$add2<-gsub(",","",c2$add2)
+
+linkd143_8<-c2[c2$add2==paste(c2$saotext,c2$streetdescription,sep=" "),]
+
+
+linkd143_8<-uniqueresult(linkd143_8)
+dim(linkd)
+linkd<-matchleft(linkd,linkd143_8)
+dim(linkd)
+#164877     34
+c2<- linkd[linkd$method=="link143d",]
+
+fail_2<-c2
+linkd<-matchleft(linkd,fail_2)
+dim(linkd)
+# 164754     34
+
+#c2<- linkd[linkd$method=="link143d",]
+linkd143_parent<-rbindlist(list(linkd143_parent1,linkd143_parent2,linkd143_parent3))
+rm(linkd143_parent1,linkd143_parent2,linkd143_parent3)
+####################clean 144############
+c2<- linkd[linkd$method=="link144d",]
+
+linkd144_1<-c2[word(c2$add1, -1)==word(c2$subbuildingname, -1),]
+
+linkd144_1<-uniqueresult(linkd144_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd144_1)
+dim(linkd)
+#164754     34
+
+c2<- linkd[linkd$method=="link144d",]
+
+
+
+linkd144_parent<-c2[grepl("\\d",c2$subbuildingname),]
+
+linkd144_parent1<-keepneed(linkd,linkd144_parent)
+rm(linkd144_parent)
+
+dim(linkd)
+linkd<-matchleft(linkd,linkd144_parent1)
+dim(linkd)
+# 164723     34
+c2<- linkd[linkd$method=="link144d",]
+
+
+linkd<-matchleft(linkd,c2)
+rm(c2)
+dim(linkd)
+
+linkd144_parent<-linkd144_parent1
+rm(linkd144_parent1)
+
+
+####################clean 145############
+c2<- linkd[linkd$method=="link145d",]
+
+
+linkd145_1<-linkd[linkd$method=="link145d" & substr(linkd$class,1,1)=="R" ,]
+linkd145_1<-uniqueresult(linkd145_1)
+dim(linkd)
+
+linkd<-matchleft(linkd,linkd145_1)
+dim(linkd)
+
+c2<- linkd[linkd$method=="link145d",]
+
+
+linkd145_parent<-c2[grepl("\\d",c2$saotext),]
+
+linkd145_parent1<-keepneed(linkd,linkd145_parent)
+rm(linkd145_parent)
+
+dim(linkd)
+linkd<-matchleft(linkd,linkd145_parent1)
+dim(linkd)
+
+
+c2<- linkd[linkd$method=="link145d",]
+
+
+
+linkd145_parent<-c2[grepl("FLAT",c2$saotext),]
+linkd145_parent2<-keepneed(linkd,linkd145_parent)
+rm(linkd145_parent)
+
+dim(linkd)
+# 
+linkd<-matchleft(linkd,linkd145_parent2)
+dim(linkd)
+#21451459     145
+c2<- linkd[linkd$method=="link145d",]
+
+
+linkd145_parent<-c2[grepl("FLOOR",c2$saotext),]
+
+linkd145_parent3<-keepneed(linkd,linkd145_parent)
+rm(linkd145_parent)
+
+dim(linkd)
+linkd<-matchleft(linkd,linkd145_parent3)
+dim(linkd)
+
+
+c2<- linkd[linkd$method=="link145d",]
+
+linkd145_parent<-c2[grepl("\\d",c2$subbuildingname),]
+
+linkd145_parent4<-keepneed(linkd,linkd145_parent)
+rm(linkd145_parent)
+
+dim(linkd)
+linkd<-matchleft(linkd,linkd145_parent4)
+dim(linkd)
+
+
+c2<- linkd[linkd$method=="link145d",]
+
+
+linkd<-matchleft(linkd,c2)
+rm(c2)
+dim(linkd)
+#221455145     145
+linkd145_parent<-rbindlist(list(linkd145_parent1,linkd145_parent2,linkd145_parent3,linkd145_parent4))
+rm(linkd145_parent1,linkd145_parent2,linkd145_parent3,linkd145_parent4)
+
+####################clean 146############
+c2<- linkd[linkd$method=="link146d",]
+
+
+
+
+linkd146_1<-linkd[linkd$method=="link146d" & substr(linkd$class,1,1)=="R" ,]
+linkd146_1<-uniqueresult(linkd146_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd146_1)
+dim(linkd)
+c2<- linkd[linkd$method=="link146d",]
+
+
+linkd146_parent<-c2[grepl("\\d",c2$saotext),]
+
+linkd146_parent1<-keepneed(linkd,linkd146_parent)
+rm(linkd146_parent)
+
+dim(linkd)
+linkd<-matchleft(linkd,linkd146_parent1)
+dim(linkd)
+
+c2<- linkd[linkd$method=="link146d",]
+
+
+
+linkd146_parent<-c2[grepl("FLAT",c2$saotext),]
+linkd146_parent2<-keepneed(linkd,linkd146_parent)
+rm(linkd146_parent)
+
+dim(linkd)
+# 
+linkd<-matchleft(linkd,linkd146_parent2)
+dim(linkd)
+#21461469     146
+c2<- linkd[linkd$method=="link146d",]
+
+
+
+linkd146_parent<-c2[grepl("FLOOR",c2$saotext),]
+linkd146_parent3<-keepneed(linkd,linkd146_parent)
+rm(linkd146_parent)
+
+dim(linkd)
+# 
+linkd<-matchleft(linkd,linkd146_parent3)
+dim(linkd)
+
+c2<- linkd[linkd$method=="link146d",]
+
+
+
+linkd146_parent<-c2[grepl("ABOVE",c2$saotext),]
+
+linkd146_parent4<-keepneed(linkd,linkd146_parent)
+rm(linkd146_parent)
+
+dim(linkd)
+linkd<-matchleft(linkd,linkd146_parent4)
+dim(linkd)
+#158918     34
+
+c2<- linkd[linkd$method=="link146d",]
+
+
+linkd146_parent<-c2[grepl("ROOM",c2$paotext),]
+linkd146_parent5<-keepneed(linkd,linkd146_parent)
+rm(linkd146_parent)
+
+dim(linkd)
+# 
+linkd<-matchleft(linkd,linkd146_parent5)
+dim(linkd)
+
+
+c2<- linkd[linkd$method=="link146d",]
+
+
+
+
+
+linkd146_parent<-c2[grepl("\\d",c2$buildingnumber),]
+linkd146_parent6<-keepneed(linkd,linkd146_parent)
+rm(linkd146_parent)
+
+dim(linkd)
+# 
+linkd<-matchleft(linkd,linkd146_parent6)
+dim(linkd)
+
+c2<- linkd[linkd$method=="link146d",]
+
+
+
+
+
+linkd<-matchleft(linkd,c2)
+rm(c2)
+dim(linkd)
+#158871     34
+linkd146_parent<-rbindlist(list(linkd146_parent1,linkd146_parent2,linkd146_parent3,linkd146_parent4,linkd146_parent5,linkd146_parent6))
+rm(linkd146_parent1,linkd146_parent2,linkd146_parent3,linkd146_parent4,linkd146_parent5,linkd146_parent6)
+
+####################clean 147############
+c2<- linkd[linkd$method=="link147d",]
+
+
+
+linkd147<-linkd[linkd$method=="link147d",] 
+linkd147$add2<-gsub(",","",linkd147$add2)
+linkd147_1<-linkd147[word(linkd147$add2, 1)==linkd147$paostartnumber,]
+
+linkd147_1<-uniqueresult(linkd147_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd147_1)
+
+c2<- linkd[linkd$method=="link147d",]
+
+
+linkd<-matchleft(linkd,c2)
+
+####################clean 148############
+c2<- linkd[linkd$method=="link148d",]
+
+detail_1<-c2
+
+linkd<-matchleft(linkd,c2)
+
+####################clean 149############
+c2<- linkd[linkd$method=="link149d",]
+
+####################clean 150############
+c2<- linkd[linkd$method=="link150d",]
+
+
+####################clean 151 ############
+c2<- linkd[linkd$method=="link151d",]
+
+
+
+linkd151<-linkd[linkd$method=="link151d",] 
+linkd151<-linkd151[linkd151$add3!="",]
+linkd151$add3<-gsub(",","",linkd151$add3)
+linkd151_1<-linkd151[word(linkd151$add3, 1)==linkd151$paostartnumber,]
+
+
+linkd151_1<-uniqueresult(linkd151_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd151_1)
+dim(linkd)
+
+c2<- linkd[linkd$method=="link151d",]
+
+
+detail_2<-c2
+
+linkd<-matchleft(linkd,c2)
+
+####################clean 152############
+c2<- linkd[linkd$method=="link152d",]
+
+####################clean 153############
+c2<- linkd[linkd$method=="link153d",]
+
+# match based on add2
+#add2=ss
+
+
+linkd153<-linkd[linkd$method=="link153d",] 
+linkd153$add2<-gsub(",","",linkd153$add2)
+linkd153_1<-linkd153[word(linkd153$add2, 1)==paste(linkd153$saostartnumber,linkd153$saostartsuffix,sep=""),]
+
+
+linkd153_1<-uniqueresult(linkd153_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd153_1)
+dim(linkd)
+# 158659     34
+linkd153<-linkd[linkd$method=="link153d",] 
+linkd153$add2<-gsub(",","",linkd153$add2)
+linkd153<-linkd153[grepl("^\\d",linkd153$add2),]
+
+
+fail_3<-linkd153
+linkd<-matchleft(linkd,fail_3)
+dim(linkd)
+
+linkd153<-linkd[linkd$method=="link153d",] 
+
+housename_diff1<-linkd153
+
+
+
+linkd<-matchleft(linkd,housename_diff1)
+dim(linkd)
+
+###############161############
+c2<- linkd[linkd$method=="link161d",]
+
+
+
+linkd161<-linkd[linkd$method=="link161d",] 
+linkd161$add2<-gsub(",","",linkd161$add3)
+linkd161_1<-linkd161[word(linkd161$add3, 1)==linkd161$saostartnumber,]
+
+
+linkd161_1<-uniqueresult(linkd161_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd161_1)
+dim(linkd)
+c2<- linkd[linkd$method=="link161d",]
+
+detail_3<-c2
+linkd<-matchleft(linkd,detail_3)
+dim(linkd)
+
+rm(c2)
+####################clean 162############
+c2<- linkd[linkd$method=="link162d",]
+
+
+detail_4<-c2
+
+linkd<-matchleft(linkd,detail_4)
+dim(linkd)
+
+
+
+####################clean 167############
+c2<- linkd[linkd$method=="link167d",]
+
+
+fail_4<-c2
+
+linkd<-matchleft(linkd,fail_4)
+dim(linkd)
+
+
+####################clean 168############
+sort(unique(linkd$method))
+c2<- linkd[linkd$method=="link168d",]
+
+
+detail_5<-c2
+
+linkd<-matchleft(linkd,detail_5)
+dim(linkd)
+
+####################clean 169############
+length(unique(linkd$method))
+#120
+
+##mach based on c2
+
+
+
+linkd169<-linkd[linkd$method=="link169d",] 
+linkd169$add2<-gsub(",","",linkd169$add2)
+linkd169_1<-linkd169[word(linkd169$add2, 1)==paste(linkd169$paostartnumber,linkd169$paostartsuffix,sep=""),]
+
+
+
+linkd169_1<-uniqueresult(linkd169_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd169_1)
+dim(linkd)
+
+
+c2<- linkd[linkd$method=="link169d",]
+
+
+linkd169<-linkd[linkd$method=="link169d",] 
+linkd169$add2<-gsub(",","",linkd169$add2)
+linkd169_2<-linkd169[word(linkd169$add2, -1)==linkd169$saostartnumber,]
+
+
+
+linkd169_2<-uniqueresult(linkd169_2)
+dim(linkd)
+linkd<-matchleft(linkd,linkd169_2)
+dim(linkd)
+#151344     34
+
+
+
+linkd169<-linkd[linkd$method=="link169d",] 
+linkd169$add2<-gsub(",","",linkd169$add2)
+linkd169_3<-linkd169[word(linkd169$add2, 1)==linkd169$buildingnumber,]
+
+
+
+linkd169_3<-uniqueresult(linkd169_3)
+dim(linkd)
+linkd<-matchleft(linkd,linkd169_3)
+dim(linkd)
+
+
+linkd169<-linkd[linkd$method=="link169d",] 
+linkd169$add2<-gsub(",","",linkd169$add2)
+linkd169_4<-linkd169[word(linkd169$add2, 1)==linkd169$saostartnumber,]
+
+
+
+linkd169_4<-uniqueresult(linkd169_4)
+dim(linkd)
+linkd<-matchleft(linkd,linkd169_4)
+dim(linkd)
+
+
+
+
+linkd169<-linkd[linkd$method=="link169d",] 
+linkd169$add2<-gsub(",","",linkd169$add2)
+linkd169_5<-linkd169[word(linkd169$add2, 1)==paste(linkd169$saostartnumber,linkd169$saostartsuffix,sep=""),]
+
+
+
+linkd169_5<-uniqueresult(linkd169_5)
+dim(linkd)
+linkd<-matchleft(linkd,linkd169_5)
+dim(linkd)
+
+c2<- linkd[linkd$method=="link169d",]
+
+c2<-c2[grepl("\\d",c2$add2),]
+
+
+
+
+linkd169_parent<-c2[grepl("\\d",c2$saotext),]
+
+linkd169_parent1<-keepneed(linkd,linkd169_parent)
+rm(linkd169_parent)
+
+dim(linkd)
+linkd<-matchleft(linkd,linkd169_parent1)
+dim(linkd)
+
+c2<- linkd[linkd$method=="link169d",]
+
+c2<-c2[grepl("\\d",c2$add2),]
+
+
+
+
+linkd169_parent<-c2[grepl("ROOM",c2$saotext),]
+linkd169_parent2<-keepneed(linkd,linkd169_parent)
+rm(linkd169_parent)
+
+dim(linkd)
+# 
+linkd<-matchleft(linkd,linkd169_parent2)
+dim(linkd)
+#21691699     169
+c2<- linkd[linkd$method=="link169d",]
+c2<-c2[grepl("\\d",c2$add2),]
+
+
+
+linkd169_parent<-c2[grepl("FLAT",c2$saotext),]
+linkd169_parent3<-keepneed(linkd,linkd169_parent)
+rm(linkd169_parent)
+
+dim(linkd)
+# 
+linkd<-matchleft(linkd,linkd169_parent3)
+dim(linkd)
+
+c2<- linkd[linkd$method=="link169d",]
+c2<-c2[grepl("\\d",c2$add2),]
+
+
+linkd169_parent<-c2[grepl("\\d",c2$saostartnumber),]
+
+linkd169_parent4<-keepneed(linkd,linkd169_parent)
+rm(linkd169_parent)
+
+dim(linkd)
+linkd<-matchleft(linkd,linkd169_parent4)
+dim(linkd)
+
+c2<- linkd[linkd$method=="link169d",]
+c2<-c2[grepl("\\d",c2$add2),]
+
+detail_6<-c2
+linkd<-matchleft(linkd,detail_6)
+dim(linkd)
+
+c2<- linkd[linkd$method=="link169d",]
+
+
+
+linkd169_parent<-c2[grepl("\\d",c2$saotext),]
+linkd169_parent5<-keepneed(linkd,linkd169_parent)
+rm(linkd169_parent)
+
+dim(linkd)
+# 
+linkd<-matchleft(linkd,linkd169_parent5)
+dim(linkd)
+
+
+
+
+c2<- linkd[linkd$method=="link169d",]
+
+
+
+
+
+linkd169_parent<-c2[grepl("\\d",c2$saostartnumber),]
+linkd169_parent6<-keepneed(linkd,linkd169_parent)
+rm(linkd169_parent)
+
+dim(linkd)
+# 
+linkd<-matchleft(linkd,linkd169_parent6)
+dim(linkd)
+c2<- linkd[linkd$method=="link169d",]
+
+
+detail_7<-c2
+
+
+linkd<-matchleft(linkd,c2)
+rm(c2)
+dim(linkd)
+
+linkd169_parent<-rbindlist(list(linkd169_parent1,linkd169_parent2,linkd169_parent3,linkd169_parent4,linkd169_parent5,linkd169_parent6))
+rm(linkd169_parent1,linkd169_parent2,linkd169_parent3,linkd169_parent4,linkd169_parent5,linkd169_parent6)
+
+
+####################clean 170############
+c2<- linkd[linkd$method=="link170d",]
+
+
+####################clean 171############
+c2<- linkd[linkd$method=="link171d",]
+
+
+
+
+linkd171<-linkd[linkd$method=="link171d",] 
+linkd171$add2<-gsub(",","",linkd171$add2)
+linkd171_1<-linkd171[word(linkd171$add2, 1)==paste(linkd171$paostartnumber,linkd171$paoendnumber,sep="-"),]
+
+
+
+linkd171_1<-uniqueresult(linkd171_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd171_1)
+dim(linkd)
+
+
+
+####################clean 173############
+c2<- linkd[linkd$method=="link173d",]
+
+
+linkd173<-linkd[linkd$method=="link173d",] 
+linkd173$add2<-gsub(",","",linkd173$add2)
+linkd173_1<-linkd173[word(linkd173$add2, 1,2)==linkd173$subbuildingname,]
+
+
+
+linkd173_1<-uniqueresult(linkd173_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd173_1)
+dim(linkd)
+#85679    34
+c2<- linkd[linkd$method=="link173d",]
+
+
+linkd173<-linkd[linkd$method=="link173d",] 
+linkd173$add2<-gsub(",","",linkd173$add2)
+linkd173_2<-linkd173[linkd173$add2==paste(linkd173$saostartnumber,linkd173$paotext,sep=" "),]
+
+
+
+linkd173_2<-uniqueresult(linkd173_2)
+dim(linkd)
+linkd<-matchleft(linkd,linkd173_2)
+dim(linkd)
+#85061    34
+
+c2<- linkd[linkd$method=="link173d",]
+
+
+
+linkd173<-linkd[linkd$method=="link173d",] 
+linkd173$add2<-gsub(",","",linkd173$add2)
+linkd173_3<-linkd173[word(linkd173$add2,-2,-1)==linkd173$subbuildingname,]
+
+
+
+linkd173_3<-uniqueresult(linkd173_3)
+dim(linkd)
+linkd<-matchleft(linkd,linkd173_3)
+dim(linkd)
+
+
+
+c2<- linkd[linkd$method=="link173d",]
+
+
+
+
+linkd173_parent<-c2[grepl("\\d",c2$subbuildingname),]
+
+linkd173_parent1<-keepneed(linkd,linkd173_parent)
+rm(linkd173_parent)
+
+dim(linkd)
+linkd<-matchleft(linkd,linkd173_parent1)
+dim(linkd)
+
+c2<- linkd[linkd$method=="link173d",]
+
+
+
+
+linkd173_parent<-c2[grepl("FLAT",c2$saotext),]
+linkd173_parent2<-keepneed(linkd,linkd173_parent)
+rm(linkd173_parent)
+
+dim(linkd)
+# 
+linkd<-matchleft(linkd,linkd173_parent2)
+dim(linkd)
+#21731739     173
+c2<- linkd[linkd$method=="link173d",]
+
+
+detail_8<-c2
+linkd<-matchleft(linkd,c2)
+rm(c2)
+dim(linkd)
+#221735173     173
+linkd173_parent<-rbindlist(list(linkd173_parent1,linkd173_parent2))
+rm(linkd173_parent1,linkd173_parent2)
+
+
+####################clean 174############
+c2<- linkd[linkd$method=="link174d",]
+
+
+linkd<-matchleft(linkd,c2)
+rm(c2)
+dim(linkd)
+
+
+####################clean 175############
+c2<- linkd[linkd$method=="link175d",]
+
+
+linkd175_1<-linkd[linkd$method=="link175d" & substr(linkd$class,1,1)=="R" ,]
+linkd175_1<-uniqueresult(linkd175_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd175_1)
+dim(linkd)
+
+
+####################clean 176############
+length(unique(linkd$method))
+c2<- linkd[linkd$method=="link176d",]
+
+
+linkd176_parent<-c2[grepl("\\d",c2$saotext),]
+
+linkd176_parent1<-keepneed(linkd,linkd176_parent)
+rm(linkd176_parent)
+
+dim(linkd)
+linkd<-matchleft(linkd,linkd176_parent1)
+dim(linkd)
+
+c2<- linkd[linkd$method=="link176d",]
+
+
+
+linkd176_parent<-c2[grepl("FLAT",c2$saotext),]
+linkd176_parent2<-keepneed(linkd,linkd176_parent)
+rm(linkd176_parent)
+
+dim(linkd)
+# 
+linkd<-matchleft(linkd,linkd176_parent2)
+dim(linkd)
+#21761769     176
+c2<- linkd[linkd$method=="link176d",]
+
+
+
+
+linkd176_parent<-c2[grepl("ROOM",c2$saotext),]
+linkd176_parent3<-keepneed(linkd,linkd176_parent)
+rm(linkd176_parent)
+
+dim(linkd)
+# 
+linkd<-matchleft(linkd,linkd176_parent3)
+dim(linkd)
+
+c2<- linkd[linkd$method=="link176d",]
+
+linkd<-matchleft(linkd,c2)
+rm(c2)
+dim(linkd)
+
+linkd176_parent<-rbindlist(list(linkd176_parent1,linkd176_parent2,linkd176_parent3))
+rm(linkd176_parent1,linkd176_parent2,linkd176_parent3)
+
+####################clean 177############
+c2<- linkd[linkd$method=="link177d",]
+
+####################clean 178############
+c2<- linkd[linkd$method=="link178d",]
+
+####################clean 179############
+c2<- linkd[linkd$method=="link179d",]
+
+####################clean 180############
+c2<- linkd[linkd$method=="link180d",]
+
+
+
+linkd180<-linkd[linkd$method=="link180d",] 
+linkd180<-linkd180[grepl("\\d",linkd180$add2),]
+linkd180$add2<-gsub(",","",linkd180$add2)
+linkd180_1<-linkd180[word(linkd180$add2, 1)==linkd180$paostartnumber,]
+
+
+linkd180_1<-uniqueresult(linkd180_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd180_1)
+dim(linkd)
+#84049    34
+
+linkd180<-linkd[linkd$method=="link180d",] 
+linkd180$add2<-gsub(",","",linkd180$add2)
+linkd180<-linkd180[!grepl("^\\d",linkd180$add2),]
+
+detail_9<-linkd180
+linkd<-matchleft(linkd,detail_9)
+dim(linkd)
+
+c2<- linkd[linkd$method=="link180d",]
+
+
+
+fail_5<-c2
+
+linkd<-matchleft(linkd,fail_5)
+dim(linkd)
+
+
+
+####################clean 196############
+c2<- linkd[linkd$method=="link196d",]
+
+
+linkd196<-linkd[linkd$method=="link196d",] 
+linkd196$add1<-gsub(",","",linkd196$add1)
+linkd196$add1c<-str_remove(linkd196$add1, '(\\w+\\s+){1}')
+
+
+linkd196_1<-linkd196[linkd196$add1c==linkd196$paotext,]
+
+
+linkd196_1<-uniqueresult(linkd196_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd196_1)
+dim(linkd)
+#82891    34
+
+linkd196<-linkd[linkd$method=="link196d",] 
+linkd196$add1<-gsub(",","",linkd196$add1)
+linkd196$add1c<-str_remove(linkd196$add1, '(\\w+\\s+){1}')
+
+linkd196_2<-linkd196[word(linkd196$add1c, 1,2)==linkd196$paotext,]
+
+
+linkd196_2<-uniqueresult(linkd196_2)
+dim(linkd)
+linkd<-matchleft(linkd,linkd196_2)
+dim(linkd)
+
+
+c2<- linkd[linkd$method=="link196d",]
+
+
+detail_10<-c2
+linkd<-matchleft(linkd,c2)
+rm(c2)
+dim(linkd)
+
+####################clean 197############
+c2<- linkd[linkd$method=="link197d",]
+
+
+
+linkd197<-linkd[linkd$method=="link197d",] 
+linkd197$add1<-gsub(",","",linkd197$add1)
+linkd197$add1c<-str_remove(linkd197$add1, '(\\w+\\s+){1}')
+
+
+linkd197_1<-linkd197[linkd197$add1c==linkd197$paotext,]
+
+
+linkd197_1<-uniqueresult(linkd197_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd197_1)
+dim(linkd)
+c2<- linkd[linkd$method=="link197d",]
+
+linkd<-matchleft(linkd,c2)
+rm(c2)
+dim(linkd)
+
+####################clean 198############
+c2<- linkd[linkd$method=="link198d",]
+
+
+linkd198_parent<-c2
+
+linkd<-matchleft(linkd,c2)
+rm(c2)
+dim(linkd)
+####################clean 199############
+c2<- linkd[linkd$method=="link199d",]
+
+
+linkd199_parent<-c2
+
+linkd<-matchleft(linkd,c2)
+rm(c2)
+dim(linkd)
+
+
+####################clean 202############
+c2<- linkd[linkd$method=="link202d",]
+
+linkd202<-linkd[linkd$method=="link202d",] 
+
+linkd202[postcode.y=="CV13 0NP",add2:=gsub("GODSON HILL FARM", "GODSONS HILL FARM",add2)]
+
+linkd202_1<-linkd202[linkd202$add2==linkd202$buildingname,]
+
+linkd202_1<-uniqueresult(linkd202_1)
+
+linkd<-matchleft(linkd,linkd202_1)
+
+c2<- linkd[linkd$method=="link202d",]
+
+
+linkd202<-linkd[linkd$method=="link202d",] 
+linkd202$add2<-gsub(",","",linkd202$add2)
+#linkd202<-linkd202[grepl("^\\d",linkd202$add2),]
+linkd202_2<-linkd202[word(linkd202$add2, 1,3)==word(linkd202$paotext, 1,3),]
+
+
+linkd202_2<-uniqueresult(linkd202_2)
+dim(linkd)
+linkd<-matchleft(linkd,linkd202_2)
+dim(linkd)
+c2<- linkd[linkd$method=="link202d",]
+
+
+linkd<-matchleft(linkd,c2)
+dim(linkd)
+# 82420    34
+####################clean 203############
+c2<- linkd[linkd$method=="link203d",]
+
+
+
+
+linkd203<-linkd[linkd$method=="link203d",] 
+linkd203$add2<-gsub(",","",linkd203$add2)
+linkd203_1<-linkd203[word(linkd203$add2, 1)==linkd203$buildingnumber,]
+
+
+linkd203_1<-uniqueresult(linkd203_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd203_1)
+dim(linkd)
+c2<- linkd[linkd$method=="link203d",]
+
+fail_6<-c2
+linkd<-matchleft(linkd,c2)
+dim(linkd)
+rm(c2)
+
+####################clean 205############
+c2<- linkd[linkd$method=="link205d",]
+
+detail_46<-c2
+linkd<-matchleft(linkd,detail_46)
+dim(linkd)
+
+####################clean 211############
+length(unique(linkd$method))
+c2<- linkd[linkd$method=="link211d",]
+
+
+detail_11<-c2
+linkd<-matchleft(linkd,c2)
+dim(linkd)
+rm(c2)
+
+####################clean 214############
+c2<- linkd[linkd$method=="link214d",]
+
+
+
+linkd214<-linkd[linkd$method=="link214d",] 
+linkd214$add1<-gsub(",","",linkd214$add1)
+linkd214$add1c<-str_remove(linkd214$add1, '(\\w+\\s+){1}')
+
+
+linkd214_1<-linkd214[linkd214$add1c==linkd214$paotext,]
+
+
+linkd214_1<-uniqueresult(linkd214_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd214_1)
+# 81912    34
+linkd214<-linkd[linkd$method=="link214d",] 
+
+linkd<-matchleft(linkd,linkd214)
+dim(linkd)
+rm(c2)
+
+
+####################clean 217############
+c2<- linkd[linkd$method=="link217d",]
+
+linkd217_1<-linkd[linkd$method=="link217d" & substr(linkd$class,1,1)=="R" ,]
+linkd217_1<-uniqueresult(linkd217_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd217_1)
+dim(linkd)
+
+
+c2<- linkd[linkd$method=="link217d",]
+
+
+
+linkd217_parent<-c2
+linkd<-matchleft(linkd,c2)
+rm(c2)
+dim(linkd)
+####################clean 218############
+c2<- linkd[linkd$method=="link218d",]
+
+
+detail_12<-c2
+
+linkd217_parent<-c2
+linkd<-matchleft(linkd,c2)
+rm(c2)
+dim(linkd)
+
+####################clean 224############
+c2<- linkd[linkd$method=="link224d",]
+
+linkd224_parent<-c2
+linkd<-matchleft(linkd,c2)
+rm(c2)
+dim(linkd)
+####################clean 225############
+c2<- linkd[linkd$method=="link225d",]
+
+
+linkd225_parent<-c2
+linkd<-matchleft(linkd,c2)
+rm(c2)
+dim(linkd)
+
+
+####################clean 226############
+c2<- linkd[linkd$method=="link226d",]
+
+
+detail_12<-c2
+linkd<-matchleft(linkd,c2)
+rm(c2)
+dim(linkd)
+
+
+####################clean 227############
+c2<- linkd[linkd$method=="link227d",]
+
+
+detail_13<-c2
+linkd<-matchleft(linkd,c2)
+rm(c2)
+dim(linkd)
+
+
+####################clean 234############
+c2<- linkd[linkd$method=="link234d",]
+
+
+linkd234_1<-linkd[linkd$method=="link234d" & substr(linkd$class,1,1)=="R" ,]
+linkd234_1<-uniqueresult(linkd234_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd234_1)
+dim(linkd)
+
+c2<- linkd[linkd$method=="link234d",]
+
+
+linkd234_parent<-c2
+linkd<-matchleft(linkd,c2)
+rm(c2)
+dim(linkd)
+
+####################clean 236############
+length(unique(linkd$method))
+c2<- linkd[linkd$method=="link236d",]
+
+#c2<-c2[c2$saotext=="",]
+linkd236_1<-linkd[linkd$method=="link236d" & substr(linkd$class,1,1)=="R" ,]
+linkd236_1<-uniqueresult(linkd236_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd236_1)
+dim(linkd)
+
+c2<- linkd[linkd$method=="link236d",]
+c2<-c2[c2$saotext=="",]
+
+
+linkd236_parent1<-c2
+
+dim(linkd)
+linkd<-matchleft(linkd,linkd236_parent1)
+
+
+
+dim(linkd)
+
+c2<- linkd[linkd$method=="link236d",]
+
+
+detail_14<-c2
+
+linkd<-matchleft(linkd,c2)
+rm(c2)
+dim(linkd)
+linkd236_parent<-linkd236_parent1
+rm(linkd236_parent1)
+
+####################clean 237############
+c2<- linkd[linkd$method=="link237d",]
+
+
+linkd237_1<-linkd[linkd$method=="link237d" & substr(linkd$class,1,1)=="R" ,]
+linkd237_1<-uniqueresult(linkd237_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd237_1)
+dim(linkd)
+
+c2<- linkd[linkd$method=="link237d",]
+
+
+linkd237_parent<-c2
+
+linkd<-matchleft(linkd,c2)
+rm(c2)
+dim(linkd)
+
+
+
+####################clean 239############
+c2<- linkd[linkd$method=="link239d",]
+
+linkd239_1<-linkd[linkd$method=="link239d" & substr(linkd$class,1,1)=="R" ,]
+linkd239_1<-uniqueresult(linkd239_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd239_1)
+dim(linkd)
+
+c2<- linkd[linkd$method=="link239d",]
+
+
+linkd239_parent<-c2
+linkd<-matchleft(linkd,c2)
+rm(c2)
+dim(linkd)
+
+###############240############
+c2<- linkd[linkd$method=="link240d",]
+
+
+linkd240_1<-linkd[linkd$method=="link240d" & substr(linkd$class,1,1)=="R" ,]
+linkd240_1<-uniqueresult(linkd240_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd240_1)
+dim(linkd)
+
+c2<- linkd[linkd$method=="link240d",]
+
+linkd240_parent<-c2
+linkd<-matchleft(linkd,c2)
+rm(c2)
+dim(linkd)
+
+
+####################clean 246############################
+length(unique(linkd$method))
+#94
+c2<- linkd[linkd$method=="link246d",]
+
+
+##clean based on add2
+
+
+
+linkd246<-linkd[linkd$method=="link246d",] 
+linkd246$add2<-gsub(",","",linkd246$add2)
+linkd246_1<-linkd246[word(linkd246$add2, 1)==linkd246$paostartnumber,]
+
+linkd246_1<-uniqueresult(linkd246_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd246_1)
+dim(linkd)
+
+
+c2<- linkd[linkd$method=="link246d",]
+
+
+
+
+linkd246<-linkd[linkd$method=="link246d",] 
+linkd246$add2<-gsub(",","",linkd246$add2)
+linkd246_2<-linkd246[word(linkd246$add2, 1)==paste(linkd246$paostartnumber,linkd246$paoendnumber,sep="-"),]
+
+
+
+linkd246_2<-uniqueresult(linkd246_2)
+dim(linkd)
+linkd<-matchleft(linkd,linkd246_2)
+dim(linkd)
+#151344     34
+
+
+c2<- linkd[linkd$method=="link246d",]
+
+
+
+fail_7<-c2[grepl("\\d",c2$add2),]
+
+linkd<-matchleft(linkd,fail_7)
+dim(linkd)
+
+
+c2<- linkd[linkd$method=="link246d",]
+
+
+detail_15<-c2
+linkd<-matchleft(linkd,c2)
+rm(c2)
+dim(linkd)
+####################clean 247############
+c2<- linkd[linkd$method=="link247d",]
+
+fail_7<-c2
+linkd<-matchleft(linkd,c2)
+rm(c2)
+
+####################clean 249############
+c2<- linkd[linkd$method=="link249d",]
+
+linkd249_parent<-c2
+linkd<-matchleft(linkd,c2)
+rm(c2)
+
+####################clean 253############
+length(unique(linkd$method))
+c2<- linkd[linkd$method=="link253d",]
+
+
+#addd2=ss
+
+
+linkd253<-linkd[linkd$method=="link253d",] 
+linkd253$add2<-gsub(",","",linkd253$add2)
+linkd253_1<-linkd253[word(linkd253$add2, 1)==paste(linkd253$saostartnumber,linkd253$saostartsuffix,sep=""),]
+
+
+
+linkd253_1<-uniqueresult(linkd253_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd253_1)
+dim(linkd)
+# 73302    34
+
+#add2=paotext
+
+
+
+linkd253<-linkd[linkd$method=="link253d",] 
+linkd253$add2<-gsub(",","",linkd253$add2)
+
+linkd253[postcode.y=="TQ2 5PE",add2:=gsub("WALDON HALL", "WALDON HALL APARTMENTS",add2)]
+
+linkd253[postcode.y=="TQ14 8TL",add2:=gsub("LLANSTEPHEN", "LLANSTEPHAN",add2)]
+linkd253[postcode.y=="YO30 4XE",add2:=gsub("ST. CHRISTOPHERS HOUSE", "ST CHRISTOPHER HOUSE",add2)]
+linkd253[postcode.y=="GU26 6RA",add2:=gsub("MANORMEAD SUPPORTED HOUSING", "MANORMEAD",add2)]
+
+linkd253[postcode.y=="TQ2 6HJ",add2:=gsub("JAMES HOUSE", "JAMES HOUSE BRIDGE VIEW",add2)]
+linkd253[postcode.y=="NE1 6PN",add2:=gsub("ACACIA", "ACACIA HOTEL",add2)]
+
+
+linkd253_2<-linkd253[linkd253$add2==linkd253$paotext,]
+
+
+
+linkd253_2<-uniqueresult(linkd253_2)
+dim(linkd)
+linkd<-matchleft(linkd,linkd253_2)
+dim(linkd)
+
+##add2=paotext last three (remove the first one)
+
+linkd253<-linkd[linkd$method=="link253d",] 
+linkd253$add2<-gsub(",","",linkd253$add2)
+linkd253_3<-linkd253[linkd253$add2==str_remove(linkd253$paotext, '(\\w+\\s+){1}'),]
+
+
+
+linkd253_3<-uniqueresult(linkd253_3)
+dim(linkd)
+linkd<-matchleft(linkd,linkd253_3)
+dim(linkd)
+
+c2<- linkd[linkd$method=="link253d",]
+
+
+c2<-c2[grepl("\\d",c2$add2),]
+
+fail_8<-c2
+
+linkd<-matchleft(linkd,fail_8)
+dim(linkd)
+c2<- linkd[linkd$method=="link253d",]
+
+noadd2_1<-c2
+
+linkd<-matchleft(linkd,noadd2_1)
+dim(linkd)
+
+####################clean 254############
+c2<- linkd[linkd$method=="link254d",]
+
+c2<-c2[grepl("\\d",c2$add2),]
+
+
+
+
+##FLAT-2 (FIRST FLOOR)
+#add2 first two=saotext
+
+
+linkd254<-linkd[linkd$method=="link254d",] 
+linkd254$add2<-gsub(",","",linkd254$add2)
+linkd254$add2<-gsub("-"," ",linkd254$add2)
+linkd254_1<-linkd254[word(linkd254$add2, 1,2)==linkd254$saotext,]
+
+
+
+linkd254_1<-uniqueresult(linkd254_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd254_1)
+dim(linkd)
+
+c2<- linkd[linkd$method=="link254d",]
+
+c2<-c2[grepl("\\d",c2$add2),]
+
+
+
+
+
+c2<- linkd[linkd$method=="link254d",]
+
+
+linkd254<-linkd[linkd$method=="link254d",] 
+linkd254$add2<-gsub(",","",linkd254$add2)
+linkd254$add2<-gsub("[(]","",linkd254$add2)
+linkd254$add2<-gsub("[])]","",linkd254$add2)
+linkd254_2<-linkd254[word(linkd254$add2,-2, -1)==linkd254$saotext,]
+
+
+
+linkd254_2<-uniqueresult(linkd254_2)
+dim(linkd)
+linkd<-matchleft(linkd,linkd254_2)
+dim(linkd)
+
+c2<- linkd[linkd$method=="link254d",]
+
+c2<-c2[grepl("\\d",c2$add2),]
+
+
+
+noflat_1<-c2
+linkd<-matchleft(linkd,noflat_1)
+dim(linkd)
+
+c2<- linkd[linkd$method=="link254d",]
+
+linkd254_parent<-c2
+linkd<-matchleft(linkd,linkd254_parent)
+dim(linkd)
+
+
+####################clean 255############
+length(unique(linkd$method))
+c2<- linkd[linkd$method=="link255d",]
+
+
+##match based on add2
+
+
+linkd255<-linkd[linkd$method=="link255d",] 
+linkd255$add2<-gsub(",","",linkd255$add2)
+linkd255_1<-linkd255[word(linkd255$add2, 1)==linkd255$buildingnumber,]
+
+
+
+linkd255_1<-uniqueresult(linkd255_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd255_1)
+dim(linkd)
+
+
+c2<- linkd[linkd$method=="link255d",]
+c2<-c2[grepl("\\d",c2$add2),]
+
+
+noadd2_2<-c2
+linkd<-matchleft(linkd,noadd2_2)
+dim(linkd)
+#67448    34
+
+c2<- linkd[linkd$method=="link255d",]
+#c2<-c2[grepl("\\d",c2$add2),]
+
+
+
+linkd255_parent<-c2
+linkd<-matchleft(linkd,c2)
+dim(linkd)
+####################clean 256############
+c2<- linkd[linkd$method=="link256d",]
+
+linkd256_parent<-c2
+linkd<-matchleft(linkd,c2)
+dim(linkd)
+
+####################clean 260############
+c2<- linkd[linkd$method=="link260d",]
+
+
+
+detail_16<-c2
+linkd<-matchleft(linkd,c2)
+dim(linkd)
+
+####################clean 264############
+c2<- linkd[linkd$method=="link264d",]
+
+
+linkd264_parent<-c2
+linkd<-matchleft(linkd,c2)
+dim(linkd)
+
+
+####################clean 265############
+c2<- linkd[linkd$method=="link265d",]
+
+
+detail_17<-c2
+linkd<-matchleft(linkd,c2)
+dim(linkd)
+
+
+###############271############
+c2<- linkd[linkd$method=="link271d",]
+
+
+##add2
+
+
+linkd271<-linkd[linkd$method=="link271d",] 
+
+linkd271<-linkd271[grepl("\\d",linkd271$add2),]
+linkd271$add2<-gsub(",","",linkd271$add2)
+linkd271_1<-linkd271[word(linkd271$add2, 1)==linkd271$saostartnumber,]
+
+
+
+linkd271_1<-uniqueresult(linkd271_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd271_1)
+dim(linkd)
+
+#linkd<- linkd[linkd$method=="link271d",]
+
+
+linkd271<-linkd[linkd$method=="link271d",] 
+linkd271<-linkd271[grepl("\\d",linkd271$add2),]
+linkd271$add2<-gsub(",","",linkd271$add2)
+linkd271_2<-linkd271[word(linkd271$add2, 1)==linkd271$buildingnumber,]
+
+
+
+linkd271_2<-uniqueresult(linkd271_2)
+dim(linkd)
+linkd<-matchleft(linkd,linkd271_2)
+dim(linkd)
+#54194    34
+
+linkd271<-linkd[linkd$method=="link271d",] 
+linkd271<-linkd271[grepl("\\d",linkd271$add2),]
+
+
+linkd271$add2<-gsub(",","",linkd271$add2)
+linkd271_3<-linkd271[word(linkd271$add2, 1)==linkd271$paostartnumber,]
+
+
+
+linkd271_3<-uniqueresult(linkd271_3)
+dim(linkd)
+linkd<-matchleft(linkd,linkd271_3)
+dim(linkd)
+#54187    34
+
+linkd271<-linkd[linkd$method=="link271d",] 
+linkd271<-linkd271[grepl("\\d",linkd271$add2),]
+detail_18<-linkd271
+linkd<-matchleft(linkd,detail_18)
+linkd271<-linkd[linkd$method=="link271d",] 
+
+
+detail_19<-linkd271
+linkd<-matchleft(linkd,detail_19)
+dim(linkd)
+
+####################clean 272############
+c2<- linkd[linkd$method=="link272d",]
+
+
+
+linkd272<-linkd[linkd$method=="link272d",] 
+linkd272$add2<-gsub(",","",linkd272$add2)
+linkd272_1<-linkd272[word(linkd272$add2, 1)==linkd272$paostartnumber,]
+
+
+
+linkd272_1<-uniqueresult(linkd272_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd272_1)
+dim(linkd)
+c2<- linkd[linkd$method=="link272d",]
+
+detail_20<-c2
+linkd<-matchleft(linkd,detail_20)
+dim(linkd)
+
+
+
+####################clean 273############
+c2<- linkd[linkd$method=="link273d",]
+
+noadd2_3<-c2
+
+linkd<-matchleft(linkd,c2)
+
+####################clean 274############
+c2<- linkd[linkd$method=="link274d",]
+
+
+
+
+noadd2_4<-c2
+
+
+linkd<-matchleft(linkd,noadd2_4)
+dim(linkd)
+
+####################clean 281############
+c2<- linkd[linkd$method=="link281d",]
+
+
+
+c2$add1c<-str_remove(c2$add1, '(\\w+\\s+){2}')
+
+
+
+
+linkd281<-linkd[linkd$method=="link281d",] 
+
+linkd281<-linkd281[grepl("\\d",linkd281$add2),]
+
+#linkd281$add1c<-str_remove(linkd281$add1, '(\\w+\\s+){2}')
+
+linkd281_1<-linkd281[word(linkd281$add2, 1)==linkd281$saostartnumber,]
+
+
+
+linkd281_1<-uniqueresult(linkd281_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd281_1)
+dim(linkd)
+#50969    34
+c2<- linkd[linkd$method=="link281d",]
+#linkd281<-linkd[linkd$method=="link281d",] 
+
+
+
+
+linkd281<-linkd[linkd$method=="link281d",] 
+linkd281$add2<-gsub(",","",linkd281$add2)
+linkd281_2<-linkd281[word(linkd281$add2, 1)==linkd281$paostartnumber,]
+
+
+
+linkd281_2<-uniqueresult(linkd281_2)
+dim(linkd)
+linkd<-matchleft(linkd,linkd281_2)
+dim(linkd)
+
+c2<- linkd[linkd$method=="link281d",]
+
+
+
+linkd281<-linkd[linkd$method=="link281d",] 
+
+linkd281$add2<-gsub(",","",linkd281$add2)
+linkd281_3<-linkd281[word(linkd281$add2, 1)==paste(linkd281$saostartnumber,linkd281$saoendnumber,sep="-"),]
+
+
+
+linkd281_3<-uniqueresult(linkd281_3)
+dim(linkd)
+linkd<-matchleft(linkd,linkd281_3)
+dim(linkd)
+
+
+#linkd281<-linkd[linkd$method=="link281d",] 
+linkd281<-linkd[linkd$method=="link281d",] 
+
+linkd281<-linkd281[grepl("\\d",linkd281$add2),]
+
+linkd281$add2<-gsub(",","",linkd281$add2)
+linkd281_4<-linkd281[word(linkd281$add2, 1)==linkd281$saostartnumber,]
+
+
+
+linkd281_4<-uniqueresult(linkd281_4)
+dim(linkd)
+linkd<-matchleft(linkd,linkd281_4)
+dim(linkd)
+
+linkd281<-linkd[linkd$method=="link281d",] 
+
+linkd281<-linkd281[grepl("\\d",linkd281$add2),]
+
+
+
+linkd281$add2<-gsub(",","",linkd281$add2)
+linkd281_5<-linkd281[word(linkd281$add2, 1)==paste(linkd281$saostartnumber,linkd281$saostartsuffix,sep=""),]
+
+
+
+linkd281_5<-uniqueresult(linkd281_5)
+dim(linkd)
+linkd<-matchleft(linkd,linkd281_5)
+dim(linkd)
+
+linkd281<-linkd[linkd$method=="link281d",] 
+
+
+
+linkd281$add2<-gsub(",","",linkd281$add2)
+linkd281_6<-linkd281[word(linkd281$add2, 1)==paste(linkd281$paostartnumber,linkd281$paoendnumber,sep="-"),]
+
+
+
+linkd281_6<-uniqueresult(linkd281_6)
+dim(linkd)
+linkd<-matchleft(linkd,linkd281_6)
+dim(linkd)
+
+linkd281<-linkd[linkd$method=="link281d",] 
+
+# linkd281<-linkd281[grepl("\\d",linkd281$add2),]
+# linkd281[postcode.y=="HG1 2JA",add1:=gsub("GRANDVILLE HOUSE", "GRANDVILLE HOUSE",add1)]
+# linkd281$add1c<-str_remove(linkd281$add1, '(\\w+\\s+){2}')
+# 
+# linkd281$add1c<-gsub(",","",linkd281$add1c)
+# 
+# 
+
+
+linkd281_7<-linkd281[linkd281$add2==linkd281$paotext,]
+
+
+
+linkd281_7<-uniqueresult(linkd281_7)
+dim(linkd)
+linkd<-matchleft(linkd,linkd281_7)
+dim(linkd)
+#49756    34
+linkd281<-linkd[linkd$method=="link281d",] 
+
+linkd281<-linkd281[grepl("\\d",linkd281$add2),]
+
+
+linkd281$add1<-gsub(",","",linkd281$add1)
+linkd281$add1c<-str_remove(linkd281$add1, '(\\w+\\s+){2}')
+
+linkd281_8<-linkd281[linkd281$add1c==paste(linkd281$saostartnumber,linkd281$paotext,sep=" "),]
+
+
+
+linkd281_8<-uniqueresult(linkd281_8)
+dim(linkd)
+linkd<-matchleft(linkd,linkd281_8)
+dim(linkd)
+
+linkd281<-linkd[linkd$method=="link281d",] 
+
+
+#linkd281<-linkd281[grepl("\\d",linkd281$add2),]
+
+
+
+linkd281$add2<-gsub(",","",linkd281$add2)
+linkd281_9<-linkd281[word(linkd281$add2, 1)==paste(linkd281$paostartnumber,linkd281$paostartsuffix,sep=""),]
+
+
+
+linkd281_9<-uniqueresult(linkd281_9)
+dim(linkd)
+linkd<-matchleft(linkd,linkd281_9)
+dim(linkd)
+
+
+linkd281<-linkd[linkd$method=="link281d",] 
+
+
+
+linkd281$add2<-gsub(",","",linkd281$add2)
+linkd281_10<-linkd281[word(linkd281$add2, 1,2)==paste("BLOCK",linkd281$saostartnumber,sep=" "),]
+
+
+
+linkd281_10<-uniqueresult(linkd281_10)
+dim(linkd)
+linkd<-matchleft(linkd,linkd281_10)
+dim(linkd)
+
+linkd281<-linkd[linkd$method=="link281d",] 
+
+
+
+
+linkd281$add2<-gsub(",","",linkd281$add2)
+linkd281_11<-linkd281[word(linkd281$add2,2)==linkd281$paostartnumber,]
+
+
+
+linkd281_11<-uniqueresult(linkd281_11)
+dim(linkd)
+linkd<-matchleft(linkd,linkd281_11)
+dim(linkd)
+
+linkd281<-linkd[linkd$method=="link281d",] 
+
+linkd281<-linkd281[grepl("\\d",linkd281$add2),]
+
+noadd2_5<-linkd281
+linkd<-matchleft(linkd,noadd2_5)
+dim(linkd)
+linkd281<-linkd[linkd$method=="link281d",] 
+linkd281<-linkd281[grepl("\\d",linkd281$add3),]
+
+linkd281$add3<-gsub(",","",linkd281$add3)
+linkd281_12<-linkd281[word(linkd281$add3, 1)==word(linkd281$paotext, -1),]
+
+
+
+linkd281_12<-uniqueresult(linkd281_12)
+dim(linkd)
+linkd<-matchleft(linkd,linkd281_11)
+dim(linkd)
+# 42520    34
+linkd281<-linkd[linkd$method=="link281d",] 
+
+linkd281<-linkd281[grepl("\\d",linkd281$add3),]
+linkd281$add3<-gsub(",","",linkd281$add3)
+
+linkd281_13<-linkd281[word(linkd281$add3, 1)==linkd281$paostartnumber,]
+
+
+
+linkd281_13<-uniqueresult(linkd281_13)
+dim(linkd)
+linkd<-matchleft(linkd,linkd281_13)
+dim(linkd)
+
+linkd281<-linkd[linkd$method=="link281d",] 
+
+linkd281<-linkd281[grepl("\\d",linkd281$add3),]
+linkd281$add3<-gsub(",","",linkd281$add3)
+
+linkd281_14<-linkd281[word(linkd281$add3, 1)==linkd281$saostartnumber,]
+
+
+
+linkd281_14<-uniqueresult(linkd281_14)
+dim(linkd)
+linkd<-matchleft(linkd,linkd281_14)
+dim(linkd)
+
+
+
+linkd281<-linkd[linkd$method=="link281d",] 
+
+linkd281<-linkd281[grepl("\\d",linkd281$add3),]
+linkd281$add3<-gsub(",","",linkd281$add3)
+
+linkd281_15<-linkd281[word(linkd281$add3, 1)==paste(linkd281$paostartnumber,linkd281$paoendnumber,sep="-"),]
+
+
+
+linkd281_15<-uniqueresult(linkd281_15)
+dim(linkd)
+linkd<-matchleft(linkd,linkd281_15)
+dim(linkd)
+
+
+
+linkd281<-linkd[linkd$method=="link281d",] 
+
+linkd281<-linkd281[grepl("\\d",linkd281$add3),]
+linkd281$add3<-gsub(",","",linkd281$add3)
+
+linkd281_16<-linkd281[word(linkd281$add3, 1)==paste(linkd281$saostartnumber,linkd281$saoendnumber,sep="-"),]
+
+
+
+linkd281_16<-uniqueresult(linkd281_16)
+dim(linkd)
+linkd<-matchleft(linkd,linkd281_16)
+dim(linkd)
+
+linkd281<-linkd[linkd$method=="link281d",] 
+
+linkd281<-linkd281[grepl("\\d",linkd281$add3),]
+linkd281$add1<-gsub(",","",linkd281$add1)
+
+linkd281$add1c<-str_remove(linkd281$add1, '(\\w+\\s+){2}')
+
+linkd281_17<-linkd281[linkd281$add1c==paste("BLOCK",linkd281$saostartnumber,sep=" "),]
+
+
+
+linkd281_17<-uniqueresult(linkd281_17)
+dim(linkd)
+linkd<-matchleft(linkd,linkd281_17)
+dim(linkd)
+#42232    34
+
+linkd281<-linkd[linkd$method=="link281d",] 
+
+linkd281<-linkd281[grepl("\\d",linkd281$add3),]
+
+noadd2_6<-linkd281
+dim(linkd)
+linkd<-matchleft(linkd,noadd2_6)
+dim(linkd)
+
+
+linkd281<-linkd[linkd$method=="link281d",] 
+linkd281$add1<-gsub(",","",linkd281$add1)
+
+linkd281$add1c<-str_remove(linkd281$add1, '(\\w+\\s+){2}')
+
+linkd281_18<-linkd281[word(linkd281$add1c, 1)==linkd281$buildingnumber,]
+
+
+
+linkd281_18<-uniqueresult(linkd281_18)
+dim(linkd)
+linkd<-matchleft(linkd,linkd281_18)
+dim(linkd)
+
+
+
+
+linkd281<-linkd[linkd$method=="link281d",] 
+linkd281$add1<-gsub(",","",linkd281$add1)
+
+linkd281$add1c<-str_remove(linkd281$add1, '(\\w+\\s+){2}')
+
+linkd281_19<-linkd281[word(linkd281$add1c, 1)==paste(linkd281$saostartnumber,linkd281$saostartsuffix,sep=""),]
+
+
+
+linkd281_19<-uniqueresult(linkd281_19)
+dim(linkd)
+linkd<-matchleft(linkd,linkd281_19)
+dim(linkd)
+
+
+
+linkd281<-linkd[linkd$method=="link281d",] 
+linkd281$add1<-gsub(",","",linkd281$add1)
+
+linkd281$add1c<-str_remove(linkd281$add1, '(\\w+\\s+){2}')
+
+linkd281_20<-linkd281[word(linkd281$add1c, 1,2)==word(linkd281$paotext,1,2),]
+
+
+
+linkd281_20<-uniqueresult(linkd281_20)
+dim(linkd)
+linkd<-matchleft(linkd,linkd281_20)
+dim(linkd)
+#41106    34
+linkd281<-linkd[linkd$method=="link281d",] 
+linkd281$add1<-gsub(",","",linkd281$add1)
+
+linkd281$add1c<-str_remove(linkd281$add1, '(\\w+\\s+){2}')
+
+linkd281_21<-linkd281[word(linkd281$add1c, 1,2)==word(linkd281$paotext,2,3),]
+
+
+
+linkd281_21<-uniqueresult(linkd281_21)
+dim(linkd)
+linkd<-matchleft(linkd,linkd281_21)
+dim(linkd)
+# 41065    34
+
+linkd281<-linkd[linkd$method=="link281d",] 
+linkd281$add1<-gsub(",","",linkd281$add1)
+
+linkd281$add1c<-str_remove(linkd281$add1, '(\\w+\\s+){2}')
+
+linkd281_22<-linkd281[word(linkd281$add1c, 1)==paste(linkd281$paostartnumber,linkd281$paoendnumber,sep="-"),]
+
+
+
+linkd281_22<-uniqueresult(linkd281_22)
+dim(linkd)
+linkd<-matchleft(linkd,linkd281_22)
+dim(linkd)
+
+
+linkd281<-linkd[linkd$method=="link281d",] 
+linkd281$add1<-gsub(",","",linkd281$add1)
+linkd281[,add1:=gsub("LLOYDS TSB BANK PLC", "LLOYDS BANK PLC",add1)]
+linkd281[,add1:=gsub("ELLIOT HOUSE", "ELIOT HOUSE",add1)]
+linkd281[,add1:=gsub("BUXTON COURT", "BUXTON HOUSE",add1)]
+linkd281$add1c<-str_remove(linkd281$add1, '(\\w+\\s+){2}')
+
+linkd281_23<-linkd281[word(linkd281$add1c, 1,2)==word(linkd281$paotext,1,2),]
+
+
+
+linkd281_23<-uniqueresult(linkd281_23)
+dim(linkd)
+linkd<-matchleft(linkd,linkd281_23)
+dim(linkd)
+
+
+linkd281<-linkd[linkd$method=="link281d",] 
+linkd281$add1<-gsub(",","",linkd281$add1)
+
+linkd281$add1c<-str_remove(linkd281$add1, '(\\w+\\s+){2}')
+
+linkd281_24<-linkd281[word(linkd281$add1c, 1)==word(linkd281$paotext,1),]
+
+
+
+linkd281_24<-uniqueresult(linkd281_24)
+dim(linkd)
+linkd<-matchleft(linkd,linkd281_24)
+dim(linkd)
+#40896    34
+
+linkd281<-linkd[linkd$method=="link281d",]
+
+noadd2_7<-linkd281
+linkd<-matchleft(linkd,noadd2_7)
+dim(linkd)
+
+
+####################clean 284############
+c2<- linkd[linkd$method=="link284d",]
+
+
+
+linkd284_parent<-c2
+
+linkd<-matchleft(linkd,linkd284_parent)
+dim(linkd)
+
+####################clean 286############
+c2<- linkd[linkd$method=="link286d",]
+
+detail_21<-c2
+linkd<-matchleft(linkd,c2)
+dim(linkd)
+
+#####check the one to one part############################
+length(unique(linkd$method))
+####################clean 288############
+c2<- linkd[linkd$method=="link288d",]
+
+
+
+
+linkd288<-linkd[linkd$method=="link288d",] 
+
+#linkd288<-linkd288[grepl("\\d",linkd288$add2),]
+
+linkd288$add1c<-str_remove(linkd288$add1, '(\\w+\\s+){1}')
+
+linkd288_1<-linkd288[linkd288$add1c==paste(linkd288$saotext,linkd288$streetdescription,sep=" "),]
+
+
+
+linkd288_1<-uniqueresult(linkd288_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd288_1)
+dim(linkd)
+#39189    34
+linkd288<-linkd[linkd$method=="link288d",] 
+linkd288$add1<-gsub(",","",linkd288$add1)
+linkd288$add1c<-str_remove(linkd288$add1, '(\\w+\\s+){1}')
+
+linkd288_2<-linkd288[linkd288$add1c==paste(linkd288$subbuildingname,linkd288$saotext,sep=" "),]
+
+
+linkd288_2<-uniqueresult(linkd288_2)
+dim(linkd)
+linkd<-matchleft(linkd,linkd288_2)
+dim(linkd)
+#39149    34
+
+
+
+linkd288_parent<-c2[grepl("\\d",c2$saotext),]
+
+linkd288_parent1<-keepneed(linkd,linkd288_parent)
+rm(linkd288_parent)
+
+dim(linkd)
+linkd<-matchleft(linkd,linkd288_parent1)
+c2<- linkd[linkd$method=="link288d",]
+
+
+
+linkd288<-linkd[linkd$method=="link288d",] 
+linkd288$add1<-gsub(",","",linkd288$add1)
+linkd288$add1c<-str_remove(linkd288$add1, '(\\w+\\s+){1}')
+
+linkd288_3<-linkd288[word(linkd288$add1c,1)==paste(linkd288$paostartnumber,linkd288$paoendnumber,sep="-"),]
+linkd288_3<-linkd288_3[word(linkd288_3$add1,1)==linkd288_3$saostartnumber,]
+
+linkd288_3<-uniqueresult(linkd288_3)
+dim(linkd)
+linkd<-matchleft(linkd,linkd288_3)
+dim(linkd)
+#31114    34
+
+
+linkd288<-linkd[linkd$method=="link288d",] 
+linkd288$add1<-gsub(",","",linkd288$add1)
+linkd288$add1c<-str_remove(linkd288$add1, '(\\w+\\s+){1}')
+
+linkd288_4<-linkd288[word(linkd288$add1c,1)==word(linkd288$paotext,1),]
+#linkd288_3<-linkd288_3[word(linkd288_3$add1,1)==linkd288_3$saostartnumber,]
+
+linkd288_4<-uniqueresult(linkd288_4)
+dim(linkd)
+linkd<-matchleft(linkd,linkd288_4)
+dim(linkd)
+#31114    34
+
+linkd288<-linkd[linkd$method=="link288d",] 
+
+
+linkd288$add1<-gsub(",","",linkd288$add1)
+#linkd288$add1c<-str_remove(linkd288$add1, '(\\w+\\s+){1}')
+
+linkd288_5<-linkd288[word(linkd288$add1,1)==paste(linkd288$saostartnumber,linkd288$saostartsuffix,sep=""),]
+#linkd288_3<-linkd288_3[word(linkd288_3$add1,1)==linkd288_3$saostartnumber,]
+
+linkd288_5<-uniqueresult(linkd288_5)
+dim(linkd)
+linkd<-matchleft(linkd,linkd288_5)
+dim(linkd)
+
+linkd288<-linkd[linkd$method=="link288d",] 
+linkd288$add1<-gsub(",","",linkd288$add1)
+linkd288$add1c<-str_remove(linkd288$add1, '(\\w+\\s+){1}')
+linkd288$add1c<-gsub("CAE Y NANT","CAE-Y-NANT",linkd288$add1c)
+linkd288$add1c<-gsub("HAZELDEAN COURT","HAZELDENE COURT",linkd288$add1c)
+linkd288_6<-linkd288[word(linkd288$add1c,1)==word(linkd288$streetdescription,1),]
+
+linkd288_6<-uniqueresult(linkd288_6)
+dim(linkd)
+linkd<-matchleft(linkd,linkd288_6)
+dim(linkd)
+
+
+
+linkd288_7<-linkd[linkd$method=="link288d" & substr(linkd$class,1,1)=="R" ,]
+linkd288_7<-uniqueresult(linkd288_7)
+
+linkd<-matchleft(linkd,linkd288_7)
+dim(linkd)
+
+
+
+linkd288<-linkd[linkd$method=="link288d",] 
+linkd288$add1<-gsub(",","",linkd288$add1)
+linkd288$add1c<-str_remove(linkd288$add1, '(\\w+\\s+){1}')
+
+
+linkd288_8<-linkd288[word(linkd288$add1c,1)==word(linkd288$saotext,-1),]
+
+linkd288_8<-uniqueresult(linkd288_8)
+dim(linkd)
+linkd<-matchleft(linkd,linkd288_8)
+dim(linkd)
+
+
+linkd288<-linkd[linkd$method=="link288d",] 
+linkd288$add1<-gsub(",","",linkd288$add1)
+linkd288$add1c<-str_remove(linkd288$add1, '(\\w+\\s+){1}')
+
+linkd288_9<-linkd288[word(linkd288$add1c,1,2)==word(linkd288$saotext,-2,-1),]
+linkd288_9<-uniqueresult(linkd288_9)
+dim(linkd)
+linkd<-matchleft(linkd,linkd288_9)
+dim(linkd)
+
+
+linkd288<-linkd[linkd$method=="link288d",] 
+
+linkd288$add1<-gsub(",","",linkd288$add1)
+linkd288$add1c<-str_remove(linkd288$add1, '(\\w+\\s+){1}')
+
+linkd288_10<-linkd288[word(linkd288$add1c,1)==word(linkd288$saotext,1),]
+linkd288_10<-uniqueresult(linkd288_10)
+dim(linkd)
+linkd<-matchleft(linkd,linkd288_10)
+dim(linkd)
+
+
+linkd288<-linkd[linkd$method=="link288d",] 
+
+fail_9<-linkd288[grepl("\\d",linkd288$add3),]
+
+linkd<-matchleft(linkd,fail_9)
+
+linkd288<-linkd[linkd$method=="link288d",] 
+
+fail_10<-linkd288[grepl("\\d",linkd288$add2),]
+
+linkd<-matchleft(linkd,fail_10)
+
+linkd288<-linkd[linkd$method=="link288d",] 
+
+
+linkd<-matchleft(linkd,linkd288)
+dim(linkd)
+linkd288_parent<-linkd288_parent1
+rm(linkd288_parent1)
+###############289############
+length(unique(linkd$method))
+#76
+
+
+linkd289<-linkd[linkd$method=="link289d",] 
+
+
+
+linkd289$add1c<-str_remove(linkd289$add1, '(\\w+\\s+){1}')
+
+linkd289$add1c<-gsub("CHEPLING HOUSE","CHEPING HOUSE",linkd289$add1c)
+linkd289_1<-linkd289[word(linkd289$add1c,1,2)==linkd289$buildingname,]
+
+
+
+linkd289_1<-uniqueresult(linkd289_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd289_1)
+dim(linkd)
+#28140
+
+linkd289<-linkd[linkd$method=="link289d",] 
+linkd289$add1<-gsub(",","",linkd289$add1)
+#linkd289$add1c<-str_remove(linkd289$add1, '(\\w+\\s+){1}')
+
+linkd289_2<-linkd289[word(linkd289$add1,1,3)==linkd289$saotext,]
+
+
+linkd289_2<-uniqueresult(linkd289_2)
+dim(linkd)
+linkd<-matchleft(linkd,linkd289_2)
+dim(linkd)
+#28070    34
+
+
+
+
+
+linkd289<-linkd[linkd$method=="link289d",] 
+#linkd289_3<-linkd289[word(linkd289$add1c,1)==paste(linkd289$paostartnumber,linkd289$paoendnumber,sep="-"),]
+linkd289_3<-linkd289[linkd289$add2==paste(linkd289$paostartnumber,linkd289$streetdescription,sep=" "),]
+
+linkd289_3<-uniqueresult(linkd289_3)
+dim(linkd)
+linkd<-matchleft(linkd,linkd289_3)
+dim(linkd)
+
+
+
+
+linkd289<-linkd[linkd$method=="link289d",] 
+linkd289$add1<-gsub("CLARKES MEWS","CLARKS MEWS",linkd289$add1)
+linkd289$add1<-gsub("PORTER MEWS","PORTER HOUSE",linkd289$add1)
+linkd289_4<-linkd289[linkd289$add1==paste(linkd289$saostartnumber,linkd289$paotext,sep=" "),]
+#linkd289_3<-linkd289_3[word(linkd289_3$add1,1)==linkd289_3$saostartnumber,]
+
+linkd289_4<-uniqueresult(linkd289_4)
+dim(linkd)
+linkd<-matchleft(linkd,linkd289_4)
+dim(linkd)
+c2<- linkd[linkd$method=="link289d",]
+
+
+noadd2_8<-c2
+linkd<-matchleft(linkd,noadd2_8)
+dim(linkd)
+
+####################clean 290############
+c2<- linkd[linkd$method=="link290d",]
+
+
+linkd290_parent<-c2
+linkd<-matchleft(linkd,linkd290_parent)
+dim(linkd)
+####################clean 291############
+
+
+linkd291<-linkd[linkd$method=="link291d",] 
+
+linkd291<-linkd291[grepl("\\d",linkd291$add2),]
+
+linkd291$add2<-gsub(",","",linkd291$add2)
+linkd291_1<-linkd291[word(linkd291$add2,1)==paste(linkd291$paostartnumber,linkd291$paostartsuffix,sep=""),]
+
+
+
+linkd291_1<-uniqueresult(linkd291_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd291_1)
+
+
+
+
+linkd291<-linkd[linkd$method=="link291d",] 
+linkd291$add1<-gsub(",","",linkd291$add1)
+linkd291$add1c<-str_remove(linkd291$add1, '(\\w+\\s+){1}')
+
+linkd291_2<-linkd291[word(linkd291$add1c,1)==linkd291$buildingnumber,]
+
+
+linkd291_2<-uniqueresult(linkd291_2)
+dim(linkd)
+linkd<-matchleft(linkd,linkd291_2)
+dim(linkd)
+
+
+linkd291<-linkd[linkd$method=="link291d",] 
+linkd291$add1<-gsub(",","",linkd291$add1)
+linkd291$add1c<-str_remove(linkd291$add1, '(\\w+\\s+){1}')
+
+linkd291_3<-linkd291[word(linkd291$add1c,1)==paste(linkd291$paostartnumber,linkd291$paoendnumber,sep="-"),]
+#linkd291_3<-linkd291_3[word(linkd291_3$add1,1)==linkd291_3$saostartnumber,]
+
+linkd291_3<-uniqueresult(linkd291_3)
+dim(linkd)
+linkd<-matchleft(linkd,linkd291_3)
+dim(linkd)
+
+
+
+linkd291<-linkd[linkd$method=="link291d",] 
+linkd291$add1<-gsub(",","",linkd291$add1)
+linkd291$add1c<-str_remove(linkd291$add1, '(\\w+\\s+){1}')
+
+linkd291_4<-linkd291[word(linkd291$add1c,1)==linkd291$paostartnumber,]
+#linkd291_3<-linkd291_3[word(linkd291_3$add1,1)==linkd291_3$saostartnumber,]
+
+linkd291_4<-uniqueresult(linkd291_4)
+dim(linkd)
+linkd<-matchleft(linkd,linkd291_4)
+dim(linkd)
+
+linkd291<-linkd[linkd$method=="link291d",] 
+linkd291$add1<-gsub(",","",linkd291$add1)
+linkd291$add1c<-str_remove(linkd291$add1, '(\\w+\\s+){1}')
+
+
+linkd291_5<-linkd291[word(linkd291$add1c,1)==word(linkd291$paotext,2),]
+
+linkd291_5<-uniqueresult(linkd291_5)
+dim(linkd)
+linkd<-matchleft(linkd,linkd291_5)
+dim(linkd)
+
+
+linkd291<-linkd[linkd$method=="link291d",] 
+linkd291$add1<-gsub(",","",linkd291$add1)
+linkd291$add1c<-str_remove(linkd291$add1, '(\\w+\\s+){1}')
+linkd291_6<-linkd291[word(linkd291$add1c,1)==word(linkd291$paotext,1),]
+
+linkd291_6<-uniqueresult(linkd291_6)
+dim(linkd)
+linkd<-matchleft(linkd,linkd291_6)
+dim(linkd)
+#25886    34
+
+
+
+linkd291<-linkd[linkd$method=="link291d",] 
+linkd291$add2<-gsub(",","",linkd291$add2)
+
+linkd291<-linkd291[grepl("\\d",linkd291$add2),]
+
+
+linkd291_7<-linkd291[word(linkd291$add2,1)==word(linkd291$paotext,2),]
+
+linkd291_7<-uniqueresult(linkd291_7)
+dim(linkd)
+linkd<-matchleft(linkd,linkd291_7)
+dim(linkd)
+#25878    34
+
+linkd291<-linkd[linkd$method=="link291d",] 
+linkd291$add1<-gsub(",","",linkd291$add1)
+linkd291$add1c<-str_remove(linkd291$add1, '(\\w+\\s+){1}')
+
+#MANOR HOUSE
+
+linkd291_8<-linkd291[linkd291$add1c==linkd291$paotext,]
+
+linkd291_parent<-linkd291_8
+rm(linkd291_8)
+
+linkd<-matchleft(linkd,linkd291_parent)
+dim(linkd)
+
+
+linkd291<-linkd[linkd$method=="link291d",] 
+linkd291$add1<-gsub(",","",linkd291$add1)
+linkd291$add1c<-str_remove(linkd291$add1, '(\\w+\\s+){1}')
+
+
+linkd291_8<-linkd291[word(linkd291$add1c,1)==word(linkd291$paotext,1),]
+
+linkd291_8<-uniqueresult(linkd291_8)
+
+linkd<-matchleft(linkd,linkd291_parent)
+dim(linkd)
+
+linkd291<-linkd[linkd$method=="link291d",] 
+linkd291$add1<-gsub(",","",linkd291$add1)
+linkd291$add1c<-str_remove(linkd291$add1, '(\\w+\\s+){1}')
+linkd291$add1c<-gsub("MANOR HOUSE","THE MANOR HOUSE",linkd291$add1c)
+
+linkd291_9<-linkd291[linkd291$add1c==linkd291$paotext,]
+
+linkd291_9<-uniqueresult(linkd291_9)
+
+linkd<-matchleft(linkd,linkd291_9)
+dim(linkd)
+# 25829    34
+
+
+linkd291<-linkd[linkd$method=="link291d",] 
+linkd291$add1<-gsub(",","",linkd291$add1)
+linkd291$add1c<-str_remove(linkd291$add1, '(\\w+\\s+){1}')
+#linkd291$add1c<-gsub("MANOR HOUSE","THE MANOR HOUSE",linkd291$add1c)
+
+linkd291_10<-linkd291[word(linkd291$add1c,1,2)==word(linkd291$paotext,1,2),]
+
+linkd291_10<-uniqueresult(linkd291_10)
+
+linkd<-matchleft(linkd,linkd291_10)
+dim(linkd)
+# 25395    34
+
+
+
+c2<- linkd[linkd$method=="link291d",]
+
+
+fail_11<-c2
+linkd<-matchleft(linkd,fail_11)
+dim(linkd)
+
+###############292############
+
+
+
+linkd292<-linkd[linkd$method=="link292d",] 
+
+linkd292$add2<-gsub(",","",linkd292$add2)
+
+#linkd292$add1c<-str_remove(linkd292$add1, '(\\w+\\s+){1}')
+
+linkd292_1<-linkd292[linkd292$add2==linkd292$paotext,]
+
+
+linkd292_1<-uniqueresult(linkd292_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd292_1)
+dim(linkd)
+
+linkd292<-linkd[linkd$method=="link292d",] 
+
+linkd292$add2<-gsub(",","",linkd292$add2)
+
+linkd292_2<-linkd292[word(linkd292$add2,1,2)==word(linkd292$paotext,1,2),]
+
+
+linkd292_2<-uniqueresult(linkd292_2)
+dim(linkd)
+linkd<-matchleft(linkd,linkd292_2)
+dim(linkd)
+
+c2<- linkd[linkd$method=="link292d",]
+
+noadd2_9<-c2
+
+linkd<-matchleft(linkd,noadd2_9)
+dim(linkd)
+
+
+
+####################clean 293############
+c2<- linkd[linkd$method=="link293d",]
+
+
+
+linkd293<-linkd[linkd$method=="link293d",] 
+
+#linkd293<-linkd293[grepl("\\d",linkd293$add2),]
+
+#linkd293$add1c<-str_remove(linkd293$add1, '(\\w+\\s+){1}')
+
+linkd293_1<-linkd293[word(linkd293$add2,1)==linkd293$paostartnumber,]
+linkd293_1<-uniqueresult(linkd293_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd293_1)
+dim(linkd)
+#22042    34
+
+
+linkd293<-linkd[linkd$method=="link293d",] 
+linkd293$add1<-gsub(",","",linkd293$add1)
+linkd293$add1c<-str_remove(linkd293$add1, '(\\w+\\s+){2}')
+
+linkd293_2<-linkd293[word(linkd293$add1c,1,2)==word(linkd293$paotext,1,2),]
+
+
+linkd293_2<-uniqueresult(linkd293_2)
+dim(linkd)
+linkd<-matchleft(linkd,linkd293_2)
+dim(linkd)
+# 21988    34
+linkd293<-linkd[linkd$method=="link293d",]
+linkd293_3<-linkd293[linkd293$add2==linkd293$paotext,]
+# 21988    34
+
+linkd293_3<-uniqueresult(linkd293_3)
+
+linkd<-matchleft(linkd,linkd293_3)
+
+linkd293<-linkd[linkd$method=="link293d",] 
+linkd293$add2<-gsub(",","",linkd293$add2)
+linkd293$pp<-paste(linkd293$paostartnumber,linkd293$paostartsuffix,sep="")
+linkd293$pp<- str_trim(linkd293$pp)
+linkd293_4<-linkd293[linkd293$add2==paste(linkd293$pp,linkd293$streetdescription,sep=" "),]
+
+
+linkd293_4<-uniqueresult(linkd293_4)
+dim(linkd)
+linkd<-matchleft(linkd,linkd293_4)
+dim(linkd)
+#  21896    34
+
+linkd293<-linkd[linkd$method=="link293d",]
+
+
+
+linkd293<-linkd[linkd$method=="link293d",] 
+linkd293$add2<-gsub(",","",linkd293$add2)
+
+linkd293_parent<-linkd293[linkd293$add2==paste(linkd293$saostartnumber,linkd293$paotext,sep=" "),]
+
+
+
+linkd<-matchleft(linkd,linkd293_parent)
+dim(linkd)
+linkd293<-linkd[linkd$method=="link293d",]
+
+
+
+linkd293<-linkd[linkd$method=="link293d",] 
+fail_12<-linkd293
+
+linkd<-matchleft(linkd,fail_12)
+dim(linkd)
+####################clean 294############
+
+
+linkd294_1<-linkd[linkd$method=="link294d" & substr(linkd$class,1,1)=="R" ,]
+linkd294_1<-uniqueresult(linkd294_1)
+
+linkd<-matchleft(linkd,linkd294_1)
+dim(linkd)
+
+
+linkd294<-linkd[linkd$method=="link294d",] 
+linkd294$add2<-gsub(",","",linkd294$add2)
+
+linkd294$ss<-paste(linkd294$saostartnumber,linkd294$saostartsuffix,sep="")
+
+linkd294_2<-linkd294[word(linkd294$add2,1)==linkd294$ss,]
+
+
+
+linkd294_2<-uniqueresult(linkd294_2)
+dim(linkd)
+linkd<-matchleft(linkd,linkd294_2)
+dim(linkd)
+
+
+linkd294<-linkd[linkd$method=="link294d",] 
+inkd294$add2<-gsub(",","",linkd294$add2)
+
+#linkd294$ss<-paste(linkd294$saostartnumber,linkd294$saostartsuffix,sep="")
+
+linkd294_3<-linkd294[word(linkd294$add2,1)==linkd294$paostartnumber,]
+
+
+
+linkd294_3<-uniqueresult(linkd294_3)
+dim(linkd)
+linkd<-matchleft(linkd,linkd294_3)
+dim(linkd)
+#21420    34
+
+linkd294<-linkd[linkd$method=="link294d",] 
+
+linkd294$add1<-gsub(",","",linkd294$add1)
+
+linkd294$add1c<-str_remove(linkd294$add1, '(\\w+\\s+){1}')
+
+linkd294_4<-linkd294[word(linkd294$add1c,1)==linkd294$saostartnumber,]
+
+linkd294_4<-uniqueresult(linkd294_4)
+dim(linkd)
+linkd<-matchleft(linkd,linkd294_4)
+dim(linkd)
+# 21416    34
+
+c2<- linkd[linkd$method=="link294d",]
+
+fail_13<-c2
+
+linkd<-matchleft(linkd,fail_13)
+dim(linkd)
+####################clean 295############
+
+
+linkd295<-linkd[linkd$method=="link295d",] 
+
+linkd295<-linkd295[grepl("\\d",linkd295$add2),]
+linkd295 <- linkd295[grepl("\\d$",linkd295$add1),]
+fail_14<-linkd295
+
+linkd<-matchleft(linkd,fail_14)
+
+
+linkd295_1<-linkd[linkd$method=="link295d" & substr(linkd$class,1,1)=="R" ,]
+linkd295_1<-uniqueresult(linkd295_1)
+
+linkd<-matchleft(linkd,linkd295_1)
+dim(linkd)
+
+
+
+linkd295<-linkd[linkd$method=="link295d",] 
+linkd295$add3<-gsub(",","",linkd295$add3)
+linkd295_2<-linkd295[word(linkd295$add3, 1)==linkd295$paostartnumber,]
+linkd295_2<-uniqueresult(linkd295_2)
+
+linkd<-matchleft(linkd,linkd295_2)
+dim(linkd)
+
+
+c2<- linkd[linkd$method=="link295d",]
+
+
+detail_22<-c2
+
+linkd<-matchleft(linkd,detail_22)
+dim(linkd)
+####################clean 296############
+c2<- linkd[linkd$method=="link296d",]
+
+
+linkd296_1<-linkd[linkd$method=="link296d" & substr(linkd$class,1,1)=="R" ,]
+linkd296_1<-uniqueresult(linkd296_1)
+
+linkd<-matchleft(linkd,linkd296_1)
+dim(linkd)
+
+c2<- linkd[linkd$method=="link296d",]
+
+detail_23<-c2
+
+linkd<-matchleft(linkd,detail_23)
+####################clean 297############
+c2<- linkd[linkd$method=="link297d",]
+
+
+linkd297<-linkd[linkd$method=="link297d",]
+linkd297<-linkd297[grepl("\\d",linkd297$add2),]
+linkd297 <- linkd297[grepl("\\d$",linkd297$add1),]
+linkd297<- linkd297[linkd297$paostartnumber=="",]
+fail_15<-linkd297
+
+c2<- linkd[linkd$method=="link297d",]
+
+
+detail_24<-c2
+
+linkd<-matchleft(linkd,detail_24)
+
+###############299############
+c2<- linkd[linkd$method=="link299d",]
+
+
+detail_25<-c2
+linkd<-matchleft(linkd,detail_25)
+
+###############301############
+c2<- linkd[linkd$method=="link301d",]
+
+
+linkd301_1<-linkd[linkd$method=="link301d" & word(linkd$add2,1)==word(linkd$paotext,1) ,]
+linkd301_1<-uniqueresult(linkd301_1)
+
+linkd<-matchleft(linkd,linkd301_1)
+dim(linkd)
+
+
+c2<- linkd[linkd$method=="link301d",]
+detail_26<-c2
+
+linkd<-matchleft(linkd,detail_26)
+
+###############303############
+c2<- linkd[linkd$method=="link303d",]
+
+
+linkd<-matchleft(linkd,c2)
+dim(linkd)
+
+
+###############304############
+c2<- linkd[linkd$method=="link304d",]
+
+###############305############
+c2<- linkd[linkd$method=="link305d",]
+
+
+
+linkd305<-linkd[linkd$method=="link305d",]
+linkd305<-linkd305[grepl("\\d",linkd305$add2),]
+linkd305 <- linkd305[grepl("\\d$",linkd305$add1),]
+fail_15<-linkd305
+linkd<-matchleft(linkd,fail_15)
+dim(linkd)
+c2<- linkd[linkd$method=="link305d",]
+
+
+linkd305_parent<-c2
+
+linkd<-matchleft(linkd,c2)
+
+
+###############314############
+c2<- linkd[linkd$method=="link314d",]
+
+linkd314_parent<-c2
+linkd<-matchleft(linkd,linkd314_parent)
+
+###############318############
+c2<- linkd[linkd$method=="link318d",]
+
+
+linkd318_parent<-c2
+linkd<-matchleft(linkd,linkd318_parent)
+dim(linkd)
+
+
+###############319############
+
+linkd319<-linkd[linkd$method=="link319d",] 
+
+linkd319$add2<-gsub("NO.","",linkd319$add2)
+#linkd319$add2c<-str_remove(linkd319$add2, '(\\w+\\s+){1}')
+
+#linkd319$add1c<-str_remove(linkd319$add1, '(\\w+\\s+){1}')
+
+linkd319_1<-linkd319[word(linkd319$add2,1)==linkd319$paostartnumber,]
+
+
+
+linkd319_1<-uniqueresult(linkd319_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd319_1)
+dim(linkd)
+#20906    34
+
+linkd319<-linkd[linkd$method=="link319d",] 
+
+
+#linkd319$add2c<-str_remove(linkd319$add2, '(\\w+\\s+){1}')
+
+#linkd319$add1c<-str_remove(linkd319$add1, '(\\w+\\s+){1}')
+
+linkd319_2<-linkd319[word(linkd319$add3,1)==linkd319$buildingnumber,]
+
+
+
+linkd319_2<-uniqueresult(linkd319_2)
+
+dim(linkd)
+linkd<-matchleft(linkd,linkd319_2)
+
+###############321############
+
+length(unique(linkd$method))
+
+linkd321<-linkd[linkd$method=="link321d",] 
+
+linkd321<-linkd321[grepl("\\d",linkd321$add2),]
+linkd321$add2<-gsub(",","",linkd321$add2)
+
+
+linkd321_1<-linkd321[word(linkd321$add2,1)==linkd321$buildingnumber,]
+linkd321_1<-uniqueresult(linkd321_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd321_1)
+dim(linkd)
+#20807    34
+linkd321<-linkd[linkd$method=="link321d",] 
+
+linkd321<-linkd321[grepl("\\d",linkd321$add2),]
+linkd321$add2<-gsub(",","",linkd321$add2)
+
+
+
+linkd321_2<-linkd321[word(linkd321$add2,-1)==linkd321$buildingnumber,]
+
+linkd321_2<-uniqueresult(linkd321_2)
+dim(linkd)
+linkd<-matchleft(linkd,linkd321_2)
+dim(linkd)
+
+
+linkd321<-linkd[linkd$method=="link321d",] 
+
+linkd321<-linkd321[grepl("\\d",linkd321$add2),]
+linkd321$add2<-gsub(",","",linkd321$add2)
+noadd2_10<-linkd321
+linkd<-matchleft(linkd,noadd2_10)
+dim(linkd)
+
+c2<- linkd[linkd$method=="link321d",]
+
+
+linkd<-matchleft(linkd,c2)
+
+###############322############
+c2<- linkd[linkd$method=="link322d",]
+
+noadd2_11<-c2
+linkd<-matchleft(linkd,c2)
+dim(linkd)
+###############323############
+c2<- linkd[linkd$method=="link323d",]
+
+
+linkd323_parent<-c2
+
+linkd<-matchleft(linkd,linkd323_parent)
+dim(linkd)
+###############324############
+c2<- linkd[linkd$method=="link324d",]
+
+
+linkd324_1<-linkd[linkd$method=="link324d" & substr(linkd$class,1,1)=="R" ,]
+linkd324_1<-uniqueresult(linkd324_1)
+
+linkd<-matchleft(linkd,linkd324_1)
+
+c2<- linkd[linkd$method=="link324d",]
+
+linkd324_parent<-c2
+
+linkd<-matchleft(linkd,linkd324_parent)
+dim(linkd)
+###############325############
+c2<- linkd[linkd$method=="link325d",]
+
+linkd325_parent<-c2
+linkd<-matchleft(linkd,linkd325_parent)
+dim(linkd)
+
+
+###############326############
+c2<- linkd[linkd$method=="link326d",]
+
+
+linkd326_parent<-c2
+
+linkd<-matchleft(linkd,linkd326_parent)
+dim(linkd)
+
+###############327############
+c2<- linkd[linkd$method=="link327d",]
+
+
+linkd327_parent<-c2
+
+linkd<-matchleft(linkd,linkd327_parent)
+dim(linkd)
+
+###############329############
+c2<- linkd[linkd$method=="link329d",]
+linkd329_parent<-c2
+
+linkd<-matchleft(linkd,linkd329_parent)
+
+###############330############
+c2<- linkd[linkd$method=="link330d",]
+linkd330_parent<-c2
+
+linkd<-matchleft(linkd,linkd330_parent)
+dim(linkd)
+
+
+###############331############
+c2<- linkd[linkd$method=="link331d",]
+
+linkd331_parent<-c2
+
+linkd<-matchleft(linkd,c2)
+
+###############333############
+c2<- linkd[linkd$method=="link333d",]
+
+
+linkd333_parent<-c2
+linkd<-matchleft(linkd,c2)
+dim(linkd)
+
+###############334############
+c2<- linkd[linkd$method=="link334d",]
+
+linkd334_parent<-c2
+linkd<-matchleft(linkd,c2)
+
+###############336############
+c2<- linkd[linkd$method=="link336d",]
+
+linkd336_parent<-c2
+linkd<-matchleft(linkd,c2)
+
+###############338############
+c2<- linkd[linkd$method=="link338d",]
+
+detail_27<-c2
+linkd<-matchleft(linkd,c2)
+
+###############339############
+c2<- linkd[linkd$method=="link339d",]
+
+linkd339_parent<-c2
+linkd<-matchleft(linkd,c2)
+dim(linkd)
+
+###############341############
+c2<- linkd[linkd$method=="link341d",]
+
+linkd341_parent<-c2
+linkd<-matchleft(linkd,c2)
+###############348############
+c2<- linkd[linkd$method=="link348d",]
+
+linkd348_1<-linkd[linkd$method=="link348d" & substr(linkd$class,1,1)=="R" ,]
+linkd348_1<-uniqueresult(linkd348_1)
+
+linkd<-matchleft(linkd,linkd348_1)
+
+###############349############
+c2<- linkd[linkd$method=="link349d",]
+
+linkd349_1<-linkd[linkd$method=="link349d" & substr(linkd$class,1,1)=="R" ,]
+linkd349_1<-uniqueresult(linkd349_1)
+
+linkd<-matchleft(linkd,linkd349_1)
+dim(linkd)
+
+c2<- linkd[linkd$method=="link349d",]
+
+
+linkd349_parent<-c2
+
+linkd<-matchleft(linkd,c2)
+
+###############351############
+c2<- linkd[linkd$method=="link351d",]
+linkd349_parent<-c2
+linkd<-matchleft(linkd,c2)
+
+###############356############
+c2<- linkd[linkd$method=="link356d",]
+linkd356_parent<-c2
+linkd<-matchleft(linkd,c2)
+dim(linkd)
+###############357############
+
+linkd357<-linkd[linkd$method=="link357d",] 
+linkd357$add2<-gsub(",","",linkd357$add2)
+linkd357_1<-linkd357[word(linkd357$add2, 1)==linkd357$paostartnumber,]
+
+
+
+linkd357_1<-uniqueresult(linkd357_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd357_1)
+dim(linkd)
+c2<- linkd[linkd$method=="link357d",]
+noadd2_12<-c2
+linkd<-matchleft(linkd,c2)
+dim(linkd)
+
+###############360############
+c2<- linkd[linkd$method=="link360d",]
+
+fail_16<-c2
+linkd<-matchleft(linkd,c2)
+
+###############363############
+c2<- linkd[linkd$method=="link363d",]
+
+
+
+detail_28<-c2
+linkd<-matchleft(linkd,c2)
+dim(linkd)
+
+
+###############367############
+
+linkd367<-linkd[linkd$method=="link367d",] 
+linkd367$add2<-gsub(",","",linkd367$add2)
+linkd367_1<-linkd367[word(linkd367$add2, 1)==paste(linkd367$saostartnumber,linkd367$saostartsuffix,sep=""),]
+
+
+
+linkd367_1<-uniqueresult(linkd367_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd367_1)
+c2<- linkd[linkd$method=="link367d",]
+
+
+
+fail_17<-c2
+linkd<-matchleft(linkd,c2)
+dim(linkd)
+
+####################clean 368############
+c2<- linkd[linkd$method=="link368d",]
+
+
+detail_29<-c2
+
+linkd<-matchleft(linkd,c2)
+dim(linkd)
+####################clean 369############
+c2<- linkd[linkd$method=="link369d",]
+
+
+detail_30<-c2
+
+linkd<-matchleft(linkd,c2)
+
+####################clean 374############
+c2<- linkd[linkd$method=="link374d",]
+
+linkd374_parent<-c2
+linkd<-matchleft(linkd,c2)
+dim(linkd)
+
+####################clean 376############
+c2<- linkd[linkd$method=="link376d",]
+
+
+detail_31<-c2
+linkd<-matchleft(linkd,c2)
+dim(linkd)
+
+####################clean 377############
+c2<- linkd[linkd$method=="link377d",]
+
+detail_32<-c2
+linkd<-matchleft(linkd,c2)
+###############381############
+c2<- linkd[linkd$method=="link381d",]
+
+linkd381_parent<-c2
+linkd<-matchleft(linkd,c2)
+dim(linkd)
+
+###############382############
+c2<- linkd[linkd$method=="link382d",]
+
+detail_33<-c2
+linkd<-matchleft(linkd,c2)
+
+###############388############
+c2<- linkd[linkd$method=="link388d",]
+
+detail_34<-c2
+linkd<-matchleft(linkd,c2)
+dim(linkd)
+###############389############
+c2<- linkd[linkd$method=="link389d",]
+detail_35<-c2
+linkd<-matchleft(linkd,c2)
+dim(linkd)
+###############390############
+c2<- linkd[linkd$method=="link390d",]
+
+
+#add2=paotext
+
+
+linkd390<-linkd[linkd$method=="link390d",] 
+linkd390$add2<-gsub("ST. HELLIER COURT","ST HELIER COURT",linkd390$add2)
+
+
+linkd390_1<-linkd390[linkd390$add2==linkd390$paotext,]
+linkd390_1<-uniqueresult(linkd390_1)
+
+linkd<-matchleft(linkd,linkd390_1)
+dim(linkd)
+
+# 11157    3
+
+linkd390<-linkd[linkd$method=="link390d",] 
+
+linkd390_2<-linkd390[word(linkd390$add2,1)==linkd390$saostartnumber,]
+
+linkd390_2<-uniqueresult(linkd390_2)
+
+linkd<-matchleft(linkd,linkd390_2)
+dim(linkd)
+linkd390<-linkd[linkd$method=="link390d",] 
+
+noadd2_13<-linkd390
+
+linkd<-matchleft(linkd,linkd390)
+dim(linkd)
+###############391############
+
+linkd391<-linkd[linkd$method=="link391d",] 
+
+linkd391_1<-linkd391[linkd391$add2==word(linkd391$buildingname,1,2),]
+
+
+
+linkd391_1<-uniqueresult(linkd391_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd391_1)
+
+###############398############
+c2<- linkd[linkd$method=="link398d",]
+
+linkd398_parent<-c2
+linkd<-matchleft(linkd,linkd398_parent)
+dim(linkd)
+
+###############399############
+c2<- linkd[linkd$method=="link399d",]
+fail_18<-c2
+
+linkd<-matchleft(linkd,fail_18)
+dim(linkd)
+
+###############404############
+length(unique(linkd$method))
+c2<- linkd[linkd$method=="link404d",]
+
+
+linkd404_1<-linkd[linkd$method=="link404d" & substr(linkd$class,1,1)=="R" ,]
+linkd404_1<-uniqueresult(linkd404_1)
+
+linkd<-matchleft(linkd,linkd404_1)
+dim(linkd)
+
+c2<- linkd[linkd$method=="link404d",]
+
+detail_36<-c2
+
+linkd<-matchleft(linkd,detail_36)
+
+###############406############
+c2<- linkd[linkd$method=="link406d",]
+
+
+detail_37<-c2
+
+linkd<-matchleft(linkd,detail_37)
+
+
+###############412############
+c2<- linkd[linkd$method=="link412d",]
+
+
+detail_38<-c2
+
+linkd<-matchleft(linkd,detail_38)
+dim(linkd)
+
+###############413############
+c2<- linkd[linkd$method=="link413d",]
+
+detail_39<-c2
+
+linkd<-matchleft(linkd,detail_39)
+
+###############415############
+c2<- linkd[linkd$method=="link415d",]
+
+
+detail_40<-c2
+
+linkd<-matchleft(linkd,detail_40)
+dim(linkd)
+###############416############
+c2<- linkd[linkd$method=="link416d",]
+detail_41<-c2
+
+linkd<-matchleft(linkd,detail_41)
+
+###############418############
+c2<- linkd[linkd$method=="link418d",]
+detail_42<-c2
+
+linkd<-matchleft(linkd,detail_42)
+dim(linkd)
+
+
+###############419############
+length(unique(linkd$method))
+#18
+
+linkd419_1<-linkd[linkd$method=="link419d" & substr(linkd$class,1,1)=="R" ,]
+linkd419_1<-uniqueresult(linkd419_1)
+
+linkd<-matchleft(linkd,linkd419_1)
+dim(linkd)
+
+c2<- linkd[linkd$method=="link419d",]
+
+detail_43<-c2
+
+linkd<-matchleft(linkd,detail_43)
+dim(linkd)
+
+
+
+###############420############
+c2<- linkd[linkd$method=="link420d",]
+detail_44<-c2
+
+linkd<-matchleft(linkd,detail_44)
+dim(linkd)
+
+
+###############421############
+c2<- linkd[linkd$method=="link421d",]
+
+
+linkd421<-linkd[linkd$method=="link421d",] 
+linkd421$add2<-gsub(",","",linkd421$add2)
+linkd421_1<-linkd421[word(linkd421$add2, 1)==linkd421$paostartnumber,]
+
+
+
+linkd421_1<-uniqueresult(linkd421_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd421_1)
+dim(linkd)
+
+c2<- linkd[linkd$method=="link421d",]
+fail_19<-c2
+
+linkd<-matchleft(linkd,fail_19)
+dim(linkd)
+
+
+
+###############422############
+c2<- linkd[linkd$method=="link422d",]
+
+
+linkd422_1<-linkd[linkd$method=="link422d" & substr(linkd$class,1,1)=="R" ,]
+linkd422_1<-uniqueresult(linkd422_1)
+
+linkd<-matchleft(linkd,linkd422_1)
+dim(linkd)
+
+c2<- linkd[linkd$method=="link422d",]
+
+fail_20<-c2
+
+linkd<-matchleft(linkd,fail_20)
+dim(linkd)
+
+###############423############
+c2<- linkd[linkd$method=="link423d",]
+
+fail_21<-c2
+
+
+linkd<-matchleft(linkd,fail_21)
+dim(linkd)
+###############424############
+c2<- linkd[linkd$method=="link424d",]
+
+linkd424_parent<-c2
+linkd<-matchleft(linkd,linkd424_parent)
+dim(linkd)
+#8475   34
+###############425############
+c2<- linkd[linkd$method=="link425d",]
+
+
+linkd425_parent<-c2[grepl("APARTMENT",c2$subbuildingname),]
+
+linkd425_parent1<-keepneed(linkd,linkd425_parent)
+rm(linkd425_parent)
+
+dim(linkd)
+linkd<-matchleft(linkd,linkd425_parent1)
+dim(linkd)
+
+detail_45<-c2
+
+
+linkd<-matchleft(linkd,detail_45)
+dim(linkd)
+
+linkd425_parent<-linkd425_parent1
+rm(linkd425_parent1)
+
+###############428############
+c2<- linkd[linkd$method=="link428d",]
+
+linkd428_parent<-c2
+
+
+linkd<-matchleft(linkd,linkd428_parent)
+
+###############431############
+
+#add2=paotext
+#add2(2.3)=paotext(1.2)
+
+
+linkd431<-linkd[linkd$method=="link431d",] 
+#linkd431$add2<-gsub(",","",linkd431$add2)
+linkd431_1<-linkd431[linkd431$add2==linkd431$paotext,]
+
+
+
+linkd431_1<-uniqueresult(linkd431_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd431_1)
+dim(linkd)
+# 8357   34
+
+
+linkd431<-linkd[linkd$method=="link431d",] 
+#linkd431$add2<-gsub(",","",linkd431$add2)
+linkd431_2<-linkd431[word(linkd431$add2, 2,3)==word(linkd431$paotext,1,2),]
+
+
+
+linkd431_2<-uniqueresult(linkd431_2)
+dim(linkd)
+linkd<-matchleft(linkd,linkd431_2)
+dim(linkd)
+
+c2<- linkd[linkd$method=="link431d",]
+
+noadd2_14<-c2
+
+linkd<-matchleft(linkd,noadd2_14)
+
+
+###############436##################################################################
+length(unique(linkd$method))
+
+
+
+linkd436<-linkd[linkd$method=="link436d",] 
+linkd436$add1<-gsub(",","",linkd436$add1)
+linkd436$add1c<-str_remove(linkd436$add1, '(\\w+\\s+){2}')
+
+
+linkd436_1<-linkd436[word(linkd436$add1c,1)==linkd436$paostartnumber,]
+
+
+linkd436_1<-uniqueresult(linkd436_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd436_1)
+dim(linkd)
+
+c2<- linkd[linkd$method=="link436d",]
+
+linkd436<-linkd[linkd$method=="link436d",] 
+linkd436$add2<-gsub(",","",linkd436$add2)
+linkd436$add1<-gsub(",","",linkd436$add1)
+#linkd436$add1c<-str_remove(linkd436$add1, '(\\w+\\s+){2}')
+
+
+linkd436_2<-linkd436[word(linkd436$add1,1,2)==linkd436$subbuildingname & word(linkd436$add2,1)==linkd436$paostartnumber,]
+
+
+linkd436_2<-uniqueresult(linkd436_2)
+dim(linkd)
+linkd<-matchleft(linkd,linkd436_2)
+dim(linkd)
+
+
+c2<- linkd[linkd$method=="link436d",]
+c2<-c2[grepl("\\d",c2$add2),]
+
+fail_22<-c2
+linkd<-matchleft(linkd,fail_22)
+dim(linkd)
+
+linkd436<-linkd[linkd$method=="link436d",]
+linkd436$add1<-gsub(",","",linkd436$add1)
+linkd436$add1c<-str_remove(linkd436$add1, '(\\w+\\s+){2}')
+linkd436$add1c<-gsub(",","",linkd436$add1c)
+linkd436$add1c<-gsub("FINLEY COURT","FINLAY COURT",linkd436$add1c)
+linkd436$add1c<-gsub("AUSTIN FRAIRS","AUSTIN FRIARS",linkd436$add1c)
+linkd436$add1c<-gsub("SERENDIPITY HOUSE","SERENDIPITY MEWS",linkd436$add1c)
+
+
+linkd436_3<-linkd436[linkd436$add1c==linkd436$paotext,]
+linkd436_3<-uniqueresult(linkd436_3)
+dim(linkd)
+linkd<-matchleft(linkd,linkd436_3)
+dim(linkd)
+c2<- linkd[linkd$method=="link436d",]
+
+noadd2_15<-c2
+linkd<-matchleft(linkd,noadd2_15)
+
+###############444############
+c2<- linkd[linkd$method=="link444d",]
+
+
+
+linkd444_1<-linkd[linkd$method=="link444d" & linkd$add2==linkd$paotext ,]
+linkd444_1<-uniqueresult(linkd444_1)
+
+linkd<-matchleft(linkd,linkd444_1)
+dim(linkd)
+
+
+linkd444_2<-linkd[linkd$method=="link444d" & word(linkd$add2,1,2)==word(linkd$paotext,2,3) ,]
+linkd444_2<-uniqueresult(linkd444_2)
+
+linkd<-matchleft(linkd,linkd444_2)
+dim(linkd)
+# 769  34
+
+detail_48<-linkd[linkd$method=="link444d",]
+linkd<-matchleft(linkd,detail_48)
+dim(linkd)
+
+###############445############
+c2<- linkd[linkd$method=="link445d",]
+
+
+detail_49   <-c2
+linkd<-matchleft(linkd,c2)
+dim(linkd)
+###############446############
+c2<- linkd[linkd$method=="link446d",]
+
+
+linkd446_1<-linkd[linkd$method=="link446d" & substr(linkd$class,1,1)=="R" ,]
+linkd446_1<-uniqueresult(linkd446_1)
+dim(linkd)
+linkd<-matchleft(linkd,linkd446_1)
+dim(linkd)
+
+
+length(unique(linkd$method))
+
+
