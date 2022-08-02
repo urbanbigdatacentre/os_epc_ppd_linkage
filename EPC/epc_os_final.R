@@ -14197,36 +14197,6 @@ linkd143_6<-uniqueresult(linkd143_6)
 
 linkd<-matchleft(linkd,linkd143_6)
 
-c2<- linkd[linkd$method=="link143d",]
-c2<-c2[!grepl("\\d",c2$add2),]
-linkd<-matchleft(linkd,c2)
-
-
-c2<- linkd[linkd$method=="link143d",]
-c2<-c2[grepl("^\\d",c2$add2),]
-
-
-linkd143_parent<-c2[grepl("FLAT",c2$subbuildingname),]
-
-linkd143_parent3<-keepneed(linkd,linkd143_parent)
-rm(linkd143_parent)
-
-dim(linkd)
-linkd<-matchleft(linkd,linkd143_parent3)
-dim(linkd)
-
-
-c2<- linkd[linkd$method=="link143d",]
-c2<-c2[grepl("^\\d",c2$add2),]
-
-
-fail_1<-c2
-linkd<-matchleft(linkd,fail_1)
-dim(linkd)
-
-late_1<-linkd[linkd$method=="link143d" & postcode.y=="M1 5AA",]
-linkd<-matchleft(linkd,late_1)
-dim(linkd)
 
 c2<- linkd[linkd$method=="link143d",]
 c2<-c2[grepl("\\d",c2$add2),]
@@ -14235,1363 +14205,296 @@ c2<-c2[grepl("\\d",c2$add2),]
 c2$add2<-gsub(",","",c2$add2)
 linkd143_7<-c2[word(c2$add2,1,3)==paste(c2$subbuildingname,c2$buildingnumber,sep=" "),]
 
-
 linkd143_7<-uniqueresult(linkd143_7)
-dim(linkd)
 linkd<-matchleft(linkd,linkd143_7)
-dim(linkd)
-#164877     34
+
+
 c2<- linkd[linkd$method=="link143d",]
-#c2<-c2[grepl("^\\d",c2$add2),]
 c2<-c2[grepl("\\d",c2$add2),]
 
 c2$add2<-gsub(",","",c2$add2)
-
 linkd143_8<-c2[c2$add2==paste(c2$saotext,c2$streetdescription,sep=" "),]
 
 
 linkd143_8<-uniqueresult(linkd143_8)
-dim(linkd)
 linkd<-matchleft(linkd,linkd143_8)
-dim(linkd)
-#164877     34
-c2<- linkd[linkd$method=="link143d",]
 
-fail_2<-c2
-linkd<-matchleft(linkd,fail_2)
-dim(linkd)
-# 164754     34
-
-#c2<- linkd[linkd$method=="link143d",]
-linkd143_parent<-rbindlist(list(linkd143_parent1,linkd143_parent2,linkd143_parent3))
-rm(linkd143_parent1,linkd143_parent2,linkd143_parent3)
-####################clean 144############
+####################clean 144 add1(last word_=subbuilingname(last word)####################
 c2<- linkd[linkd$method=="link144d",]
 
 linkd144_1<-c2[word(c2$add1, -1)==word(c2$subbuildingname, -1),]
 
 linkd144_1<-uniqueresult(linkd144_1)
-dim(linkd)
 linkd<-matchleft(linkd,linkd144_1)
-dim(linkd)
-#164754     34
 
-c2<- linkd[linkd$method=="link144d",]
-
-
-
-linkd144_parent<-c2[grepl("\\d",c2$subbuildingname),]
-
-linkd144_parent1<-keepneed(linkd,linkd144_parent)
-rm(linkd144_parent)
-
-dim(linkd)
-linkd<-matchleft(linkd,linkd144_parent1)
-dim(linkd)
-# 164723     34
-c2<- linkd[linkd$method=="link144d",]
-
-
-linkd<-matchleft(linkd,c2)
-rm(c2)
-dim(linkd)
-
-linkd144_parent<-linkd144_parent1
-rm(linkd144_parent1)
-
-
-####################clean 145############
-c2<- linkd[linkd$method=="link145d",]
-
-
+####################clean 145 keep the residential UPRN############
 linkd145_1<-linkd[linkd$method=="link145d" & substr(linkd$class,1,1)=="R" ,]
 linkd145_1<-uniqueresult(linkd145_1)
-dim(linkd)
-
 linkd<-matchleft(linkd,linkd145_1)
-dim(linkd)
 
-c2<- linkd[linkd$method=="link145d",]
-
-
-linkd145_parent<-c2[grepl("\\d",c2$saotext),]
-
-linkd145_parent1<-keepneed(linkd,linkd145_parent)
-rm(linkd145_parent)
-
-dim(linkd)
-linkd<-matchleft(linkd,linkd145_parent1)
-dim(linkd)
-
-
-c2<- linkd[linkd$method=="link145d",]
-
-
-
-linkd145_parent<-c2[grepl("FLAT",c2$saotext),]
-linkd145_parent2<-keepneed(linkd,linkd145_parent)
-rm(linkd145_parent)
-
-dim(linkd)
-# 
-linkd<-matchleft(linkd,linkd145_parent2)
-dim(linkd)
-#21451459     145
-c2<- linkd[linkd$method=="link145d",]
-
-
-linkd145_parent<-c2[grepl("FLOOR",c2$saotext),]
-
-linkd145_parent3<-keepneed(linkd,linkd145_parent)
-rm(linkd145_parent)
-
-dim(linkd)
-linkd<-matchleft(linkd,linkd145_parent3)
-dim(linkd)
-
-
-c2<- linkd[linkd$method=="link145d",]
-
-linkd145_parent<-c2[grepl("\\d",c2$subbuildingname),]
-
-linkd145_parent4<-keepneed(linkd,linkd145_parent)
-rm(linkd145_parent)
-
-dim(linkd)
-linkd<-matchleft(linkd,linkd145_parent4)
-dim(linkd)
-
-
-c2<- linkd[linkd$method=="link145d",]
-
-
-linkd<-matchleft(linkd,c2)
-rm(c2)
-dim(linkd)
-#221455145     145
-linkd145_parent<-rbindlist(list(linkd145_parent1,linkd145_parent2,linkd145_parent3,linkd145_parent4))
-rm(linkd145_parent1,linkd145_parent2,linkd145_parent3,linkd145_parent4)
-
-####################clean 146############
-c2<- linkd[linkd$method=="link146d",]
-
-
-
-
+####################clean 146 keep the residential UPRN####################
 linkd146_1<-linkd[linkd$method=="link146d" & substr(linkd$class,1,1)=="R" ,]
+
 linkd146_1<-uniqueresult(linkd146_1)
-dim(linkd)
 linkd<-matchleft(linkd,linkd146_1)
-dim(linkd)
-c2<- linkd[linkd$method=="link146d",]
-
-
-linkd146_parent<-c2[grepl("\\d",c2$saotext),]
-
-linkd146_parent1<-keepneed(linkd,linkd146_parent)
-rm(linkd146_parent)
-
-dim(linkd)
-linkd<-matchleft(linkd,linkd146_parent1)
-dim(linkd)
-
-c2<- linkd[linkd$method=="link146d",]
-
-
-
-linkd146_parent<-c2[grepl("FLAT",c2$saotext),]
-linkd146_parent2<-keepneed(linkd,linkd146_parent)
-rm(linkd146_parent)
-
-dim(linkd)
-# 
-linkd<-matchleft(linkd,linkd146_parent2)
-dim(linkd)
-#21461469     146
-c2<- linkd[linkd$method=="link146d",]
-
-
-
-linkd146_parent<-c2[grepl("FLOOR",c2$saotext),]
-linkd146_parent3<-keepneed(linkd,linkd146_parent)
-rm(linkd146_parent)
-
-dim(linkd)
-# 
-linkd<-matchleft(linkd,linkd146_parent3)
-dim(linkd)
-
-c2<- linkd[linkd$method=="link146d",]
-
-
-
-linkd146_parent<-c2[grepl("ABOVE",c2$saotext),]
-
-linkd146_parent4<-keepneed(linkd,linkd146_parent)
-rm(linkd146_parent)
-
-dim(linkd)
-linkd<-matchleft(linkd,linkd146_parent4)
-dim(linkd)
-#158918     34
-
-c2<- linkd[linkd$method=="link146d",]
-
-
-linkd146_parent<-c2[grepl("ROOM",c2$paotext),]
-linkd146_parent5<-keepneed(linkd,linkd146_parent)
-rm(linkd146_parent)
-
-dim(linkd)
-# 
-linkd<-matchleft(linkd,linkd146_parent5)
-dim(linkd)
-
-
-c2<- linkd[linkd$method=="link146d",]
-
-
-
-
-
-linkd146_parent<-c2[grepl("\\d",c2$buildingnumber),]
-linkd146_parent6<-keepneed(linkd,linkd146_parent)
-rm(linkd146_parent)
-
-dim(linkd)
-# 
-linkd<-matchleft(linkd,linkd146_parent6)
-dim(linkd)
-
-c2<- linkd[linkd$method=="link146d",]
-
-
-
-
-
-linkd<-matchleft(linkd,c2)
-rm(c2)
-dim(linkd)
-#158871     34
-linkd146_parent<-rbindlist(list(linkd146_parent1,linkd146_parent2,linkd146_parent3,linkd146_parent4,linkd146_parent5,linkd146_parent6))
-rm(linkd146_parent1,linkd146_parent2,linkd146_parent3,linkd146_parent4,linkd146_parent5,linkd146_parent6)
-
-####################clean 147############
-c2<- linkd[linkd$method=="link147d",]
-
-
-
+####################clean 147 add2(first word)=paostartnumber####################
 linkd147<-linkd[linkd$method=="link147d",] 
 linkd147$add2<-gsub(",","",linkd147$add2)
 linkd147_1<-linkd147[word(linkd147$add2, 1)==linkd147$paostartnumber,]
 
 linkd147_1<-uniqueresult(linkd147_1)
-dim(linkd)
 linkd<-matchleft(linkd,linkd147_1)
 
-c2<- linkd[linkd$method=="link147d",]
-
-
-linkd<-matchleft(linkd,c2)
-
-####################clean 148############
-c2<- linkd[linkd$method=="link148d",]
-
-detail_1<-c2
-
-linkd<-matchleft(linkd,c2)
-
-####################clean 149############
-c2<- linkd[linkd$method=="link149d",]
-
-####################clean 150############
-c2<- linkd[linkd$method=="link150d",]
-
-
-####################clean 151 ############
-c2<- linkd[linkd$method=="link151d",]
-
-
-
+####################clean 151 add3(first word)=paostartnumber####################
 linkd151<-linkd[linkd$method=="link151d",] 
 linkd151<-linkd151[linkd151$add3!="",]
 linkd151$add3<-gsub(",","",linkd151$add3)
 linkd151_1<-linkd151[word(linkd151$add3, 1)==linkd151$paostartnumber,]
 
-
 linkd151_1<-uniqueresult(linkd151_1)
-dim(linkd)
 linkd<-matchleft(linkd,linkd151_1)
-dim(linkd)
-
-c2<- linkd[linkd$method=="link151d",]
-
-
-detail_2<-c2
-
-linkd<-matchleft(linkd,c2)
-
-####################clean 152############
-c2<- linkd[linkd$method=="link152d",]
-
-####################clean 153############
-c2<- linkd[linkd$method=="link153d",]
-
-# match based on add2
-#add2=ss
-
-
+####################clean 153 add2(first word)=ss ####################
 linkd153<-linkd[linkd$method=="link153d",] 
 linkd153$add2<-gsub(",","",linkd153$add2)
 linkd153_1<-linkd153[word(linkd153$add2, 1)==paste(linkd153$saostartnumber,linkd153$saostartsuffix,sep=""),]
 
-
 linkd153_1<-uniqueresult(linkd153_1)
-dim(linkd)
 linkd<-matchleft(linkd,linkd153_1)
-dim(linkd)
-# 158659     34
-linkd153<-linkd[linkd$method=="link153d",] 
-linkd153$add2<-gsub(",","",linkd153$add2)
-linkd153<-linkd153[grepl("^\\d",linkd153$add2),]
-
-
-fail_3<-linkd153
-linkd<-matchleft(linkd,fail_3)
-dim(linkd)
-
-linkd153<-linkd[linkd$method=="link153d",] 
-
-housename_diff1<-linkd153
-
-
-
-linkd<-matchleft(linkd,housename_diff1)
-dim(linkd)
-
-###############161############
-c2<- linkd[linkd$method=="link161d",]
-
-
-
+####################clean 161 add3(first word)=saostartnumber####################
 linkd161<-linkd[linkd$method=="link161d",] 
 linkd161$add2<-gsub(",","",linkd161$add3)
 linkd161_1<-linkd161[word(linkd161$add3, 1)==linkd161$saostartnumber,]
 
-
 linkd161_1<-uniqueresult(linkd161_1)
-dim(linkd)
 linkd<-matchleft(linkd,linkd161_1)
-dim(linkd)
-c2<- linkd[linkd$method=="link161d",]
-
-detail_3<-c2
-linkd<-matchleft(linkd,detail_3)
-dim(linkd)
-
-rm(c2)
-####################clean 162############
-c2<- linkd[linkd$method=="link162d",]
-
-
-detail_4<-c2
-
-linkd<-matchleft(linkd,detail_4)
-dim(linkd)
-
-
-
-####################clean 167############
-c2<- linkd[linkd$method=="link167d",]
-
-
-fail_4<-c2
-
-linkd<-matchleft(linkd,fail_4)
-dim(linkd)
-
-
-####################clean 168############
-sort(unique(linkd$method))
-c2<- linkd[linkd$method=="link168d",]
-
-
-detail_5<-c2
-
-linkd<-matchleft(linkd,detail_5)
-dim(linkd)
-
-####################clean 169############
-length(unique(linkd$method))
-#120
-
-##mach based on c2
-
-
-
+####################clean 169 add2(first word)=pp or add2(last word)=saostartnumber or  add2(first word)=buildingnumber or add2(first word)=saostartnumber or add2(first word)=ss####################
 linkd169<-linkd[linkd$method=="link169d",] 
 linkd169$add2<-gsub(",","",linkd169$add2)
 linkd169_1<-linkd169[word(linkd169$add2, 1)==paste(linkd169$paostartnumber,linkd169$paostartsuffix,sep=""),]
 
-
-
 linkd169_1<-uniqueresult(linkd169_1)
-dim(linkd)
 linkd<-matchleft(linkd,linkd169_1)
-dim(linkd)
-
 
 c2<- linkd[linkd$method=="link169d",]
-
-
 linkd169<-linkd[linkd$method=="link169d",] 
 linkd169$add2<-gsub(",","",linkd169$add2)
 linkd169_2<-linkd169[word(linkd169$add2, -1)==linkd169$saostartnumber,]
 
-
-
 linkd169_2<-uniqueresult(linkd169_2)
-dim(linkd)
 linkd<-matchleft(linkd,linkd169_2)
-dim(linkd)
-#151344     34
-
-
 
 linkd169<-linkd[linkd$method=="link169d",] 
 linkd169$add2<-gsub(",","",linkd169$add2)
 linkd169_3<-linkd169[word(linkd169$add2, 1)==linkd169$buildingnumber,]
 
-
-
 linkd169_3<-uniqueresult(linkd169_3)
-dim(linkd)
 linkd<-matchleft(linkd,linkd169_3)
-dim(linkd)
-
 
 linkd169<-linkd[linkd$method=="link169d",] 
 linkd169$add2<-gsub(",","",linkd169$add2)
 linkd169_4<-linkd169[word(linkd169$add2, 1)==linkd169$saostartnumber,]
 
-
-
 linkd169_4<-uniqueresult(linkd169_4)
-dim(linkd)
 linkd<-matchleft(linkd,linkd169_4)
-dim(linkd)
-
-
-
 
 linkd169<-linkd[linkd$method=="link169d",] 
 linkd169$add2<-gsub(",","",linkd169$add2)
 linkd169_5<-linkd169[word(linkd169$add2, 1)==paste(linkd169$saostartnumber,linkd169$saostartsuffix,sep=""),]
 
-
-
 linkd169_5<-uniqueresult(linkd169_5)
-dim(linkd)
 linkd<-matchleft(linkd,linkd169_5)
-dim(linkd)
-
-c2<- linkd[linkd$method=="link169d",]
-
-c2<-c2[grepl("\\d",c2$add2),]
-
-
-
-
-linkd169_parent<-c2[grepl("\\d",c2$saotext),]
-
-linkd169_parent1<-keepneed(linkd,linkd169_parent)
-rm(linkd169_parent)
-
-dim(linkd)
-linkd<-matchleft(linkd,linkd169_parent1)
-dim(linkd)
-
-c2<- linkd[linkd$method=="link169d",]
-
-c2<-c2[grepl("\\d",c2$add2),]
-
-
-
-
-linkd169_parent<-c2[grepl("ROOM",c2$saotext),]
-linkd169_parent2<-keepneed(linkd,linkd169_parent)
-rm(linkd169_parent)
-
-dim(linkd)
-# 
-linkd<-matchleft(linkd,linkd169_parent2)
-dim(linkd)
-#21691699     169
-c2<- linkd[linkd$method=="link169d",]
-c2<-c2[grepl("\\d",c2$add2),]
-
-
-
-linkd169_parent<-c2[grepl("FLAT",c2$saotext),]
-linkd169_parent3<-keepneed(linkd,linkd169_parent)
-rm(linkd169_parent)
-
-dim(linkd)
-# 
-linkd<-matchleft(linkd,linkd169_parent3)
-dim(linkd)
-
-c2<- linkd[linkd$method=="link169d",]
-c2<-c2[grepl("\\d",c2$add2),]
-
-
-linkd169_parent<-c2[grepl("\\d",c2$saostartnumber),]
-
-linkd169_parent4<-keepneed(linkd,linkd169_parent)
-rm(linkd169_parent)
-
-dim(linkd)
-linkd<-matchleft(linkd,linkd169_parent4)
-dim(linkd)
-
-c2<- linkd[linkd$method=="link169d",]
-c2<-c2[grepl("\\d",c2$add2),]
-
-detail_6<-c2
-linkd<-matchleft(linkd,detail_6)
-dim(linkd)
-
-c2<- linkd[linkd$method=="link169d",]
-
-
-
-linkd169_parent<-c2[grepl("\\d",c2$saotext),]
-linkd169_parent5<-keepneed(linkd,linkd169_parent)
-rm(linkd169_parent)
-
-dim(linkd)
-# 
-linkd<-matchleft(linkd,linkd169_parent5)
-dim(linkd)
-
-
-
-
-c2<- linkd[linkd$method=="link169d",]
-
-
-
-
-
-linkd169_parent<-c2[grepl("\\d",c2$saostartnumber),]
-linkd169_parent6<-keepneed(linkd,linkd169_parent)
-rm(linkd169_parent)
-
-dim(linkd)
-# 
-linkd<-matchleft(linkd,linkd169_parent6)
-dim(linkd)
-c2<- linkd[linkd$method=="link169d",]
-
-
-detail_7<-c2
-
-
-linkd<-matchleft(linkd,c2)
-rm(c2)
-dim(linkd)
-
-linkd169_parent<-rbindlist(list(linkd169_parent1,linkd169_parent2,linkd169_parent3,linkd169_parent4,linkd169_parent5,linkd169_parent6))
-rm(linkd169_parent1,linkd169_parent2,linkd169_parent3,linkd169_parent4,linkd169_parent5,linkd169_parent6)
-
-
-####################clean 170############
-c2<- linkd[linkd$method=="link170d",]
-
-
-####################clean 171############
-c2<- linkd[linkd$method=="link171d",]
-
-
-
-
+####################clean 171 add2(frist word)=paostartnumber-paoendnumber ############
 linkd171<-linkd[linkd$method=="link171d",] 
 linkd171$add2<-gsub(",","",linkd171$add2)
 linkd171_1<-linkd171[word(linkd171$add2, 1)==paste(linkd171$paostartnumber,linkd171$paoendnumber,sep="-"),]
 
-
-
 linkd171_1<-uniqueresult(linkd171_1)
-dim(linkd)
 linkd<-matchleft(linkd,linkd171_1)
-dim(linkd)
-
-
-
-####################clean 173############
-c2<- linkd[linkd$method=="link173d",]
-
-
+####################clean 173 add2(frist word)=subbuildingname or add2=saostartnumber_paotext, or add2(last two)=subbuildingname####################
 linkd173<-linkd[linkd$method=="link173d",] 
 linkd173$add2<-gsub(",","",linkd173$add2)
 linkd173_1<-linkd173[word(linkd173$add2, 1,2)==linkd173$subbuildingname,]
 
-
-
 linkd173_1<-uniqueresult(linkd173_1)
-dim(linkd)
 linkd<-matchleft(linkd,linkd173_1)
-dim(linkd)
-#85679    34
-c2<- linkd[linkd$method=="link173d",]
-
 
 linkd173<-linkd[linkd$method=="link173d",] 
 linkd173$add2<-gsub(",","",linkd173$add2)
 linkd173_2<-linkd173[linkd173$add2==paste(linkd173$saostartnumber,linkd173$paotext,sep=" "),]
 
-
-
 linkd173_2<-uniqueresult(linkd173_2)
-dim(linkd)
 linkd<-matchleft(linkd,linkd173_2)
-dim(linkd)
-#85061    34
-
-c2<- linkd[linkd$method=="link173d",]
-
-
 
 linkd173<-linkd[linkd$method=="link173d",] 
 linkd173$add2<-gsub(",","",linkd173$add2)
 linkd173_3<-linkd173[word(linkd173$add2,-2,-1)==linkd173$subbuildingname,]
 
-
-
 linkd173_3<-uniqueresult(linkd173_3)
-dim(linkd)
 linkd<-matchleft(linkd,linkd173_3)
-dim(linkd)
 
-
-
-c2<- linkd[linkd$method=="link173d",]
-
-
-
-
-linkd173_parent<-c2[grepl("\\d",c2$subbuildingname),]
-
-linkd173_parent1<-keepneed(linkd,linkd173_parent)
-rm(linkd173_parent)
-
-dim(linkd)
-linkd<-matchleft(linkd,linkd173_parent1)
-dim(linkd)
-
-c2<- linkd[linkd$method=="link173d",]
-
-
-
-
-linkd173_parent<-c2[grepl("FLAT",c2$saotext),]
-linkd173_parent2<-keepneed(linkd,linkd173_parent)
-rm(linkd173_parent)
-
-dim(linkd)
-# 
-linkd<-matchleft(linkd,linkd173_parent2)
-dim(linkd)
-#21731739     173
-c2<- linkd[linkd$method=="link173d",]
-
-
-detail_8<-c2
-linkd<-matchleft(linkd,c2)
-rm(c2)
-dim(linkd)
-#221735173     173
-linkd173_parent<-rbindlist(list(linkd173_parent1,linkd173_parent2))
-rm(linkd173_parent1,linkd173_parent2)
-
-
-####################clean 174############
-c2<- linkd[linkd$method=="link174d",]
-
-
-linkd<-matchleft(linkd,c2)
-rm(c2)
-dim(linkd)
-
-
-####################clean 175############
-c2<- linkd[linkd$method=="link175d",]
-
-
+####################clean 175 keep the residential UPRN####################
 linkd175_1<-linkd[linkd$method=="link175d" & substr(linkd$class,1,1)=="R" ,]
+
 linkd175_1<-uniqueresult(linkd175_1)
-dim(linkd)
 linkd<-matchleft(linkd,linkd175_1)
-dim(linkd)
-
-
-####################clean 176############
-length(unique(linkd$method))
-c2<- linkd[linkd$method=="link176d",]
-
-
-linkd176_parent<-c2[grepl("\\d",c2$saotext),]
-
-linkd176_parent1<-keepneed(linkd,linkd176_parent)
-rm(linkd176_parent)
-
-dim(linkd)
-linkd<-matchleft(linkd,linkd176_parent1)
-dim(linkd)
-
-c2<- linkd[linkd$method=="link176d",]
-
-
-
-linkd176_parent<-c2[grepl("FLAT",c2$saotext),]
-linkd176_parent2<-keepneed(linkd,linkd176_parent)
-rm(linkd176_parent)
-
-dim(linkd)
-# 
-linkd<-matchleft(linkd,linkd176_parent2)
-dim(linkd)
-#21761769     176
-c2<- linkd[linkd$method=="link176d",]
-
-
-
-
-linkd176_parent<-c2[grepl("ROOM",c2$saotext),]
-linkd176_parent3<-keepneed(linkd,linkd176_parent)
-rm(linkd176_parent)
-
-dim(linkd)
-# 
-linkd<-matchleft(linkd,linkd176_parent3)
-dim(linkd)
-
-c2<- linkd[linkd$method=="link176d",]
-
-linkd<-matchleft(linkd,c2)
-rm(c2)
-dim(linkd)
-
-linkd176_parent<-rbindlist(list(linkd176_parent1,linkd176_parent2,linkd176_parent3))
-rm(linkd176_parent1,linkd176_parent2,linkd176_parent3)
-
-####################clean 177############
-c2<- linkd[linkd$method=="link177d",]
-
-####################clean 178############
-c2<- linkd[linkd$method=="link178d",]
-
-####################clean 179############
-c2<- linkd[linkd$method=="link179d",]
-
-####################clean 180############
-c2<- linkd[linkd$method=="link180d",]
-
-
-
+####################clean 180 add2(first word)=paostartnumber and add2 starts with number strings####################
 linkd180<-linkd[linkd$method=="link180d",] 
 linkd180<-linkd180[grepl("\\d",linkd180$add2),]
 linkd180$add2<-gsub(",","",linkd180$add2)
 linkd180_1<-linkd180[word(linkd180$add2, 1)==linkd180$paostartnumber,]
 
-
 linkd180_1<-uniqueresult(linkd180_1)
-dim(linkd)
 linkd<-matchleft(linkd,linkd180_1)
-dim(linkd)
-#84049    34
-
-linkd180<-linkd[linkd$method=="link180d",] 
-linkd180$add2<-gsub(",","",linkd180$add2)
-linkd180<-linkd180[!grepl("^\\d",linkd180$add2),]
-
-detail_9<-linkd180
-linkd<-matchleft(linkd,detail_9)
-dim(linkd)
-
-c2<- linkd[linkd$method=="link180d",]
-
-
-
-fail_5<-c2
-
-linkd<-matchleft(linkd,fail_5)
-dim(linkd)
-
-
-
-####################clean 196############
-c2<- linkd[linkd$method=="link196d",]
-
-
+####################clean 196 add1[,](strings after the first word )=paotext or add1[,](frist second and third words)=paotext####################
+#add1[,](strings after the first word )=paotext
 linkd196<-linkd[linkd$method=="link196d",] 
 linkd196$add1<-gsub(",","",linkd196$add1)
 linkd196$add1c<-str_remove(linkd196$add1, '(\\w+\\s+){1}')
-
-
 linkd196_1<-linkd196[linkd196$add1c==linkd196$paotext,]
 
-
 linkd196_1<-uniqueresult(linkd196_1)
-dim(linkd)
 linkd<-matchleft(linkd,linkd196_1)
-dim(linkd)
-#82891    34
-
+#add1[,](frist second and third words)=paotext
 linkd196<-linkd[linkd$method=="link196d",] 
 linkd196$add1<-gsub(",","",linkd196$add1)
 linkd196$add1c<-str_remove(linkd196$add1, '(\\w+\\s+){1}')
 
 linkd196_2<-linkd196[word(linkd196$add1c, 1,2)==linkd196$paotext,]
-
-
 linkd196_2<-uniqueresult(linkd196_2)
-dim(linkd)
 linkd<-matchleft(linkd,linkd196_2)
-dim(linkd)
-
-
-c2<- linkd[linkd$method=="link196d",]
-
-
-detail_10<-c2
-linkd<-matchleft(linkd,c2)
-rm(c2)
-dim(linkd)
-
-####################clean 197############
-c2<- linkd[linkd$method=="link197d",]
-
-
-
+####################clean 197 add1[,](strings after the first word )=paotext####################
 linkd197<-linkd[linkd$method=="link197d",] 
 linkd197$add1<-gsub(",","",linkd197$add1)
 linkd197$add1c<-str_remove(linkd197$add1, '(\\w+\\s+){1}')
 
-
 linkd197_1<-linkd197[linkd197$add1c==linkd197$paotext,]
-
-
 linkd197_1<-uniqueresult(linkd197_1)
-dim(linkd)
 linkd<-matchleft(linkd,linkd197_1)
-dim(linkd)
-c2<- linkd[linkd$method=="link197d",]
-
-linkd<-matchleft(linkd,c2)
-rm(c2)
-dim(linkd)
-
-####################clean 198############
-c2<- linkd[linkd$method=="link198d",]
-
-
-linkd198_parent<-c2
-
-linkd<-matchleft(linkd,c2)
-rm(c2)
-dim(linkd)
-####################clean 199############
-c2<- linkd[linkd$method=="link199d",]
-
-
-linkd199_parent<-c2
-
-linkd<-matchleft(linkd,c2)
-rm(c2)
-dim(linkd)
-
-
-####################clean 202############
-c2<- linkd[linkd$method=="link202d",]
-
+####################clean 202 add2=buildingname or add2(frist three words)=paotext(frist three words)####################
+#correct the CV13 0NP, then add2=buildingname
 linkd202<-linkd[linkd$method=="link202d",] 
-
 linkd202[postcode.y=="CV13 0NP",add2:=gsub("GODSON HILL FARM", "GODSONS HILL FARM",add2)]
 
 linkd202_1<-linkd202[linkd202$add2==linkd202$buildingname,]
-
 linkd202_1<-uniqueresult(linkd202_1)
-
 linkd<-matchleft(linkd,linkd202_1)
 
-c2<- linkd[linkd$method=="link202d",]
-
-
+#add2(frist three words)=paotext(frist three words)
 linkd202<-linkd[linkd$method=="link202d",] 
 linkd202$add2<-gsub(",","",linkd202$add2)
-#linkd202<-linkd202[grepl("^\\d",linkd202$add2),]
+
 linkd202_2<-linkd202[word(linkd202$add2, 1,3)==word(linkd202$paotext, 1,3),]
-
-
 linkd202_2<-uniqueresult(linkd202_2)
-dim(linkd)
 linkd<-matchleft(linkd,linkd202_2)
-dim(linkd)
-c2<- linkd[linkd$method=="link202d",]
-
-
-linkd<-matchleft(linkd,c2)
-dim(linkd)
-# 82420    34
-####################clean 203############
-c2<- linkd[linkd$method=="link203d",]
-
-
-
-
+####################clean 203 add2[,](first word)=buildingnumber####################
 linkd203<-linkd[linkd$method=="link203d",] 
 linkd203$add2<-gsub(",","",linkd203$add2)
 linkd203_1<-linkd203[word(linkd203$add2, 1)==linkd203$buildingnumber,]
 
-
 linkd203_1<-uniqueresult(linkd203_1)
-dim(linkd)
 linkd<-matchleft(linkd,linkd203_1)
-dim(linkd)
-c2<- linkd[linkd$method=="link203d",]
-
-fail_6<-c2
-linkd<-matchleft(linkd,c2)
-dim(linkd)
-rm(c2)
-
-####################clean 205############
-c2<- linkd[linkd$method=="link205d",]
-
-detail_46<-c2
-linkd<-matchleft(linkd,detail_46)
-dim(linkd)
-
-####################clean 211############
-length(unique(linkd$method))
-c2<- linkd[linkd$method=="link211d",]
-
-
-detail_11<-c2
-linkd<-matchleft(linkd,c2)
-dim(linkd)
-rm(c2)
-
-####################clean 214############
-c2<- linkd[linkd$method=="link214d",]
-
-
-
+####################clean 214 add1[,](text after first word)=paotext####################
 linkd214<-linkd[linkd$method=="link214d",] 
 linkd214$add1<-gsub(",","",linkd214$add1)
 linkd214$add1c<-str_remove(linkd214$add1, '(\\w+\\s+){1}')
 
-
 linkd214_1<-linkd214[linkd214$add1c==linkd214$paotext,]
-
-
 linkd214_1<-uniqueresult(linkd214_1)
-dim(linkd)
 linkd<-matchleft(linkd,linkd214_1)
-# 81912    34
-linkd214<-linkd[linkd$method=="link214d",] 
-
-linkd<-matchleft(linkd,linkd214)
-dim(linkd)
-rm(c2)
-
-
-####################clean 217############
-c2<- linkd[linkd$method=="link217d",]
-
+####################clean 217 keep the residential UPRN####################
 linkd217_1<-linkd[linkd$method=="link217d" & substr(linkd$class,1,1)=="R" ,]
+
 linkd217_1<-uniqueresult(linkd217_1)
-dim(linkd)
 linkd<-matchleft(linkd,linkd217_1)
-dim(linkd)
-
-
-c2<- linkd[linkd$method=="link217d",]
-
-
-
-linkd217_parent<-c2
-linkd<-matchleft(linkd,c2)
-rm(c2)
-dim(linkd)
-####################clean 218############
-c2<- linkd[linkd$method=="link218d",]
-
-
-detail_12<-c2
-
-linkd217_parent<-c2
-linkd<-matchleft(linkd,c2)
-rm(c2)
-dim(linkd)
-
-####################clean 224############
-c2<- linkd[linkd$method=="link224d",]
-
-linkd224_parent<-c2
-linkd<-matchleft(linkd,c2)
-rm(c2)
-dim(linkd)
-####################clean 225############
-c2<- linkd[linkd$method=="link225d",]
-
-
-linkd225_parent<-c2
-linkd<-matchleft(linkd,c2)
-rm(c2)
-dim(linkd)
-
-
-####################clean 226############
-c2<- linkd[linkd$method=="link226d",]
-
-
-detail_12<-c2
-linkd<-matchleft(linkd,c2)
-rm(c2)
-dim(linkd)
-
-
-####################clean 227############
-c2<- linkd[linkd$method=="link227d",]
-
-
-detail_13<-c2
-linkd<-matchleft(linkd,c2)
-rm(c2)
-dim(linkd)
-
-
-####################clean 234############
-c2<- linkd[linkd$method=="link234d",]
-
-
+####################clean 234 keep the residential UPRN####################
 linkd234_1<-linkd[linkd$method=="link234d" & substr(linkd$class,1,1)=="R" ,]
+
 linkd234_1<-uniqueresult(linkd234_1)
-dim(linkd)
 linkd<-matchleft(linkd,linkd234_1)
-dim(linkd)
-
-c2<- linkd[linkd$method=="link234d",]
-
-
-linkd234_parent<-c2
-linkd<-matchleft(linkd,c2)
-rm(c2)
-dim(linkd)
-
-####################clean 236############
-length(unique(linkd$method))
-c2<- linkd[linkd$method=="link236d",]
-
-#c2<-c2[c2$saotext=="",]
+####################clean 236 keep the residential UPRN####################
 linkd236_1<-linkd[linkd$method=="link236d" & substr(linkd$class,1,1)=="R" ,]
+
 linkd236_1<-uniqueresult(linkd236_1)
-dim(linkd)
 linkd<-matchleft(linkd,linkd236_1)
-dim(linkd)
-
-c2<- linkd[linkd$method=="link236d",]
-c2<-c2[c2$saotext=="",]
-
-
-linkd236_parent1<-c2
-
-dim(linkd)
-linkd<-matchleft(linkd,linkd236_parent1)
-
-
-
-dim(linkd)
-
-c2<- linkd[linkd$method=="link236d",]
-
-
-detail_14<-c2
-
-linkd<-matchleft(linkd,c2)
-rm(c2)
-dim(linkd)
-linkd236_parent<-linkd236_parent1
-rm(linkd236_parent1)
-
-####################clean 237############
-c2<- linkd[linkd$method=="link237d",]
-
-
+####################clean 237 keep the residential UPRN####################
 linkd237_1<-linkd[linkd$method=="link237d" & substr(linkd$class,1,1)=="R" ,]
+
 linkd237_1<-uniqueresult(linkd237_1)
-dim(linkd)
 linkd<-matchleft(linkd,linkd237_1)
-dim(linkd)
-
-c2<- linkd[linkd$method=="link237d",]
-
-
-linkd237_parent<-c2
-
-linkd<-matchleft(linkd,c2)
-rm(c2)
-dim(linkd)
-
-
-
-####################clean 239############
-c2<- linkd[linkd$method=="link239d",]
-
+####################clean 239 keep the residential UPRN####################
 linkd239_1<-linkd[linkd$method=="link239d" & substr(linkd$class,1,1)=="R" ,]
+
 linkd239_1<-uniqueresult(linkd239_1)
-dim(linkd)
 linkd<-matchleft(linkd,linkd239_1)
-dim(linkd)
-
-c2<- linkd[linkd$method=="link239d",]
-
-
-linkd239_parent<-c2
-linkd<-matchleft(linkd,c2)
-rm(c2)
-dim(linkd)
-
-###############240############
-c2<- linkd[linkd$method=="link240d",]
-
-
+####################clean 240 keep the residential UPRN####################
 linkd240_1<-linkd[linkd$method=="link240d" & substr(linkd$class,1,1)=="R" ,]
+
 linkd240_1<-uniqueresult(linkd240_1)
-dim(linkd)
 linkd<-matchleft(linkd,linkd240_1)
-dim(linkd)
-
-c2<- linkd[linkd$method=="link240d",]
-
-linkd240_parent<-c2
-linkd<-matchleft(linkd,c2)
-rm(c2)
-dim(linkd)
-
-
-####################clean 246############################
-length(unique(linkd$method))
-#94
-c2<- linkd[linkd$method=="link246d",]
-
-
+####################clean 246 add2[,](first word)=paostartnumber or add2[,](first word)=paostartnumber-paoendnumber ####################
 ##clean based on add2
-
-
-
+#add2[,](first word)=paostartnumber
 linkd246<-linkd[linkd$method=="link246d",] 
 linkd246$add2<-gsub(",","",linkd246$add2)
 linkd246_1<-linkd246[word(linkd246$add2, 1)==linkd246$paostartnumber,]
 
 linkd246_1<-uniqueresult(linkd246_1)
-dim(linkd)
 linkd<-matchleft(linkd,linkd246_1)
-dim(linkd)
-
-
-c2<- linkd[linkd$method=="link246d",]
-
-
-
-
+#add2[,](first word)=paostartnumber-paoendnumber 
 linkd246<-linkd[linkd$method=="link246d",] 
 linkd246$add2<-gsub(",","",linkd246$add2)
 linkd246_2<-linkd246[word(linkd246$add2, 1)==paste(linkd246$paostartnumber,linkd246$paoendnumber,sep="-"),]
 
-
-
 linkd246_2<-uniqueresult(linkd246_2)
-dim(linkd)
 linkd<-matchleft(linkd,linkd246_2)
-dim(linkd)
-#151344     34
-
-
-c2<- linkd[linkd$method=="link246d",]
-
-
-
-fail_7<-c2[grepl("\\d",c2$add2),]
-
-linkd<-matchleft(linkd,fail_7)
-dim(linkd)
-
-
-c2<- linkd[linkd$method=="link246d",]
-
-
-detail_15<-c2
-linkd<-matchleft(linkd,c2)
-rm(c2)
-dim(linkd)
-####################clean 247############
-c2<- linkd[linkd$method=="link247d",]
-
-fail_7<-c2
-linkd<-matchleft(linkd,c2)
-rm(c2)
-
-####################clean 249############
-c2<- linkd[linkd$method=="link249d",]
-
-linkd249_parent<-c2
-linkd<-matchleft(linkd,c2)
-rm(c2)
-
-####################clean 253############
-length(unique(linkd$method))
-c2<- linkd[linkd$method=="link253d",]
-
-
-#addd2=ss
-
-
+####################clean 253 add2(frist word)=ss or add2[,]=paotext after correct some add2; or add2=paotext(text after first word)####################
+#add2(frist word)=ss
 linkd253<-linkd[linkd$method=="link253d",] 
 linkd253$add2<-gsub(",","",linkd253$add2)
 linkd253_1<-linkd253[word(linkd253$add2, 1)==paste(linkd253$saostartnumber,linkd253$saostartsuffix,sep=""),]
 
-
-
 linkd253_1<-uniqueresult(linkd253_1)
-dim(linkd)
 linkd<-matchleft(linkd,linkd253_1)
-dim(linkd)
-# 73302    34
 
-#add2=paotext
-
-
-
+# correct the address in some postcode, add2[,]=paotext
 linkd253<-linkd[linkd$method=="link253d",] 
 linkd253$add2<-gsub(",","",linkd253$add2)
-
 linkd253[postcode.y=="TQ2 5PE",add2:=gsub("WALDON HALL", "WALDON HALL APARTMENTS",add2)]
-
 linkd253[postcode.y=="TQ14 8TL",add2:=gsub("LLANSTEPHEN", "LLANSTEPHAN",add2)]
 linkd253[postcode.y=="YO30 4XE",add2:=gsub("ST. CHRISTOPHERS HOUSE", "ST CHRISTOPHER HOUSE",add2)]
 linkd253[postcode.y=="GU26 6RA",add2:=gsub("MANORMEAD SUPPORTED HOUSING", "MANORMEAD",add2)]
-
 linkd253[postcode.y=="TQ2 6HJ",add2:=gsub("JAMES HOUSE", "JAMES HOUSE BRIDGE VIEW",add2)]
 linkd253[postcode.y=="NE1 6PN",add2:=gsub("ACACIA", "ACACIA HOTEL",add2)]
 
-
 linkd253_2<-linkd253[linkd253$add2==linkd253$paotext,]
-
-
-
 linkd253_2<-uniqueresult(linkd253_2)
-dim(linkd)
 linkd<-matchleft(linkd,linkd253_2)
-dim(linkd)
-
 ##add2=paotext last three (remove the first one)
-
 linkd253<-linkd[linkd$method=="link253d",] 
 linkd253$add2<-gsub(",","",linkd253$add2)
 linkd253_3<-linkd253[linkd253$add2==str_remove(linkd253$paotext, '(\\w+\\s+){1}'),]
 
-
-
 linkd253_3<-uniqueresult(linkd253_3)
-dim(linkd)
 linkd<-matchleft(linkd,linkd253_3)
-dim(linkd)
-
-c2<- linkd[linkd$method=="link253d",]
-
-
-c2<-c2[grepl("\\d",c2$add2),]
-
-fail_8<-c2
-
-linkd<-matchleft(linkd,fail_8)
-dim(linkd)
-c2<- linkd[linkd$method=="link253d",]
-
-noadd2_1<-c2
-
-linkd<-matchleft(linkd,noadd2_1)
-dim(linkd)
-
-####################clean 254############
-c2<- linkd[linkd$method=="link254d",]
-
-c2<-c2[grepl("\\d",c2$add2),]
-
-
-
-
-##FLAT-2 (FIRST FLOOR)
-#add2 first two=saotext
-
-
+####################clean 254 add2[,-](first two words)=saotext or add2[,()](last two words)=saotext####################
+#add2[,-](first two words)=saotext
 linkd254<-linkd[linkd$method=="link254d",] 
 linkd254$add2<-gsub(",","",linkd254$add2)
 linkd254$add2<-gsub("-"," ",linkd254$add2)
 linkd254_1<-linkd254[word(linkd254$add2, 1,2)==linkd254$saotext,]
 
-
-
 linkd254_1<-uniqueresult(linkd254_1)
-dim(linkd)
 linkd<-matchleft(linkd,linkd254_1)
-dim(linkd)
-
-c2<- linkd[linkd$method=="link254d",]
-
-c2<-c2[grepl("\\d",c2$add2),]
-
-
-
-
-
-c2<- linkd[linkd$method=="link254d",]
-
-
+#add2[,()](last two words)=saotext
 linkd254<-linkd[linkd$method=="link254d",] 
 linkd254$add2<-gsub(",","",linkd254$add2)
 linkd254$add2<-gsub("[(]","",linkd254$add2)
 linkd254$add2<-gsub("[])]","",linkd254$add2)
 linkd254_2<-linkd254[word(linkd254$add2,-2, -1)==linkd254$saotext,]
 
-
-
 linkd254_2<-uniqueresult(linkd254_2)
-dim(linkd)
 linkd<-matchleft(linkd,linkd254_2)
-dim(linkd)
-
-c2<- linkd[linkd$method=="link254d",]
-
-c2<-c2[grepl("\\d",c2$add2),]
-
-
-
-noflat_1<-c2
-linkd<-matchleft(linkd,noflat_1)
-dim(linkd)
-
-c2<- linkd[linkd$method=="link254d",]
-
-linkd254_parent<-c2
-linkd<-matchleft(linkd,linkd254_parent)
-dim(linkd)
-
-
-####################clean 255############
+####################clean 255####################
 length(unique(linkd$method))
 c2<- linkd[linkd$method=="link255d",]
 
@@ -15628,41 +14531,8 @@ c2<- linkd[linkd$method=="link255d",]
 linkd255_parent<-c2
 linkd<-matchleft(linkd,c2)
 dim(linkd)
-####################clean 256############
-c2<- linkd[linkd$method=="link256d",]
 
-linkd256_parent<-c2
-linkd<-matchleft(linkd,c2)
-dim(linkd)
-
-####################clean 260############
-c2<- linkd[linkd$method=="link260d",]
-
-
-
-detail_16<-c2
-linkd<-matchleft(linkd,c2)
-dim(linkd)
-
-####################clean 264############
-c2<- linkd[linkd$method=="link264d",]
-
-
-linkd264_parent<-c2
-linkd<-matchleft(linkd,c2)
-dim(linkd)
-
-
-####################clean 265############
-c2<- linkd[linkd$method=="link265d",]
-
-
-detail_17<-c2
-linkd<-matchleft(linkd,c2)
-dim(linkd)
-
-
-###############271############
+####################clean 271####################
 c2<- linkd[linkd$method=="link271d",]
 
 
@@ -15724,10 +14594,7 @@ detail_19<-linkd271
 linkd<-matchleft(linkd,detail_19)
 dim(linkd)
 
-####################clean 272############
-c2<- linkd[linkd$method=="link272d",]
-
-
+####################clean 272####################
 
 linkd272<-linkd[linkd$method=="link272d",] 
 linkd272$add2<-gsub(",","",linkd272$add2)
@@ -15747,26 +14614,7 @@ dim(linkd)
 
 
 
-####################clean 273############
-c2<- linkd[linkd$method=="link273d",]
-
-noadd2_3<-c2
-
-linkd<-matchleft(linkd,c2)
-
-####################clean 274############
-c2<- linkd[linkd$method=="link274d",]
-
-
-
-
-noadd2_4<-c2
-
-
-linkd<-matchleft(linkd,noadd2_4)
-dim(linkd)
-
-####################clean 281############
+####################clean 281####################
 c2<- linkd[linkd$method=="link281d",]
 
 
@@ -16174,34 +15022,8 @@ linkd281<-linkd[linkd$method=="link281d",]
 
 noadd2_7<-linkd281
 linkd<-matchleft(linkd,noadd2_7)
-dim(linkd)
 
-
-####################clean 284############
-c2<- linkd[linkd$method=="link284d",]
-
-
-
-linkd284_parent<-c2
-
-linkd<-matchleft(linkd,linkd284_parent)
-dim(linkd)
-
-####################clean 286############
-c2<- linkd[linkd$method=="link286d",]
-
-detail_21<-c2
-linkd<-matchleft(linkd,c2)
-dim(linkd)
-
-#####check the one to one part############################
-length(unique(linkd$method))
-####################clean 288############
-c2<- linkd[linkd$method=="link288d",]
-
-
-
-
+####################clean 288####################
 linkd288<-linkd[linkd$method=="link288d",] 
 
 #linkd288<-linkd288[grepl("\\d",linkd288$add2),]
@@ -16361,7 +15183,7 @@ linkd<-matchleft(linkd,linkd288)
 dim(linkd)
 linkd288_parent<-linkd288_parent1
 rm(linkd288_parent1)
-###############289############
+####################clean 289############
 length(unique(linkd$method))
 #76
 
@@ -16427,16 +15249,8 @@ c2<- linkd[linkd$method=="link289d",]
 
 noadd2_8<-c2
 linkd<-matchleft(linkd,noadd2_8)
-dim(linkd)
 
-####################clean 290############
-c2<- linkd[linkd$method=="link290d",]
-
-
-linkd290_parent<-c2
-linkd<-matchleft(linkd,linkd290_parent)
-dim(linkd)
-####################clean 291############
+####################clean 291####################
 
 
 linkd291<-linkd[linkd$method=="link291d",] 
@@ -16571,8 +15385,6 @@ linkd291_9<-linkd291[linkd291$add1c==linkd291$paotext,]
 linkd291_9<-uniqueresult(linkd291_9)
 
 linkd<-matchleft(linkd,linkd291_9)
-dim(linkd)
-# 25829    34
 
 
 linkd291<-linkd[linkd$method=="link291d",] 
@@ -16585,58 +15397,22 @@ linkd291_10<-linkd291[word(linkd291$add1c,1,2)==word(linkd291$paotext,1,2),]
 linkd291_10<-uniqueresult(linkd291_10)
 
 linkd<-matchleft(linkd,linkd291_10)
-dim(linkd)
-# 25395    34
-
-
-
-c2<- linkd[linkd$method=="link291d",]
-
-
-fail_11<-c2
-linkd<-matchleft(linkd,fail_11)
-dim(linkd)
-
-###############292############
-
-
-
+####################clean 292####################
 linkd292<-linkd[linkd$method=="link292d",] 
-
 linkd292$add2<-gsub(",","",linkd292$add2)
-
-#linkd292$add1c<-str_remove(linkd292$add1, '(\\w+\\s+){1}')
 
 linkd292_1<-linkd292[linkd292$add2==linkd292$paotext,]
-
-
 linkd292_1<-uniqueresult(linkd292_1)
-dim(linkd)
+
 linkd<-matchleft(linkd,linkd292_1)
-dim(linkd)
 
 linkd292<-linkd[linkd$method=="link292d",] 
-
 linkd292$add2<-gsub(",","",linkd292$add2)
-
 linkd292_2<-linkd292[word(linkd292$add2,1,2)==word(linkd292$paotext,1,2),]
 
-
 linkd292_2<-uniqueresult(linkd292_2)
-dim(linkd)
 linkd<-matchleft(linkd,linkd292_2)
-dim(linkd)
-
-c2<- linkd[linkd$method=="link292d",]
-
-noadd2_9<-c2
-
-linkd<-matchleft(linkd,noadd2_9)
-dim(linkd)
-
-
-
-####################clean 293############
+####################clean 293####################
 c2<- linkd[linkd$method=="link293d",]
 
 
@@ -16710,9 +15486,7 @@ fail_12<-linkd293
 
 linkd<-matchleft(linkd,fail_12)
 dim(linkd)
-####################clean 294############
-
-
+####################clean 294####################
 linkd294_1<-linkd[linkd$method=="link294d" & substr(linkd$class,1,1)=="R" ,]
 linkd294_1<-uniqueresult(linkd294_1)
 
@@ -16770,7 +15544,7 @@ fail_13<-c2
 
 linkd<-matchleft(linkd,fail_13)
 dim(linkd)
-####################clean 295############
+####################clean 295####################
 
 
 linkd295<-linkd[linkd$method=="link295d",] 
@@ -16806,10 +15580,7 @@ detail_22<-c2
 
 linkd<-matchleft(linkd,detail_22)
 dim(linkd)
-####################clean 296############
-c2<- linkd[linkd$method=="link296d",]
-
-
+####################clean 296####################
 linkd296_1<-linkd[linkd$method=="link296d" & substr(linkd$class,1,1)=="R" ,]
 linkd296_1<-uniqueresult(linkd296_1)
 
@@ -16821,33 +15592,8 @@ c2<- linkd[linkd$method=="link296d",]
 detail_23<-c2
 
 linkd<-matchleft(linkd,detail_23)
-####################clean 297############
-c2<- linkd[linkd$method=="link297d",]
 
-
-linkd297<-linkd[linkd$method=="link297d",]
-linkd297<-linkd297[grepl("\\d",linkd297$add2),]
-linkd297 <- linkd297[grepl("\\d$",linkd297$add1),]
-linkd297<- linkd297[linkd297$paostartnumber=="",]
-fail_15<-linkd297
-
-c2<- linkd[linkd$method=="link297d",]
-
-
-detail_24<-c2
-
-linkd<-matchleft(linkd,detail_24)
-
-###############299############
-c2<- linkd[linkd$method=="link299d",]
-
-
-detail_25<-c2
-linkd<-matchleft(linkd,detail_25)
-
-###############301############
-c2<- linkd[linkd$method=="link301d",]
-
+####################clean 301####################
 
 linkd301_1<-linkd[linkd$method=="link301d" & word(linkd$add2,1)==word(linkd$paotext,1) ,]
 linkd301_1<-uniqueresult(linkd301_1)
@@ -16860,78 +15606,17 @@ c2<- linkd[linkd$method=="link301d",]
 detail_26<-c2
 
 linkd<-matchleft(linkd,detail_26)
-
-###############303############
-c2<- linkd[linkd$method=="link303d",]
-
-
-linkd<-matchleft(linkd,c2)
-dim(linkd)
-
-
-###############304############
-c2<- linkd[linkd$method=="link304d",]
-
-###############305############
-c2<- linkd[linkd$method=="link305d",]
-
-
-
-linkd305<-linkd[linkd$method=="link305d",]
-linkd305<-linkd305[grepl("\\d",linkd305$add2),]
-linkd305 <- linkd305[grepl("\\d$",linkd305$add1),]
-fail_15<-linkd305
-linkd<-matchleft(linkd,fail_15)
-dim(linkd)
-c2<- linkd[linkd$method=="link305d",]
-
-
-linkd305_parent<-c2
-
-linkd<-matchleft(linkd,c2)
-
-
-###############314############
-c2<- linkd[linkd$method=="link314d",]
-
-linkd314_parent<-c2
-linkd<-matchleft(linkd,linkd314_parent)
-
-###############318############
-c2<- linkd[linkd$method=="link318d",]
-
-
-linkd318_parent<-c2
-linkd<-matchleft(linkd,linkd318_parent)
-dim(linkd)
-
-
-###############319############
+####################clean 319####################
 
 linkd319<-linkd[linkd$method=="link319d",] 
-
 linkd319$add2<-gsub("NO.","",linkd319$add2)
-#linkd319$add2c<-str_remove(linkd319$add2, '(\\w+\\s+){1}')
-
-#linkd319$add1c<-str_remove(linkd319$add1, '(\\w+\\s+){1}')
 
 linkd319_1<-linkd319[word(linkd319$add2,1)==linkd319$paostartnumber,]
-
-
-
 linkd319_1<-uniqueresult(linkd319_1)
-dim(linkd)
+
 linkd<-matchleft(linkd,linkd319_1)
-dim(linkd)
-#20906    34
 
 linkd319<-linkd[linkd$method=="link319d",] 
-
-
-#linkd319$add2c<-str_remove(linkd319$add2, '(\\w+\\s+){1}')
-
-#linkd319$add1c<-str_remove(linkd319$add1, '(\\w+\\s+){1}')
-
 linkd319_2<-linkd319[word(linkd319$add3,1)==linkd319$buildingnumber,]
 
 
@@ -16941,7 +15626,7 @@ linkd319_2<-uniqueresult(linkd319_2)
 dim(linkd)
 linkd<-matchleft(linkd,linkd319_2)
 
-###############321############
+####################clean 321####################
 
 length(unique(linkd$method))
 
@@ -16978,28 +15663,10 @@ linkd321<-linkd321[grepl("\\d",linkd321$add2),]
 linkd321$add2<-gsub(",","",linkd321$add2)
 noadd2_10<-linkd321
 linkd<-matchleft(linkd,noadd2_10)
-dim(linkd)
 
 c2<- linkd[linkd$method=="link321d",]
-
-
 linkd<-matchleft(linkd,c2)
-
-###############322############
-c2<- linkd[linkd$method=="link322d",]
-
-noadd2_11<-c2
-linkd<-matchleft(linkd,c2)
-dim(linkd)
-###############323############
-c2<- linkd[linkd$method=="link323d",]
-
-
-linkd323_parent<-c2
-
-linkd<-matchleft(linkd,linkd323_parent)
-dim(linkd)
-###############324############
+####################clean 324####################
 c2<- linkd[linkd$method=="link324d",]
 
 
@@ -17013,48 +15680,19 @@ c2<- linkd[linkd$method=="link324d",]
 linkd324_parent<-c2
 
 linkd<-matchleft(linkd,linkd324_parent)
-dim(linkd)
 
-
-###############338############
-c2<- linkd[linkd$method=="link338d",]
-
-detail_27<-c2
-linkd<-matchleft(linkd,c2)
-
-###############339############
-c2<- linkd[linkd$method=="link339d",]
-
-linkd339_parent<-c2
-linkd<-matchleft(linkd,c2)
-dim(linkd)
-
-###############341############
-c2<- linkd[linkd$method=="link341d",]
-
-linkd341_parent<-c2
-linkd<-matchleft(linkd,c2)
-###############348############
+####################clean 348####################
 linkd348_1<-linkd[linkd$method=="link348d" & substr(linkd$class,1,1)=="R" ,]
 
 linkd348_1<-uniqueresult(linkd348_1)
 linkd<-matchleft(linkd,linkd348_1)
-###############349############
+####################clean 349####################
 linkd349_1<-linkd[linkd$method=="link349d" & substr(linkd$class,1,1)=="R" ,]
 
 linkd349_1<-uniqueresult(linkd349_1)
 linkd<-matchleft(linkd,linkd349_1)
-###############351############
-c2<- linkd[linkd$method=="link351d",]
-linkd349_parent<-c2
-linkd<-matchleft(linkd,c2)
 
-###############356############
-c2<- linkd[linkd$method=="link356d",]
-linkd356_parent<-c2
-linkd<-matchleft(linkd,c2)
-dim(linkd)
-###############357############
+####################clean 357####################
 
 linkd357<-linkd[linkd$method=="link357d",] 
 linkd357$add2<-gsub(",","",linkd357$add2)
@@ -17069,25 +15707,8 @@ dim(linkd)
 c2<- linkd[linkd$method=="link357d",]
 noadd2_12<-c2
 linkd<-matchleft(linkd,c2)
-dim(linkd)
 
-###############360############
-c2<- linkd[linkd$method=="link360d",]
-
-fail_16<-c2
-linkd<-matchleft(linkd,c2)
-
-###############363############
-c2<- linkd[linkd$method=="link363d",]
-
-
-
-detail_28<-c2
-linkd<-matchleft(linkd,c2)
-dim(linkd)
-
-
-###############367############
+####################clean 367####################
 
 linkd367<-linkd[linkd$method=="link367d",] 
 linkd367$add2<-gsub(",","",linkd367$add2)
@@ -17100,75 +15721,10 @@ dim(linkd)
 linkd<-matchleft(linkd,linkd367_1)
 c2<- linkd[linkd$method=="link367d",]
 
-
-
 fail_17<-c2
 linkd<-matchleft(linkd,c2)
-dim(linkd)
-
-####################clean 368############
-c2<- linkd[linkd$method=="link368d",]
-
-
-detail_29<-c2
-
-linkd<-matchleft(linkd,c2)
-dim(linkd)
-####################clean 369############
-c2<- linkd[linkd$method=="link369d",]
-
-
-detail_30<-c2
-
-linkd<-matchleft(linkd,c2)
-
-####################clean 374############
-c2<- linkd[linkd$method=="link374d",]
-
-linkd374_parent<-c2
-linkd<-matchleft(linkd,c2)
-dim(linkd)
-
-####################clean 376############
-c2<- linkd[linkd$method=="link376d",]
-
-
-detail_31<-c2
-linkd<-matchleft(linkd,c2)
-dim(linkd)
-
-####################clean 377############
-c2<- linkd[linkd$method=="link377d",]
-
-detail_32<-c2
-linkd<-matchleft(linkd,c2)
-###############381############
-c2<- linkd[linkd$method=="link381d",]
-
-linkd381_parent<-c2
-linkd<-matchleft(linkd,c2)
-dim(linkd)
-
-###############382############
-c2<- linkd[linkd$method=="link382d",]
-
-detail_33<-c2
-linkd<-matchleft(linkd,c2)
-
-###############388############
-c2<- linkd[linkd$method=="link388d",]
-
-detail_34<-c2
-linkd<-matchleft(linkd,c2)
-dim(linkd)
-###############389############
-c2<- linkd[linkd$method=="link389d",]
-detail_35<-c2
-linkd<-matchleft(linkd,c2)
-dim(linkd)
-###############390############
+####################clean 390####################
 c2<- linkd[linkd$method=="link390d",]
-
 
 #add2=paotext
 
@@ -17199,27 +15755,14 @@ noadd2_13<-linkd390
 
 linkd<-matchleft(linkd,linkd390)
 dim(linkd)
-###############391############
+####################clean 391####################
 linkd391<-linkd[linkd$method=="link391d",] 
 linkd391_1<-linkd391[linkd391$add2==word(linkd391$buildingname,1,2),]
 
 linkd391_1<-uniqueresult(linkd391_1)
 linkd<-matchleft(linkd,linkd391_1)
-###############398############
-c2<- linkd[linkd$method=="link398d",]
 
-linkd398_parent<-c2
-linkd<-matchleft(linkd,linkd398_parent)
-dim(linkd)
-
-###############399############
-c2<- linkd[linkd$method=="link399d",]
-fail_18<-c2
-
-linkd<-matchleft(linkd,fail_18)
-dim(linkd)
-
-###############404############
+####################clean 404####################
 length(unique(linkd$method))
 c2<- linkd[linkd$method=="link404d",]
 
@@ -17236,57 +15779,7 @@ detail_36<-c2
 
 linkd<-matchleft(linkd,detail_36)
 
-###############406############
-c2<- linkd[linkd$method=="link406d",]
-
-
-detail_37<-c2
-
-linkd<-matchleft(linkd,detail_37)
-
-
-###############412############
-c2<- linkd[linkd$method=="link412d",]
-
-
-detail_38<-c2
-
-linkd<-matchleft(linkd,detail_38)
-dim(linkd)
-
-###############413############
-c2<- linkd[linkd$method=="link413d",]
-
-detail_39<-c2
-
-linkd<-matchleft(linkd,detail_39)
-
-###############415############
-c2<- linkd[linkd$method=="link415d",]
-
-
-detail_40<-c2
-
-linkd<-matchleft(linkd,detail_40)
-dim(linkd)
-###############416############
-c2<- linkd[linkd$method=="link416d",]
-detail_41<-c2
-
-linkd<-matchleft(linkd,detail_41)
-
-###############418############
-c2<- linkd[linkd$method=="link418d",]
-detail_42<-c2
-
-linkd<-matchleft(linkd,detail_42)
-dim(linkd)
-
-
-###############419############
-length(unique(linkd$method))
-#18
-
+####################clean 419####################
 linkd419_1<-linkd[linkd$method=="link419d" & substr(linkd$class,1,1)=="R" ,]
 linkd419_1<-uniqueresult(linkd419_1)
 
@@ -17298,27 +15791,10 @@ c2<- linkd[linkd$method=="link419d",]
 detail_43<-c2
 
 linkd<-matchleft(linkd,detail_43)
-dim(linkd)
-
-
-
-###############420############
-c2<- linkd[linkd$method=="link420d",]
-detail_44<-c2
-
-linkd<-matchleft(linkd,detail_44)
-dim(linkd)
-
-
-###############421############
-c2<- linkd[linkd$method=="link421d",]
-
-
+####################clean 421####################
 linkd421<-linkd[linkd$method=="link421d",] 
 linkd421$add2<-gsub(",","",linkd421$add2)
 linkd421_1<-linkd421[word(linkd421$add2, 1)==linkd421$paostartnumber,]
-
-
 
 linkd421_1<-uniqueresult(linkd421_1)
 dim(linkd)
@@ -17329,14 +15805,7 @@ c2<- linkd[linkd$method=="link421d",]
 fail_19<-c2
 
 linkd<-matchleft(linkd,fail_19)
-dim(linkd)
-
-
-
-###############422############
-c2<- linkd[linkd$method=="link422d",]
-
-
+####################clean 422####################
 linkd422_1<-linkd[linkd$method=="link422d" & substr(linkd$class,1,1)=="R" ,]
 linkd422_1<-uniqueresult(linkd422_1)
 
@@ -17350,69 +15819,16 @@ fail_20<-c2
 linkd<-matchleft(linkd,fail_20)
 dim(linkd)
 
-###############423############
-c2<- linkd[linkd$method=="link423d",]
-
-fail_21<-c2
-
-
-linkd<-matchleft(linkd,fail_21)
-dim(linkd)
-###############424############
-c2<- linkd[linkd$method=="link424d",]
-
-linkd424_parent<-c2
-linkd<-matchleft(linkd,linkd424_parent)
-dim(linkd)
-#8475   34
-###############425############
-c2<- linkd[linkd$method=="link425d",]
-
-
-linkd425_parent<-c2[grepl("APARTMENT",c2$subbuildingname),]
-
-linkd425_parent1<-keepneed(linkd,linkd425_parent)
-rm(linkd425_parent)
-
-dim(linkd)
-linkd<-matchleft(linkd,linkd425_parent1)
-dim(linkd)
-
-detail_45<-c2
-
-
-linkd<-matchleft(linkd,detail_45)
-dim(linkd)
-
-linkd425_parent<-linkd425_parent1
-rm(linkd425_parent1)
-
-###############428############
-c2<- linkd[linkd$method=="link428d",]
-
-linkd428_parent<-c2
-
-
-linkd<-matchleft(linkd,linkd428_parent)
-
-###############431############
-
+####################clean 431####################
 #add2=paotext
 #add2(2.3)=paotext(1.2)
 
-
 linkd431<-linkd[linkd$method=="link431d",] 
-#linkd431$add2<-gsub(",","",linkd431$add2)
 linkd431_1<-linkd431[linkd431$add2==linkd431$paotext,]
 
-
-
 linkd431_1<-uniqueresult(linkd431_1)
-dim(linkd)
-linkd<-matchleft(linkd,linkd431_1)
-dim(linkd)
-# 8357   34
 
+linkd<-matchleft(linkd,linkd431_1)
 
 linkd431<-linkd[linkd$method=="link431d",] 
 #linkd431$add2<-gsub(",","",linkd431$add2)
@@ -17432,10 +15848,7 @@ noadd2_14<-c2
 linkd<-matchleft(linkd,noadd2_14)
 
 
-###############436##################################################################
-length(unique(linkd$method))
-
-
+####################clean 436####################
 
 linkd436<-linkd[linkd$method=="link436d",] 
 linkd436$add1<-gsub(",","",linkd436$add1)
@@ -17493,37 +15906,23 @@ c2<- linkd[linkd$method=="link436d",]
 noadd2_15<-c2
 linkd<-matchleft(linkd,noadd2_15)
 
-###############444############
+####################clean 444####################
 c2<- linkd[linkd$method=="link444d",]
-
-
 
 linkd444_1<-linkd[linkd$method=="link444d" & linkd$add2==linkd$paotext ,]
 linkd444_1<-uniqueresult(linkd444_1)
 
 linkd<-matchleft(linkd,linkd444_1)
-dim(linkd)
-
 
 linkd444_2<-linkd[linkd$method=="link444d" & word(linkd$add2,1,2)==word(linkd$paotext,2,3) ,]
 linkd444_2<-uniqueresult(linkd444_2)
 
 linkd<-matchleft(linkd,linkd444_2)
-dim(linkd)
-# 769  34
 
 detail_48<-linkd[linkd$method=="link444d",]
 linkd<-matchleft(linkd,detail_48)
-dim(linkd)
 
-###############445############
-c2<- linkd[linkd$method=="link445d",]
-
-
-detail_49   <-c2
-linkd<-matchleft(linkd,c2)
-dim(linkd)
-###############446############
+####################clean 446####################
 c2<- linkd[linkd$method=="link446d",]
 
 linkd446_1<-linkd[linkd$method=="link446d" & substr(linkd$class,1,1)=="R" ,]
@@ -17532,7 +15931,7 @@ linkd446_1<-uniqueresult(linkd446_1)
 linkd<-matchleft(linkd,linkd446_1)
 
 length(unique(linkd$method))
-#####sum up the one to many clean process
+####################sum up the one to many clean process####################
 
 clean_list<-list(linkd_1,linkd2_1,linkd4_1,linkd5_1,linkd6_1,linkd7_1,linkd8_1,linkd9_1,
                  linkd10_1,linkd11_1,linkd12_1,linkd15_1,linkd20_1,linkd25_1,linkd30_1,
