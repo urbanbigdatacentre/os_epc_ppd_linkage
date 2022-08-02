@@ -14494,577 +14494,273 @@ linkd254_2<-linkd254[word(linkd254$add2,-2, -1)==linkd254$saotext,]
 
 linkd254_2<-uniqueresult(linkd254_2)
 linkd<-matchleft(linkd,linkd254_2)
-####################clean 255####################
-length(unique(linkd$method))
-c2<- linkd[linkd$method=="link255d",]
-
-
-##match based on add2
-
-
+####################clean 255 add2[,](first word)=buildingnumber####################
+#add2[,](first word)=buildingnumber
 linkd255<-linkd[linkd$method=="link255d",] 
 linkd255$add2<-gsub(",","",linkd255$add2)
 linkd255_1<-linkd255[word(linkd255$add2, 1)==linkd255$buildingnumber,]
 
-
-
 linkd255_1<-uniqueresult(linkd255_1)
-dim(linkd)
 linkd<-matchleft(linkd,linkd255_1)
-dim(linkd)
-
-
-c2<- linkd[linkd$method=="link255d",]
-c2<-c2[grepl("\\d",c2$add2),]
-
-
-noadd2_2<-c2
-linkd<-matchleft(linkd,noadd2_2)
-dim(linkd)
-#67448    34
-
-c2<- linkd[linkd$method=="link255d",]
-#c2<-c2[grepl("\\d",c2$add2),]
-
-
-
-linkd255_parent<-c2
-linkd<-matchleft(linkd,c2)
-dim(linkd)
-
-####################clean 271####################
-c2<- linkd[linkd$method=="link271d",]
-
-
-##add2
-
-
+####################clean 271 add2[,](first word)=saostartnumber or add2[,](first word)=buildingnumber or add2[,](first word)=paostartnumnber####################
+#add2[,](first word)=saostartnumber
 linkd271<-linkd[linkd$method=="link271d",] 
-
 linkd271<-linkd271[grepl("\\d",linkd271$add2),]
 linkd271$add2<-gsub(",","",linkd271$add2)
 linkd271_1<-linkd271[word(linkd271$add2, 1)==linkd271$saostartnumber,]
 
-
-
 linkd271_1<-uniqueresult(linkd271_1)
-dim(linkd)
 linkd<-matchleft(linkd,linkd271_1)
-dim(linkd)
-
-#linkd<- linkd[linkd$method=="link271d",]
-
-
+#add2[,](first word)=buildingnumber
 linkd271<-linkd[linkd$method=="link271d",] 
 linkd271<-linkd271[grepl("\\d",linkd271$add2),]
 linkd271$add2<-gsub(",","",linkd271$add2)
 linkd271_2<-linkd271[word(linkd271$add2, 1)==linkd271$buildingnumber,]
 
-
-
 linkd271_2<-uniqueresult(linkd271_2)
-dim(linkd)
 linkd<-matchleft(linkd,linkd271_2)
-dim(linkd)
-#54194    34
-
+# add2[,](first word)=paostartnumnber
 linkd271<-linkd[linkd$method=="link271d",] 
 linkd271<-linkd271[grepl("\\d",linkd271$add2),]
-
-
 linkd271$add2<-gsub(",","",linkd271$add2)
 linkd271_3<-linkd271[word(linkd271$add2, 1)==linkd271$paostartnumber,]
-
-
-
 linkd271_3<-uniqueresult(linkd271_3)
-dim(linkd)
+
 linkd<-matchleft(linkd,linkd271_3)
-dim(linkd)
-#54187    34
-
-linkd271<-linkd[linkd$method=="link271d",] 
-linkd271<-linkd271[grepl("\\d",linkd271$add2),]
-detail_18<-linkd271
-linkd<-matchleft(linkd,detail_18)
-linkd271<-linkd[linkd$method=="link271d",] 
-
-
-detail_19<-linkd271
-linkd<-matchleft(linkd,detail_19)
-dim(linkd)
-
-####################clean 272####################
-
+####################clean 272 add2[,](first word)=paostartnumber####################
 linkd272<-linkd[linkd$method=="link272d",] 
 linkd272$add2<-gsub(",","",linkd272$add2)
 linkd272_1<-linkd272[word(linkd272$add2, 1)==linkd272$paostartnumber,]
 
-
-
 linkd272_1<-uniqueresult(linkd272_1)
-dim(linkd)
 linkd<-matchleft(linkd,linkd272_1)
-dim(linkd)
-c2<- linkd[linkd$method=="link272d",]
-
-detail_20<-c2
-linkd<-matchleft(linkd,detail_20)
-dim(linkd)
-
-
-
-####################clean 281####################
-c2<- linkd[linkd$method=="link281d",]
-
-
-
-c2$add1c<-str_remove(c2$add1, '(\\w+\\s+){2}')
-
-
-
-
+####################clean 281 add2(first word)=saostartnumber or add2(first word)=paostartnumber or add2(first word)=saostartnumber-saoendnumber or add2(first word)=saostartnumber or add2[,](first word)=ss  or add2(first word)=paostartnumber-paoendnumber or add2=paotext or add1[,](text afte the second word)=saostartnumber_paotext or add2[,](first word)=pp or add2[,](first two words)="BLOCK" saostartnumber or add2[,](second word)=paostartnumber or add3[,](first word)=paotext(last word) or add3[,](first word)=paostartnumber or add2[,](first word)=saostartnumber or add3[,] (first word)=paostartnumber-paoendnumber or add3[,](first word)=saostartnumber-saoendnumber or add1(text after second word)="BLOCK"_saostartnumber or add1(text after second word)=buildingnumber or add1(text after second word)=ss or add1(first two words after second word)=paotext(first two word) or add1(first two words after second word)=paotext( second and third words) or add1[,](the third word)=paostartnumber-paoendnumber or add1[,](third and forth words)=paotext(first two words) or add1(third word)=paotext(first word)####################
+#add2 contain a numerical number
+#add2(first word)=saostartnumber
 linkd281<-linkd[linkd$method=="link281d",] 
-
 linkd281<-linkd281[grepl("\\d",linkd281$add2),]
-
-#linkd281$add1c<-str_remove(linkd281$add1, '(\\w+\\s+){2}')
-
 linkd281_1<-linkd281[word(linkd281$add2, 1)==linkd281$saostartnumber,]
 
-
-
 linkd281_1<-uniqueresult(linkd281_1)
-dim(linkd)
 linkd<-matchleft(linkd,linkd281_1)
-dim(linkd)
-#50969    34
-c2<- linkd[linkd$method=="link281d",]
-#linkd281<-linkd[linkd$method=="link281d",] 
-
-
-
-
+#add2(first word)=paostartnumber
 linkd281<-linkd[linkd$method=="link281d",] 
 linkd281$add2<-gsub(",","",linkd281$add2)
 linkd281_2<-linkd281[word(linkd281$add2, 1)==linkd281$paostartnumber,]
 
-
-
 linkd281_2<-uniqueresult(linkd281_2)
-dim(linkd)
 linkd<-matchleft(linkd,linkd281_2)
-dim(linkd)
-
-c2<- linkd[linkd$method=="link281d",]
-
-
-
+#add2(first word)=saostartnumber-saoendnumber
 linkd281<-linkd[linkd$method=="link281d",] 
-
 linkd281$add2<-gsub(",","",linkd281$add2)
 linkd281_3<-linkd281[word(linkd281$add2, 1)==paste(linkd281$saostartnumber,linkd281$saoendnumber,sep="-"),]
-
-
-
 linkd281_3<-uniqueresult(linkd281_3)
-dim(linkd)
 linkd<-matchleft(linkd,linkd281_3)
-dim(linkd)
 
-
-#linkd281<-linkd[linkd$method=="link281d",] 
+#add2(first word)=saostartnumber
 linkd281<-linkd[linkd$method=="link281d",] 
-
 linkd281<-linkd281[grepl("\\d",linkd281$add2),]
-
 linkd281$add2<-gsub(",","",linkd281$add2)
 linkd281_4<-linkd281[word(linkd281$add2, 1)==linkd281$saostartnumber,]
 
-
-
 linkd281_4<-uniqueresult(linkd281_4)
-dim(linkd)
 linkd<-matchleft(linkd,linkd281_4)
-dim(linkd)
-
+#add2[,](first word)=ss
 linkd281<-linkd[linkd$method=="link281d",] 
-
 linkd281<-linkd281[grepl("\\d",linkd281$add2),]
-
-
-
 linkd281$add2<-gsub(",","",linkd281$add2)
 linkd281_5<-linkd281[word(linkd281$add2, 1)==paste(linkd281$saostartnumber,linkd281$saostartsuffix,sep=""),]
 
-
-
 linkd281_5<-uniqueresult(linkd281_5)
-dim(linkd)
 linkd<-matchleft(linkd,linkd281_5)
-dim(linkd)
-
+#add2(first word)=paostartnumber-paoendnumber 
 linkd281<-linkd[linkd$method=="link281d",] 
-
-
-
 linkd281$add2<-gsub(",","",linkd281$add2)
 linkd281_6<-linkd281[word(linkd281$add2, 1)==paste(linkd281$paostartnumber,linkd281$paoendnumber,sep="-"),]
 
-
-
 linkd281_6<-uniqueresult(linkd281_6)
-dim(linkd)
 linkd<-matchleft(linkd,linkd281_6)
-dim(linkd)
-
+#add2=paotext
 linkd281<-linkd[linkd$method=="link281d",] 
-
-# linkd281<-linkd281[grepl("\\d",linkd281$add2),]
-# linkd281[postcode.y=="HG1 2JA",add1:=gsub("GRANDVILLE HOUSE", "GRANDVILLE HOUSE",add1)]
-# linkd281$add1c<-str_remove(linkd281$add1, '(\\w+\\s+){2}')
-# 
-# linkd281$add1c<-gsub(",","",linkd281$add1c)
-# 
-# 
-
-
 linkd281_7<-linkd281[linkd281$add2==linkd281$paotext,]
 
-
-
 linkd281_7<-uniqueresult(linkd281_7)
-dim(linkd)
 linkd<-matchleft(linkd,linkd281_7)
-dim(linkd)
-#49756    34
+#add2 contain a numerical number
+#add1[,](text after the second word)=saostartnumber_paotext
 linkd281<-linkd[linkd$method=="link281d",] 
-
 linkd281<-linkd281[grepl("\\d",linkd281$add2),]
-
-
 linkd281$add1<-gsub(",","",linkd281$add1)
 linkd281$add1c<-str_remove(linkd281$add1, '(\\w+\\s+){2}')
-
 linkd281_8<-linkd281[linkd281$add1c==paste(linkd281$saostartnumber,linkd281$paotext,sep=" "),]
 
-
-
 linkd281_8<-uniqueresult(linkd281_8)
-dim(linkd)
 linkd<-matchleft(linkd,linkd281_8)
-dim(linkd)
 
+#add2[,](first word)=pp
 linkd281<-linkd[linkd$method=="link281d",] 
-
-
-#linkd281<-linkd281[grepl("\\d",linkd281$add2),]
-
-
-
 linkd281$add2<-gsub(",","",linkd281$add2)
 linkd281_9<-linkd281[word(linkd281$add2, 1)==paste(linkd281$paostartnumber,linkd281$paostartsuffix,sep=""),]
 
-
-
 linkd281_9<-uniqueresult(linkd281_9)
-dim(linkd)
 linkd<-matchleft(linkd,linkd281_9)
-dim(linkd)
 
-
+#add2[,](first two words)="BLOCK" saostartnumber 
 linkd281<-linkd[linkd$method=="link281d",] 
-
-
-
 linkd281$add2<-gsub(",","",linkd281$add2)
 linkd281_10<-linkd281[word(linkd281$add2, 1,2)==paste("BLOCK",linkd281$saostartnumber,sep=" "),]
 
-
-
 linkd281_10<-uniqueresult(linkd281_10)
-dim(linkd)
 linkd<-matchleft(linkd,linkd281_10)
-dim(linkd)
 
+#add2[,](second word)=paostartnumber
 linkd281<-linkd[linkd$method=="link281d",] 
-
-
-
-
 linkd281$add2<-gsub(",","",linkd281$add2)
 linkd281_11<-linkd281[word(linkd281$add2,2)==linkd281$paostartnumber,]
 
-
-
 linkd281_11<-uniqueresult(linkd281_11)
-dim(linkd)
 linkd<-matchleft(linkd,linkd281_11)
-dim(linkd)
+#add3[,](first word)=paotext(last word)
 
 linkd281<-linkd[linkd$method=="link281d",] 
-
 linkd281<-linkd281[grepl("\\d",linkd281$add2),]
-
 noadd2_5<-linkd281
 linkd<-matchleft(linkd,noadd2_5)
-dim(linkd)
+rm(noadd2_5)
+
 linkd281<-linkd[linkd$method=="link281d",] 
 linkd281<-linkd281[grepl("\\d",linkd281$add3),]
-
 linkd281$add3<-gsub(",","",linkd281$add3)
 linkd281_12<-linkd281[word(linkd281$add3, 1)==word(linkd281$paotext, -1),]
 
-
-
 linkd281_12<-uniqueresult(linkd281_12)
-dim(linkd)
 linkd<-matchleft(linkd,linkd281_11)
-dim(linkd)
-# 42520    34
+#add3[,](first word)=paostartnumber
 linkd281<-linkd[linkd$method=="link281d",] 
-
 linkd281<-linkd281[grepl("\\d",linkd281$add3),]
 linkd281$add3<-gsub(",","",linkd281$add3)
-
 linkd281_13<-linkd281[word(linkd281$add3, 1)==linkd281$paostartnumber,]
 
-
-
 linkd281_13<-uniqueresult(linkd281_13)
-dim(linkd)
 linkd<-matchleft(linkd,linkd281_13)
-dim(linkd)
-
+#add2[,](first word)=saostartnumber
 linkd281<-linkd[linkd$method=="link281d",] 
-
 linkd281<-linkd281[grepl("\\d",linkd281$add3),]
 linkd281$add3<-gsub(",","",linkd281$add3)
-
 linkd281_14<-linkd281[word(linkd281$add3, 1)==linkd281$saostartnumber,]
 
-
-
 linkd281_14<-uniqueresult(linkd281_14)
-dim(linkd)
 linkd<-matchleft(linkd,linkd281_14)
-dim(linkd)
-
-
-
+#add3[,] (first word)=paostartnumber-paoendnumber 
 linkd281<-linkd[linkd$method=="link281d",] 
-
 linkd281<-linkd281[grepl("\\d",linkd281$add3),]
 linkd281$add3<-gsub(",","",linkd281$add3)
-
 linkd281_15<-linkd281[word(linkd281$add3, 1)==paste(linkd281$paostartnumber,linkd281$paoendnumber,sep="-"),]
 
-
-
 linkd281_15<-uniqueresult(linkd281_15)
-dim(linkd)
 linkd<-matchleft(linkd,linkd281_15)
-dim(linkd)
-
-
-
+#add3[,](first word)=saostartnumber-saoendnumber 
 linkd281<-linkd[linkd$method=="link281d",] 
-
 linkd281<-linkd281[grepl("\\d",linkd281$add3),]
 linkd281$add3<-gsub(",","",linkd281$add3)
-
 linkd281_16<-linkd281[word(linkd281$add3, 1)==paste(linkd281$saostartnumber,linkd281$saoendnumber,sep="-"),]
 
-
-
 linkd281_16<-uniqueresult(linkd281_16)
-dim(linkd)
 linkd<-matchleft(linkd,linkd281_16)
-dim(linkd)
 
+#add1(text after second word)="BLOCK"_saostartnumber
 linkd281<-linkd[linkd$method=="link281d",] 
-
 linkd281<-linkd281[grepl("\\d",linkd281$add3),]
 linkd281$add1<-gsub(",","",linkd281$add1)
-
 linkd281$add1c<-str_remove(linkd281$add1, '(\\w+\\s+){2}')
-
 linkd281_17<-linkd281[linkd281$add1c==paste("BLOCK",linkd281$saostartnumber,sep=" "),]
 
-
-
 linkd281_17<-uniqueresult(linkd281_17)
-dim(linkd)
 linkd<-matchleft(linkd,linkd281_17)
-dim(linkd)
-#42232    34
 
+# add1(text after second word)=buildingnumber 
 linkd281<-linkd[linkd$method=="link281d",] 
 
 linkd281<-linkd281[grepl("\\d",linkd281$add3),]
-
 noadd2_6<-linkd281
-dim(linkd)
 linkd<-matchleft(linkd,noadd2_6)
-dim(linkd)
-
 
 linkd281<-linkd[linkd$method=="link281d",] 
 linkd281$add1<-gsub(",","",linkd281$add1)
-
 linkd281$add1c<-str_remove(linkd281$add1, '(\\w+\\s+){2}')
-
 linkd281_18<-linkd281[word(linkd281$add1c, 1)==linkd281$buildingnumber,]
 
-
-
 linkd281_18<-uniqueresult(linkd281_18)
-dim(linkd)
 linkd<-matchleft(linkd,linkd281_18)
-dim(linkd)
-
-
-
-
+#add1(text after second word)=ss
 linkd281<-linkd[linkd$method=="link281d",] 
 linkd281$add1<-gsub(",","",linkd281$add1)
-
 linkd281$add1c<-str_remove(linkd281$add1, '(\\w+\\s+){2}')
-
 linkd281_19<-linkd281[word(linkd281$add1c, 1)==paste(linkd281$saostartnumber,linkd281$saostartsuffix,sep=""),]
-
-
-
 linkd281_19<-uniqueresult(linkd281_19)
-dim(linkd)
 linkd<-matchleft(linkd,linkd281_19)
-dim(linkd)
 
-
-
+#add1(first two words after second word)=paotext(first two word) 
 linkd281<-linkd[linkd$method=="link281d",] 
 linkd281$add1<-gsub(",","",linkd281$add1)
-
 linkd281$add1c<-str_remove(linkd281$add1, '(\\w+\\s+){2}')
-
 linkd281_20<-linkd281[word(linkd281$add1c, 1,2)==word(linkd281$paotext,1,2),]
 
-
-
 linkd281_20<-uniqueresult(linkd281_20)
-dim(linkd)
 linkd<-matchleft(linkd,linkd281_20)
-dim(linkd)
-#41106    34
+#add1(first two words after second word)=paotext( second and third words) 
 linkd281<-linkd[linkd$method=="link281d",] 
 linkd281$add1<-gsub(",","",linkd281$add1)
-
 linkd281$add1c<-str_remove(linkd281$add1, '(\\w+\\s+){2}')
-
 linkd281_21<-linkd281[word(linkd281$add1c, 1,2)==word(linkd281$paotext,2,3),]
 
-
-
 linkd281_21<-uniqueresult(linkd281_21)
-dim(linkd)
 linkd<-matchleft(linkd,linkd281_21)
-dim(linkd)
-# 41065    34
 
+#add1[,](the third word)=paostartnumber-paoendnumber
 linkd281<-linkd[linkd$method=="link281d",] 
 linkd281$add1<-gsub(",","",linkd281$add1)
-
 linkd281$add1c<-str_remove(linkd281$add1, '(\\w+\\s+){2}')
-
 linkd281_22<-linkd281[word(linkd281$add1c, 1)==paste(linkd281$paostartnumber,linkd281$paoendnumber,sep="-"),]
 
-
-
 linkd281_22<-uniqueresult(linkd281_22)
-dim(linkd)
 linkd<-matchleft(linkd,linkd281_22)
-dim(linkd)
-
-
+#add1[,](third and forth words)=paotext(first two words) 
 linkd281<-linkd[linkd$method=="link281d",] 
 linkd281$add1<-gsub(",","",linkd281$add1)
 linkd281[,add1:=gsub("LLOYDS TSB BANK PLC", "LLOYDS BANK PLC",add1)]
 linkd281[,add1:=gsub("ELLIOT HOUSE", "ELIOT HOUSE",add1)]
 linkd281[,add1:=gsub("BUXTON COURT", "BUXTON HOUSE",add1)]
 linkd281$add1c<-str_remove(linkd281$add1, '(\\w+\\s+){2}')
-
 linkd281_23<-linkd281[word(linkd281$add1c, 1,2)==word(linkd281$paotext,1,2),]
 
-
-
 linkd281_23<-uniqueresult(linkd281_23)
-dim(linkd)
 linkd<-matchleft(linkd,linkd281_23)
-dim(linkd)
-
-
+#add1(third word)=paotext(first word)
 linkd281<-linkd[linkd$method=="link281d",] 
 linkd281$add1<-gsub(",","",linkd281$add1)
-
 linkd281$add1c<-str_remove(linkd281$add1, '(\\w+\\s+){2}')
-
 linkd281_24<-linkd281[word(linkd281$add1c, 1)==word(linkd281$paotext,1),]
 
-
-
 linkd281_24<-uniqueresult(linkd281_24)
-dim(linkd)
 linkd<-matchleft(linkd,linkd281_24)
-dim(linkd)
-#40896    34
-
-linkd281<-linkd[linkd$method=="link281d",]
-
-noadd2_7<-linkd281
-linkd<-matchleft(linkd,noadd2_7)
-
-####################clean 288####################
+####################clean 288 add1(text after first word)=saotext_streetdesciption or add1[,](text after first word)=subbuildingname_saotext or (add1[,](second word)=paostartnumber-paoendnumber and add1(first word)=saostartnumber) or add1[,](second word)=paotext(first word) or add1[,](frist word)=ss or correct some address string then add2(second word)=streetdescription(first word) or  residential UPRN or add1[,](second word)=saotext(last word) or add1[,](second and third word)=saotext(last two words) or add1[,](second word)=saotext(first word)####################
+#add1(text after first word)=saotext_streetdesciption
 linkd288<-linkd[linkd$method=="link288d",] 
-
-#linkd288<-linkd288[grepl("\\d",linkd288$add2),]
-
 linkd288$add1c<-str_remove(linkd288$add1, '(\\w+\\s+){1}')
-
 linkd288_1<-linkd288[linkd288$add1c==paste(linkd288$saotext,linkd288$streetdescription,sep=" "),]
 
-
-
 linkd288_1<-uniqueresult(linkd288_1)
-dim(linkd)
 linkd<-matchleft(linkd,linkd288_1)
-dim(linkd)
-#39189    34
+#add1[,](text after first word)=subbuildingname_saotext
 linkd288<-linkd[linkd$method=="link288d",] 
 linkd288$add1<-gsub(",","",linkd288$add1)
 linkd288$add1c<-str_remove(linkd288$add1, '(\\w+\\s+){1}')
-
 linkd288_2<-linkd288[linkd288$add1c==paste(linkd288$subbuildingname,linkd288$saotext,sep=" "),]
 
-
 linkd288_2<-uniqueresult(linkd288_2)
-dim(linkd)
 linkd<-matchleft(linkd,linkd288_2)
-dim(linkd)
-#39149    34
-
-
-
-linkd288_parent<-c2[grepl("\\d",c2$saotext),]
-
-linkd288_parent1<-keepneed(linkd,linkd288_parent)
-rm(linkd288_parent)
-
-dim(linkd)
-linkd<-matchleft(linkd,linkd288_parent1)
-c2<- linkd[linkd$method=="link288d",]
-
-
-
+#add1[,](second word)=paostartnumber-paoendnumber and add1(first word)=saostartnumber
 linkd288<-linkd[linkd$method=="link288d",] 
 linkd288$add1<-gsub(",","",linkd288$add1)
 linkd288$add1c<-str_remove(linkd288$add1, '(\\w+\\s+){1}')
@@ -15073,39 +14769,25 @@ linkd288_3<-linkd288[word(linkd288$add1c,1)==paste(linkd288$paostartnumber,linkd
 linkd288_3<-linkd288_3[word(linkd288_3$add1,1)==linkd288_3$saostartnumber,]
 
 linkd288_3<-uniqueresult(linkd288_3)
-dim(linkd)
 linkd<-matchleft(linkd,linkd288_3)
-dim(linkd)
-#31114    34
-
-
+#add1[,](second word)=paotext(first word)
 linkd288<-linkd[linkd$method=="link288d",] 
 linkd288$add1<-gsub(",","",linkd288$add1)
 linkd288$add1c<-str_remove(linkd288$add1, '(\\w+\\s+){1}')
-
 linkd288_4<-linkd288[word(linkd288$add1c,1)==word(linkd288$paotext,1),]
-#linkd288_3<-linkd288_3[word(linkd288_3$add1,1)==linkd288_3$saostartnumber,]
 
 linkd288_4<-uniqueresult(linkd288_4)
-dim(linkd)
 linkd<-matchleft(linkd,linkd288_4)
-dim(linkd)
-#31114    34
 
+#add1[,](frist word)=ss 
 linkd288<-linkd[linkd$method=="link288d",] 
-
-
 linkd288$add1<-gsub(",","",linkd288$add1)
-#linkd288$add1c<-str_remove(linkd288$add1, '(\\w+\\s+){1}')
-
 linkd288_5<-linkd288[word(linkd288$add1,1)==paste(linkd288$saostartnumber,linkd288$saostartsuffix,sep=""),]
-#linkd288_3<-linkd288_3[word(linkd288_3$add1,1)==linkd288_3$saostartnumber,]
 
 linkd288_5<-uniqueresult(linkd288_5)
-dim(linkd)
 linkd<-matchleft(linkd,linkd288_5)
-dim(linkd)
 
+#correct some address string then add2(second word)=streetdescription(first word) 
 linkd288<-linkd[linkd$method=="link288d",] 
 linkd288$add1<-gsub(",","",linkd288$add1)
 linkd288$add1c<-str_remove(linkd288$add1, '(\\w+\\s+){1}')
@@ -15114,315 +14796,172 @@ linkd288$add1c<-gsub("HAZELDEAN COURT","HAZELDENE COURT",linkd288$add1c)
 linkd288_6<-linkd288[word(linkd288$add1c,1)==word(linkd288$streetdescription,1),]
 
 linkd288_6<-uniqueresult(linkd288_6)
-dim(linkd)
 linkd<-matchleft(linkd,linkd288_6)
-dim(linkd)
 
-
-
+#residential UPRN
 linkd288_7<-linkd[linkd$method=="link288d" & substr(linkd$class,1,1)=="R" ,]
 linkd288_7<-uniqueresult(linkd288_7)
-
 linkd<-matchleft(linkd,linkd288_7)
-dim(linkd)
 
-
-
+#add1[,](second word)=saotext(last word) 
 linkd288<-linkd[linkd$method=="link288d",] 
 linkd288$add1<-gsub(",","",linkd288$add1)
 linkd288$add1c<-str_remove(linkd288$add1, '(\\w+\\s+){1}')
-
-
 linkd288_8<-linkd288[word(linkd288$add1c,1)==word(linkd288$saotext,-1),]
-
 linkd288_8<-uniqueresult(linkd288_8)
-dim(linkd)
+
 linkd<-matchleft(linkd,linkd288_8)
-dim(linkd)
-
-
+#add1[,](second and third word)=saotext(last two words)
 linkd288<-linkd[linkd$method=="link288d",] 
 linkd288$add1<-gsub(",","",linkd288$add1)
 linkd288$add1c<-str_remove(linkd288$add1, '(\\w+\\s+){1}')
 
 linkd288_9<-linkd288[word(linkd288$add1c,1,2)==word(linkd288$saotext,-2,-1),]
 linkd288_9<-uniqueresult(linkd288_9)
-dim(linkd)
 linkd<-matchleft(linkd,linkd288_9)
-dim(linkd)
-
-
+#add1[,](second word)=saotext(first word)
 linkd288<-linkd[linkd$method=="link288d",] 
-
 linkd288$add1<-gsub(",","",linkd288$add1)
 linkd288$add1c<-str_remove(linkd288$add1, '(\\w+\\s+){1}')
-
 linkd288_10<-linkd288[word(linkd288$add1c,1)==word(linkd288$saotext,1),]
+
 linkd288_10<-uniqueresult(linkd288_10)
-dim(linkd)
 linkd<-matchleft(linkd,linkd288_10)
-dim(linkd)
-
-
-linkd288<-linkd[linkd$method=="link288d",] 
-
-fail_9<-linkd288[grepl("\\d",linkd288$add3),]
-
-linkd<-matchleft(linkd,fail_9)
-
-linkd288<-linkd[linkd$method=="link288d",] 
-
-fail_10<-linkd288[grepl("\\d",linkd288$add2),]
-
-linkd<-matchleft(linkd,fail_10)
-
-linkd288<-linkd[linkd$method=="link288d",] 
-
-
-linkd<-matchleft(linkd,linkd288)
-dim(linkd)
-linkd288_parent<-linkd288_parent1
-rm(linkd288_parent1)
-####################clean 289############
-length(unique(linkd$method))
-#76
-
-
+####################clean 289 add1(second and third words)=buildingname and correct the "CHEPLING HOUSE"to "CHEPING HOUSE"; or add1[,](first three words)=saotext or add2=paostartnumber_streetdescription or add1=saostartnumber_paotext############
+#add1(second and third words)=buildingname and correct the "CHEPLING HOUSE"to "CHEPING HOUSE"
 linkd289<-linkd[linkd$method=="link289d",] 
-
-
-
 linkd289$add1c<-str_remove(linkd289$add1, '(\\w+\\s+){1}')
-
 linkd289$add1c<-gsub("CHEPLING HOUSE","CHEPING HOUSE",linkd289$add1c)
 linkd289_1<-linkd289[word(linkd289$add1c,1,2)==linkd289$buildingname,]
 
-
-
 linkd289_1<-uniqueresult(linkd289_1)
-dim(linkd)
 linkd<-matchleft(linkd,linkd289_1)
-dim(linkd)
-#28140
-
+#add1[,](first three words)=saotext
 linkd289<-linkd[linkd$method=="link289d",] 
 linkd289$add1<-gsub(",","",linkd289$add1)
-#linkd289$add1c<-str_remove(linkd289$add1, '(\\w+\\s+){1}')
-
 linkd289_2<-linkd289[word(linkd289$add1,1,3)==linkd289$saotext,]
 
-
 linkd289_2<-uniqueresult(linkd289_2)
-dim(linkd)
 linkd<-matchleft(linkd,linkd289_2)
-dim(linkd)
-#28070    34
 
-
-
-
-
+#add2=paostartnumber_streetdescription 
 linkd289<-linkd[linkd$method=="link289d",] 
-#linkd289_3<-linkd289[word(linkd289$add1c,1)==paste(linkd289$paostartnumber,linkd289$paoendnumber,sep="-"),]
 linkd289_3<-linkd289[linkd289$add2==paste(linkd289$paostartnumber,linkd289$streetdescription,sep=" "),]
 
 linkd289_3<-uniqueresult(linkd289_3)
-dim(linkd)
 linkd<-matchleft(linkd,linkd289_3)
-dim(linkd)
 
-
-
-
+#add1=saostartnumber_paotext
 linkd289<-linkd[linkd$method=="link289d",] 
 linkd289$add1<-gsub("CLARKES MEWS","CLARKS MEWS",linkd289$add1)
 linkd289$add1<-gsub("PORTER MEWS","PORTER HOUSE",linkd289$add1)
 linkd289_4<-linkd289[linkd289$add1==paste(linkd289$saostartnumber,linkd289$paotext,sep=" "),]
-#linkd289_3<-linkd289_3[word(linkd289_3$add1,1)==linkd289_3$saostartnumber,]
 
 linkd289_4<-uniqueresult(linkd289_4)
-dim(linkd)
 linkd<-matchleft(linkd,linkd289_4)
-dim(linkd)
-c2<- linkd[linkd$method=="link289d",]
-
-
-noadd2_8<-c2
-linkd<-matchleft(linkd,noadd2_8)
-
-####################clean 291####################
-
-
+####################clean 291 add2[,](frist word)=pp or add1[,](text after first word)=buildingnumber or add1[,](text after first word)=paostartnumber-paoendnumber or add1[,](text after first word)=paostartnumber or  add1[,](second word)=paotext(second word) or  add1[,](second word)=paotext(first word) or  add1[,](text after first word)=paotext(second word) or add1[,](text after first word)=paotext(first word) or add1[,](text after first word)=paotext or add1[,](second and third word)=paotext(first two words)####################
+#add2[,](frist word)=pp
 linkd291<-linkd[linkd$method=="link291d",] 
-
 linkd291<-linkd291[grepl("\\d",linkd291$add2),]
-
 linkd291$add2<-gsub(",","",linkd291$add2)
 linkd291_1<-linkd291[word(linkd291$add2,1)==paste(linkd291$paostartnumber,linkd291$paostartsuffix,sep=""),]
 
-
-
 linkd291_1<-uniqueresult(linkd291_1)
-dim(linkd)
 linkd<-matchleft(linkd,linkd291_1)
-
-
-
-
+#add1[,](text after first word)=buildingnumber 
 linkd291<-linkd[linkd$method=="link291d",] 
 linkd291$add1<-gsub(",","",linkd291$add1)
 linkd291$add1c<-str_remove(linkd291$add1, '(\\w+\\s+){1}')
-
 linkd291_2<-linkd291[word(linkd291$add1c,1)==linkd291$buildingnumber,]
 
-
 linkd291_2<-uniqueresult(linkd291_2)
-dim(linkd)
 linkd<-matchleft(linkd,linkd291_2)
-dim(linkd)
-
-
+#add1[,](text after first word)=paostartnumber-paoendnumber
 linkd291<-linkd[linkd$method=="link291d",] 
 linkd291$add1<-gsub(",","",linkd291$add1)
 linkd291$add1c<-str_remove(linkd291$add1, '(\\w+\\s+){1}')
-
 linkd291_3<-linkd291[word(linkd291$add1c,1)==paste(linkd291$paostartnumber,linkd291$paoendnumber,sep="-"),]
-#linkd291_3<-linkd291_3[word(linkd291_3$add1,1)==linkd291_3$saostartnumber,]
 
 linkd291_3<-uniqueresult(linkd291_3)
-dim(linkd)
 linkd<-matchleft(linkd,linkd291_3)
-dim(linkd)
-
-
-
+#add1[,](text after first word)=paostartnumber 
 linkd291<-linkd[linkd$method=="link291d",] 
 linkd291$add1<-gsub(",","",linkd291$add1)
 linkd291$add1c<-str_remove(linkd291$add1, '(\\w+\\s+){1}')
-
 linkd291_4<-linkd291[word(linkd291$add1c,1)==linkd291$paostartnumber,]
-#linkd291_3<-linkd291_3[word(linkd291_3$add1,1)==linkd291_3$saostartnumber,]
 
 linkd291_4<-uniqueresult(linkd291_4)
-dim(linkd)
 linkd<-matchleft(linkd,linkd291_4)
-dim(linkd)
-
+#add1[,](text after first word)=paotext(second word) 
 linkd291<-linkd[linkd$method=="link291d",] 
 linkd291$add1<-gsub(",","",linkd291$add1)
 linkd291$add1c<-str_remove(linkd291$add1, '(\\w+\\s+){1}')
-
-
 linkd291_5<-linkd291[word(linkd291$add1c,1)==word(linkd291$paotext,2),]
 
 linkd291_5<-uniqueresult(linkd291_5)
-dim(linkd)
 linkd<-matchleft(linkd,linkd291_5)
-dim(linkd)
-
-
+#add1[,](text after first word)=paotext(first word) 
 linkd291<-linkd[linkd$method=="link291d",] 
 linkd291$add1<-gsub(",","",linkd291$add1)
 linkd291$add1c<-str_remove(linkd291$add1, '(\\w+\\s+){1}')
 linkd291_6<-linkd291[word(linkd291$add1c,1)==word(linkd291$paotext,1),]
-
 linkd291_6<-uniqueresult(linkd291_6)
-dim(linkd)
+
 linkd<-matchleft(linkd,linkd291_6)
-dim(linkd)
-#25886    34
-
-
-
+#add1[,](first word)=paotext(second word) 
 linkd291<-linkd[linkd$method=="link291d",] 
 linkd291$add2<-gsub(",","",linkd291$add2)
-
 linkd291<-linkd291[grepl("\\d",linkd291$add2),]
-
-
 linkd291_7<-linkd291[word(linkd291$add2,1)==word(linkd291$paotext,2),]
 
 linkd291_7<-uniqueresult(linkd291_7)
-dim(linkd)
 linkd<-matchleft(linkd,linkd291_7)
-dim(linkd)
-#25878    34
 
+#add1[,](text after first word)=paotext(first word) 
 linkd291<-linkd[linkd$method=="link291d",] 
 linkd291$add1<-gsub(",","",linkd291$add1)
 linkd291$add1c<-str_remove(linkd291$add1, '(\\w+\\s+){1}')
-
-#MANOR HOUSE
-
-linkd291_8<-linkd291[linkd291$add1c==linkd291$paotext,]
-
-linkd291_parent<-linkd291_8
-rm(linkd291_8)
-
-linkd<-matchleft(linkd,linkd291_parent)
-dim(linkd)
-
-
-linkd291<-linkd[linkd$method=="link291d",] 
-linkd291$add1<-gsub(",","",linkd291$add1)
-linkd291$add1c<-str_remove(linkd291$add1, '(\\w+\\s+){1}')
-
-
 linkd291_8<-linkd291[word(linkd291$add1c,1)==word(linkd291$paotext,1),]
 
 linkd291_8<-uniqueresult(linkd291_8)
+linkd<-matchleft(linkd,linkd291_8)
 
-linkd<-matchleft(linkd,linkd291_parent)
-dim(linkd)
-
+#add1[,](text after first word)=paotext 
 linkd291<-linkd[linkd$method=="link291d",] 
 linkd291$add1<-gsub(",","",linkd291$add1)
 linkd291$add1c<-str_remove(linkd291$add1, '(\\w+\\s+){1}')
 linkd291$add1c<-gsub("MANOR HOUSE","THE MANOR HOUSE",linkd291$add1c)
 
 linkd291_9<-linkd291[linkd291$add1c==linkd291$paotext,]
-
 linkd291_9<-uniqueresult(linkd291_9)
-
 linkd<-matchleft(linkd,linkd291_9)
 
-
+# add1[,](second and third word)=paotext(first two words)
 linkd291<-linkd[linkd$method=="link291d",] 
 linkd291$add1<-gsub(",","",linkd291$add1)
 linkd291$add1c<-str_remove(linkd291$add1, '(\\w+\\s+){1}')
-#linkd291$add1c<-gsub("MANOR HOUSE","THE MANOR HOUSE",linkd291$add1c)
-
 linkd291_10<-linkd291[word(linkd291$add1c,1,2)==word(linkd291$paotext,1,2),]
 
 linkd291_10<-uniqueresult(linkd291_10)
-
 linkd<-matchleft(linkd,linkd291_10)
-####################clean 292####################
+####################clean 292 add2=paotext or add2[,](first two words)=paotext(frist two words)####################
+#add2=paotext 
 linkd292<-linkd[linkd$method=="link292d",] 
 linkd292$add2<-gsub(",","",linkd292$add2)
-
 linkd292_1<-linkd292[linkd292$add2==linkd292$paotext,]
+
 linkd292_1<-uniqueresult(linkd292_1)
-
 linkd<-matchleft(linkd,linkd292_1)
-
+#add2[,](first two words)=paotext(frist two words)
 linkd292<-linkd[linkd$method=="link292d",] 
 linkd292$add2<-gsub(",","",linkd292$add2)
 linkd292_2<-linkd292[word(linkd292$add2,1,2)==word(linkd292$paotext,1,2),]
 
 linkd292_2<-uniqueresult(linkd292_2)
 linkd<-matchleft(linkd,linkd292_2)
-####################clean 293####################
-c2<- linkd[linkd$method=="link293d",]
-
-
-
+####################clean 293 add2(frist word))=paostartnumber or add1( third and forth words)=paotext(first two words) or add2=paotext or add2=pp_streetdescription####################
+#
 linkd293<-linkd[linkd$method=="link293d",] 
-
-#linkd293<-linkd293[grepl("\\d",linkd293$add2),]
-
-#linkd293$add1c<-str_remove(linkd293$add1, '(\\w+\\s+){1}')
-
 linkd293_1<-linkd293[word(linkd293$add2,1)==linkd293$paostartnumber,]
 linkd293_1<-uniqueresult(linkd293_1)
 dim(linkd)
