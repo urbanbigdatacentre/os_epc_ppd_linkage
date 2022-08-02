@@ -1611,6 +1611,10 @@ link58<-link58[,..needlist1]
 link58u<- uniqueresult(link58)
 link58d <- doubleresult(link58)
 
+c1<-link58u[grepl("\\d+",link58u$buildingnumber),]
+c1<-c1[c1$paostartnumber!="",]
+link58u<-matchleft(link58u,c1)
+rm(c1)
 epc <- matchleft(epc,link58)
 ####################method 59####################
 function59<- function(x,y){
@@ -3277,6 +3281,10 @@ link116<-link116[,..needlist1]
 link116u<- uniqueresult(link116)
 link116d <- doubleresult(link116)
 
+c1<-link116u[grepl("^\\d+",link116u$buildingname),]
+c1<-c1[c1$saostartnumber!="",]
+link116u<-matchleft(link116u,c1)
+rm(c1)
 epc <- matchleft(epc,link116)
 ####################method 117####################
 function117<- function(x,y){
@@ -4150,6 +4158,9 @@ link145<-link145[,..needlist1]
 
 link145u<- uniqueresult(link145)
 link145d <- doubleresult(link145)
+
+c1_1<-link145u[grepl("\\d[,]\\s\\d",link145u$add1),]
+link145u<-matchleft(link145u,c1_1)
 
 epc <- matchleft(epc,link145)
 ####################method 146####################
@@ -15256,6 +15267,33 @@ dim(linkdd_final)
 
 linkdcopy<-matchleft(linkd2,linkdd_final)
 length(unique(linkdcopy$lmk_key))
+rm(linkd_1,linkd2_1,linkd4_1,linkd5_1,linkd6_1,linkd7_1,linkd8_1,linkd9_1,
+   linkd10_1,linkd11_1,linkd12_1,linkd15_1,linkd20_1,linkd25_1,linkd30_1,
+   linkd32_1,linkd34_1,linkd35_1,linkd38_1,linkd44_1,linkd45_1,linkd46_1,
+   linkd58_1,linkd73_1,linkd74_1,linkd75_1,linkd78_1,linkd79_1,linkd82_1,
+   linkd87_1,linkd96_1,linkd97_1,linkd101_1,linkd103_1,linkd104_1,linkd107_1,
+   linkd108_1,linkd109_1,linkd113_1,linkd115_1,linkd123_1,linkd124_1,linkd125_1,
+   linkd142_1,linkd143_1,linkd143_2,linkd143_3,linkd143_4,linkd143_6,linkd143_7,
+   linkd143_8,linkd144_1,linkd145_1,linkd146_1,linkd147_1,linkd151_1,linkd153_1,
+   linkd161_1,linkd169_1,linkd169_2,linkd169_3,linkd169_4,linkd169_5,linkd171_1,
+   linkd173_1,linkd173_2,linkd173_3,linkd175_1,linkd180_1,linkd196_1,linkd196_2,
+   linkd197_1,linkd202_1,linkd203_1,linkd214_1,linkd217_1,linkd234_1,linkd236_1,
+   linkd237_1,linkd239_1,linkd240_1,linkd246_1,linkd246_2,linkd253_1,linkd253_2,
+   linkd253_3,linkd254_1,linkd254_2,linkd255_1,linkd271_1,linkd271_2,linkd271_3,
+   linkd272_1,linkd281_1,linkd281_2,linkd281_3,linkd281_4,linkd281_5,linkd281_6,
+   linkd281_7,linkd281_8,linkd281_9,linkd281_10,linkd281_11,linkd281_12,linkd281_13,
+   linkd281_14,linkd281_15,linkd281_16,linkd281_17,linkd281_18,linkd281_19,linkd281_20,
+   linkd281_21,linkd281_22,linkd281_23,linkd281_24,linkd288_1,linkd288_2,linkd288_3,linkd288_4,
+   linkd288_5,linkd288_6,linkd288_7,linkd288_8,linkd288_9,linkd288_10,linkd289_1,linkd289_2,
+   linkd289_3,linkd289_4,linkd291_1,linkd291_2,linkd291_3,linkd291_4,linkd291_5,
+   linkd291_6,linkd291_7,linkd291_8,linkd291_9,linkd292_1,linkd292_2,linkd293_1,
+   linkd291_10,linkd293_2,linkd293_3,linkd293_4,linkd294_1,linkd294_2,linkd294_3,
+   linkd294_4,linkd295_1,linkd295_2,linkd296_1,linkd301_1,linkd319_1,linkd319_2,
+   linkd321_1,linkd321_2,linkd324_1,linkd348_1,linkd349_1,linkd357_1,linkd367_1,
+   linkd390_1,linkd390_2,linkd391_1,linkd404_1,linkd419_1,linkd421_1,linkd422_1,
+   linkd431_1,linkd431_2,linkd436_1,linkd436_2,linkd436_3,linkd444_1,linkd444_2,
+   linkd446_1,linkd34_2,linkd202_2,linkd113_2,clean_list
+)
 
 ########################clean the linku######################
 
