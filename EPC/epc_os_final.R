@@ -32,6 +32,7 @@ epc <- dbGetQuery(con,"select lmk_key,address1,address2,address3,address,postcod
 
 ####################################Section 3: OS AddressBase data and Domestic EPCs pre-processing#################################### 
 #capitalise address1, address2, address3 and address four fields into four new fields (add1,add2,add3 and add)
+setDT(epc)
 epc[,  `:=`(add1 = toupper(address1),
             add2 = toupper(address2),
             add3 = toupper(address3),
@@ -144,7 +145,7 @@ function1<- function(x,y){
 #run the matching rule 1 function
 link1<-function1(add,epc)
 
-#keep part of the variables in linked dataset
+#subset the linked dataset
 needlist1<-c("lmk_key","postcode.y","property_type","uprn","add1","add2","add3","add","postcode.x","postcodelocator","buildingname","buildingnumber","subbuildingname","paostartnumber","paostartsuffix","paoendnumber","paoendsuffix","paotext","saostartnumber","saostartsuffix","saoendnumber","saoendsuffix","saotext","streetdescription","locality","dependentlocality","townname","class","lodgement_date","inspection_date","lodgement_datetime")
 link1<-link1[,..needlist1]
 #Get the one to one linkage result
@@ -153,7 +154,7 @@ link1u<- uniqueresult(link1)
 link1d <- doubleresult(link1)
 #remove the linked records from the original EPC dataset
 epc <- matchleft(epc,link1)
-#remove the linked result to save memory
+#remove the link1 to save memory
 rm(link1)
 ####################method 2####################
 function2<- function(x,y){
@@ -418,7 +419,7 @@ link11d <- doubleresult(link11)
 epc <- matchleft(epc,link11)
 rm(link11)
 ####################section sum up(method 1 to method 11)####################
-#create a method vairable to record the linkage method ID
+#create a method variable to record the linkage method ID
 link1u$method<-"link1u"
 link2u$method<-"link2u"
 link3u$method<-"link3u"
@@ -450,8 +451,8 @@ l1_11d = list(link1d,link2d,link3d,link4d,link5d,link6d,link7d,link8d,link9d,lin
 link1_11d<- rbindlist(l1_11d)
 
 #save the linked data in PostGIS
-dbWriteTable(con, "link1_11dnew",value =link1_11d, append = TRUE, row.names = FALSE)
-dbWriteTable(con, "link1_11unew",value =link1_11u, append = TRUE, row.names = FALSE)
+dbWriteTable(con, "link1_11d",value =link1_11d, append = TRUE, row.names = FALSE)
+dbWriteTable(con, "link1_11u",value =link1_11u, append = TRUE, row.names = FALSE)
 
 #delete temporal result in the above linkage methods
 rm(link1u,link2u,link3u,link4u,link5u,link6u,link7u,link8u,link9u,link10u,link11u)
