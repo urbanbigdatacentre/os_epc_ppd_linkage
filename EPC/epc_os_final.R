@@ -1,4 +1,4 @@
-# ------------------------------------------------
+ # ------------------------------------------------
 # epc_os_final.R
 # ------------------------------------------------
 # Code provided as is and can be used or modified freely. 
@@ -144,13 +144,12 @@ function1<- function(x,y){
 }
 #run the matching rule 1 function
 link1<-function1(add,epc)
-
 #subset the linked dataset
 needlist1<-c("lmk_key","postcode.y","property_type","uprn","add1","add2","add3","add","postcode.x","postcodelocator","buildingname","buildingnumber","subbuildingname","paostartnumber","paostartsuffix","paoendnumber","paoendsuffix","paotext","saostartnumber","saostartsuffix","saoendnumber","saoendsuffix","saotext","streetdescription","locality","dependentlocality","townname","class","lodgement_date","inspection_date","lodgement_datetime")
 link1<-link1[,..needlist1]
-#Get the one to one linkage result
+#get the one to one linkage result
 link1u<- uniqueresult(link1)
-#Get the one to many linkage result
+#get the one to many linkage result
 link1d <- doubleresult(link1)
 #remove the linked records from the original EPC dataset
 epc <- matchleft(epc,link1)
@@ -171,7 +170,6 @@ function2<- function(x,y){
 
   return(taba1)
 }
-
 link2<-function2(add,epc)
 link2<-link2[,..needlist1]
 
@@ -206,7 +204,6 @@ function3<- function(x,y){
  
   return(taba1)
 }
-
 link3<-function3(add,epc)
 link3<-link3[,..needlist1]
 
@@ -231,7 +228,6 @@ function4<- function(x,y){
  
   return(taba1)
 }
-
 link4<-function4(add,epc)
 link4<-link4[,..needlist1]
 
@@ -256,7 +252,6 @@ function5<- function(x,y){
  
   return(taba1)
 }
-
 link5<-function5(add,epc)
 link5<-link5[,..needlist1]
 
@@ -281,7 +276,6 @@ function6<- function(x,y){
  
   return(taba1)
 }
-
 link6<-function6(add,epc)
 link6<-link6[,..needlist1]
 
@@ -380,7 +374,6 @@ function10<- function(x,y){
  
   return(taba1)
 }
-
 link10<-function10(add,epc)
 link10<-link10[,..needlist1]
 
@@ -409,7 +402,6 @@ function11<- function(x,y){
   taba1 <- inner_join(x,y,by="addressf")
   return(taba1)
 }
-
 link11<-function11(add,epc)
 link11<-link11[,..needlist1]
 
@@ -873,8 +865,8 @@ link12_26u<- rbindlist(l12_26u, use.names=TRUE, fill=TRUE)
 l12_26d = list(link12d,link13d,link14d,link15d,link16d,link17d,link18d,link19d,link20d,link21d,link22d,link23d,link24d,link25d,link26d)
 link12_26d<- rbindlist(l12_26d, use.names=TRUE, fill=TRUE)
 
-dbWriteTable(con, "link12_26unew",value =link12_26u, append = TRUE, row.names = FALSE)
-dbWriteTable(con, "link12_26dnew",value =link12_26d, append = TRUE, row.names = FALSE)
+dbWriteTable(con, "link12_26u",value =link12_26u, append = TRUE, row.names = FALSE)
+dbWriteTable(con, "link12_26d",value =link12_26d, append = TRUE, row.names = FALSE)
 
 
 rm(link12,link13,link14,link15,link16,link17,link18,link19,link20,link21,link22,link23,link24,link25,link26)
@@ -1588,29 +1580,7 @@ link57u<- uniqueresult(link57)
 link57d <- doubleresult(link57)
  
 epc <- matchleft(epc,link57)
-####################method 58####################
-function58<- function(x,y){
-  x$bnstreet <- paste(x$saotext,x$pp,sep=",")
-  x$bnstreet <- paste(x$bnstreet,x$buildingnumber,sep=" ")
-  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
-  x$bnstreet <- gsub("[']", "", x$bnstreet)
-  x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
-  y$addressfinal <- trimws(y$add)
-  y$addressfinal <- gsub("[']", "", y$addressfinal)
-  y$addressfinal <- gsub(" ", "", y$addressfinal)
-  y$addressf <- paste(y$postcode,y$addressfinal,sep=",")
-  
-  taba1 <- inner_join(x,y,by="addressf")
-  
-  return(taba1)
-}
-link58<-function58(add,epc)
-link58<-link58[,..needlist1]
-
-link58u<- uniqueresult(link58)
-link58d <- doubleresult(link58)
 
 c1<-link58u[grepl("\\d+",link58u$buildingnumber),]
 c1<-c1[c1$paostartnumber!="",]
@@ -1947,8 +1917,8 @@ link27_69u<- rbindlist(l27_69u, use.names=TRUE, fill=TRUE)
 l27_69d = list(link27d,link28d,link29d,link30d,link31d,link32d,link33d,link34d,link35d,link36d,link37d,link38d,link39d,link40d,link41d,link42d,link43d,link44d,link45d,link46d,link47d,link48d,link49d,link50d,link51d,link52d,link53d,link54d,link55d,link56d,link57d,link58d,link59d,link60d,link61d,link62d,link63d,link64d,link65d,link66d,link67d,link68d,link69d)
 link27_69d<- rbindlist(l27_69d, use.names=TRUE, fill=TRUE)
 
-dbWriteTable(con, "link27_69dnew",value =link27_69d, append = TRUE, row.names = FALSE)
-dbWriteTable(con, "link27_69unew",value =link27_69u, append = TRUE, row.names = FALSE)
+dbWriteTable(con, "link27_69d",value =link27_69d, append = TRUE, row.names = FALSE)
+dbWriteTable(con, "link27_69u",value =link27_69u, append = TRUE, row.names = FALSE)
 #delete the data created in the above
 rm(link27,link28,link29,link30,link31,link32,link33,link34,link35,link36,link37,link38,link39,link40,link41,link42,link43,link44,link45,link46,link47,link48,link49,link50,link51,link52,link53,link54,link55,link56,link57,link58,link59,link60,link61,link62,link63,link64,link65,link66,link67,link68,link69)
 rm(link27u,link28u,link29u,link30u,link31u,link32u,link33u,link34u,link35u,link36u,link37u,link38u,link39u,link40u,link41u,link42u,link43u,link44u,link45u,link46u,link47u,link48u,link49u,link50u,link51u,link52u,link53u,link54u,link55u,link56u,link57u,link58u,link59u,link60u,link61u,link62u,link63u,link64u,link65u,link66u,link67u,link68u,link69u)
@@ -2811,8 +2781,8 @@ link70_99u<- rbindlist(l70_99u)
 
 l70_99d = list(link70d,link71d,link72d,link73d,link74d,link75d,link76d,link77d,link78d,link79d,link80d,link81d,link82d,link83d,link84d,link85d,link86d,link87d,link88d,link89d,link90d,link91d,link92d,link93d,link94d,link95d,link96d,link97d,link98d,link99d)
 link70_99d<- rbindlist(l70_99d, use.names=TRUE, fill=TRUE)
-dbWriteTable(con, "link70_99unew",value =link70_99u, append = TRUE, row.names = FALSE)
-dbWriteTable(con, "link70_99dnew",value =link70_99d, append = TRUE, row.names = FALSE)
+dbWriteTable(con, "link70_99u",value =link70_99u, append = TRUE, row.names = FALSE)
+dbWriteTable(con, "link70_99d",value =link70_99d, append = TRUE, row.names = FALSE)
 
 rm(link70d,link71d,link72d,link73d,link74d,link75d,link76d,link77d,link78d,link79d,link80d,link81d,link82d,link83d,link84d,link85d,link86d,link87d,link88d,link89d,link90d,link91d,link92d,link93d,link94d,link95d,link96d,link97d,link98d,link99d)
 rm(link70u,link71u,link72u,link73u,link74u,link75u,link76u,link77u,link78u,link79u,link80u,link81u,link82u,link83u,link84u,link85u,link86u,link87u,link88u,link89u,link90u,link91u,link92u,link93u,link94u,link95u,link96u,link97u,link98u,link99u)
@@ -3828,8 +3798,8 @@ link100_133u<- rbindlist(l100_133u)
 l100_133d = list(link100d,link101d,link102d,link103d,link104d,link105d,link106d,link107d,link108d,link109d,link110d,link111d,link112d,link113d,link114d,link115d,link116d,link117d,link118d,link119d,link120d,link121d,link122d,link123d,link124d,link125d,link126d,link127d,link128d,link129d,link130d,link131d,link132d,link133d)
 link100_133d<- rbindlist(l100_133d, use.names=TRUE, fill=TRUE)
 
-dbWriteTable(con, "link100_133dnew",value =link100_133d, append = TRUE, row.names = FALSE)
-dbWriteTable(con, "link100_133unew",value =link100_133u, append = TRUE, row.names = FALSE)
+dbWriteTable(con, "link100_133d",value =link100_133d, append = TRUE, row.names = FALSE)
+dbWriteTable(con, "link100_133u",value =link100_133u, append = TRUE, row.names = FALSE)
 
 rm(link100u,link101u,link102u,link103u,link104u,link105u,link106u,link107u,link108u,link109u,link110u,link111u,link112u,link113u,link114u,link115u,link116u,link117u,link118u,link119u,link120u,link121u,link122u,link123u,link124u,link125u,link126u,link127u,link128u,link129u,link130u,link131u,link132u,link133u)
 rm(link100d,link101d,link102d,link103d,link104d,link105d,link106d,link107d,link108d,link109d,link110d,link111d,link112d,link113d,link114d,link115d,link116d,link117d,link118d,link119d,link120d,link121d,link122d,link123d,link124d,link125d,link126d,link127d,link128d,link129d,link130d,link131d,link132d,link133d)
