@@ -4130,8 +4130,8 @@ link145<-link145[,..needlist1]
 link145u<- uniqueresult(link145)
 link145d <- doubleresult(link145)
 
-c1_1<-link145u[grepl("\\d[,]\\s\\d",link145u$add1),]
-link145u<-matchleft(link145u,c1_1)
+c1<-link145u[grepl("\\d[,]\\s\\d",link145u$add1),]
+link145u<-matchleft(link145u,c1)
 
 epc <- matchleft(epc,link145)
 ####################method 146####################
@@ -4190,6 +4190,14 @@ link147<-link147[,..needlist1]
 
 link147u<- uniqueresult(link147)
 link147d <- doubleresult(link147)
+
+data4<-link147u[!grepl("\\d$",link147u$saotext),]
+data4<-data4[!grepl("^FLAT",data4$saotext),]
+
+data4<-data4[data4$buildingnumber!="",]
+data4<-data4[data4$paostartnumber!="",]
+
+link147u<-matchleft(link147u,data4)
 
 epc <- matchleft(epc,link147)
 ####################method 148####################
@@ -4798,8 +4806,8 @@ link134_166u<- rbindlist(l134_166l)
 l134_166dl = list(link134d,link135d,link136d,link137d,link138d,link139d,link140d,link141d,link142d,link143d,link144d,link145d,link146d,link147d,link148d,link149d,link150d,link151d,link152d,link153d,link154d,link155d,link156d,link157d,link158d,link159d,link160d,link161d,link162d,link163d,link164d,link165d,link166d)
 link134_166d<- rbindlist(l134_166dl, use.names=TRUE, fill=TRUE)
 
-dbWriteTable(con, "link134_166dnew",value =link134_166d, append = TRUE, row.names = FALSE)
-dbWriteTable(con, "link134_166unew",value =link134_166u, append = TRUE, row.names = FALSE)
+dbWriteTable(con, "link134_166d",value =link134_166d, append = TRUE, row.names = FALSE)
+dbWriteTable(con, "link134_166u",value =link134_166u, append = TRUE, row.names = FALSE)
 
 rm(link134u,link135u,link136u,link137u,link138u,link139u,link140u,link141u,link142u,link143u,link144u,link145u,link146u,link147u,link148u,link149u,link150u,link151u,link152u,link153u,link154u,link155u,link156u,link157u,link158u,link159u,link160u,link161u,link162u,link163u,link164u,link165u,link166u)
 rm(link134d,link135d,link136d,link137d,link138d,link139d,link140d,link141d,link142d,link143d,link144d,link145d,link146d,link147d,link148d,link149d,link150d,link151d,link152d,link153d,link154d,link155d,link156d,link157d,link158d,link159d,link160d,link161d,link162d,link163d,link164d,link165d,link166d)
@@ -7283,8 +7291,8 @@ l167_249d = list(link167d,link168d,link169d,link170d,link171d,link172d,link173d,
 
 link167_249d<- rbindlist(l167_249d)
 
-dbWriteTable(con, "link167_249dnew",value =link167_249d, append =  TRUE, row.names = FALSE)
-dbWriteTable(con, "link167_249unew",value =link167_249u, append =  TRUE, row.names = FALSE)
+dbWriteTable(con, "link167_249d",value =link167_249d, append =  TRUE, row.names = FALSE)
+dbWriteTable(con, "link167_249u",value =link167_249u, append =  TRUE, row.names = FALSE)
 
 rm(link167,link168,link169,link170,link171,link172,link173,link174,link175,link176,link177,link178,link179,
    link180,link181,link182,link183,link184,link185,link186,link187,link188,link189,
@@ -8270,6 +8278,7 @@ link280d <- doubleresult(link280)
 
 epc <- matchleft(epc,link280)
 ####################method 281####################
+#this linkage is conducted only based on part of the address information
 function281<- function(x,y){
   x<-x[x$paotext!="",]
   x$bnstreet <- x$saotext
@@ -8292,6 +8301,86 @@ link281<-link281[,..needlist1]
 
 link281u<- uniqueresult(link281)
 link281d <- doubleresult(link281)
+dim(link281u)
+#27215    31
+#clean the incorrect linked in this linkage
+c2<-link281u
+doubleresult1 <-  function(x){
+  dt <- as.data.table(x)
+  esummary<-dt[,.(count=.N),by=uprn]
+  idd2 <- esummary[esummary$count!=1,]
+  need1 <- x[x$uprn %in% idd2$uprn,]
+  return(need1)
+}
+uniqueresult1 <-  function(x){
+  dt <- as.data.table(x)
+  esummary<-dt[,.(count=.N),by=uprn]
+  idd2 <- esummary[esummary$count==1,]
+  need1 <- x[x$uprn %in% idd2$uprn,]
+  return(need1)
+}
+c11<-doubleresult1(c2)
+c12<-c11[,c("add","uprn")]
+c12<-unique(c12)
+c13<-doubleresult1(c12)
+##c14 contains the wrong part
+c14<-c2[c2$add %in% c13$add,]
+dim(c14)[1]
+#first remove the wrong part in link281u and then add in the right linked
+dim(link281u)[1]
+#27215 
+link281u<-matchleft(link281u,c14)
+dim(link281u)[1]
+#21691
+data1<-c14
+View(data1)
+
+data1_1<-data1[data1$add2!="",]
+data1_1<-data1_1[word(data1_1$add2,1)==paste(data1_1$paostartnumber,data1_1$paostartsuffix,sep=""),]
+
+data1_1<-uniqueresult(data1_1)
+
+matchleft1 <- function(x,y){
+  next0 <- x[!(x$uprn %in% y$uprn),]
+  return(next0)
+}
+
+data1<-matchleft1(data1,data1_1)
+
+data1_2<-data1[data1$add2!="",]
+data1_2<-data1_2[word(data1_2$add2,1)==paste(data1_2$saostartnumber,data1_2$saostartsuffix,sep=""),]
+dim(data1_2)
+data1_2<-uniqueresult(data1_2)
+
+data1<-matchleft1(data1,data1_2)
+
+#Two records use different street name.
+data1_3<-data1[data1$add2!="",]
+data1_3<-data1_3[word(data1_3$add2,1)==data1_3$buildingnumber,]
+data1_3<-uniqueresult(data1_3)
+
+data1<-matchleft1(data1,data1_3)
+
+data1_4<-data1[data1$add2=="",]
+data1_4$add1c<-str_remove(data1_4$add1, '(\\w+\\s+){2}')
+data1_4<-data1_4[word(data1_4$add1c,1,2)==word(data1_4$paotext,1,2),]
+
+data1<-matchleft1(data1,data1_4)
+
+data1_5<-data1[data1$add2=="",]
+data1_5$add1c<-str_remove(data1_5$add1, '(\\w+\\s+){2}')
+data1_5<-data1_5[word(data1_5$add1c,1)==paste(data1_5$paostartnumber,data1_5$paostartsuffix,sep=""),]
+
+data1<-matchleft1(data1,data1_5)
+
+
+data1_all<-rbindlist(list(data1_1,data1_2,data1_3,data1_4,data1_5),use.names=TRUE, fill=TRUE)
+data1_all<-data1_all[,..needlist1]
+
+
+dim(link281u)
+link281u<-rbindlist(list(link281u,data1_all), use.names=TRUE, fill=TRUE)
+rm(data1_1,data1_2,data1_3,data1_4,data1_5,data1_all,c2,c11,c12,c13)
 
 epc <- matchleft(epc,link281)
 ####################method 282####################
@@ -8511,9 +8600,17 @@ link288<-function288(add,epc)
 link288<-link288[,..needlist1]
 
 link288u<- uniqueresult(link288)
-
 link288d <- doubleresult(link288)
- 
+dim(link288u)
+
+
+numberstringxtract <- function(string){ 
+  str_extract(string, "[0-9]{1,2}\\s[A-Z]")
+} 
+
+data2<- link288u[grepl("[0-9]{1,2}\\s[A-Z]$",link288u$add1),]
+link288u<-matchleft(link288u,data2)
+
 epc <- matchleft(epc,link288)
 
 ####################method 289####################
@@ -8939,8 +9036,6 @@ l250_299u = list(link250u,link251u,link252u,link253u,link254u,link255u,link256u,
                  link270u,link271u,link272u,link273u,link274u,link275u,link276u,link277u,link278u,link279u,
                  link280u,link281u,link282u,link283u,link284u,link285u,link286u,link287u,link288u,link289u,
                  link290u,link291u,link292u,link293u,link294u,link295u,link296u,link297u,link298u,link299u)
-
-#
 link250_299u<- rbindlist(l250_299u)
 
 l250_299d = list(link250d,link251d,link252d,link253d,link254d,link255d,link256d,link257d,link258d,link259d,
@@ -8948,11 +9043,10 @@ l250_299d = list(link250d,link251d,link252d,link253d,link254d,link255d,link256d,
                  link270d,link271d,link272d,link273d,link274d,link275d,link276d,link277d,link278d,link279d,
                  link280d,link281d,link282d,link283d,link284d,link285d,link286d,link287d,link288d,link289d,
                  link290d,link291d,link292d,link293d,link294d,link295d,link296d,link297d,link298d,link299d)
-
 link250_299d<- rbindlist(l250_299d)
 
-dbWriteTable(con, "link250_299dnew1",value =link250_299d, append =  TRUE, row.names = FALSE)
-dbWriteTable(con, "link250_299unew1",value =link250_299u, append =  TRUE, row.names = FALSE)
+dbWriteTable(con, "link250_299d",value =link250_299d, append =  TRUE, row.names = FALSE)
+dbWriteTable(con, "link250_299u",value =link250_299u, append =  TRUE, row.names = FALSE)
 
 rm(l250_299d,l250_299u)
 
@@ -8986,13 +9080,15 @@ lunique1 = list(link1_11u,link12_26u,link27_69u,link70_99u,link100_133u,link134_
 linku1<-rbindlist(lunique1,use.names=TRUE, fill=TRUE)
 linkd1<-rbindlist(ldouble1,use.names=TRUE, fill=TRUE)
 
-dbWriteTable(con, "linku1new",value =linku1, append =  TRUE, row.names = FALSE)
-dbWriteTable(con, "linkd1new",value =linkd1, append =  TRUE, row.names = FALSE)
+dbWriteTable(con, "linku1",value =linku1, append =  TRUE, row.names = FALSE)
+dbWriteTable(con, "linkd1",value =linkd1, append =  TRUE, row.names = FALSE)
 
 rm(ldouble1,lunique1)
 rm(link1_11d,link12_26d,link27_69d,link70_99d,link100_133d,link134_166d,link167_249d,link250_299d)
 rm(link1_11u,link12_26u,link27_69u,link70_99u,link100_133u,link134_166u,link167_249u,link250_299u)
 rm(add)
+
+
 ####################read in OS AddressBase###################
 add <- dbGetQuery(con,"select * from  addressgb") 
 #format the OS addressBase data as before the following linkage process
