@@ -128,10 +128,10 @@ function1<- function(x,y){
   x<-x[x$buildingname=="",]
   x<-x[x$subbuildingname=="",]
   #combine buildingnumber and streetdescription with a comma into bnstreet field
-  x$bnstreet <-    paste(x$buildingnumber,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$buildingnumber,x$streetdescription,sep=",")
   #remove the blank space in bnstreet
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   #remove the blank space in add
   y$addressfinal <- trimws(y$add)
@@ -159,7 +159,7 @@ rm(link1)
 function2<- function(x,y){
   x<-x[x$saotext=="",]
   x<-x[x$subbuildingname=="",]
-  x$bnstreet <-    paste(x$buildingnumber,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$buildingnumber,x$streetdescription,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
@@ -215,8 +215,8 @@ epc <- matchleft(epc,link3)
 rm(link3)
 ####################method 4####################
 function4<- function(x,y){
-  x$bnstreet <-    paste(x$buildingnumber,x$streetdescription,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$townname,sep=",")
+  x$bnstreet <- paste(x$buildingnumber,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$townname,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
@@ -239,8 +239,7 @@ epc <- matchleft(epc,link4)
 rm(link4)
 ####################method 5####################
 function5<- function(x,y){
-  x$bnstreet <-    paste(x$buildingnumber,x$streetdescription,sep=",")
-
+  x$bnstreet <- paste(x$buildingnumber,x$streetdescription,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
@@ -263,7 +262,7 @@ epc <- matchleft(epc,link5)
 rm(link5)
 ####################method 6####################
 function6<- function(x,y){
-  x$bnstreet <-    paste(x$paostartnumber,x$paostartsuffix,sep="")
+  x$bnstreet <- paste(x$paostartnumber,x$paostartsuffix,sep="")
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
@@ -288,8 +287,8 @@ rm(link6)
 ####################method 7####################
 function7<- function(x,y){
   
-  x$bnstreet <-    paste(x$buildingnumber,x$streetdescription,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$dependentlocality,sep=",")
+  x$bnstreet <- paste(x$buildingnumber,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$dependentlocality,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
@@ -312,8 +311,8 @@ epc <- matchleft(epc,link7)
 rm(link7)
 ####################method 8####################
 function8<- function(x,y){
-  x$bnstreet <-    paste(x$buildingname,x$streetdescription,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$dependentlocality,sep=",")
+  x$bnstreet <- paste(x$buildingname,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$dependentlocality,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
@@ -336,8 +335,8 @@ epc <- matchleft(epc,link8)
 rm(link8)
 ####################method 9####################
 function9<- function(x,y){
-  x$bnstreet <-    paste(x$subbuildingname,x$buildingname,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$subbuildingname,x$buildingname,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
@@ -360,9 +359,9 @@ epc <- matchleft(epc,link9)
 rm(link9)
 ####################method 10####################
 function10<- function(x,y){
-  x$bnstreet <-    paste(x$subbuildingname,x$buildingname,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$buildingnumber,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$subbuildingname,x$buildingname,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$buildingnumber,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
@@ -387,7 +386,7 @@ rm(link10)
 function11<- function(x,y){
   #x<-x[is.na(x$buildingnumber),]
   x<-x[x$buildingnumber=="",]
-  x$bnstreet <-    paste(x$buildingname,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$buildingname,x$streetdescription,sep=",")
   x$bnstreet <- gsub("['] ", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
@@ -455,7 +454,7 @@ rm(function1,function2,function3,function4,function5,function6,function7,functio
 
 ####################method 12####################
 function12<- function(x,y){
-  x$bnstreet <-    paste(x$buildingname,x$dependentlocality,sep=",")
+  x$bnstreet <- paste(x$buildingname,x$dependentlocality,sep=",")
   
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
@@ -478,8 +477,8 @@ link12d <- doubleresult(link12)
 epc <- matchleft(epc,link12)
 ####################method 13####################
 function13<- function(x,y){
-  x$bnstreet <-    paste(x$subbuildingname,x$buildingnumber,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$subbuildingname,x$buildingnumber,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
@@ -503,9 +502,9 @@ link13d <- doubleresult(link13)
 epc <- matchleft(epc,link13)
 ####################method 14####################
 function14<- function(x,y){
-  x$bnstreet <-    paste(x$subbuildingname,x$buildingname,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$buildingnumber,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$subbuildingname,x$buildingname,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$buildingnumber,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- paste(x$bnstreet,x$dependentlocality,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
@@ -530,7 +529,7 @@ epc <- matchleft(epc,link14)
 ####################method 15####################
 function15<- function(x,y){
   
-  x$bnstreet <-    paste(x$buildingnumber,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$buildingnumber,x$streetdescription,sep=",")
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
@@ -557,8 +556,8 @@ epc <- matchleft(epc,link15)
 ####################method 16####################
 function16<- function(x,y){
   
-  x$bnstreet <-    paste(x$saotext,x$paotext,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$saotext,x$paotext,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
@@ -582,9 +581,9 @@ epc <- matchleft(epc,link16)
 ####################method 17####################
 function17<- function(x,y){
   
-  x$bnstreet <-    paste(x$saotext,x$buildingname,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$dependentlocality ,sep=",")
+  x$bnstreet <- paste(x$saotext,x$buildingname,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$dependentlocality ,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
@@ -607,9 +606,9 @@ epc <- matchleft(epc,link17)
 function18<- function(x,y){
   #x<-x[is.na(x$paostartsuffix),]
   x<-x[x$paostartsuffix=="",]
-  x$bnstreet <-    paste(x$saotext,x$paostartnumber,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$dependentlocality ,sep=",")
+  x$bnstreet <- paste(x$saotext,x$paostartnumber,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$dependentlocality ,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
@@ -618,8 +617,8 @@ function18<- function(x,y){
   y$addressf <- paste(y$postcode,y$addressfinal,sep=",")
   
   taba1 <- inner_join(x,y,by="addressf")
-  return(taba1)
   
+  return(taba1)
 }
 
 link18<-function18(add,epc)
@@ -631,13 +630,10 @@ link18d <- doubleresult(link18)
 epc <- matchleft(epc,link18)
 ####################method 19####################
 function19<- function(x,y){
-  # x<-x[is.na(x$buildingnumber),]
-  # x<-x[is.na(x$buildingname),]
-  # x<-x[is.na(x$subbuildingname),]
   x<-x[x$buildingnumber=="",]
   x<-x[x$buildingname=="",]
   x<-x[x$subbuildingname=="",]
-  x$bnstreet <-    paste(x$paotext,x$streetdescription ,sep=",")
+  x$bnstreet <- paste(x$paotext,x$streetdescription ,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
@@ -646,9 +642,9 @@ function19<- function(x,y){
   y$addressf <- paste(y$postcode,y$addressfinal,sep=",")
   
   taba1 <- inner_join(x,y,by="addressf")
+  
   return(taba1)
 }
-
 link19<-function19(add,epc)
 link19<-link19[,..needlist1]
 
@@ -659,8 +655,8 @@ epc <- matchleft(epc,link19)
 ####################method 20####################
 function20<- function(x,y){
   
-  x$bnstreet <-    paste(x$paotext,x$locality,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$townname,sep=",")
+  x$bnstreet <- paste(x$paotext,x$locality,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$townname,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
@@ -675,15 +671,14 @@ function20<- function(x,y){
 link20<-function20(add,epc)
 link20<-link20[,..needlist1]
 
-
 link20u<- uniqueresult(link20)
 link20d <- doubleresult(link20)
 
 epc <- matchleft(epc,link20)
 ####################method 21####################
 function21<- function(x,y){
-  x$bnstreet <-    paste(x$subbuildingname,x$buildingnumber,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=" ")
+  x$bnstreet <- paste(x$subbuildingname,x$buildingnumber,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   x$bnstreet <- paste(x$bnstreet,x$dependentlocality,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
@@ -705,8 +700,8 @@ link21d <- doubleresult(link21)
 epc <- matchleft(epc,link21)
 ####################method 22####################
 function22<- function(x,y){
-  x$bnstreet <-    paste(x$subbuildingname,x$buildingnumber,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$subbuildingname,x$buildingnumber,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- paste(x$bnstreet,x$dependentlocality,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
@@ -729,9 +724,7 @@ link22d <- doubleresult(link22)
 epc <- matchleft(epc,link22)
 ####################method 23####################
 function23<- function(x,y){
-  
-  
-  x$bnstreet <-    paste(x$paostartnumber,x$paoendnumber,sep="-")
+  x$bnstreet <- paste(x$paostartnumber,x$paoendnumber,sep="-")
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
@@ -741,8 +734,8 @@ function23<- function(x,y){
   y$addressf <- paste(y$postcode,y$addressfinal,sep=",")
   
   taba1 <- inner_join(x,y,by="addressf")
-  return(taba1)
   
+  return(taba1)
 }
 link23<-function23(add,epc)
 link23<-link23[,..needlist1]
@@ -753,10 +746,9 @@ link23d <- doubleresult(link23)
 epc <- matchleft(epc,link23)
 ####################method 24####################
 function24<- function(x,y){
-  
-  x$bnstreet <-    paste(x$subbuildingname,x$buildingname,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$buildingnumber,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$subbuildingname,x$buildingname,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$buildingnumber,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- paste(x$bnstreet,x$dependentlocality,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
@@ -766,8 +758,8 @@ function24<- function(x,y){
   y$addressf <- paste(y$postcode,y$addressfinal,sep=",")
   
   taba1 <- inner_join(x,y,by="addressf")
-  return(taba1)
   
+  return(taba1)
 }
 link24<-function24(add,epc)
 link24<-link24[,..needlist1]
@@ -778,21 +770,18 @@ link24d <- doubleresult(link24)
 epc <- matchleft(epc,link24)
 ####################method 25####################
 function25<- function(x,y){
-  
-  x$bnstreet <-    paste(x$subbuildingname,x$buildingname,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
-  
+  x$bnstreet <- paste(x$subbuildingname,x$buildingname,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
-  
   y$addressfinal <- gsub(" ", "", y$addressfinal)
   y$addressf <- paste(y$postcode,y$addressfinal,sep=",")
   
   taba1 <- inner_join(x,y,by="addressf")
-  return(taba1)
   
+  return(taba1)
 }
 link25<-function25(add,epc)
 link25<-link25[,..needlist1]
@@ -803,20 +792,18 @@ link25d <- doubleresult(link25)
 epc <- matchleft(epc,link25)
 ####################method 26####################
 function26<- function(x,y){
-  x$bnstreet <-    paste(x$subbuildingname,x$buildingname,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=" ")
-  
+  x$bnstreet <- paste(x$subbuildingname,x$buildingname,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
-  
   y$addressfinal <- gsub(" ", "", y$addressfinal)
   y$addressf <- paste(y$postcode,y$addressfinal,sep=",")
-  
+
   taba1 <- inner_join(x,y,by="addressf")
-  return(taba1)
   
+  return(taba1)
 }
 link26<-function26(add,epc)
 link26<-link26[,..needlist1]
@@ -884,8 +871,8 @@ function27<- function(x,y){
   
   y$addressfinal <- trimws(y$add)
   y$addressf <- paste(y$postcode,y$addressfinal,sep=",")
-
   taba1 <- inner_join(x,y,by="addressf")
+  
   return(taba1)
 }
 link27<-function27(add,epc)
@@ -1045,7 +1032,6 @@ function35<- function(x,y){
   
   taba1 <- inner_join(x,y,by="addressf")
   return(taba1)
-  
 }
 link35<-function35(add,epc)
 link35<-link35[,..needlist1]
@@ -1097,7 +1083,6 @@ function37<- function(x,y){
   taba1 <- inner_join(x,y,by="addressf")
   return(taba1)
 }
-
 link37<-function37(add,epc)
 link37<-link37[,..needlist1]
 
@@ -1249,7 +1234,6 @@ epc <- matchleft(epc,link43)
 ####################method 44####################
 function44<- function(x,y){
   x<-x[x$buildingname!="",]
-  
   x$bnstreet <- beg2char(x$buildingname, " ")
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
@@ -1406,7 +1390,7 @@ epc <- matchleft(epc,link50)
 function51<- function(x,y){
   x$bnstreet <- x$buildingnumber
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<- y[grepl("^SY16 1Q",y$postcode),]
   y$addressfinal <- beg2char(y$add, ",")
@@ -1430,7 +1414,7 @@ function52<- function(x,y){
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[']", "", y$addressfinal)
@@ -1455,7 +1439,7 @@ function53<- function(x,y){
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[']", "", y$addressfinal)
@@ -1481,7 +1465,7 @@ function54<- function(x,y){
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[']", "", y$addressfinal)
@@ -1508,7 +1492,7 @@ function55<- function(x,y){
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[']", "", y$addressfinal)
@@ -1535,7 +1519,7 @@ function56<- function(x,y){
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[']", "", y$addressfinal)
@@ -1560,7 +1544,7 @@ function57<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[']", "", y$addressfinal)
@@ -1572,7 +1556,6 @@ function57<- function(x,y){
   
   return(taba1)
 }
-
 link57<-function57(add,epc)
 link57<-link57[,..needlist1]
 
@@ -1580,7 +1563,28 @@ link57u<- uniqueresult(link57)
 link57d <- doubleresult(link57)
  
 epc <- matchleft(epc,link57)
+####################method 58####################
+function58<- function(x,y){
+  x$bnstreet <- paste(x$saotext,x$pp,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$buildingnumber,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
+  x$bnstreet <- gsub("[']", "", x$bnstreet)
+  x$bnstreet <- gsub(" ", "", x$bnstreet)
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
+  y$addressfinal <- trimws(y$add)
+  y$addressfinal <- gsub("[']", "", y$addressfinal)
+  y$addressfinal <- gsub(" ", "", y$addressfinal)
+  y$addressf <- paste(y$postcode,y$addressfinal,sep=",")
+  
+  taba1 <- inner_join(x,y,by="addressf")
+  return(taba1)
+}
+link58<-function58(add,epc)
+link58<-link58[,..needlist1]
+
+link58u<- uniqueresult(link58)
+link58d <- doubleresult(link58)
 
 c1<-link58u[grepl("\\d+",link58u$buildingnumber),]
 c1<-c1[c1$paostartnumber!="",]
@@ -1590,7 +1594,7 @@ epc <- matchleft(epc,link58)
 ####################method 59####################
 function59<- function(x,y){
   x$bnstreet <- paste(x$subbuildingname,x$buildingname,sep=" ")
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressf <- paste(y$postcode,y$addressfinal,sep=",")
@@ -1608,7 +1612,7 @@ epc <- matchleft(epc,link59)
 ####################method 60####################
 function60<- function(x,y){
   x$bnstreet <- paste(x$paotext,x$buildingname,sep=" ")
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressf <- paste(y$postcode,y$addressfinal,sep=",")
@@ -1626,8 +1630,8 @@ link60d <- doubleresult(link60)
 epc <- matchleft(epc,link60)
 ####################method 61####################
 function61<- function(x,y){
-  x$bnstreet <-    paste(x$saotext,x$buildingname,sep=" ")
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$bnstreet <- paste(x$saotext,x$buildingname,sep=" ")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressf <- paste(y$postcode,y$addressfinal,sep=",")
@@ -1648,7 +1652,7 @@ function62<- function(x,y){
   x$bnstreet <- paste(x$bnstreet,x$buildingnumber,sep=" ")
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub(" ", "", y$addressfinal)
@@ -1671,7 +1675,7 @@ function63<- function(x,y){
   x$bnstreet <- paste(x$bnstreet,x$buildingnumber,sep=" ")
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub(" ", "", y$addressfinal)
@@ -1694,7 +1698,7 @@ function64<- function(x,y){
   x$bnstreet <- paste(x$bnstreet,x$buildingnumber,sep=" ")
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub(" ", "", y$addressfinal)
@@ -1717,7 +1721,7 @@ function65<- function(x,y){
   x$bnstreet <- paste(x$bnstreet,x$pp,sep=" ")
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub(" ", "", y$addressfinal)
@@ -1740,7 +1744,7 @@ function66<- function(x,y){
   x$bnstreet <- paste(x$bnstreet,x$pp,sep=" ")
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub(" ", "", y$addressfinal)
@@ -1761,7 +1765,7 @@ epc <- matchleft(epc,link66)
 function67<- function(x,y){
   x$bnstreet <- paste(x$buildingnumber,x$paotext,sep=" ")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub(" ", "", y$addressfinal)
@@ -1782,7 +1786,7 @@ epc <- matchleft(epc,link67)
 function68<- function(x,y){
   x$bnstreet <- paste(x$buildingname,x$paotext,sep=" ")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub(" ", "", y$addressfinal)
@@ -1803,9 +1807,8 @@ epc <- matchleft(epc,link68)
 function69<- function(x,y){
   x<-x[x$subbuildingname=="",]
   x$bnstreet <- paste(x$ss,x$streetdescription,sep=",")
-  
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub(" ", "", y$addressfinal)
@@ -1933,7 +1936,7 @@ function70<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -1961,7 +1964,7 @@ function71<- function(x,y){
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub(" ", "", y$addressfinal)
@@ -1985,7 +1988,7 @@ function72<- function(x,y){
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   
   y$addressfinal <- y$add
@@ -2008,7 +2011,7 @@ function73<- function(x,y){
   x$bnstreet <- paste(x$buildingname,x$paotext,sep=",")
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub(" ", "", y$addressfinal)
@@ -2032,7 +2035,7 @@ function74<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[']", "", y$addressfinal)
@@ -2085,7 +2088,7 @@ function76<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[']", "", y$addressfinal)
@@ -2135,7 +2138,7 @@ function78<- function(x,y){
   x$bnstreet <- paste(x$buildingnumber,x$streetdescription,sep=" ")
   x$bnstreet <- paste(x$bnstreet,x$townname,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub(" ", "", y$addressfinal)
@@ -2183,7 +2186,7 @@ function80<- function(x,y){
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   #$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[']", "", y$addressfinal)
@@ -2209,7 +2212,7 @@ function81<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[']", "", y$addressfinal)
@@ -2235,7 +2238,7 @@ function82<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[']", "", y$addressfinal)
@@ -2263,7 +2266,7 @@ function83<- function(x,y){
   x$bnstreet <- paste(x$saotext,x$paostartnumber,sep=",")
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub(" ", "", y$addressfinal)
@@ -2318,7 +2321,7 @@ function85<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   
   y$addressfinal <- trimws(y$add)
@@ -2346,7 +2349,7 @@ function86<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[']", "", y$addressfinal)
@@ -2372,7 +2375,7 @@ function87<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[']", "", y$addressfinal)
@@ -2397,7 +2400,7 @@ function88<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[']", "", y$addressfinal)
@@ -2425,7 +2428,7 @@ function89<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   
   y$addressfinal <- y$add
@@ -2454,7 +2457,7 @@ function90<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -2477,13 +2480,13 @@ link90d <- doubleresult(link90)
 epc <- matchleft(epc,link90)
 ####################method 91####################
 function91<- function(x,y){
-  x$bnstreet <-    paste(x$saotext,x$buildingname,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$buildingnumber,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$saotext,x$buildingname,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$buildingnumber,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   #y$addressfinal <- gsub("[']", "", y$addressfinal)
@@ -2505,13 +2508,13 @@ link91d <- doubleresult(link91)
 epc <- matchleft(epc,link91)
 ####################method 92####################
 function92<- function(x,y){
-  x$bnstreet <-    paste(x$subbuildingname,x$buildingname,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$pp,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$subbuildingname,x$buildingname,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$pp,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   #y$addressfinal <- gsub("[']", "", y$addressfinal)
@@ -2537,7 +2540,7 @@ function93<- function(x,y){
   x$bnstreet <- paste(x$bnstreet,x$buildingnumber,sep=",")
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[-]", "", y$addressfinal)
@@ -2564,7 +2567,7 @@ function94<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -2592,7 +2595,7 @@ function95<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -2616,7 +2619,7 @@ epc <- matchleft(epc,link95)
 function96<- function(x,y){
   x$bnstreet <- paste(x$pp,x$townname,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
 
   y$addressfinal <- y$add
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -2627,7 +2630,6 @@ function96<- function(x,y){
   
   return(taba1)
 }
-
 link96<-function96(add,epc)
 link96<-link96[,..needlist1]
 
@@ -2641,7 +2643,7 @@ function97<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add)
   y$bnstreet <- gsub("[.]", "",  y$bnstreet)
@@ -2667,7 +2669,7 @@ function98<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add)
   # y$bnstreet <- gsub("/", "",  y$bnstreet)
@@ -2695,7 +2697,7 @@ function99<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add)
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -2797,7 +2799,7 @@ function100<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add)
   y$addressfinal <- gsub("/", "", y$addressfinal)
@@ -2826,7 +2828,7 @@ function101<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add)
   y$addressfinal <- gsub("/", "", y$addressfinal)
@@ -2853,7 +2855,7 @@ function102<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add)
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -2879,7 +2881,7 @@ function103<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -2908,7 +2910,7 @@ function104<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -2934,7 +2936,7 @@ function105<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("/", "", y$addressfinal)
@@ -2962,7 +2964,7 @@ function106<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub("/", "", y$addressfinal)
@@ -2988,7 +2990,7 @@ function107<- function(x,y){
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
 
   y$addressfinal <- y$add
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -3042,7 +3044,7 @@ function109<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -3070,7 +3072,7 @@ function110<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -3100,7 +3102,7 @@ function111<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=", ")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=", ")
 
   y$addressfinal <-y$add
   y$addressfinal <- gsub("/", "", y$addressfinal)
@@ -3127,7 +3129,7 @@ function112<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub("[']", "", y$addressfinal)
@@ -3154,7 +3156,7 @@ function113<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -3180,7 +3182,7 @@ function114<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -3207,7 +3209,7 @@ function115<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -3233,7 +3235,7 @@ function116<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -3264,9 +3266,9 @@ function117<- function(x,y){
   x$bnstreet <- paste(x$bnstreet ,x$paoendnumber,sep="-")
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
-  y$addressfinal <-y$add
+  y$addressfinal <- y$add
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
   y$addressfinal <- gsub("[']", "", y$addressfinal)
   y$addressfinal <- gsub(" ", "", y$addressfinal)
@@ -3315,7 +3317,7 @@ function119<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -3342,7 +3344,7 @@ function120<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -3370,7 +3372,7 @@ function121<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -3399,7 +3401,7 @@ function122<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -3428,7 +3430,7 @@ function123<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -3455,7 +3457,7 @@ function124<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   
   y$addressfinal <- y$add
@@ -3483,7 +3485,7 @@ function125<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -3511,7 +3513,7 @@ function126<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -3540,7 +3542,7 @@ function127<- function(x,y){
   #x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -3568,7 +3570,7 @@ function128<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -3591,7 +3593,6 @@ link128d <- doubleresult(link128)
 epc <- matchleft(epc,link128)
 ####################method 129####################
 function129<- function(x,y){
-
   x$bnstreet <- paste(x$saotext,x$ss,sep=",")
   x$bnstreet <- paste(x$bnstreet,x$paotext,sep=" ")
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
@@ -3599,7 +3600,7 @@ function129<- function(x,y){
   #x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   #y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -3629,7 +3630,7 @@ function130<- function(x,y){
   #x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   #y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -3658,7 +3659,7 @@ function131<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -3681,7 +3682,7 @@ function132<- function(x,y){
   x$bnstreet <- paste(x$paotext,x$ss,sep=" ")
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub(" ", "", y$addressfinal)
@@ -3703,7 +3704,7 @@ function133<- function(x,y){
   x$bnstreet <- paste(x$buildingnumber,x$paotext,sep=" ")
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -3814,7 +3815,7 @@ function134<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <-  y$add
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -3842,7 +3843,7 @@ function135<- function(x,y){
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add1,y$add2,sep=",")
   y$addressfinal <- paste(y$addressfinal,y$add3,sep=",")
@@ -3870,7 +3871,7 @@ function136<- function(x,y){
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
 
   y$addressfinal <- paste(y$add1,y$add2,sep=",")
   y$addressfinal <- gsub("/", "", y$addressfinal)
@@ -3898,7 +3899,7 @@ function137<- function(x,y){
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
 
   y$addressfinal <- paste(y$add1,y$add2,sep=",")
   y$addressfinal <- gsub("/", "", y$addressfinal)
@@ -3919,13 +3920,13 @@ link137d <- doubleresult(link137)
 epc <- matchleft(epc,link137)
 ####################method 138####################
 function138<- function(x,y){
-  x$bnstreet <-  paste(x$saotext,x$pp,sep=",")
+  x$bnstreet <- paste(x$saotext,x$pp,sep=",")
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add1,y$add2,sep=",")
   y$addressfinal <- gsub("/", "", y$addressfinal)
@@ -3954,7 +3955,7 @@ function139<- function(x,y){
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub("/", "", y$addressfinal)
@@ -3982,7 +3983,7 @@ function140<- function(x,y){
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add1,y$add3,sep=",")
   y$addressfinal <- gsub("/", "", y$addressfinal)
@@ -4010,7 +4011,7 @@ function141<- function(x,y){
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub("/", "", y$addressfinal)
@@ -4037,7 +4038,7 @@ function142<- function(x,y){
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add1)
   #y$addressfinal <- gsub("/", "", y$addressfinal)
@@ -4062,7 +4063,7 @@ function143<- function(x,y){
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add1)
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -4086,7 +4087,7 @@ function144<- function(x,y){
   x$bnstreet <- x$buildingname
   x$bnstreet <- gsub("[-]", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add1)
   y$addressfinal <- gsub("[-]", "", y$addressfinal)
@@ -4111,7 +4112,7 @@ function145<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add1,y$add2,sep=" ")
   y$addressfinal <- gsub("/", "", y$addressfinal)
@@ -4142,7 +4143,7 @@ function146<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add1,y$add2,sep=" ")
   y$addressfinal <- gsub("/", "", y$addressfinal)
@@ -4172,7 +4173,7 @@ function147<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add1,y$add2,sep=",")
   y$addressfinal <- gsub("/", "", y$addressfinal)
@@ -4202,13 +4203,13 @@ link147u<-matchleft(link147u,data4)
 epc <- matchleft(epc,link147)
 ####################method 148####################
 function148<- function(x,y){
-  x$bnstreet <-    paste(x$saotext,x$buildingname,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=" ")
+  x$bnstreet <- paste(x$saotext,x$buildingname,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add1,y$add2,sep=",")
   y$addressfinal <- gsub("/", "", y$addressfinal)
@@ -4238,7 +4239,7 @@ function149<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add1,y$add2,sep=",")
   y$addressfinal <- gsub("/", "", y$addressfinal)
@@ -4265,7 +4266,7 @@ function150<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add1,y$add2,sep=",")
   y$addressfinal <- gsub("/", "", y$addressfinal)
@@ -4320,7 +4321,7 @@ function152<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add1,y$add2,sep=",")
   y$addressfinal <- gsub("/", "", y$addressfinal)
@@ -4347,7 +4348,7 @@ function153<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add1,y$add3,sep=",")
   y$addressfinal <- gsub("/", "", y$addressfinal)
@@ -4376,7 +4377,7 @@ function154<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add1,y$add2,sep=",")
   y$addressfinal <- gsub("/", "", y$addressfinal)
@@ -4405,7 +4406,7 @@ function155<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub("/", "", y$addressfinal)
@@ -4433,7 +4434,7 @@ function156<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub("/", "", y$addressfinal)
@@ -4462,7 +4463,7 @@ function157<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   #x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   #y$addressfinal <- gsub("/", "", y$addressfinal)
@@ -4491,7 +4492,7 @@ function158<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub("/", "", y$addressfinal)
@@ -4519,7 +4520,7 @@ function159<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub("/", "", y$addressfinal)
@@ -4547,7 +4548,7 @@ function160<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub("/", "", y$addressfinal)
@@ -4574,7 +4575,7 @@ function161<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
 
   y$addressfinal <- paste(y$add1,y$add2,sep=",")
   y$addressfinal <- gsub("/", "", y$addressfinal)
@@ -4600,7 +4601,7 @@ function162<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add1,y$add2,sep=",")
   y$addressfinal <- gsub("/", "", y$addressfinal)
@@ -4627,7 +4628,7 @@ function163<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add1, y$add2,sep=",")
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -4654,7 +4655,7 @@ function164<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add1,y$add2,sep=",")
   y$addressfinal <- gsub("/", "", y$addressfinal)
@@ -4683,7 +4684,7 @@ function165<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add1,y$add2,sep=",")
   y$addressfinal <- gsub("/", "", y$addressfinal)
@@ -4712,7 +4713,7 @@ function166<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add1,y$add2,sep=",")
   y$addressfinal <- gsub("/", "", y$addressfinal)
@@ -4849,7 +4850,7 @@ function168<- function(x,y){
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(",", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <-  paste(y$add1,y$add2,sep=",")
   y$addressfinal <- gsub(",", "", y$addressfinal)
@@ -4876,7 +4877,7 @@ function169<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add1)
   y$addressfinal <- gsub(",", "", y$addressfinal)
@@ -4929,7 +4930,7 @@ function171<- function(x,y){
 
   x$bnstreet <- paste(x$saotext ,x$pp,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=", ")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=", ")
   
   y<- y[grepl("-",y$add2),]
   y$addressfinal <- beg2char(y$add2, "-")
@@ -4951,14 +4952,13 @@ link171d <- doubleresult(link171)
 epc <- matchleft(epc,link171)
 ####################method 172####################
 function172<- function(x,y){
-  #x<-x[x$paostartsuffix=="",]
   x$bnstreet <- paste(x$saotext ,x$pp,sep=",")
   #x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=" ")
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=", ")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=", ")
   
   y<- y[grepl("-",y$add2),]
   y$addressfinal <- beg2char(y$add2, "-")
@@ -4988,7 +4988,7 @@ function173<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$add3=="",]
   y$addressfinal <- y$add1
@@ -5018,7 +5018,7 @@ function174<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=", ")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=", ")
   
   y$addressfinal <- beg2char(y$add1, " ")
   y <- y[!grepl("^\\d",y$add2),]
@@ -5050,7 +5050,7 @@ function175<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=", ")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=", ")
   
   y$addressfinal <- beg2char(y$add1, " ")
   y <- y[!grepl("^\\d",y$add2),]
@@ -5078,7 +5078,7 @@ function176<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=", ")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=", ")
   
   y$addressfinal <- y$add1
   y$addressfinal <- gsub("/", "", y$addressfinal)
@@ -5104,7 +5104,7 @@ function177<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- beg2char(y$add2, ",")
   y$addressfinal <- paste( y$add1, y$addressfinal,sep=",")
@@ -5132,7 +5132,7 @@ function178<- function(x,y){
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   #x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[!grepl("\\d+-\\d",y$add),]
   y$addressfinal <- y$add
@@ -5161,7 +5161,7 @@ function179<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- paste( y$add1, y$add2,sep=",")
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -5190,7 +5190,7 @@ function180<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add1,y$add3,sep=",")
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -5218,7 +5218,7 @@ function181<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -5247,7 +5247,7 @@ function182<- function(x,y){
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   #x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add1,y$add2,sep="")
   y$addressfinal <- paste(y$addressfinal,y$add3,sep=",")
@@ -5276,7 +5276,7 @@ function183<- function(x,y){
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   #x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add1,y$add2,sep=",")
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -5303,7 +5303,7 @@ function184<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add1,y$add2,sep=",")
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -5330,7 +5330,7 @@ function185<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add1,y$add2,sep=",")
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -5351,14 +5351,14 @@ link185d <- doubleresult(link185)
 epc <- matchleft(epc,link185)
 ####################method 186####################
 function186<- function(x,y){
-  x$bnstreet <-    paste(x$saotext,x$ss,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$paotext,sep=",")
+  x$bnstreet <- paste(x$saotext,x$ss,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$paotext,sep=",")
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   #x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add1,y$add2,sep=",")
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -5387,7 +5387,7 @@ function187<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <-y$add
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -5408,13 +5408,13 @@ link187d <- doubleresult(link187)
 epc <- matchleft(epc,link187)
 ####################method 188####################
 function188<- function(x,y){
-  x$bnstreet <-    paste(x$saotext,x$pp,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$paotext,sep=" ")
+  x$bnstreet <- paste(x$saotext,x$pp,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$paotext,sep=" ")
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <-  paste(y$add1,y$add2,sep=",")
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -5440,7 +5440,7 @@ function189<- function(x,y){
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <-  paste(y$add1,y$add2,sep="")
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -5464,7 +5464,7 @@ function190<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add)
   y$bnstreet <- gsub("[.]", "",  y$bnstreet)
@@ -5484,13 +5484,13 @@ link190d <- doubleresult(link190)
 epc <- matchleft(epc,link190)
 ####################method 191####################
 function191<- function(x,y){
-  x$bnstreet <-    paste(x$subbuildingname,x$buildingnumber,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=" ")
+  x$bnstreet <- paste(x$subbuildingname,x$buildingnumber,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <-    paste(y$add1,y$add2,sep=",")
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -5521,7 +5521,7 @@ function192<- function(x,y){
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   #x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -5551,7 +5551,7 @@ function193<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <-  paste(y$add1,y$add2,sep=",")
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -5575,12 +5575,11 @@ function194<- function(x,y){
   x$bnstreet <- paste(x$saotext,x$saostartnumber,sep=",")
   x$bnstreet <- paste(x$bnstreet,x$saoendnumber,sep="-")
   x$bnstreet <- paste(x$bnstreet,x$paotext,sep=" ")
-  #x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <-  paste(y$add1,y$add2,sep=",")
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -5607,7 +5606,7 @@ function195<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <-  paste(y$add1,y$add2,sep=",")
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -5631,7 +5630,7 @@ function196<- function(x,y){
   x$bnstreet <- paste(x$subbuildingname,x$buildingnumber,sep=",")
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
 
   y<-y[y$property_type=="Flat",]
   y$addressfinal <- beg2char(y$add1, " ")
@@ -5657,7 +5656,7 @@ function197<- function(x,y){
   x$bnstreet <- paste(x$subbuildingname,x$buildingnumber,sep=",")
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Maisonette",]
   y$addressfinal <- beg2char(y$add1, " ")
@@ -5687,7 +5686,7 @@ function198<- function(x,y){
   x$bnstreet <- paste(x$bnstreet,x$ paoendnumber,sep="-")
   x$bnstreet <- paste(x$bnstreet,x$ streetdescription,sep=" ")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <-  paste(y$add1,y$add2,sep=",")
@@ -5716,7 +5715,7 @@ function199<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <-  paste(y$add1,y$add2,sep=",")
@@ -5744,7 +5743,7 @@ function200<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <-  paste(y$add1,y$add2,sep=" ")
@@ -5771,7 +5770,7 @@ function201<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <-  paste(y$add1,y$add2,sep=" ")
@@ -5800,7 +5799,7 @@ function202<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <-  paste(y$add1,y$add3,sep=",")
@@ -5829,7 +5828,7 @@ function203<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat",]
   y$addressfinal <- gsub("APARTMENT", "FLAT", y$add1)
@@ -5855,7 +5854,7 @@ function204<- function(x,y){
   x$bnstreet <- paste(x$subbuildingname,x$buildingname ,sep=" ")
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- beg2char(y$add2, ",")
   y$addressfinal <- paste( y$add1, y$addressfinal,sep=" ")
@@ -5886,7 +5885,7 @@ function205<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   #y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -5909,7 +5908,7 @@ epc <- matchleft(epc,link205)
 function206<- function(x,y){
   x$bnstreet <- paste(x$saotext,x$pp,sep=",")
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <-  paste("ROOM ",y$add1,sep="")
@@ -5934,7 +5933,7 @@ function207<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <-  paste("APARTMENT ",y$add,sep="")
@@ -5961,7 +5960,7 @@ function208<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   #x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <-  paste("APARTMENT ",y$add1,sep="")
@@ -5991,7 +5990,7 @@ function209<- function(x,y){
  # x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"| y$property_type=="Maisonette",]
   y$addressfinal <- paste("APARTMENT ",y$add,sep=" ")
@@ -6020,7 +6019,7 @@ function210<- function(x,y){
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"| y$property_type=="Maisonette",]
   y$addressfinal <-  gsub("FLAT", "APARTMENT", y$add) 
@@ -6043,13 +6042,12 @@ link210d <- doubleresult(link210)
 epc <- matchleft(epc,link210)
 ####################method 211####################
 function211<- function(x,y){
-
   x$bnstreet <- paste(x$saotext,x$paotext,sep="")
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"| y$property_type=="Maisonette",]
   y$addressfinal <- paste("FLAT ",y$add) 
@@ -6070,13 +6068,13 @@ link211d <- doubleresult(link211)
 epc <- matchleft(epc,link211)
 ####################method 212####################
 function212<- function(x,y){
-  x$bnstreet <-    paste(x$saotext,x$pp,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$saotext,x$pp,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   # x$bnstreet <- gsub("/", "", x$bnstreet)
   # x$bnstreet <- gsub("[']", "", x$bnstreet)
   # x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"| y$property_type=="Maisonette",]
   y$addressfinal <-  gsub("FLAT", "APARTMENT", y$add) 
@@ -6102,7 +6100,7 @@ function213<- function(x,y){
   x$bnstreet <- paste(x$saotext,x$pp,sep=",")
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"| y$property_type=="Maisonette",]
   setDF(y)
@@ -6126,13 +6124,13 @@ link213d <- doubleresult(link213)
 epc <- matchleft(epc,link213)
 #################### method 214  ##################
 function214<- function(x,y){
-  x$bnstreet <-    paste(x$saotext,x$pp,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=" ")
+  x$bnstreet <- paste(x$saotext,x$pp,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"| y$property_type=="Maisonette",]
   y$addressfinal <- beg2char(y$add1, " ")
@@ -6156,12 +6154,12 @@ link214d <- doubleresult(link214)
 epc<- matchleft(epc,link214)
 ####################method 215####################
 function215<- function(x,y){
-  x$bnstreet <-    paste(x$saotext,x$paotext,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$saotext,x$paotext,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"| y$property_type=="Maisonette",]
   y$addressfinal <- paste("APARTMENT ",y$add1,sep="")
@@ -6184,12 +6182,12 @@ link215d <- doubleresult(link215)
 epc <- matchleft(epc,link215)
 ####################method 216####################
 function216<- function(x,y){
-  x$bnstreet <-    paste(x$subbuildingname,x$buildingnumber,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=" ")
+  x$bnstreet <- paste(x$subbuildingname,x$buildingnumber,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat",]
   y$addressfinal <-  gsub( "APARTMENT","FLAT", y$add) 
@@ -6219,7 +6217,7 @@ function217<- function(x,y){
   x$bnstreet <- gsub("/", "", x$bnstreet)
   #x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <-  trimws(y$add)
@@ -6247,7 +6245,7 @@ function218<- function(x,y){
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <-  paste("FLAT ",y$add,sep=" ")
@@ -6275,7 +6273,7 @@ function219<- function(x,y){
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <-  paste("FLAT ",y$add,sep=" ")
@@ -6304,7 +6302,7 @@ function220<- function(x,y){
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <-  paste("APARTMENT ",y$add,sep="")
@@ -6329,7 +6327,7 @@ function221<- function(x,y){
   x<-x[x$subbuildingname!="",]
   x$bnstreet <- paste(x$subbuildingname,x$streetdescription,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub(" ", "", y$addressfinal)
@@ -6355,7 +6353,7 @@ function222<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat",]
   y$addressfinal <-  gsub( "FLAT ","", y$add) 
@@ -6384,7 +6382,7 @@ function223<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat",]
   setDF(y)
@@ -6416,7 +6414,7 @@ function224<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat" | y$property_type=="Maisonette",]
   y$addressfinal <-  gsub( "FLAT ","", y$add) 
@@ -6446,7 +6444,7 @@ function225<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   # y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -6473,7 +6471,7 @@ function226<- function(x,y){
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   x$bnstreet <- gsub(",", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <-  paste("FLAT ",y$add,sep="")
@@ -6500,7 +6498,7 @@ function227<- function(x,y){
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   x$bnstreet <- gsub(",", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   #add1 is not end with number 
@@ -6552,11 +6550,10 @@ function229<- function(x,y){
   x$bnstreet <- paste("FLAT ",x$ss,sep="")
   x$bnstreet <- paste(x$bnstreet,x$pp,sep=" ")
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <-  y$add
-  
   #y$addressfinal <- gsub(" ", "", y$addressfinal)
   y$addressf <- paste(y$postcode,y$addressfinal,sep=",")
   
@@ -6578,7 +6575,7 @@ function230<- function(x,y){
   x$bnstreet <- paste(x$bnstreet,x$buildingname,sep=" ")
   x$bnstreet <- paste(x$bnstreet,x$buildingnumber,sep=" ")
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <-  trimws(y$add)
@@ -6603,7 +6600,7 @@ function231<- function(x,y){
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <-  trimws(y$add)
@@ -6616,7 +6613,6 @@ function231<- function(x,y){
   
   return(taba1)
 }
-
 link231<-function231(add,epc)
 link231<-link231[,..needlist1]
 
@@ -6629,7 +6625,7 @@ function232<- function(x,y){
   x<-x[x$buildingname!="",]
   x$bnstreet <- paste(x$buildingname,x$streetdescription,sep=" ")
   x$bnstreet<-  trimws(x$bnstreet) 
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <-  trimws(y$add)
   y$addressfinal <-  trimws(y$addressfinal) 
@@ -6651,7 +6647,7 @@ function233<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add)
   # y$bnstreet <- gsub("/", "",  y$bnstreet)
@@ -6680,7 +6676,7 @@ function234<- function(x,y){
   x$bnstreet <- gsub("[/]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
  
   y$addressfinal <- trimws(y$add)
@@ -6766,7 +6762,7 @@ function237<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add1,y$add2,sep=",")
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -6792,7 +6788,7 @@ function238<- function(x,y){
   x$bnstreet <- paste(x$buildingnumber,x$streetdescription,sep=",")
   x$bnstreet <- gsub("-", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[!grepl("\\d+-\\d",y$add),]
   y$addressfinal <- trimws(y$add)
@@ -6820,7 +6816,7 @@ function239<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add1,y$add2,sep=",")
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -6846,7 +6842,7 @@ function240<- function(x,y){
   x$bnstreet <- gsub("-", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[!grepl("\\d+-\\d",y$add),]
   y$addressfinal <- y$add
@@ -6870,9 +6866,9 @@ epc <- matchleft(epc,link240)
 ####################method 241####################
 function241<- function(x,y){
   x<-x[paostartsuffix=="",]
-  x$bnstreet <-    x$paotext
+  x$bnstreet <- x$paotext
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <-  paste("FLAT ",y$add,sep="")
@@ -6894,7 +6890,7 @@ epc <- matchleft(epc,link241)
 function242<- function(x,y){
   x$bnstreet <- paste(x$subbuildingname,x$paotext ,sep=" ")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <-  paste("FLAT ",y$add,sep="")
@@ -6919,7 +6915,7 @@ function243<- function(x,y){
   x$bnstreet <- paste(x$bnstreet,x$buildingnumber,sep=",")
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <-  trimws(y$add)
@@ -6947,7 +6943,7 @@ function244<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- trimws(y$add)
@@ -6975,7 +6971,7 @@ function245<- function(x,y){
   x$bnstreet <- paste(x$bnstreet,x$pp,sep=",")
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <-  trimws(y$add)
@@ -6997,7 +6993,7 @@ epc <- matchleft(epc,link245)
 function246<- function(x,y){
   x$bnstreet <- paste(x$saotext,x$paotext,sep=" ")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- trimws(y$add1)
@@ -7021,7 +7017,7 @@ function247<- function(x,y){
   x<-x[x$saotext!="",]
   x$bnstreet <- paste("FLAT ",x$saotext,sep="")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- trimws(y$add)
@@ -7051,7 +7047,7 @@ function248<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- trimws(y$add)
@@ -7081,7 +7077,7 @@ function249<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add1,y$add2,sep=",")
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -7338,7 +7334,7 @@ function250<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
 
   y$addressfinal <- trimws(y$add1) 
   y$addressfinal <- gsub(",", "", y$addressfinal)
@@ -7370,7 +7366,7 @@ function251<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <-  y$add
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -7399,7 +7395,7 @@ function252<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add1,y$add2,sep=",")
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -7427,12 +7423,11 @@ function253<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y[postcode=="SW8 2PX",add3:=gsub("COURLAND ROAD", "COURLAND GROVE",add3)]
   #y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- paste(y$add1,y$add3,sep=",")
-  
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
   y$addressfinal <- gsub("[']", "", y$addressfinal)
@@ -7457,7 +7452,7 @@ function254<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add1)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -7484,7 +7479,7 @@ function255<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add1)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -7511,7 +7506,7 @@ function256<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add1)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -7539,7 +7534,7 @@ function257<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add1)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -7570,8 +7565,7 @@ function258<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
-  
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <-  trimws(y$add)
@@ -7614,7 +7608,7 @@ function259<- function(z,k){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-k
   setDT(y)
@@ -7721,7 +7715,7 @@ rm(add2,epc2)
 function260<- function(x,y){
   x$bnstreet <- paste(x$ss,x$streetdescription,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub(" ", "", y$addressfinal)
@@ -7741,9 +7735,9 @@ epc <- matchleft(epc,link260)
 ####################method 261####################
 function261<- function(x,y){
   x$bnstreet <- paste(x$buildingnumber,x$paotext,sep=",")
-  x$bnstreet<-  trimws(x$bnstreet) 
+  x$bnstreet <- trimws(x$bnstreet) 
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y[postcode=="LN11 0YS",add:=gsub("NORTHOLME COURT","NORTH HOLME COURT", add)]
   y$addressfinal <- y$add
@@ -7768,7 +7762,7 @@ function262<- function(x,y){
   x$bnstreet <- gsub("-", "", x$bnstreet)
   #x$bnstreet <- gsub("", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("-", " ", y$addressfinal)
@@ -7787,9 +7781,9 @@ link262d <- doubleresult(link262)
 epc <- matchleft(epc,link262)
 ####################method 263####################
 function263<- function(x,y){
-  x$bnstreet <-    paste(x$buildingnumber,x$streetdescription,sep=" ")
+  x$bnstreet <- paste(x$buildingnumber,x$streetdescription,sep=" ")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   setDF(y)
   y[y$postcode=="CH6 5GF","add1"] <- gsub( "FFORD MADOG", "FFORDD MADOG",y[y$postcode=="CH6 5GF","add1"])
@@ -7815,7 +7809,7 @@ epc <- matchleft(epc,link263)
 function264<- function(x,y){
   x$bnstreet <- paste(x$pp,x$streetdescription,sep=" ")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   setDF(y)
   y[y$postcode=="CH6 5GF","add1"] <- gsub( "FFORD MADOG", "FFORDD MADOG",y[y$postcode=="CH6 5GF","add1"])
   y[y$postcode=="LN2 4NY","add1"] <- gsub( "POPLAR GROVE", "POPLARS GROVE",y[y$postcode=="LN2 4NY","add1"])
@@ -7839,7 +7833,7 @@ epc<- matchleft(epc,link264)
 function265<- function(x,y){
   x$bnstreet <- paste(x$buildingname,x$streetdescription,sep=" ")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add1)
   y$addressfinal <- gsub(",", "", y$addressfinal)
@@ -7866,7 +7860,7 @@ function266<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   #x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- gsub("APARTMENT", "FLAT", y$add)
@@ -7891,7 +7885,7 @@ function267<- function(x,y){
   x$bnstreet <- paste(x$subbuildingname,x$paotext,sep=" ")
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <-  paste("APARTMENT ",y$add,sep="")
@@ -7914,7 +7908,7 @@ function268<- function(x,y){
   x$bnstreet <- paste(x$subbuildingname,x$buildingname,sep=" ")
   x$bnstreet <- paste(x$bnstreet,x$ buildingnumber,sep=" ")
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <-  paste("APARTMENT ",y$add,sep="")
@@ -7940,7 +7934,7 @@ function269<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <-  paste("APARTMENT ",y$add,sep="")
@@ -7961,12 +7955,11 @@ link269d <- doubleresult(link269)
 
 epc <- matchleft(epc,link269)
 ####################method 270####################
-#only works for "SE1 6SH"
+#only works for data in "SE1 6SH"
 function270<- function(x,k){
-  
   x$bnstreet <- paste(x$ss,x$paotext,sep=" ")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
 
   y<-k
   setDT(y)
@@ -8024,7 +8017,7 @@ function272<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add1)
   y$addressfinal <- gsub(",", "", y$addressfinal)
@@ -8053,7 +8046,7 @@ function273<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add1)
   y$addressfinal <- gsub(",", "", y$addressfinal)
@@ -8083,7 +8076,7 @@ function274<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
  
   y$addressfinal <- trimws(y$add1)
   y$addressfinal <- gsub(",", "", y$addressfinal)
@@ -8111,7 +8104,7 @@ function275<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("-", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <-  y$add
   y$addressfinal <- gsub("-", "", y$addressfinal)
@@ -8139,7 +8132,7 @@ function276<- function(x,k){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
 
   y<-k
   setDT(y)
@@ -8168,7 +8161,7 @@ function277<- function(x,k){
   x$bnstreet <- paste(x$saotext,x$ paotext,sep=" ")
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-k
   setDT(y)
@@ -8196,7 +8189,7 @@ function278<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
 
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- paste("APARTMENT ",y$add,sep="")
@@ -8225,7 +8218,7 @@ function279<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("APT", "FLAT", y$addressfinal)
@@ -8249,9 +8242,9 @@ link279d <- doubleresult(link279)
 epc <- matchleft(epc,link279)
 ####################method 280####################
 function280<- function(x,y){
-  x$bnstreet <-    paste(x$subbuildingname,x$buildingname,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$buildingnumber,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=" ")
+  x$bnstreet <- paste(x$subbuildingname,x$buildingname,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$buildingnumber,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
@@ -8283,7 +8276,7 @@ function281<- function(x,y){
   x<-x[x$paotext!="",]
   x$bnstreet <- x$saotext
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- trimws(y$add1)
@@ -8390,7 +8383,7 @@ function282<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -8433,7 +8426,7 @@ function283<- function(x,y){
   x1$bnstreet <- paste(x1$paostartnumber,x1$saotext,sep="")
   x1$bnstreet <- paste(x1$bnstreet,x1$streetdescription,sep=",")
   x1$bnstreet <- gsub(" ", "", x1$bnstreet)
-  x1$addressf <-paste(x1$postcodelocator,x1$bnstreet,sep=",")
+  x1$addressf <- paste(x1$postcodelocator,x1$bnstreet,sep=",")
   
   y$addressfinal <-  trimws(y$add)
   y$addressfinal <- gsub(" ", "", y$addressfinal)
@@ -8497,7 +8490,7 @@ function285<- function(x,y){
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
-  x1$addressf <-paste(x1$postcodelocator,x1$bnstreet,sep=",")
+  x1$addressf <- paste(x1$postcodelocator,x1$bnstreet,sep=",")
   
   y$addressfinal <-  trimws(y$add)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -8526,7 +8519,7 @@ function286<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- trimws(y$add1)
@@ -8558,7 +8551,7 @@ function287<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- trimws(y$add1)
@@ -8584,7 +8577,7 @@ epc <- matchleft(epc,link287)
 function288<- function(x,y){
   x$bnstreet <- x$pp
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   y$addressfinal <- trimws(y$add1)
   
   y$addressfinal <- word(y$addressfinal,1)
@@ -8619,7 +8612,7 @@ function289<- function(x,y){
   x<- x[grepl("^\\d+",x$subbuildingname),]
   x$bnstreet <- x$subbuildingname
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add1)
   y$addressfinal <- word(y$addressfinal,1)
@@ -8644,7 +8637,7 @@ function290<- function(x,y){
   x<- x[grepl("^\\d+",x$buildingnumber),]
   x$bnstreet <- x$buildingnumber 
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
 
   y$addressfinal <- trimws(y$add1)
   y$addressfinal <- word(y$addressfinal,1)
@@ -8671,7 +8664,7 @@ function291<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add1)
   y$addressfinal <- word(y$addressfinal,1)
@@ -8701,7 +8694,7 @@ function292<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- trimws(y$add1)
@@ -8728,7 +8721,7 @@ epc <- matchleft(epc,link292)
 function293<- function(x,y){
   x$bnstreet <- paste("APARTMENT ",x$ss,sep="")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- trimws(y$add1)
@@ -8754,7 +8747,7 @@ function294<- function(x,y){
   x$bnstreet <- x$saotext
   x$bnstreet <- gsub("CHALET ", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- trimws(y$add1)
@@ -8773,7 +8766,6 @@ function294<- function(x,y){
 
   return(taba1)
 }
-
 link294<-function294(add,epc)
 link294<-link294[,..needlist1]
 
@@ -8787,7 +8779,7 @@ function295<- function(x,y){
   x$bnstreet <- paste("FLAT ",x$ss,sep="")
   x$bnstreet <- paste(x$bnstreet ,x$paotext,sep="")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- paste(y$add1,y$add2,sep="")
@@ -8814,7 +8806,7 @@ function296<- function(x,y){
   x$bnstreet <- paste("FLAT ",x$ss,sep="")
   x$bnstreet <- paste(x$bnstreet ,x$paotext,sep="")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- paste(y$add1,y$add2,sep="")
@@ -8827,7 +8819,6 @@ function296<- function(x,y){
   taba1 <- inner_join(x,y,by="addressf")
   
   return(taba1)
- 
 }
 link296<-function296(add,epc)
 link296<-link296[,..needlist1]
@@ -8843,7 +8834,7 @@ function297<- function(x,y){
   x$bnstreet <- paste(x$bnstreet ,x$pp,sep=" ")
   x$bnstreet <- paste(x$bnstreet ,x$streetdescription,sep=" ")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- paste(y$add1,y$add2,sep=" ")
@@ -8874,7 +8865,7 @@ function298<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- paste(y$add1,y$add2,sep=" ")
@@ -8907,7 +8898,7 @@ function299<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- paste(y$add1,y$add3,sep=",")
@@ -9087,10 +9078,9 @@ rm(ldouble1,lunique1)
 rm(link1_11d,link12_26d,link27_69d,link70_99d,link100_133d,link134_166d,link167_249d,link250_299d)
 rm(link1_11u,link12_26u,link27_69u,link70_99u,link100_133u,link134_166u,link167_249u,link250_299u)
 rm(add)
-
-
 ####################read in OS AddressBase###################
 add <- dbGetQuery(con,"select * from  addressgb") 
+
 #format the OS addressBase data as before the following linkage process
 add$paostartnumber<-as.character(add$paostartnumber)
 add$paoendnumber<-as.character(add$paoendnumber)
@@ -9107,8 +9097,13 @@ add[is.na(add$saoendnumber),"saoendnumber"] <- ""
 add[is.na(add)] <- ""
 add$postcodelocator  <- str_trim(add$postcodelocator)
 
+setDT(add)
+setDT(epc)
 add[nchar(postcodelocator)>=6,postset :=substring(postcodelocator,0,nchar(postcodelocator)-2)]
-add$postset  <- str_trim(add$postset)
+epc[nchar(postcode)>=6,postset :=substring(postcode,0,nchar(postcode)-2)]
+
+add$postset <- str_trim(add$postset)
+epc$postset <- str_trim(epc$postset)
 
 add<-add[(add$postset  %in% epc$postset), ]
 
@@ -9121,10 +9116,10 @@ function300<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
-  y$addressfinal <-  paste("FLAT ",y$add,sep="")
+  y$addressfinal <- paste("FLAT ",y$add,sep="")
   #y$addressfinal <-  paste(y$add1,y$add3,sep=", ")
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -9152,7 +9147,7 @@ function301<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <-  paste(y$add1,y$add3,sep=",")
@@ -9182,7 +9177,7 @@ function302<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- trimws(y$add1) 
@@ -9216,7 +9211,7 @@ function303<- function(x,y){
   x$bnstreet <- gsub("[/]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
 
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- y$add
@@ -9246,7 +9241,7 @@ function304<- function(x,y){
   x$bnstreet <- gsub("[/]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add1
   y$addressfinal <- gsub("[-]", "", y$addressfinal)
@@ -9287,7 +9282,7 @@ function305<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- y$add
@@ -9319,10 +9314,10 @@ function306<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
-  y$addressfinal <-  y$add
+  y$addressfinal <- y$add
   y$addressfinal <- gsub("-", "", y$addressfinal)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -9342,14 +9337,14 @@ link306d <- doubleresult(link306)
 epc <- matchleft(epc,link306)
 ####################method 307####################
 function307<- function(x,y){
-  x$bnstreet <-  paste(x$subbuildingname,x$paotext,sep=" ")
+  x$bnstreet <- paste(x$subbuildingname,x$paotext,sep=" ")
   x$bnstreet <- paste(x$bnstreet,x$buildingnumber,sep=",")
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <-  y$add
@@ -9378,7 +9373,7 @@ function308<- function(x,y){
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"| y$property_type=="Maisonette",]
   y$addressfinal <-  gsub("STUDIO", "FLAT", y$add) 
@@ -9407,10 +9402,10 @@ function309<- function(x,y){
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"| y$property_type=="Maisonette",]
-  y$addressfinal <-  gsub("STUDIO", "FLAT", y$add) 
+  y$addressfinal <- gsub("STUDIO", "FLAT", y$add) 
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
   y$addressfinal <- gsub("[']", "", y$addressfinal)
   y$addressfinal <- gsub("/", "", y$addressfinal)
@@ -9436,10 +9431,10 @@ function310<- function(x,y){
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"| y$property_type=="Maisonette",]
-  y$addressfinal <-  gsub("STUDIO", "FLAT", y$add) 
+  y$addressfinal <- gsub("STUDIO", "FLAT", y$add) 
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
   y$addressfinal <- gsub("[']", "", y$addressfinal)
   y$addressfinal <- gsub("/", "", y$addressfinal)
@@ -9465,7 +9460,7 @@ function311<- function(x,y){
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"| y$property_type=="Maisonette",]
   y$addressfinal <-  gsub("STUDIO", "FLAT", y$add) 
@@ -9496,7 +9491,7 @@ function312<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
 
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- y$add
@@ -9529,9 +9524,9 @@ function313<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
  
-  y$addressfinal <-  paste(y$add1,y$add2,sep=",")
+  y$addressfinal <- paste(y$add1,y$add2,sep=",")
   y$addressfinal <- gsub("FLAT", "APARTMENT", y$addressfinal)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -9561,9 +9556,9 @@ function314<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
-  y$addressfinal <-  y$add
+  y$addressfinal <- y$add
   y$addressfinal <- gsub(",", "", y$addressfinal)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -9583,9 +9578,9 @@ link314d <- doubleresult(link314)
 epc<- matchleft(epc,link314)
 ####################method 315####################
 function315<- function(x,y){
-  x$bnstreet <-    paste(x$subbuildingname,x$paotext,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$buildingnumber,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$subbuildingname,x$paotext,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$buildingnumber,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
@@ -9620,7 +9615,7 @@ function316<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- paste("APARTMENT ",y$add,sep="")
@@ -9650,7 +9645,7 @@ function317<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- y$add
@@ -9674,13 +9669,13 @@ link317d <- doubleresult(link317)
 epc <- matchleft(epc,link317)
 ####################method 318####################
 function318<- function(x,y){
-  x$bnstreet <-    paste("FLAT ",x$buildingname,sep=" ")
+  x$bnstreet <- paste("FLAT ",x$buildingname,sep=" ")
   x$bnstreet <- gsub(",", "", x$bnstreet)
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <-  paste(y$add1,y$add2,sep=" ")
@@ -9710,7 +9705,7 @@ function319<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <-  paste("APARTMENT ",y$add1,sep="")
@@ -9739,7 +9734,7 @@ function320<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- y$add1
@@ -9772,7 +9767,7 @@ function321<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- paste(y$add1,y$add3,sep=" ")
@@ -9803,7 +9798,7 @@ function322<- function(x,y){
   x$bnstreet <- gsub("[/]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- paste(y$add1,y$add3,sep=",")
@@ -9831,7 +9826,7 @@ function323<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -9844,6 +9839,8 @@ function323<- function(x,y){
   return(taba1)
 }
 link323<-function323(add,epc)
+needlist11<-c("postset.y","postset.x","lmk_key","postcode.y","property_type","uprn","add1","add2","add3","add","postcode.x","postcodelocator","buildingname","buildingnumber","subbuildingname","paostartnumber","paostartsuffix","paoendnumber","paoendsuffix","paotext","saostartnumber","saostartsuffix","saoendnumber","saoendsuffix","saotext","streetdescription","locality","dependentlocality","townname","class","lodgement_date","inspection_date","lodgement_datetime")
+
 link323<-link323[,..needlist11]
 
 link323u<- uniqueresult(link323)
@@ -9852,13 +9849,13 @@ link323d <- doubleresult(link323)
 epc <- matchleft(epc,link323)
 ####################method 324####################
 function324<- function(x,y){
-  x$bnstreet<- paste(x$buildingnumber,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$buildingnumber,x$streetdescription,sep=",")
   x$bnstreet <- paste(x$bnstreet,x$townname,sep=",")
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -9886,7 +9883,7 @@ function325<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -9913,7 +9910,7 @@ function326<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -9931,7 +9928,6 @@ link326<-function326(add,epc)
 link326<-link326[,..needlist11]
 
 link326u<- uniqueresult(link326)
-
 link326d <- doubleresult(link326)
 
 epc <- matchleft(epc,link326)
@@ -9943,7 +9939,7 @@ function327<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -9971,7 +9967,7 @@ function328<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -9999,7 +9995,7 @@ function329<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -10027,7 +10023,7 @@ function330<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -10054,7 +10050,7 @@ function331<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -10082,7 +10078,7 @@ function332<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -10110,7 +10106,7 @@ function333<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -10139,7 +10135,7 @@ function334<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -10166,7 +10162,7 @@ function335<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -10191,7 +10187,7 @@ function336<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -10218,7 +10214,7 @@ function337<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -10240,13 +10236,13 @@ link337d <- doubleresult(link337)
 epc <- matchleft(epc,link337)
 ####################method 338####################
 function338<- function(x,y){
-  x$bnstreet <-    paste(x$subbuildingname,x$buildingname,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$subbuildingname,x$buildingname,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -10274,7 +10270,7 @@ function339<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -10338,7 +10334,7 @@ function341<- function(x,y){
   x$bnstreet <- gsub("['] ", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[']", "", y$addressfinal)
@@ -10366,7 +10362,7 @@ function342<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -10394,7 +10390,7 @@ function343<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -10424,7 +10420,7 @@ function344<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -10453,7 +10449,7 @@ function345<- function(x,y){
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -10482,7 +10478,7 @@ function346<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -10512,7 +10508,7 @@ function347<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -10541,7 +10537,7 @@ function348<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add) 
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -10568,7 +10564,7 @@ function349<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -10595,7 +10591,7 @@ function350<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add) 
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -10617,14 +10613,14 @@ link350d <- doubleresult(link350)
 epc <- matchleft(epc,link350)
 ####################method 351####################
 function351<- function(x,y){
-  x$bnstreet <-    paste(x$saotext,x$paotext,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$buildingnumber,sep=",")
-  x$bnstreet <-    paste(x$saotext,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$saotext,x$paotext,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$buildingnumber,sep=",")
+  x$bnstreet <- paste(x$saotext,x$streetdescription,sep=",")
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add) 
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -10652,7 +10648,7 @@ function352<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add) 
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -10681,7 +10677,7 @@ function353<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add) 
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -10707,7 +10703,7 @@ function354<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add) 
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -10737,7 +10733,7 @@ function355<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add1,y$add2,sep=",")
   y$addressfinal2 <- word(y$add3,1)
@@ -10766,7 +10762,7 @@ function356<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add) 
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -10794,7 +10790,7 @@ function357<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <-  paste("APARTMENT ",y$add1,sep="")
@@ -10823,7 +10819,7 @@ function358<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add) 
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -10854,7 +10850,7 @@ function359<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <-  y$add
@@ -11061,7 +11057,7 @@ function360<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- paste("FLAT ",y$add1,sep="")
@@ -11092,7 +11088,7 @@ function361<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -11121,7 +11117,7 @@ function362<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub(" ", "", y$addressfinal)
@@ -11143,7 +11139,7 @@ function363<- function(x,y){
   x<-x[x$subbuildingname=="",]
   x$bnstreet <- paste(x$ss,x$streetdescription,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub(" ", "", y$addressfinal)
@@ -11170,7 +11166,7 @@ function364<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add) 
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -11200,7 +11196,7 @@ function365<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add) 
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -11229,7 +11225,7 @@ function366<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -11258,7 +11254,7 @@ function367<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add1,y$add3,sep=",")
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -11285,7 +11281,7 @@ function368<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
  
   y$addressfinal <- y$add
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -11313,9 +11309,8 @@ function369<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
-
   y$addressfinal <- paste(y$add1,y$add2,sep=",")
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -11342,7 +11337,7 @@ function370<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y[postcode=="SW11 7AY",add:=gsub("THE MODERN, BLOCK D, PLOT", "APARTMENT",add)]
   y$addressfinal <- y$add
@@ -11371,7 +11366,7 @@ function371<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -11400,7 +11395,7 @@ function372<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -11429,7 +11424,7 @@ function373<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -11456,7 +11451,7 @@ function374<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -11483,7 +11478,7 @@ function375<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -11511,7 +11506,7 @@ function376<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- paste("FLAT ",y$add,sep="")
@@ -11540,7 +11535,7 @@ function377<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- paste("APARTMENT ",y$add,sep="")
@@ -11569,7 +11564,7 @@ function378<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub("ROOM", "FLAT", y$addressfinal)
@@ -11598,7 +11593,7 @@ function379<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub( "FLAT","ROOM", y$addressfinal)
@@ -11627,7 +11622,7 @@ function380<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub( "STUDIO","FLAT", y$addressfinal)
@@ -11658,7 +11653,7 @@ function381<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- y$add
@@ -11687,7 +11682,7 @@ function382<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
 
   y$addressfinal <- y$add
   y$addressfinal <- gsub( "UNIT","FLAT", y$addressfinal)
@@ -11717,7 +11712,7 @@ function383<- function(x,y){
   x$bnstreet <- gsub("[/]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   #"FLAT 23"
@@ -11742,16 +11737,15 @@ link383u<- uniqueresult(link383)
 link383d <- doubleresult(link383)
 
 epc <- matchleft(epc,link383)
-####################method 384v
+####################method 384####################
 function384<- function(x,y){
   x$bnstreet <-  paste(x$subbuildingname,x$buildingnumber,sep=",")
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
- 
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y[postcode=="E2 8AG",add:=gsub("KINGLAND ROAD", "KINGSLAND ROAD",add)]
   y$addressfinal <- y$add
@@ -11780,9 +11774,9 @@ function385<- function(x,y){
   x$bnstreet <- gsub("[/]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
- y$addressfinal <-  trimws(y$add)
+  y$addressfinal <-  trimws(y$add)
   y$addressfinal <- gsub("FLAT 01", "FLAT 1", y$addressfinal)
   y$addressfinal <- gsub("FLAT 02", "FLAT 2", y$addressfinal)
   y$addressfinal <- gsub("FLAT 03", "FLAT 3", y$addressfinal)
@@ -11818,7 +11812,7 @@ function386<- function(x,y){
   x$bnstreet <- gsub("[/]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <-  trimws(y$add)
   y$addressfinal <- gsub("APARTMENT", "FLAT", y$addressfinal)
@@ -11847,7 +11841,7 @@ function387<- function(x,y){
   x$bnstreet <- gsub("[/]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <-  trimws(y$add)
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -11874,7 +11868,7 @@ function388<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y<-y[y$add!="",]
   y$addressfinal <- y$add
@@ -11889,7 +11883,6 @@ function388<- function(x,y){
 
   return(taba1)
 }
-
 link388<-function388(add,epc)
 link388<-link388[,..needlist1]
 
@@ -11905,7 +11898,7 @@ function389<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- word(y$add1,1)
@@ -11937,11 +11930,10 @@ function390<- function(x,y){
   x$bnstreet <- gsub("[/]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
+  
   y$addressfinal <-  paste(y$add1,y$add3,sep=",")
   y$addressfinal <- gsub("APARTMENT", "FLAT", y$addressfinal)
-  
-  
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
   y$addressfinal <- gsub("[']", "", y$addressfinal)
@@ -11968,7 +11960,7 @@ function391<- function(x,y){
   x$bnstreet <- gsub("[/]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
 
   y$addressfinal <-  paste(y$add1,y$add3,sep=",")
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
@@ -12027,7 +12019,7 @@ function393<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y[postset=="B25 8",addressfinal:=gsub("EQUIPPOINT", "EQUIPOINT",addressfinal)]
@@ -12057,7 +12049,7 @@ function394<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y[postset=="S2 2",addressfinal:=gsub("NORFOLK PARK VILLAGE", "NORFOLK PARK STUDENT RESIDENCE",addressfinal)]
@@ -12087,7 +12079,7 @@ function395<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -12116,7 +12108,7 @@ function396<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
  
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -12176,8 +12168,7 @@ function398<- function(x,y){
   x$bnstreet <- gsub("[/]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
-  #"FLAT 15"
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <-  y$add
@@ -12207,7 +12198,7 @@ function399<- function(x,y){
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(",", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- y$add
@@ -12238,13 +12229,8 @@ function400<- function(x,y){
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub("[/]", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
-  
-  
-  #y<-y[y$property_type=="Flat",]
-  
-  #y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
-  
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
+ 
   y$addressfinal <- y$add
   y$addressfinal <- gsub("APARTMENT 01", "APARTMENT 1", y$addressfinal)
   y$addressfinal <- gsub("APARTMENT 02", "APARTMENT 2", y$addressfinal)
@@ -12373,8 +12359,8 @@ l360_400d = list(link360d,link361d,link362d,link363d,link364d,link365d,link366d,
 
 link360_400d <- rbindlist(l360_400d ,use.names=TRUE,fill=T)
 
-dbWriteTable(con, "link360_400dnew1",value =link360_400d, append =  TRUE, row.names = FALSE)
-dbWriteTable(con, "link360_400unew1",value =link360_400u, append =  TRUE, row.names = FALSE)
+dbWriteTable(con, "link360_400d",value =link360_400d, append =  TRUE, row.names = FALSE)
+dbWriteTable(con, "link360_400u",value =link360_400u, append =  TRUE, row.names = FALSE)
 
 
 rm(l360_400d,l360_400u)
@@ -12411,7 +12397,7 @@ function401<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub("STUDIOS 51", "STUDIO 51", y$addressfinal)
@@ -12435,13 +12421,13 @@ link401d <- doubleresult(link401)
 epc <- matchleft(epc,link401)
 ####################method 402####################
 function402<- function(x,y){
-  x$bnstreet <-    paste(x$subbuildingname,x$buildingname,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$subbuildingname,x$buildingname,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
  
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("FRESHFIELD", "FRESHFIELDS", y$addressfinal)
@@ -12467,12 +12453,12 @@ function403<- function(x,y){
 
   x$bnstreet <- paste(x$subbuildingname,x$paostartnumber,sep=",")
   x$bnstreet <- paste(x$bnstreet,x$paoendnumber,sep="-")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -12530,7 +12516,7 @@ function405<- function(x,y){
   x$bnstreet <- gsub("[/]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
 
   y<-y[y$postcode=="RG1 4ET",]
   y$addressfinal <- y$add
@@ -12567,7 +12553,7 @@ function406<- function(x,y){
   x$bnstreet <- gsub("[/]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
 
   y$addressfinal <- y$add
   x$addressfinal <- gsub("-", "", x$addressfinal)
@@ -12592,24 +12578,18 @@ epc <- matchleft(epc,link406)
 function407<- function(x,y){
   x$bnstreet <- paste(x$subbuildingname,x$buildingname,sep=",")
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
-
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[/]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
-  #BD1 2HQ
-  #"FLAT 47"
   y$addressfinal <- y$add
   # y$addressfinal <- gsub("CLEARWATER", "CLEARWATER VILLAGE", y$addressfinal)
   y$addressfinal <- gsub("STUDIO", "FLAT", y$addressfinal)
-  # x$addressfinal <- gsub("-", "", x$addressfinal)
-  # y$addressfinal <- gsub(",", "", y$addressfinal)
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
   y$addressfinal <- gsub("[']", "", y$addressfinal)
-  
   y$addressfinal <- gsub(" ", "", y$addressfinal)
   y$addressf <- paste(y$postset,y$addressfinal,sep=",")
   
@@ -12625,14 +12605,14 @@ link407d <- doubleresult(link407)
 epc <- matchleft(epc,link407)
 ####################method 408####################
 function408<- function(x,y){
-  x$bnstreet <-    paste(x$saotext,x$paotext,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$locality,sep=",")
+  x$bnstreet <- paste(x$saotext,x$paotext,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$locality,sep=",")
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[/]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <-  paste("FLAT", y$add, sep=" ")
@@ -12662,7 +12642,7 @@ function409<- function(x,y){
   x$bnstreet <- gsub("[/]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
  
   y$addressfinal <- y$add
   y$addressfinal <- gsub("NO.1", "NUMBER ONE", y$addressfinal)
@@ -12684,8 +12664,8 @@ link409d <- doubleresult(link409)
 epc <- matchleft(epc,link409)
 ####################method 410####################
 function410<- function(x,y){
-  x$bnstreet <-    paste(x$saotext,x$buildingnumber,sep=" ")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=" ")
+  x$bnstreet <- paste(x$saotext,x$buildingnumber,sep=" ")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[/]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
@@ -12717,7 +12697,7 @@ function411<- function(x,y){
   x$bnstreet <- gsub("[/]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub(" ", "", y$addressfinal)
@@ -12744,7 +12724,7 @@ function412<- function(x,y){
   x$bnstreet <- gsub("[/]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(substring(x$postset,1,3),x$bnstreet,sep=",")
+  x$addressf <- paste(substring(x$postset,1,3),x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub(" ", "", y$addressfinal)
@@ -12773,7 +12753,7 @@ function413<- function(x,y){
   x$bnstreet <- gsub("[/]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(substring(x$postset,1,2),x$bnstreet,sep=",")
+  x$addressf <- paste(substring(x$postset,1,2),x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub(" ", "", y$addressfinal)
@@ -12802,9 +12782,8 @@ function414<- function(x,y){
   x$bnstreet <- gsub("[/]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
-
   y$addressfinal <- y$add1
   y$addressfinal <- gsub("[-]", "", y$addressfinal)
   y$addressfinal <- gsub("FLAT 01", "FLAT 1", y$addressfinal)
@@ -12845,7 +12824,7 @@ function415<- function(x,y){
   x$bnstreet <- gsub("[/]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub(" ", "", y$addressfinal)
@@ -12867,12 +12846,12 @@ link415d <- doubleresult(link415)
 epc <- matchleft(epc,link415)
 ####################method 416####################
 function416<- function(x,y){
-  x$bnstreet <-    paste(x$saotext,x$streetdescription,sep=" ")
+  x$bnstreet <- paste(x$saotext,x$streetdescription,sep=" ")
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[/]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- paste("FLAT",y$add,sep="")
@@ -12896,13 +12875,13 @@ link416d <- doubleresult(link416)
 epc <- matchleft(epc,link416)
 ####################method 417####################
 function417<- function(x,y){
-  x$bnstreet <-    paste(x$saotext,x$pp,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=" ")
+  x$bnstreet <- paste(x$saotext,x$pp,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[/]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y[add2=="CORE B, PIMLICO PLACE",add1:=gsub("FLAT", "FLAT B",add1)]
   y[add2=="CORE E, PIMLICO PLACE",add1:=gsub("FLAT", "FLAT E",add1)]
@@ -12940,7 +12919,7 @@ function418<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
 
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -12966,15 +12945,11 @@ function419<- function(x,y){
   x$bnstreet <- gsub("[/]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
-  
-  #y<-y[y$property_type=="Flat",]
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   #y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y<-y[add1=="FLAT",]
-  
   y$addressfinal <- y$add2
-  
   y$addressfinal <- gsub(" ", "", y$addressfinal)
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -12983,10 +12958,6 @@ function419<- function(x,y){
   
   taba1 <- inner_join(x,y,by="addressf")
   return(taba1)
-  
-  
-
-  
 }
 link419<-function419(add,epc)
 link419<-link419[,..needlist11]
@@ -13003,7 +12974,7 @@ function420<- function(x,y){
   x$bnstreet <- gsub("[/]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y<-y[add1!="FLAT",]
@@ -13034,7 +13005,7 @@ function421<- function(x,y){
   x$bnstreet <- gsub("[/]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
 
   y$addressfinal <- y$add1
   y$addressfinal <- gsub("HUMPHREY DAVY HOUSE", "HUMPHRY DAVY HOUSE", y$addressfinal)
@@ -13064,7 +13035,7 @@ function422<- function(x,y){
   x$bnstreet <- gsub("[/]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y<-y[!grepl("\\d\\d?[,]\\d\\d?",y$add1) ,]
   y<-y[!grepl("\\d\\d?[,]\\s\\d\\d?",y$add1) ,]
@@ -13127,7 +13098,7 @@ function424<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y<-y[y$add!="",]
   y$addressfinal <- y$add
@@ -13149,11 +13120,8 @@ link424u<- uniqueresult(link424)
 link424d <- doubleresult(link424)
 
 epc<- matchleft(epc,link424)
-#################### method 425 ##################
-
-
+#################### method 425#################### 
 function425<- function(x,y){
-  
   x$bnstreet <- paste(x$buildingnumber,x$streetdescription,sep=" ")
   x$bnstreet <- paste(x$bnstreet,x$townname ,sep=" ")
   x$bnstreet <- gsub(",", "", x$bnstreet)
@@ -13161,7 +13129,7 @@ function425<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y<-y[y$add!="",]
   y$addressfinal <- y$add
@@ -13176,7 +13144,6 @@ function425<- function(x,y){
   
   return(taba1)  
 }
-
 link425<-function425(add,epc)
 link425<-link425[,..needlist11]
 
@@ -13190,7 +13157,7 @@ function426<- function(x,y){
   x$bnstreet <- paste(x$bnstreet,x$pp,sep=",")
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- gsub(",", "", y$add1)
   y$addressfinal <- paste( y$addressfinal, y$add2, sep=",")
@@ -13222,7 +13189,7 @@ function427<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add1,y$add2,sep=",")
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -13253,7 +13220,7 @@ function428<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add1,y$add2,sep=",")
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -13311,7 +13278,7 @@ function430<- function(x,y){
   x$bnstreet <- paste(x$bnstreet,x$paoendnumber,sep="-")
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=" ")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- gsub(",", "", y$add1)
   y$addressfinal <- paste( y$addressfinal, y$add2, sep=",")
@@ -13337,7 +13304,7 @@ function431<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postset,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postset,x$bnstreet,sep=",")
   
   y$addressfinal <- paste(y$add1,y$add3,sep=" ") 
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -13366,14 +13333,13 @@ function432<- function(x,y){
   x$bnstreet <- paste(x$bnstreet1,x$bnstreet2,sep=" ")
   x$bnstreet <- paste(x$bnstreet,x$locality,sep=",")
   x$bnstreet <- paste(x$bnstreet,x$townname,sep=",")
-
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
-  y$addressfinal <-y$add1
+  y$addressfinal <- y$add1
   y$addressfinal <- gsub(",", "", y$addressfinal)
   y[postcode=="TR27 5AF",addressfinal:=gsub("CLONMORE", "CLOMORE",addressfinal)]
   y[postcode=="TR27 5AF",addressfinal:=gsub("TURESTIN","TORESTIN",addressfinal)]
@@ -13410,7 +13376,7 @@ function433<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- y$add
@@ -13443,7 +13409,7 @@ function434<- function(x,y){
   x$bnstreet <- paste(x$bnstreet,x$pp,sep=",")
   x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub(" ", "", y$addressfinal)
@@ -13471,7 +13437,7 @@ function435<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- y$add
   y$addressfinal <- gsub("FLAT", "APARTMENT", y$addressfinal)
@@ -13502,9 +13468,8 @@ function436<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
-
   y$addressfinal <- word(y$add1,1,2)
   y$addressfinal <-  paste(y$addressfinal,y$add2,sep=",")
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -13535,7 +13500,7 @@ function437<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <-  paste("FLAT",y$add,sep=" ")
@@ -13559,13 +13524,13 @@ link437d <- doubleresult(link437)
 epc <- matchleft(epc,link437)
 ####################method 438####################
 function438<- function(x,y){
-  x$bnstreet <-    paste(x$saotext,x$pp,sep=",")
-  x$bnstreet <-    paste(x$bnstreet,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$saotext,x$pp,sep=",")
+  x$bnstreet <- paste(x$bnstreet,x$streetdescription,sep=",")
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub("FLAT", "ROOM", y$addressfinal)
@@ -13594,7 +13559,7 @@ function439<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
 
   y$addressfinal <- trimws(y$add)
   y[postcode=="CV1 1GU",addressfinal:=gsub("CORPOATION STREET", "CORPORATION STREET",addressfinal)]
@@ -13628,7 +13593,7 @@ function440<- function(x,y){
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
-  y$addressfinal <-  y$add
+  y$addressfinal <- y$add
   y$addressfinal <- gsub( "STUDIO", "STUDIO FLAT",y$addressfinal)
   y$addressfinal <- gsub( "CLUSTER","CLUSTER FLAT", y$addressfinal)
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -13658,7 +13623,7 @@ function441<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- y$add
@@ -13690,7 +13655,7 @@ function442<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- y$add
@@ -13720,7 +13685,7 @@ function443<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
 
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y$addressfinal <- paste( "APARTMENT", y$add1, sep=" ")
@@ -13753,7 +13718,7 @@ function444<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   y<-y[y$property_type=="Flat"|y$property_type=="Maisonette",]
   y<-y[ !grepl("\\d",y$add2) ,]
@@ -13781,13 +13746,12 @@ function445<- function(x,y){
   x<-x[x$paotext!=""]
   x$bnstreet1 <- word(x$paotext,-1)
   x$bnstreet2 <- word(x$paotext,1,2)
-  
   x$bnstreet <- paste(x$bnstreet1,x$townname,sep=",")
   x$bnstreet <- gsub("/", "", x$bnstreet)
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
 
   y$addressfinal <- paste(y$add1,y$add3,sep=",")
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
@@ -13819,13 +13783,12 @@ function446<- function(x,y){
   x$bnstreet <- gsub("[.]", "", x$bnstreet)
   x$bnstreet <- gsub("[']", "", x$bnstreet)
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
 
   y$addressfinal <- paste(y$add1,y$add3,sep=",")
   y$addressfinal <- gsub("[/]", "", y$addressfinal)
   y$addressfinal <- gsub("[.]", "", y$addressfinal)
   y$addressfinal <- gsub("[']", "", y$addressfinal)
-
   y$addressfinal <- gsub(" ", "", y$addressfinal)
   y$addressf <- paste(y$postcode,y$addressfinal,sep=",")
   
