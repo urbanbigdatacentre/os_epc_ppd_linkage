@@ -49,7 +49,7 @@ The tagging UPRN work for Domestic EPCs contains 446 detailed match rules.336 of
 
 As shown in Figure 2, part of the matching rule(e.g. method 1) has a customized cleaning method(e.g clean 1). Each linkage method and the cleaning method has commented like the below two examples.
 
-* *Example of two matching rules (method1 and 2) in the R code:* *
+* *Example of two matching rules (methods 1 and 2) in the R code:* *
 
 
 ***NOTE:*** Each matching rule in the R code share the same coding structure, thus we only comments the first matching rule. The difference between two matching rule are the function part.
@@ -70,23 +70,23 @@ function1<- function(x,y){
   x<-x[x$buildingname=="",]
   x<-x[x$subbuildingname=="",]
   #combine buildingnumber and streetdescription with a comma into bnstreet field
-  x$bnstreet <-    paste(x$buildingnumber,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$buildingnumber,x$streetdescription,sep=",")
   #remove the blank space in bnstreet
   x$bnstreet <- gsub(" ", "", x$bnstreet)
-  x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
+  x$addressf <- paste(x$postcodelocator,x$bnstreet,sep=",")
   
   #remove the blank space in add
   y$addressfinal <- trimws(y$add)
   y$addressfinal <- gsub(" ", "", y$addressfinal)
   y$addressf <- paste(y$postcode,y$addressfinal,sep=",")
+  #match on addressf field
   taba1 <- inner_join(x,y,by="addressf")
  
   return(taba1)
 }
 #run the matching rule 1 function
 link1<-function1(add,epc)
-
-#keep part of the variables in linked dataset
+#subset the linked dataset
 needlist1<-c("lmk_key","postcode.y","property_type","uprn","add1","add2","add3","add","postcode.x","postcodelocator","buildingname","buildingnumber","subbuildingname","paostartnumber","paostartsuffix","paoendnumber","paoendsuffix","paotext","saostartnumber","saostartsuffix","saoendnumber","saoendsuffix","saotext","streetdescription","locality","dependentlocality","townname","class","lodgement_date","inspection_date","lodgement_datetime")
 link1<-link1[,..needlist1]
 #get the one to one linkage result
@@ -95,13 +95,13 @@ link1u<- uniqueresult(link1)
 link1d <- doubleresult(link1)
 #remove the linked records from the original EPC dataset
 epc <- matchleft(epc,link1)
-#remove the linked result to save memory
+#remove the link1 to save memory
 rm(link1)
 ####################method 2####################
 function2<- function(x,y){
   x<-x[x$saotext=="",]
   x<-x[x$subbuildingname=="",]
-  x$bnstreet <-    paste(x$buildingnumber,x$streetdescription,sep=",")
+  x$bnstreet <- paste(x$buildingnumber,x$streetdescription,sep=",")
   x$bnstreet <- gsub(" ", "", x$bnstreet)
   x$addressf <-paste(x$postcodelocator,x$bnstreet,sep=",")
   
@@ -112,7 +112,6 @@ function2<- function(x,y){
 
   return(taba1)
 }
-
 link2<-function2(add,epc)
 link2<-link2[,..needlist1]
 
@@ -122,20 +121,15 @@ link2d <- doubleresult(link2)
 epc <- matchleft(epc,link2)
 
 rm(link2)
-
 ```
 Example of one cleaning rules (clean 1) in the R code:
 
 ```
 ####################clean 1 keep the residential UPRN####################
-#extract the one to many linkage in the matching rule 1
-c2<- linkd[linkd$method=="link1d",]
 #select the residential uprn from the mutiple linked UPRN
 linkd_1<-linkd[linkd$method=="link1d" & substr(linkd$class,1,1)=="R",]
 #remove the linkd_1 from linkd
 linkd<-matchleft(linkd,linkd_1)
-
-####################clean 2 keep the residential uprn and saostartnumber is null####################
 ```
 ### 2.2 Attaching UPRN in Land Registry PPD
 The address matching work for Land Registry PPD is easier than Domestic EPCs. It contains 12 linkage stages with 142 match rules.Within each stage, a series of match rules are were conduct in order. For each matching rule, we only keep the one-to-one linkage result in the linked data. Figure 3 displays the whole linakge workflow between Land Registry PPD and OS AddressBase Plus.The code for this linakge process is in [PPD/](PPD/)
