@@ -82,7 +82,7 @@ needlist1<-c("lmk_key","postcode.y","property_type","uprn","add1","add2","add3",
 needlist2<-c("method","lmk_key","uprn","property_type","add1","add2","add3","add","postcode.x","postcode.y","postcodelocator","buildingname","buildingnumber","subbuildingname","paostartnumber","paostartsuffix","paoendnumber","paoendsuffix","paotext","saostartnumber","saostartsuffix","saoendnumber","saoendsuffix","saotext","streetdescription","dependentlocality","townname","class","lodgement_date","inspection_date","lodgement_datetime")
 needlist3<-c("lmk_key","postcode.y","property_type","uprn","add1","add2","add3","add","postcode.x","postcodelocator","buildingname","buildingnumber","subbuildingname","paostartnumber","paostartsuffix","paoendnumber","paoendsuffix","paotext","saostartnumber","saostartsuffix","saoendnumber","saoendsuffix","saotext","streetdescription","dependentlocality","locality","townname","class","lodgement_date","inspection_date","lodgement_datetime")
 
-#Create function used in the linkage
+#create four functions
 matchleft <- function(x,y){
   next0 <- x[!(x$lmk_key %in% y$lmk_key),]
   
@@ -4839,6 +4839,13 @@ link167<-link167[,..needlist1]
 link167u<- uniqueresult(link167)
 link167d <- doubleresult(link167)
  
+c1<-link167u[grepl("\\d$",link167u$add1),]
+c1<-c1[grepl("^\\d",c1$add2),]
+
+c1_2<-c1[c1$add1!=c1$subbuildingname,]
+
+link167u<-matchleft(link167u,c1_2)
+
 epc <- matchleft(epc,link167)
 ####################method 168####################
 function168<- function(x,y){
@@ -13917,8 +13924,8 @@ l401_446d = list(link401d,link402d,link403d,link404d,link405d,link406d,link407d,
 
 link401_446d <- rbindlist(l401_446d , use.names=TRUE, fill=TRUE)
 
-dbWriteTable(con, "link401_446dnew",value =link401_446d, append = TRUE, row.names = FALSE)
-dbWriteTable(con, "link401_446unew",value =link401_446u, append = TRUE, row.names = FALSE)
+dbWriteTable(con, "link401_446d",value =link401_446d, append = TRUE, row.names = FALSE)
+dbWriteTable(con, "link401_446u",value =link401_446u, append = TRUE, row.names = FALSE)
 
 #delete data
 rm(l401_446d,l401_446u)
@@ -13955,12 +13962,11 @@ linkd2<-rbindlist(list(linkd1,link300_359d,link360_400d,link401_446d),use.names=
 dbWriteTable(con, "linku2",value =linku2, append = TRUE, row.names = FALSE)
 dbWriteTable(con, "linkd2",value =linkd2, append = TRUE, row.names = FALSE)
 #delete data
-rm(linkd1,link300_359d,link360_400d,link401_446d,linku1,link300_359u,link360_400u,link401_446u)
-rm(list= ls()[! (ls() %in% c('linku2','linkd2'))]) 
+rm(list= ls()[! (ls() %in% c('linku2','linkd2','doubleresult','uniqueresult','matchleft','keepneed'))]) 
 
 #############################part 2: linked data cleaning############################# 
 linkd<-linkd2
-
+linkdbinchi<-linkd2
 ####################clean 1 keep the residential UPRN####################
 #select the residential uprn from the mutiple linked UPRN
 linkd_1<-linkd[linkd$method=="link1d" & substr(linkd$class,1,1)=="R",]
@@ -14042,11 +14048,19 @@ linkd32_1<-linkd[linkd$method=="link32d" & substr(linkd$class,1,1)=="R" ,]
 
 linkd32_1<-uniqueresult(linkd32_1)
 linkd<-matchleft(linkd,linkd32_1)
-####################clean 34 keep the residential UPRN####################
+####################clean 34 keep the residential UPRN or buidlingname=ss####################
 linkd34_1<-linkd[linkd$method=="link34d" & substr(linkd$class,1,1)=="R" ,]
 
 linkd34_1<-uniqueresult(linkd34_1)
 linkd<-matchleft(linkd,linkd34_1)
+
+c2<- linkd[linkd$method=="link34d",]
+
+c2$ss<-paste(c2$saostartnumber,c2$saostartsuffix,sep="")
+c2$ss<-gsub(" ", "", c2$ss)
+linkd34_2<-c2[c2$buildingnumber== c2$ss,]
+linkd34_2<-uniqueresult(linkd34_2)
+linkd<-matchleft(linkd,linkd34_2)
 ####################clean 35 keep the residential UPRN####################
 linkd35_1<-linkd[linkd$method=="link35d" & substr(linkd$class,1,1)=="R" ,]
 
@@ -14073,6 +14087,7 @@ linkd46_1<-linkd[linkd$method=="link46d" & substr(linkd$class,1,1)=="R" ,]
 linkd46_1<-uniqueresult(linkd46_1)
 linkd<-matchleft(linkd,linkd46_1)
 ####################clean 58 buildingnumber does not contain number####################
+c2<- linkd[linkd$method=="link58d",]
 linkd58_1<-c2[!grepl("\\d+",c2$buildingnumber),]
 
 linkd58_1<-uniqueresult(linkd58_1)
@@ -14229,6 +14244,17 @@ linkd143_4<-linkd143[word(linkd143$add2, 1)==word(linkd143$subbuildingname, -1),
 
 linkd143_4<-uniqueresult(linkd143_4)
 linkd<-matchleft(linkd,linkd143_4)
+
+
+
+c2<- linkd[linkd$method=="link143d",]
+c2<-c2[!grepl("\\d",c2$add2),]
+
+linkd143_parent<-c2[grepl("\\d",c2$subbuildingname),]
+linkd143_parent1<-keepneed(linkd,linkd143_parent)
+
+linkd<-matchleft(linkd,linkd143_parent1)
+rm(linkd143_parent,linkd143_parent1)
 
 c2<- linkd[linkd$method=="link143d",]
 c2<-c2[!grepl("\\d",c2$add2),]
@@ -14801,6 +14827,14 @@ linkd288_2<-linkd288[linkd288$add1c==paste(linkd288$subbuildingname,linkd288$sao
 
 linkd288_2<-uniqueresult(linkd288_2)
 linkd<-matchleft(linkd,linkd288_2)
+
+c2<- linkd[linkd$method=="link288d",]
+linkd288_parent<-c2[grepl("\\d",c2$saotext),]
+linkd288_parent1<-keepneed(linkd,linkd288_parent)
+
+linkd<-matchleft(linkd,linkd288_parent1)
+rm(linkd288_parent,linkd288_parent1)
+
 #add1[,](second word)=paostartnumber-paoendnumber and add1(first word)=saostartnumber
 linkd288<-linkd[linkd$method=="link288d",] 
 linkd288$add1<-gsub(",","",linkd288$add1)
@@ -15293,10 +15327,8 @@ clean_list<-list(linkd_1,linkd2_1,linkd4_1,linkd5_1,linkd6_1,linkd7_1,linkd8_1,l
 
 linkd_clean<-rbindlist(clean_list, use.names=TRUE, fill=TRUE)
 linkdd_final<-unique(linkd_clean)
-dim(linkdd_final)
 
-linkdcopy<-matchleft(linkd2,linkdd_final)
-length(unique(linkdcopy$lmk_key))
+
 rm(linkd_1,linkd2_1,linkd4_1,linkd5_1,linkd6_1,linkd7_1,linkd8_1,linkd9_1,
    linkd10_1,linkd11_1,linkd12_1,linkd15_1,linkd20_1,linkd25_1,linkd30_1,
    linkd32_1,linkd34_1,linkd35_1,linkd38_1,linkd44_1,linkd45_1,linkd46_1,
@@ -15324,285 +15356,40 @@ rm(linkd_1,linkd2_1,linkd4_1,linkd5_1,linkd6_1,linkd7_1,linkd8_1,linkd9_1,
    linkd431_1,linkd431_2,linkd436_1,linkd436_2,linkd436_3,linkd444_1,linkd444_2,
    linkd446_1,linkd34_2,linkd202_2,linkd113_2,clean_list
 )
+rm(linkd,linkd2,linkd4,linkd5,linkd6,linkd7,linkd8,linkd9,
+   linkd10,linkd11,linkd12,linkd15,linkd20,linkd25,linkd30,
+   linkd32,linkd34,linkd35,linkd38,linkd44,linkd45,linkd46,
+   linkd58,linkd73,linkd74,linkd75,linkd78,linkd79,linkd82,
+   linkd87,linkd96,linkd97,linkd101,linkd103,linkd104,linkd107,
+   linkd108,linkd109,linkd113,linkd115,linkd123,linkd124,linkd125,
+   linkd142,linkd143,linkd144,linkd145,linkd146,linkd147,linkd151,linkd153,
+   linkd161,linkd169,linkd171,
+   linkd173,linkd175,linkd180,linkd196,
+   linkd197,linkd202,linkd203,linkd214,linkd217,linkd234,linkd236,
+   linkd237,linkd239,linkd240,linkd246,linkd253,
+   linkd254,linkd254_2,linkd255,linkd271,
+   linkd272,linkd281,linkd321,linkd324,linkd348,linkd349,linkd357,linkd367,
+   linkd390,linkd391,linkd404,linkd419,linkd421,linkd422,
+   linkd431,linkd436,linkd444,linkd288,linkd289,linkd291,
+   linkd292,linkd294,linkd295,linkd296,linkd301,linkd319,linkd293,linkd305,linkd297,
+   linkd446)
 
-########################clean the linku######################
-
-
-##################clean the method 58#########################
-c1<-linku2[linku2$method=="link58u",]
-
-
-c1<-c1[grepl("\\d+",c1$buildingnumber),]
-c1<-c1[c1$paostartnumber!="",]
-
-
+#remove the records with no address information
 dim(linku2)
-#21046468       34
-linku<-matchleft(linku2,c1)
-dim(linku)
-#21046385       34
-
-#c1<-linku[linku$method=="link113u",]
-
-c1<-linku[linku$method=="link116u",]
-View(c1)
-c1<-c1[grepl("^\\d+",c1$buildingname),]
-c1<-c1[c1$saostartnumber!="",]
-in_1<-c1
-dim(linku)
-#21046385       34
-linku<-matchleft(linku,c1)
-dim(linku)
-#21046309       34
-
-##143 to solve the add2 issue is not exist in OS addressbase
-#c1<-linku[linku$method=="link143u",]
-#c1<-linku[linku$method=="link144u",]
-#View(c1)
-
-
-#c1<-linku[linku$method=="link161u",]
-
-#c1<-linku[linku$method=="link167u",]
-
-#c1<-linku[linku$method=="link169u",]
-#c1<-c1[grepl("^\\d+",c1$buildingname),]
-
-# c1<-linku[linku$method=="link171u",]
-# c1<-linku[linku$method=="link202u",]
-# #
-# c1<-linku[linku$method=="link211u",]
-
-
-# c1<-linku[linku$method=="link246u",]
-# c1<-linku[linku$method=="link251u",]
-# c1<-linku[linku$method=="link254u",]
-# c1<-linku[linku$method=="link255u",]
-
-#c1<-linku[linku$method=="link273u",]
-#c1<-linku[linku$method=="link274u",]
-
-c1<-linku[linku$method=="link145u",]
-
-c1_1<-c1[grepl("\\d[,]\\s\\d",c1$add1),]
-
-
-dim(linku)
-#21046309       34
-linku<-matchleft(linku,c1_1)
-dim(linku)
-#21046307       34
-
-##same uprn for different adddress
-
-c1<-linku[linku$method=="link281u",]
-
-doubleresult1 <-  function(x){
-  
-  dt <- as.data.table(x)
-  
-  esummary<-dt[,.(count=.N),by=uprn]
-  
-  idd2 <- esummary[esummary$count!=1,]
-  
-  need1 <- x[x$uprn %in% idd2$uprn,]
-  
-  return(need1)
-}
-
-
-uniqueresult1 <-  function(x){
-  
-  dt <- as.data.table(x)
-  
-  esummary<-dt[,.(count=.N),by=uprn]
-  
-  idd2 <- esummary[esummary$count==1,]
-  
-  need1 <- x[x$uprn %in% idd2$uprn,]
-  
-  return(need1)
-}
-c11<-doubleresult1(c1)
-
-c12<-c11[,c("add","uprn")]
-c12<-unique(c12)
-
-c13<-doubleresult1(c12)
-
-
-
-
-c14<-c1[c1$add %in% c13$add,]
-#c14<-c12[!(c12$add %in% c13$add),]
-
-##c14 contain the wrong part
-#first remove it and then add in the right part
-
-dim(linku)
-#21046309       34
-linku<-matchleft(linku,c14)
-dim(linku)
-#21040785       34
-
-
-data1<-c14
-View(data1)
-data1_1<-data1[data1$add2!="",]
-data1_1<-data1_1[word(data1_1$add2,1)==paste(data1_1$paostartnumber,data1_1$paostartsuffix,sep=""),]
-
-dim(data1_1)
-data1_1<-uniqueresult(data1_1)
-dim(data1_1)
-#48
-dim(data1_1)
-# data1_1<-uniqueresult1(data1_1)
-# dim(data1_1)
-
-matchleft1 <- function(x,y){
-  next0 <- x[!(x$uprn %in% y$uprn),]
-  return(next0)
-  
-}
-
-dim(data1)
-#5524   34
-data1<-matchleft1(data1,data1_1)
-
-dim(data1)
-#5375   34
-
-data1_2<-data1[data1$add2!="",]
-data1_2<-data1_2[word(data1_2$add2,1)==paste(data1_2$saostartnumber,data1_2$saostartsuffix,sep=""),]
-dim(data1_2)
-data1_2<-uniqueresult(data1_2)
-dim(data1)
-#5375   34
-data1<-matchleft1(data1,data1_2)
-
-dim(data1)
-# 5307   34
-# Two dataset use different street name.
-
-#407452300952017030308312995030576
-data1_3<-data1[data1$add2!="",]
-data1_3<-data1_3[word(data1_3$add2,1)==data1_3$buildingnumber,]
-
-data1_3<-uniqueresult(data1_3)
-dim(data1)
-#5375   34
-data1<-matchleft1(data1,data1_3)
-
-dim(data1)
-#5299   34
-
-
-data1_4<-data1[data1$add2=="",]
-
-data1_4$add1c<-str_remove(data1_4$add1, '(\\w+\\s+){2}')
-
-data1_4<-data1_4[word(data1_4$add1c,1,2)==word(data1_4$paotext,1,2),]
-
-data1<-matchleft1(data1,data1_4)
-
-dim(data1)
-# 5295   34
-data1_5<-data1[data1$add2=="",]
-
-data1_5$add1c<-str_remove(data1_5$add1, '(\\w+\\s+){2}')
-
-data1_5<-data1_5[word(data1_5$add1c,1)==paste(data1_5$paostartnumber,data1_5$paostartsuffix,sep=""),]
-
-data1<-matchleft1(data1,data1_5)
-
-dim(data1)
-#5293   34
-# data1_6<-data1[data1$add2=="",]
-# 
-# data1_6$add1c<-str_remove(data1_6$add1, '(\\w+\\s+){2}')
-# 
-# data1_6<-data1_6[word(data1_6$add1c,1)==data1_6$paostartnumber,]
-
-data1_all<-rbindlist(list(data1_1,data1_2,data1_3,data1_4,data1_5),use.names=TRUE, fill=TRUE)
-rm(data1_1,data1_2,data1_3,data1_4,data1_5)
-head(data1_all)
-data1_all[, add1c:=NULL]
-dim(linku)
-dim(data1_all)
-
-linku_final<-rbindlist(list(linku,data1_all), use.names=TRUE, fill=TRUE)
-dim(linku_final)
-#21040874       34
-c1<-linku_final[linku_final$method=="link288u",]
-
-#pp=add1,1
-# add1 contain this 10 B  is wrong
-
-numberstringxtract <- function(string){ 
-  str_extract(string, "[0-9]{1,2}\\s[A-Z]")
-} 
-
-data2<- c1[grepl("[0-9]{1,2}\\s[A-Z]$",c1$add1),]
-
-dim(linku_final)
-#21040876       34
-linku_final<-matchleft(linku_final,data2)
-dim(linku_final)
-# 21040851       34
-#these are the wrong and need to redone the linkage.
-dim(data2)
-#25 34
-###unable to solve 
-
-##save out the mark it 
-fwrite(data2,"D:/epc_os/results/data2.csv")
-c1<-linku_final[linku_final$method=="link295u",]
-#maybe no issue
-rm(c1)
-
-
-c1<-linku_final[linku_final$method=="link436u",]
-
-rm(c1)
-##
-##check random
-cc<-linku_final[linku_final$method=="link229u",]
-View(cc)
-rm(cc)
-cc<-linku_final[linku_final$method=="link230u",]
-View(cc)
-rm(cc)
-cc<-linku_final[linku_final$method=="link231u",]
-View(cc)
-rm(cc)
-cc<-linku_final[linku_final$method=="link236u",]
-View(cc)
-rm(cc)
-
-cc<-linku_final[linku_final$method=="link237u",]
-View(cc)
-rm(cc)
-cc<-linku_final[linku_final$method=="link239u",]
-View(cc)
-rm(cc)
-
-cc<-linku_final[linku_final$method=="link246u",]
-View(cc)
-rm(cc)
-
-
-cc<-linku_final[linku_final$method=="link247u",]
-View(cc)
-rm(cc)
-
-# dim(linku)
-# #21040760       34
-# linku<-rbindlist(list(linku,data1_all),use.names=TRUE, fill=TRUE)
-# dim(linku)
-# ## 21040851       35
-
-#check different address with the same uprn
-dim(linku_final)
-linku_final<-linku_final[add!="",]
-dim(linku_final)
-#21040848       34
+linku2<-linku2[add!="",]
+dim(linku2)
+########################sum up all the linked results######################
+dim(linku2)
+dim(linkdd_final)
+head(linku2)
+head(linkdd_final)
+#remove three variables in the linkddfinal
+linkdd_final[, pp:=NULL]
+linkdd_final[, ss:=NULL]
+linkdd_final[, add1c:=NULL]
+
+link_all<-rbindlist(list(linku2,linkdd_final), use.names=TRUE, fill=TRUE)
+link_all<-link_all[,c("lmk_key","uprn","method")]
+
+dbWriteTable(con, "epc_link",value =link_all, append = TRUE, row.names = FALSE)
+########################END######################
